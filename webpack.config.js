@@ -7,6 +7,8 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
+  const proxyTarget = process.env.WP_PROXY || 'http://localhost:8888'; // Nutze Umgebungsvariable oder Standard
+  const proxyHost = new URL(proxyTarget).host.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
   return {
     entry: {
@@ -125,7 +127,20 @@ module.exports = (env, argv) => {
         filename: 'style.css'
       }),
       new BrowserSyncPlugin({
-        proxy: process.env.WP_PROXY || 'http://localhost:8888', // Nutze Umgebungsvariable oder Standard
+        proxy: proxyTarget,
+        // BrowserSync's own link rewriting corrupts URLs inside inline JSON
+        // when they end at an escaped quote (...orders/\"): it swallows the
+        // backslash and the script becomes invalid. WooCommerce's checkout
+        // settings contain such a URL, which left the checkout without its
+        // script on the proxy port. This rule runs first and points every
+        // URL of the proxied host at the proxy itself, so the built-in rule
+        // finds nothing left to rewrite.
+        rewriteRules: [
+          {
+            match: new RegExp(`https?:(\\\\?/\\\\?/)${proxyHost}`, 'g'),
+            fn: (req, res, match) => match.replace(/^https?:/, 'http:').replace(/[^/\\]+$/, req.headers.host),
+          },
+        ],
         host: '0.0.0.0', // Erlaubt Zugriff von anderen Geräten im Netzwerk
         port: 3000,
         files: [

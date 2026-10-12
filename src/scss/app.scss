@@ -16,6 +16,12 @@
 @use "components/cart-item";
 @use "components/cart-page";
 @use "components/cart-summary";
+@use "components/checkout-recap";
+@use "components/checkout-field";
+@use "components/checkout-options";
+@use "components/checkout-page";
+@use "components/checkout-steps";
+@use "components/checkout-terms";
 @use "components/columns";
 @use "components/contact-box";
 @use "components/contact-form";
@@ -33,6 +39,8 @@
 @use "components/news-card";
 @use "components/news-grid";
 @use "components/notice";
+@use "components/order-confirmation";
+@use "components/order-item";
 @use "components/post-navigation";
 @use "components/product-detail";
 @use "components/product-card";

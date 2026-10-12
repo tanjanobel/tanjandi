@@ -1881,6 +1881,30 @@ body:has(.is-menu-open) .hero {
   padding: 0 2rem;
   width: 100%;
 }
+.cart-summary__items {
+  border-bottom: 1px solid #d6cec2;
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 8px 0 24px;
+}
+.cart-summary--order .cart-summary__title {
+  font-size: 1.5rem;
+  padding-bottom: 19px;
+}
+.cart-summary--order .cart-summary__rows {
+  padding-bottom: 0;
+}
+.cart-summary--order .cart-summary__row:not(:last-child) {
+  padding-bottom: 8px;
+}
+.cart-summary--order .cart-summary__total {
+  margin-top: 21px;
+  padding-bottom: 0;
+  padding-top: 23px;
+}
+.cart-summary--order .cart-summary__tax-note {
+  padding-top: 11px;
+}
 .cart-summary__note {
   color: #6e675e;
   font-family: "Zen Kaku Gothic New", sans-serif;
@@ -1890,6 +1914,639 @@ body:has(.is-menu-open) .hero {
 }
 .cart-summary__note:not(:last-of-type) {
   padding-bottom: 7px;
+}
+
+.checkout-recap {
+  background-color: #ede7de;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin: 0 0 12px;
+  padding: 24px 24px 18px;
+}
+.checkout-recap:has(+ .checkout-page__heading) {
+  margin-bottom: 42px;
+}
+.checkout-recap__title {
+  color: #6e675e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  line-height: 16px;
+  margin: 0;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+}
+.checkout-recap__edit {
+  align-self: start;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #2b2926;
+  color: #2b2926;
+  cursor: pointer;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1;
+  padding: 2px 0 4px;
+  transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.checkout-recap__edit:hover, .checkout-recap__edit:focus-visible {
+  border-color: #9a4a5e;
+  color: #9a4a5e;
+}
+.checkout-recap__line {
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.9375rem;
+  grid-column: 1/-1;
+  line-height: 22px;
+  margin: 0;
+}
+
+.woocommerce .checkout-page__form .checkout-field {
+  float: none;
+  grid-column: span 6;
+  margin: 0;
+  padding: 0 0 17px;
+  width: auto;
+}
+@media screen and (min-width: 768px) {
+  .woocommerce .checkout-page__form .checkout-field--half {
+    grid-column: span 3;
+  }
+  .woocommerce .checkout-page__form .checkout-field--third {
+    grid-column: span 2;
+  }
+  .woocommerce .checkout-page__form .checkout-field--two-thirds {
+    grid-column: span 4;
+  }
+}
+.woocommerce .checkout-page__form .checkout-field--hidden {
+  display: none;
+}
+.woocommerce .checkout-page__form .checkout-field .checkout-field__label {
+  color: #6e675e;
+  display: block;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 20px;
+  margin: 0;
+  padding-bottom: 6px;
+}
+.woocommerce .checkout-page__form .checkout-field .checkout-field__label .required {
+  display: none;
+}
+.woocommerce .checkout-page__form .checkout-field .checkout-field__input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #fbf9f6;
+  border: 1px solid #d6cec2;
+  border-radius: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #2b2926;
+  display: block;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1rem;
+  height: 52px;
+  line-height: 24px;
+  margin: 0;
+  padding: 0 20px;
+  transition: border-color 0.3s ease-in-out;
+  width: 100%;
+}
+.woocommerce .checkout-page__form .checkout-field .checkout-field__input:focus {
+  border-color: #2b2926;
+  outline: 0;
+}
+.woocommerce .checkout-page__form .checkout-field select.checkout-field__input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232b2926' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-position: calc(100% - 20px) 50%;
+  background-repeat: no-repeat;
+  background-size: 12px 7px;
+  cursor: pointer;
+  padding-right: 44px;
+}
+.woocommerce .checkout-page__form .checkout-field.woocommerce-validated .checkout-field__input {
+  border-color: #d6cec2;
+}
+.woocommerce .checkout-page__form .checkout-field.woocommerce-validated .checkout-field__input:focus {
+  border-color: #2b2926;
+}
+.woocommerce .checkout-page__form .checkout-field.woocommerce-invalid .checkout-field__input {
+  border-color: #9a4a5e;
+}
+.woocommerce .checkout-page__form .checkout-field.woocommerce-invalid .checkout-field__label {
+  color: #9a4a5e;
+}
+.woocommerce .checkout-page__form .checkout-field .checkout-inline-error-message {
+  color: #9a4a5e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.75rem;
+  line-height: 20px;
+  margin: 0;
+  padding-top: 4px;
+}
+
+.woocommerce .checkout-page__form .checkout-options {
+  display: grid;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  row-gap: 13px;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__item {
+  align-items: center;
+  border: 1px solid #d6cec2;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 24px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-indent: 0;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__item:has(.checkout-options__input:checked) {
+  background-color: #fbf9f6;
+  border-color: #2b2926;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #fbf9f6;
+  border: 1px solid #d6cec2;
+  border-radius: 50%;
+  box-shadow: none;
+  cursor: pointer;
+  flex: 0 0 18px;
+  height: 18px;
+  left: 24px;
+  margin: 0;
+  position: absolute;
+  top: 36px;
+  transition: border-color 0.3s ease-in-out;
+  width: 18px;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__input:checked {
+  background-color: #2b2926;
+  border-color: #2b2926;
+  box-shadow: inset 0 0 0 4px #fbf9f6;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__input:focus-visible {
+  outline: 1px solid #2b2926;
+  outline-offset: 2px;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__label {
+  align-items: center;
+  color: #2b2926;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  cursor: pointer;
+  display: flex;
+  flex: 1 1 0;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  justify-content: space-between;
+  margin: 0;
+  min-height: 88px;
+  padding: 21px 24px 21px 58px;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__text,
+.woocommerce .checkout-page__form .checkout-options .checkout-options__name,
+.woocommerce .checkout-page__form .checkout-options .checkout-options__description,
+.woocommerce .checkout-page__form .checkout-options .checkout-options__price {
+  display: block;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__name {
+  font-size: 1rem;
+  line-height: 24px;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__description {
+  color: #6e675e;
+  font-size: 0.8125rem;
+  line-height: 20px;
+  padding-top: 2px;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__price {
+  font-size: 0.9375rem;
+  line-height: 24px;
+  white-space: nowrap;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__details {
+  background-color: transparent;
+  color: #5e584f;
+  flex: 0 0 100%;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0 24px 21px 58px;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__details::before {
+  content: none;
+}
+
+.checkout-shipping {
+  margin: 0;
+  padding-bottom: 30px;
+}
+.checkout-shipping__note, .checkout-shipping__message {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 20px;
+  margin: 0;
+  padding-top: 21px;
+}
+.checkout-shipping__note {
+  padding-left: 16px;
+  position: relative;
+}
+.checkout-shipping__note::before {
+  background-color: #9a4a5e;
+  border-radius: 50%;
+  content: "";
+  height: 6px;
+  left: 0;
+  position: absolute;
+  top: 28px;
+  width: 6px;
+}
+.checkout-shipping__message {
+  color: #5e584f;
+  font-size: 0.9375rem;
+  line-height: 24px;
+  padding-top: 0;
+}
+
+.checkout-shipping #shipping_method .checkout-options__item {
+  line-height: 24px;
+  margin: 0;
+}
+.checkout-shipping #shipping_method .checkout-options__input {
+  margin: 0;
+}
+.checkout-shipping #shipping_method .checkout-options__label {
+  display: flex;
+  padding: 21px 24px 21px 58px;
+}
+
+.woocommerce-checkout .checkout-page__payment #payment {
+  background-color: transparent;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+}
+.woocommerce-checkout .checkout-page__payment #payment .wc_payment_methods {
+  border-bottom: 0;
+  margin: 0;
+  padding: 0;
+}
+.woocommerce-checkout .checkout-page__payment #payment .wc_payment_methods > li:not(.checkout-options__item) {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 1rem;
+}
+.woocommerce-checkout .checkout-page__payment #payment .checkout-options__item {
+  line-height: 24px;
+  margin: 0;
+  padding: 0;
+}
+.woocommerce-checkout .checkout-page__payment #payment .checkout-options__input {
+  margin: 0;
+}
+.woocommerce-checkout .checkout-page__payment #payment .checkout-options__label {
+  display: flex;
+  padding: 21px 24px 21px 58px;
+}
+.woocommerce-checkout .checkout-page__payment #payment .checkout-options__input {
+  display: block !important;
+}
+.woocommerce-checkout .checkout-page__payment #payment .checkout-options .checkout-options__details {
+  background-color: transparent;
+  border-radius: 0;
+  color: #5e584f;
+  margin: 0;
+  padding: 0 24px 21px 58px;
+}
+.woocommerce-checkout .checkout-page__payment #payment .checkout-options .checkout-options__details::before {
+  content: none;
+}
+.woocommerce-checkout .checkout-page__payment #payment .checkout-options .checkout-options__details p {
+  margin: 0;
+}
+.woocommerce-checkout .checkout-page__payment #payment .place-order {
+  margin: 0;
+  padding: 0;
+}
+.woocommerce-checkout .checkout-page__payment #payment #place_order {
+  float: none;
+  margin: 0;
+}
+.woocommerce-checkout .checkout-page__payment #payment .woocommerce-terms-and-conditions-wrapper {
+  color: #6e675e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 20px;
+  padding-top: 20px;
+}
+
+.checkout-page {
+  padding-bottom: 4rem;
+  padding-top: 3rem;
+}
+@media screen and (min-width: 992px) {
+  .checkout-page {
+    padding-bottom: 140px;
+    padding-top: 64px;
+  }
+}
+.checkout-page .checkout-page__container {
+  max-width: 1100px;
+}
+.checkout-page__content {
+  margin: 0;
+}
+.checkout-page .checkout-page__content .woocommerce {
+  max-width: none;
+}
+.checkout-page__form {
+  display: grid;
+  margin: 0;
+  row-gap: 3rem;
+}
+@media screen and (min-width: 992px) {
+  .checkout-page__form {
+    align-items: start;
+    -moz-column-gap: 4rem;
+         column-gap: 4rem;
+    grid-template-columns: minmax(0, 1fr) 369px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .checkout-page__form {
+    -moz-column-gap: 88px;
+         column-gap: 88px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .checkout-page__form > .woocommerce-NoticeGroup {
+    grid-column: 1/-1;
+  }
+}
+.checkout-page__main {
+  min-width: 0;
+}
+.checkout-page__title {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+  padding-bottom: 24px;
+}
+@media screen and (min-width: 1200px) {
+  .checkout-page__title {
+    font-size: 3.5rem;
+  }
+}
+.checkout-page__step {
+  margin: 0;
+}
+.checkout-page__heading {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  outline: 0;
+  padding-bottom: 19px;
+}
+.checkout-page__heading:has(+ .checkout-shipping), .checkout-page__heading:has(+ .checkout-page__payment) {
+  padding-bottom: 22px;
+}
+@media screen and (min-width: 768px) {
+  .checkout-page__heading {
+    font-size: 1.5rem;
+  }
+}
+.checkout-page__fields {
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  padding-bottom: 18px;
+}
+.checkout-page__actions {
+  align-items: center;
+  -moz-column-gap: 1.75rem;
+       column-gap: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 1.25rem;
+}
+.checkout-page__next {
+  margin: 0;
+}
+.checkout-page .checkout-page__next .wp-block-button__link,
+.checkout-page .checkout-page__submit .wp-block-button__link {
+  cursor: pointer;
+  padding: 21px 42px !important;
+}
+.checkout-page__back {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #2b2926;
+  color: #2b2926;
+  cursor: pointer;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  padding: 5px 0 6px;
+  transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.checkout-page__back:hover, .checkout-page__back:focus-visible {
+  border-color: #9a4a5e;
+  color: #9a4a5e;
+}
+.checkout-page__payment {
+  margin: 0;
+}
+.checkout-page__submit {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-top: 32px;
+}
+.checkout-page .checkout-page__submit .wp-block-button__link {
+  box-sizing: border-box;
+  height: 60px;
+  width: 100%;
+}
+.checkout-page__sidebar {
+  margin: 0;
+}
+
+.checkout-steps {
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 43px;
+  row-gap: 0.75rem;
+}
+.checkout-steps__item {
+  margin: 0;
+}
+.checkout-steps__button {
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  color: #6e675e;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  cursor: pointer;
+  display: flex;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  line-height: 24px;
+  padding: 0;
+  transition: color 0.3s ease-in-out;
+}
+.checkout-steps__button:disabled {
+  cursor: default;
+}
+.checkout-steps__number {
+  align-items: center;
+  border: 1px solid #d6cec2;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 0.75rem;
+  height: 24px;
+  justify-content: center;
+  letter-spacing: 0;
+  line-height: 1;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  width: 24px;
+}
+.checkout-steps__label {
+  display: block;
+}
+.checkout-steps__item.is-active .checkout-steps__button, .checkout-steps__item.is-done .checkout-steps__button {
+  color: #2b2926;
+}
+.checkout-steps__item.is-active .checkout-steps__number {
+  background-color: #2b2926;
+  border-color: #2b2926;
+  color: #f6f3ee;
+}
+.checkout-steps__item.is-done .checkout-steps__number {
+  background-color: #9a4a5e;
+  border-color: #9a4a5e;
+  font-size: 0;
+  position: relative;
+}
+.checkout-steps__item.is-done .checkout-steps__number::after {
+  border-bottom: 1px solid #f6f3ee;
+  border-right: 1px solid #f6f3ee;
+  content: "";
+  height: 8px;
+  left: 50%;
+  position: absolute;
+  top: 46%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 4px;
+}
+.checkout-steps__item.is-done .checkout-steps__button:hover, .checkout-steps__item.is-done .checkout-steps__button:focus-visible {
+  color: #9a4a5e;
+}
+
+.woocommerce .checkout-page__form .checkout-terms {
+  margin: 0;
+  padding: 19px 0 0;
+}
+.woocommerce .checkout-page__form .checkout-terms .checkout-terms__row {
+  margin: 0;
+  padding: 0;
+}
+.woocommerce .checkout-page__form .checkout-terms .checkout-terms__label {
+  align-items: flex-start;
+  -moz-column-gap: 12px;
+       column-gap: 12px;
+  cursor: pointer;
+  display: flex;
+  line-height: 20px;
+  margin: 0;
+}
+.woocommerce .checkout-page__form .checkout-terms .checkout-terms__input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #fbf9f6;
+  border: 1px solid #2b2926;
+  border-radius: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  flex: 0 0 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  min-width: 16px;
+  padding: 0;
+  position: relative;
+  width: 16px;
+}
+.woocommerce .checkout-page__form .checkout-terms .checkout-terms__input:checked {
+  background-color: #2b2926;
+}
+.woocommerce .checkout-page__form .checkout-terms .checkout-terms__input:checked::after {
+  border-bottom: 1px solid #f6f3ee;
+  border-right: 1px solid #f6f3ee;
+  content: "";
+  height: 8px;
+  left: 5px;
+  position: absolute;
+  top: 1px;
+  transform: rotate(45deg);
+  width: 4px;
+}
+.woocommerce .checkout-page__form .checkout-terms .checkout-terms__input:focus-visible {
+  outline: 1px solid #2b2926;
+  outline-offset: 2px;
+}
+.woocommerce .checkout-page__form .checkout-terms .checkout-terms__text {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 20px;
+}
+.woocommerce .checkout-page__form .checkout-terms .checkout-terms__link {
+  border-bottom: 1px solid #2b2926;
+  color: #2b2926;
+  transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.woocommerce .checkout-page__form .checkout-terms .checkout-terms__link:hover, .woocommerce .checkout-page__form .checkout-terms .checkout-terms__link:focus-visible {
+  border-color: #9a4a5e;
+  color: #9a4a5e;
+}
+.woocommerce .checkout-page__form .checkout-terms .checkout-terms__row.woocommerce-invalid .checkout-terms__text {
+  color: #9a4a5e;
+}
+.woocommerce .checkout-page__form .checkout-terms .checkout-terms__row.woocommerce-invalid .checkout-terms__input {
+  border-color: #9a4a5e;
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -3495,6 +4152,176 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
   font-weight: 400;
   margin: 0 0 0 1rem;
   padding: 0;
+}
+
+.order-confirmation-page {
+  padding-bottom: 4rem;
+  padding-top: 4rem;
+}
+@media screen and (min-width: 992px) {
+  .order-confirmation-page {
+    padding-bottom: 140px;
+    padding-top: 86px;
+  }
+}
+.order-confirmation-page .order-confirmation-page__content .woocommerce {
+  max-width: none;
+}
+
+.order-confirmation {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center;
+}
+.order-confirmation__mark {
+  background-color: #9a4a5e;
+  border-radius: 50%;
+  display: block;
+  height: 14px;
+  width: 14px;
+}
+.order-confirmation__title {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 2.75rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+  padding-bottom: 22px;
+  padding-top: 24px;
+}
+@media screen and (min-width: 768px) {
+  .order-confirmation__title {
+    font-size: 3.875rem;
+  }
+}
+.order-confirmation__title-dot {
+  color: #9a4a5e;
+}
+.order-confirmation__text {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin: 0;
+  padding-bottom: 33px;
+}
+@media screen and (min-width: 768px) {
+  .order-confirmation__text {
+    font-size: 1.0625rem;
+  }
+}
+.order-confirmation__details {
+  background-color: #ede7de;
+  box-sizing: border-box;
+  margin: 0;
+  max-width: 360px;
+  padding: 19px 2rem;
+  width: 100%;
+}
+.order-confirmation__row {
+  align-items: baseline;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+}
+.order-confirmation__label, .order-confirmation__value {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 24px;
+  margin: 0;
+}
+.order-confirmation__label {
+  color: #6e675e;
+  text-align: left;
+}
+.order-confirmation__value {
+  color: #2b2926;
+  text-align: right;
+}
+.order-confirmation__instructions {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  width: 100%;
+}
+.order-confirmation__instructions:not(:empty) {
+  padding-top: 1.5rem;
+}
+.order-confirmation__actions {
+  margin: 0;
+  padding-top: 40px;
+}
+
+.order-item {
+  align-items: center;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  margin: 0;
+}
+.order-item:not(:last-child) {
+  padding-bottom: 1rem;
+}
+.order-item__media {
+  aspect-ratio: 4/5;
+  background-color: #e2d9cb;
+  position: relative;
+}
+.order-item__img {
+  display: block;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+.order-item__quantity {
+  align-items: center;
+  background-color: #2b2926;
+  border-radius: 50%;
+  color: #f6f3ee;
+  display: flex;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.6875rem;
+  height: 20px;
+  justify-content: center;
+  line-height: 1;
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  width: 20px;
+}
+.order-item__name {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  padding-bottom: 4px;
+}
+.order-item__meta {
+  color: #6e675e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 20px;
+  margin: 0;
+}
+.order-item__total {
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.9375rem;
+  line-height: 24px;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .project-navigation {

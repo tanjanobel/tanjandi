@@ -1,0 +1,113 @@
+@use "sass:string";
+@use "../global" as *;
+
+// Chevron of the country select, drawn in the ink colour.
+$checkout-field-chevron: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23#{string.slice(#{$ink}, 2)}' stroke-width='1.2'/%3E%3C/svg%3E";
+
+// One form field of the checkout. WooCommerce renders the markup; the
+// classes are passed in via the field settings in inc/woocommerce.php.
+// The selectors start at .woocommerce and the form to outweigh WooCommerce's
+// own form styles, which use up to three classes and two tags.
+.woocommerce .checkout-page__form .checkout-field {
+  float: none;
+  grid-column: span 6;
+  margin: 0;
+  padding: 0 0 17px;
+  width: auto;
+
+  @include breakpoint(tablet) {
+    &--half {
+      grid-column: span 3;
+    }
+
+    &--third {
+      grid-column: span 2;
+    }
+
+    &--two-thirds {
+      grid-column: span 4;
+    }
+  }
+
+  // Carries a value without anything to show, e.g. the only country.
+  &--hidden {
+    display: none;
+  }
+
+  .checkout-field__label {
+    color: $text-muted;
+    display: block;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    margin: 0;
+    padding-bottom: 6px;
+  }
+
+  // All fields are required, so WooCommerce's asterisk says nothing.
+  .checkout-field__label .required {
+    display: none;
+  }
+
+  .checkout-field__input {
+    appearance: none;
+    background-color: $input-background;
+    border: 1px solid $line;
+    border-radius: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: $ink;
+    display: block;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    height: 52px;
+    line-height: 24px;
+    margin: 0;
+    padding: 0 20px;
+    transition: border-color $transition-speed ease-in-out;
+    width: 100%;
+
+    &:focus {
+      border-color: $ink;
+      outline: 0;
+    }
+  }
+
+  // The country select gets its own arrow.
+  select.checkout-field__input {
+    background-image: url($checkout-field-chevron);
+    background-position: calc(100% - 20px) 50%;
+    background-repeat: no-repeat;
+    background-size: 12px 7px;
+    cursor: pointer;
+    padding-right: 44px;
+  }
+
+  // WooCommerce turns the border of every valid field green.
+  &.woocommerce-validated .checkout-field__input {
+    border-color: $line;
+
+    &:focus {
+      border-color: $ink;
+    }
+  }
+
+  // Set by WooCommerce and by checkout-steps.js.
+  &.woocommerce-invalid .checkout-field__input {
+    border-color: $berry-dark;
+  }
+
+  &.woocommerce-invalid .checkout-field__label {
+    color: $berry-dark;
+  }
+
+  // Inline error text WooCommerce adds below a field.
+  .checkout-inline-error-message {
+    color: $berry-dark;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    line-height: 20px;
+    margin: 0;
+    padding-top: 4px;
+  }
+}

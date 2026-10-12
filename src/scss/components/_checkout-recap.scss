@@ -1,0 +1,57 @@
+@use "../global" as *;
+
+// What was entered in an earlier checkout step, repeated in the later ones:
+// the address and the shipping method.
+.checkout-recap {
+  background-color: $sand;
+  column-gap: $global-padding;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin: 0 0 12px;
+  padding: 24px 24px 18px;
+
+  // The last one before the heading of the step.
+  &:has(+ .checkout-page__heading) {
+    margin-bottom: 42px;
+  }
+
+  &__title {
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    letter-spacing: 0.18em;
+    line-height: 16px;
+    margin: 0;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  &__edit {
+    align-self: start;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid $ink;
+    color: $ink;
+    cursor: pointer;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 1;
+    padding: 2px 0 4px;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
+    }
+  }
+
+  &__line {
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    grid-column: 1 / -1;
+    line-height: 22px;
+    margin: 0;
+  }
+}

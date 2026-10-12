@@ -1,0 +1,90 @@
+@use "../global" as *;
+
+.checkout-steps {
+  column-gap: 2 * $global-padding;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 43px;
+  row-gap: 0.75 * $global-padding;
+
+  &__item {
+    margin: 0;
+  }
+
+  &__button {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    color: $text-muted;
+    column-gap: 10px;
+    cursor: pointer;
+    display: flex;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    letter-spacing: $nav-letter-spacing;
+    line-height: 24px;
+    padding: 0;
+    transition: color $transition-speed ease-in-out;
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &__number {
+    align-items: center;
+    border: 1px solid $line;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: flex;
+    font-size: rem-calc(12px);
+    height: 24px;
+    justify-content: center;
+    letter-spacing: 0;
+    line-height: 1;
+    transition: background-color $transition-speed ease-in-out, border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+    width: 24px;
+  }
+
+  &__label {
+    display: block;
+  }
+
+  &__item.is-active &__button,
+  &__item.is-done &__button {
+    color: $ink;
+  }
+
+  &__item.is-active &__number {
+    background-color: $ink;
+    border-color: $ink;
+    color: $washi;
+  }
+
+  // A finished step shows a check mark instead of its number.
+  &__item.is-done &__number {
+    background-color: $berry-dark;
+    border-color: $berry-dark;
+    font-size: 0;
+    position: relative;
+
+    &::after {
+      border-bottom: 1px solid $washi;
+      border-right: 1px solid $washi;
+      content: "";
+      height: 8px;
+      left: 50%;
+      position: absolute;
+      top: 46%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      width: 4px;
+    }
+  }
+
+  &__item.is-done &__button:hover,
+  &__item.is-done &__button:focus-visible {
+    color: $berry-dark;
+  }
+}

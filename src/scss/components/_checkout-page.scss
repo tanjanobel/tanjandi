@@ -1,0 +1,162 @@
+@use "../global" as *;
+
+.checkout-page {
+  padding-bottom: 4 * $global-padding;
+  padding-top: 3 * $global-padding;
+
+  @include breakpoint(laptop) {
+    padding-bottom: 140px;
+    padding-top: 64px;
+  }
+
+  // Narrower than the default container.
+  .checkout-page__container {
+    max-width: 1100px;
+  }
+
+  &__content {
+    margin: 0;
+  }
+
+  // WooCommerce wraps the classic checkout in a div limited to 1000px.
+  .checkout-page__content .woocommerce {
+    max-width: none;
+  }
+
+  &__form {
+    display: grid;
+    margin: 0;
+    row-gap: 3 * $global-padding;
+
+    @include breakpoint(laptop) {
+      align-items: start;
+      column-gap: 4 * $global-padding;
+      grid-template-columns: minmax(0, 1fr) 369px;
+    }
+
+    @include breakpoint(desktop) {
+      column-gap: 88px;
+    }
+  }
+
+  // WooCommerce inserts its error messages as the first child of the form.
+  &__form > .woocommerce-NoticeGroup {
+    @include breakpoint(laptop) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__main {
+    min-width: 0;
+  }
+
+  &__title {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(40px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+    padding-bottom: 24px;
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(56px);
+    }
+  }
+
+  &__step {
+    margin: 0;
+  }
+
+  &__heading {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(22px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    outline: 0;
+    padding-bottom: 19px;
+
+    // Followed by a list of options instead of form fields.
+    &:has(+ .checkout-shipping),
+    &:has(+ .checkout-page__payment) {
+      padding-bottom: 22px;
+    }
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(24px);
+    }
+  }
+
+  &__fields {
+    column-gap: $global-padding;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    padding-bottom: 18px;
+  }
+
+  &__actions {
+    align-items: center;
+    column-gap: 1.75 * $global-padding;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1.25 * $global-padding;
+  }
+
+  &__next {
+    margin: 0;
+  }
+
+  // The buttons are styled by the shared default button; here only the
+  // size. !important: the default button's selector stacks five :not()
+  // clauses, which no reasonable selector outweighs.
+  .checkout-page__next .wp-block-button__link,
+  .checkout-page__submit .wp-block-button__link {
+    cursor: pointer;
+    padding: 21px 42px !important;
+  }
+
+  &__back {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid $ink;
+    color: $ink;
+    cursor: pointer;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    letter-spacing: $nav-letter-spacing;
+    line-height: 1;
+    padding: 5px 0 6px;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
+    }
+  }
+
+  &__payment {
+    margin: 0;
+  }
+
+  &__submit {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding-top: 32px;
+  }
+
+  // Full width and a little taller than the buttons of the other steps.
+  .checkout-page__submit .wp-block-button__link {
+    box-sizing: border-box;
+    height: 60px;
+    width: 100%;
+  }
+
+  &__sidebar {
+    margin: 0;
+  }
+}

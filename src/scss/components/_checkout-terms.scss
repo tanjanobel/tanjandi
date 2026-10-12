@@ -1,0 +1,88 @@
+@use "../global" as *;
+
+// "I have read the terms" checkbox above the order button. The selectors
+// start at the form to outweigh WooCommerce's own form-row and label styles.
+.woocommerce .checkout-page__form .checkout-terms {
+  margin: 0;
+  padding: 19px 0 0;
+
+  .checkout-terms__row {
+    margin: 0;
+    padding: 0;
+  }
+
+  .checkout-terms__label {
+    align-items: flex-start;
+    column-gap: 12px;
+    cursor: pointer;
+    display: flex;
+    line-height: 20px;
+    margin: 0;
+  }
+
+  .checkout-terms__input {
+    appearance: none;
+    background-color: $input-background;
+    border: 1px solid $ink;
+    border-radius: 2px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    flex: 0 0 16px;
+    height: 16px;
+    margin: 2px 0 0;
+    min-width: 16px;
+    padding: 0;
+    position: relative;
+    width: 16px;
+
+    &:checked {
+      background-color: $ink;
+
+      &::after {
+        border-bottom: 1px solid $washi;
+        border-right: 1px solid $washi;
+        content: "";
+        height: 8px;
+        left: 5px;
+        position: absolute;
+        top: 1px;
+        transform: rotate(45deg);
+        width: 4px;
+      }
+    }
+
+    &:focus-visible {
+      outline: 1px solid $ink;
+      outline-offset: 2px;
+    }
+  }
+
+  .checkout-terms__text {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+  }
+
+  .checkout-terms__link {
+    border-bottom: 1px solid $ink;
+    color: $ink;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
+    }
+  }
+
+  // Set by WooCommerce when the box is left unchecked.
+  .checkout-terms__row.woocommerce-invalid .checkout-terms__text {
+    color: $berry-dark;
+  }
+
+  .checkout-terms__row.woocommerce-invalid .checkout-terms__input {
+    border-color: $berry-dark;
+  }
+}

@@ -208,6 +208,37 @@
     width: 100%;
   }
 
+  // Order summary in the checkout: product list on top, no coupon field.
+  &__items {
+    border-bottom: 1px solid $line;
+    list-style: none;
+    margin: 0 0 20px;
+    padding: 8px 0 24px;
+  }
+
+  &--order &__title {
+    font-size: rem-calc(24px);
+    padding-bottom: 19px;
+  }
+
+  &--order &__rows {
+    padding-bottom: 0;
+  }
+
+  &--order &__row:not(:last-child) {
+    padding-bottom: 8px;
+  }
+
+  &--order &__total {
+    margin-top: 21px;
+    padding-bottom: 0;
+    padding-top: 23px;
+  }
+
+  &--order &__tax-note {
+    padding-top: 11px;
+  }
+
   &__note {
     color: $text-muted;
     font-family: $body-font-family;

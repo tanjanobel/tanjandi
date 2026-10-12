@@ -1,0 +1,119 @@
+@use "../global" as *;
+
+.order-confirmation-page {
+  padding-bottom: 4 * $global-padding;
+  padding-top: 4 * $global-padding;
+
+  @include breakpoint(laptop) {
+    padding-bottom: 140px;
+    padding-top: 86px;
+  }
+
+  // WooCommerce wraps the classic checkout in a div limited to 1000px.
+  .order-confirmation-page__content .woocommerce {
+    max-width: none;
+  }
+}
+
+.order-confirmation {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center;
+
+  &__mark {
+    background-color: $berry-dark;
+    border-radius: 50%;
+    display: block;
+    height: 14px;
+    width: 14px;
+  }
+
+  &__title {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(44px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+    padding-bottom: 22px;
+    padding-top: 24px;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(62px);
+    }
+  }
+
+  &__title-dot {
+    color: $berry-dark;
+  }
+
+  &__text {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    line-height: 1.8;
+    margin: 0;
+    padding-bottom: 33px;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(17px);
+    }
+  }
+
+  &__details {
+    background-color: $sand;
+    box-sizing: border-box;
+    margin: 0;
+    max-width: 360px;
+    padding: 19px 2 * $global-padding;
+    width: 100%;
+  }
+
+  &__row {
+    align-items: baseline;
+    column-gap: $global-padding;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+  }
+
+  &__label,
+  &__value {
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 24px;
+    margin: 0;
+  }
+
+  &__label {
+    color: $text-muted;
+    text-align: left;
+  }
+
+  &__value {
+    color: $ink;
+    text-align: right;
+  }
+
+  // Instructions a payment method adds, e.g. bank details.
+  &__instructions {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 1.7;
+    width: 100%;
+
+    &:not(:empty) {
+      padding-top: 1.5 * $global-padding;
+    }
+  }
+
+  &__actions {
+    margin: 0;
+    padding-top: 40px;
+  }
+}

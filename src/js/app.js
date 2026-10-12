@@ -1,6 +1,7 @@
 import Header from './components/header';
 import CartCount from './components/cart-count';
 import CartQuantity from './components/cart-quantity';
+import CheckoutSteps from './components/checkout-steps';
 import ContactForm from './components/contact-form';
 import TestimonialSlider from './components/testimonial-slider';
 import Reveal from './components/reveal';
@@ -16,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const cartQuantity = new CartQuantity();
     cartQuantity.init();
+
+    const checkoutSteps = new CheckoutSteps();
+    checkoutSteps.init();
 
     const contactForm = new ContactForm();
     contactForm.init();
