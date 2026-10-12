@@ -4,11 +4,12 @@
 // Chevron of the country select, drawn in the ink colour.
 $checkout-field-chevron: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23#{string.slice(#{$ink}, 2)}' stroke-width='1.2'/%3E%3C/svg%3E";
 
-// One form field of the checkout. WooCommerce renders the markup; the
-// classes are passed in via the field settings in inc/woocommerce.php.
-// The selectors start at .woocommerce and the form to outweigh WooCommerce's
-// own form styles, which use up to three classes and two tags.
-.woocommerce .checkout-page__form .checkout-field {
+// One form field of the checkout and of the account forms. WooCommerce
+// renders the markup; the classes are passed in via the field settings in
+// inc/woocommerce.php. The selectors start at .woocommerce and the form to
+// outweigh WooCommerce's own form styles, which use up to three classes and
+// two tags.
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field {
   float: none;
   grid-column: span 6;
   margin: 0;
@@ -44,9 +45,23 @@ $checkout-field-chevron: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/200
     padding-bottom: 6px;
   }
 
-  // All fields are required, so WooCommerce's asterisk says nothing.
+  // WooCommerce draws the asterisk bold, red and partly hidden.
   .checkout-field__label .required {
-    display: none;
+    color: inherit;
+    font-weight: 400;
+    text-decoration: none;
+    visibility: visible;
+  }
+
+  // Note below a field.
+  .checkout-field__hint {
+    color: $text-muted;
+    display: block;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    line-height: 18px;
+    margin: 0;
+    padding-top: 7px;
   }
 
   .checkout-field__input {
@@ -110,4 +125,9 @@ $checkout-field-chevron: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/200
     margin: 0;
     padding-top: 4px;
   }
+}
+
+// In the checkout all fields are required, so the asterisk says nothing.
+.woocommerce .checkout-page__form .checkout-field .checkout-field__label .required {
+  display: none;
 }

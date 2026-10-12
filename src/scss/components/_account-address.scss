@@ -1,0 +1,64 @@
+@use "../global" as *;
+
+.account-addresses {
+  display: grid;
+  gap: 1.5 * $global-padding;
+
+  @include breakpoint(tablet) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.account-address {
+  background-color: $sand;
+  margin: 0;
+  padding: 1.5 * $global-padding;
+
+  @include breakpoint(tablet) {
+    padding: 32px 28px 27px;
+  }
+
+  &__header {
+    align-items: baseline;
+    column-gap: $global-padding;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding-bottom: 19px;
+  }
+
+  &__title {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(22px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  :root & &__edit {
+    border-bottom: 1px solid $ink;
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 1;
+    padding: 5px 0 3px;
+    text-decoration: none;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
+    }
+  }
+
+  &__lines {
+    color: $text-body;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    font-style: normal;
+    line-height: 1.76;
+    margin: 0;
+  }
+}

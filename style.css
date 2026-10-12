@@ -901,6 +901,523 @@ body:has(.is-menu-open) .hero {
   text-align: right;
 }
 
+.account-addresses {
+  display: grid;
+  gap: 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  .account-addresses {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.account-address {
+  background-color: #ede7de;
+  margin: 0;
+  padding: 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  .account-address {
+    padding: 32px 28px 27px;
+  }
+}
+.account-address__header {
+  align-items: baseline;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding-bottom: 19px;
+}
+.account-address__title {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+:root .account-address .account-address__edit {
+  border-bottom: 1px solid #2b2926;
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1;
+  padding: 5px 0 3px;
+  text-decoration: none;
+  transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+:root .account-address .account-address__edit:hover, :root .account-address .account-address__edit:focus-visible {
+  border-color: #9a4a5e;
+  color: #9a4a5e;
+}
+.account-address__lines {
+  color: #3f3b36;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.9375rem;
+  font-style: normal;
+  line-height: 1.76;
+  margin: 0;
+}
+
+.account-form {
+  margin: 0;
+  max-width: 620px;
+}
+.account-form__fields {
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.account-form__section {
+  border: 0;
+  border-top: 1px solid #d6cec2;
+  margin: 15px 0 0;
+  min-width: 0;
+  padding: 34px 0 0;
+}
+.account-form__heading {
+  color: #2b2926;
+  float: left;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0 0 16px;
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .account-form__heading {
+    font-size: 1.5rem;
+  }
+}
+.account-form__section .account-form__fields {
+  clear: both;
+}
+.account-form__actions {
+  margin: 0;
+  padding-top: 5px;
+}
+.account-form__submit {
+  margin: 0;
+}
+.account-form .account-form__submit .wp-block-button__link {
+  cursor: pointer;
+  padding: 19px 34px !important;
+}
+
+.account-nav {
+  margin: 0;
+}
+.account-nav__list {
+  border-top: 1px solid #d6cec2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.account-nav__item {
+  border-bottom: 1px solid #d6cec2;
+  margin: 0;
+  padding: 0;
+}
+:root .account-nav .account-nav__link {
+  color: #6e675e;
+  display: block;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.9375rem;
+  line-height: 24px;
+  padding: 15px 0 15px 18px;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+:root .account-nav .account-nav__link:hover, :root .account-nav .account-nav__link:focus-visible {
+  color: #9a4a5e;
+}
+:root .account-nav .account-nav__link--current {
+  color: #2b2926;
+}
+:root .account-nav .account-nav__link--current::before {
+  background-color: #9a4a5e;
+  border-radius: 50%;
+  content: "";
+  height: 6px;
+  left: 0;
+  position: absolute;
+  top: 24px;
+  width: 6px;
+}
+
+.account-order {
+  align-items: flex-start;
+  background-color: #ede7de;
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0;
+  padding: 1.5rem;
+  row-gap: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .account-order {
+    align-items: center;
+    padding: 40px 36px 37px;
+  }
+}
+.account-order__body {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-width: 0;
+}
+.account-order__label {
+  color: #6e675e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  margin: 0;
+  padding-bottom: 22px;
+  text-transform: uppercase;
+}
+.account-order__number {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  padding-bottom: 8px;
+}
+.account-order__meta {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  padding-bottom: 14px;
+}
+:root .account-order .account-order__link {
+  border-bottom: 1px solid #2b2926;
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1;
+  padding: 5px 0 3px;
+  text-decoration: none;
+  transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+:root .account-order .account-order__link:hover, :root .account-order .account-order__link:focus-visible {
+  border-color: #9a4a5e;
+  color: #9a4a5e;
+}
+.account-order__status {
+  border: 1px solid #9a4a5e;
+  color: #9a4a5e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  padding: 9px 14px 8px;
+  white-space: nowrap;
+}
+
+.account-orders {
+  border: 0;
+  border-collapse: collapse;
+  border-top: 1px solid #2b2926;
+  display: block;
+  margin: 0;
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .account-orders {
+    display: table;
+    table-layout: fixed;
+  }
+}
+.account-orders__head {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .account-orders__head {
+    display: table-header-group;
+  }
+}
+.account-orders__body {
+  display: block;
+}
+@media screen and (min-width: 768px) {
+  .account-orders__body {
+    display: table-row-group;
+  }
+}
+.account-orders__row {
+  align-items: center;
+  border-bottom: 1px solid #d6cec2;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 1.25rem 0;
+  row-gap: 4px;
+}
+@media screen and (min-width: 768px) {
+  .account-orders__row {
+    display: table-row;
+  }
+}
+.account-orders__heading {
+  background-color: transparent;
+  border: 0;
+  color: #6e675e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  height: 46px;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  padding: 0;
+  text-align: left;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.account-orders__heading--number, .account-orders__heading--total {
+  width: 20.3%;
+}
+.account-orders__heading--date, .account-orders__heading--status {
+  width: 24%;
+}
+.account-orders__cell {
+  background-color: transparent;
+  border: 0;
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 0;
+  text-align: left;
+}
+@media screen and (min-width: 768px) {
+  .account-orders__cell {
+    height: 77px;
+    padding-right: 1rem;
+    vertical-align: middle;
+  }
+}
+.account-orders__cell--total {
+  color: #2b2926;
+}
+.account-orders__cell--actions {
+  grid-column: 2;
+  grid-row: 1/span 4;
+}
+@media screen and (min-width: 768px) {
+  .account-orders__cell--actions {
+    padding-right: 0;
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+:root .account-orders .account-orders__number {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.0625rem;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+:root .account-orders .account-orders__number:hover, :root .account-orders .account-orders__number:focus-visible {
+  color: #9a4a5e;
+}
+.account-orders__status {
+  color: #3f3b36;
+  display: inline-block;
+  padding-left: 14px;
+  position: relative;
+}
+.account-orders__status::before {
+  background-color: #6e675e;
+  border-radius: 50%;
+  content: "";
+  height: 6px;
+  left: 0;
+  opacity: 0.55;
+  position: absolute;
+  top: calc(50% - 3px);
+  width: 6px;
+}
+.account-orders__status--open::before {
+  background-color: #9a4a5e;
+  opacity: 1;
+}
+.account-orders__count {
+  color: #6e675e;
+  white-space: nowrap;
+}
+:root .account-orders .account-orders__action {
+  border: 1px solid #2b2926;
+  box-sizing: border-box;
+  color: #2b2926;
+  display: inline-block;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  padding: 11px 14px 10px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+:root .account-orders .account-orders__action:hover, :root .account-orders .account-orders__action:focus-visible {
+  background-color: #2b2926;
+  color: #f6f3ee;
+}
+.account-orders__pagination {
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+}
+:root .account-orders .account-orders__page {
+  border-bottom: 1px solid #2b2926;
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1;
+  padding: 5px 0 3px;
+  text-decoration: none;
+}
+
+.account-page {
+  padding-bottom: 4rem;
+  padding-top: 3rem;
+}
+@media screen and (min-width: 992px) {
+  .account-page {
+    padding-bottom: 140px;
+    padding-top: 86px;
+  }
+}
+.account-page .account-page__container {
+  max-width: 1100px;
+}
+.account-page__content {
+  margin: 0;
+}
+.account-page .account-page__content .woocommerce {
+  max-width: none;
+}
+.account-page__header {
+  margin: 0;
+  padding-bottom: 2.5rem;
+}
+@media screen and (min-width: 992px) {
+  .account-page__header {
+    padding-bottom: 48px;
+  }
+}
+.account-page__intro {
+  color: #9a4a5e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  margin: 0;
+  padding-bottom: 1rem;
+  text-transform: uppercase;
+}
+@media screen and (min-width: 768px) {
+  .account-page__intro {
+    font-size: 0.8125rem;
+    padding-bottom: 10px;
+  }
+}
+.account-page__title {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+}
+@media screen and (min-width: 768px) {
+  .account-page__title {
+    font-size: 3.5rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .account-page__title {
+    font-size: 4.125rem;
+  }
+}
+.account-page__layout {
+  display: grid;
+  row-gap: 2.5rem;
+}
+@media screen and (min-width: 992px) {
+  .account-page__layout {
+    align-items: start;
+    -moz-column-gap: 4rem;
+         column-gap: 4rem;
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .account-page__layout {
+    -moz-column-gap: 88px;
+         column-gap: 88px;
+  }
+}
+.account-page .account-page__layout .account-page__main {
+  float: none;
+  margin: 0;
+  min-width: 0;
+  width: auto;
+}
+.account-page__greeting {
+  color: #3f3b36;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 33px;
+  margin: 0;
+  padding-bottom: 20px;
+}
+.account-page__text {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  margin: 0;
+  max-width: 620px;
+  padding-bottom: 2rem;
+}
+:root .account-page .account-page__link {
+  border-bottom: 1px solid #d6cec2;
+  color: #2b2926;
+  padding-bottom: 3px;
+  text-decoration: none;
+  transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  white-space: nowrap;
+}
+:root .account-page .account-page__link:hover, :root .account-page .account-page__link:focus-visible {
+  border-color: #9a4a5e;
+  color: #9a4a5e;
+}
+:root .account-page .account-page__link--strong {
+  border-color: #2b2926;
+}
+
 .breadcrumbs {
   padding-bottom: 1.5rem;
 }
@@ -1964,7 +2481,7 @@ body:has(.is-menu-open) .hero {
   margin: 0;
 }
 
-.woocommerce .checkout-page__form .checkout-field {
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field {
   float: none;
   grid-column: span 6;
   margin: 0;
@@ -1972,20 +2489,20 @@ body:has(.is-menu-open) .hero {
   width: auto;
 }
 @media screen and (min-width: 768px) {
-  .woocommerce .checkout-page__form .checkout-field--half {
+  .woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field--half {
     grid-column: span 3;
   }
-  .woocommerce .checkout-page__form .checkout-field--third {
+  .woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field--third {
     grid-column: span 2;
   }
-  .woocommerce .checkout-page__form .checkout-field--two-thirds {
+  .woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field--two-thirds {
     grid-column: span 4;
   }
 }
-.woocommerce .checkout-page__form .checkout-field--hidden {
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field--hidden {
   display: none;
 }
-.woocommerce .checkout-page__form .checkout-field .checkout-field__label {
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field .checkout-field__label {
   color: #6e675e;
   display: block;
   font-family: "Zen Kaku Gothic New", sans-serif;
@@ -1994,10 +2511,22 @@ body:has(.is-menu-open) .hero {
   margin: 0;
   padding-bottom: 6px;
 }
-.woocommerce .checkout-page__form .checkout-field .checkout-field__label .required {
-  display: none;
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field .checkout-field__label .required {
+  color: inherit;
+  font-weight: 400;
+  text-decoration: none;
+  visibility: visible;
 }
-.woocommerce .checkout-page__form .checkout-field .checkout-field__input {
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field .checkout-field__hint {
+  color: #6e675e;
+  display: block;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.75rem;
+  line-height: 18px;
+  margin: 0;
+  padding-top: 7px;
+}
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field .checkout-field__input {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -2017,11 +2546,11 @@ body:has(.is-menu-open) .hero {
   transition: border-color 0.3s ease-in-out;
   width: 100%;
 }
-.woocommerce .checkout-page__form .checkout-field .checkout-field__input:focus {
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field .checkout-field__input:focus {
   border-color: #2b2926;
   outline: 0;
 }
-.woocommerce .checkout-page__form .checkout-field select.checkout-field__input {
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field select.checkout-field__input {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232b2926' stroke-width='1.2'/%3E%3C/svg%3E");
   background-position: calc(100% - 20px) 50%;
   background-repeat: no-repeat;
@@ -2029,25 +2558,29 @@ body:has(.is-menu-open) .hero {
   cursor: pointer;
   padding-right: 44px;
 }
-.woocommerce .checkout-page__form .checkout-field.woocommerce-validated .checkout-field__input {
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field.woocommerce-validated .checkout-field__input {
   border-color: #d6cec2;
 }
-.woocommerce .checkout-page__form .checkout-field.woocommerce-validated .checkout-field__input:focus {
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field.woocommerce-validated .checkout-field__input:focus {
   border-color: #2b2926;
 }
-.woocommerce .checkout-page__form .checkout-field.woocommerce-invalid .checkout-field__input {
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field.woocommerce-invalid .checkout-field__input {
   border-color: #9a4a5e;
 }
-.woocommerce .checkout-page__form .checkout-field.woocommerce-invalid .checkout-field__label {
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field.woocommerce-invalid .checkout-field__label {
   color: #9a4a5e;
 }
-.woocommerce .checkout-page__form .checkout-field .checkout-inline-error-message {
+.woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field .checkout-inline-error-message {
   color: #9a4a5e;
   font-family: "Zen Kaku Gothic New", sans-serif;
   font-size: 0.75rem;
   line-height: 20px;
   margin: 0;
   padding-top: 4px;
+}
+
+.woocommerce .checkout-page__form .checkout-field .checkout-field__label .required {
+  display: none;
 }
 
 .woocommerce .checkout-page__form .checkout-options {
@@ -4260,6 +4793,161 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
   padding-top: 40px;
 }
 
+.order-details {
+  margin: 0;
+}
+:root .order-details .order-details__back {
+  color: #6e675e;
+  display: block;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 20px;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+:root .order-details .order-details__back::before {
+  content: "←";
+  padding-right: 6px;
+}
+:root .order-details .order-details__back:hover, :root .order-details .order-details__back:focus-visible {
+  color: #9a4a5e;
+}
+.order-details__status {
+  color: #3f3b36;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  padding-bottom: 32px;
+  padding-top: 32px;
+}
+.order-details__strong {
+  color: #2b2926;
+  font-weight: 500;
+}
+.order-details__strong--status {
+  color: #9a4a5e;
+}
+.order-details__items {
+  border-top: 1px solid #2b2926;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.order-details__rows {
+  border-bottom: 1px solid #d6cec2;
+  margin: 0;
+  padding: 17px 0 14px;
+}
+.order-details__row {
+  align-items: baseline;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.order-details__label, .order-details__value {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 30px;
+  margin: 0;
+}
+.order-details__label {
+  color: #6e675e;
+}
+.order-details__value {
+  color: #2b2926;
+  text-align: right;
+}
+.order-details__total {
+  align-items: baseline;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding-top: 25px;
+}
+.order-details__total-label {
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1rem;
+  line-height: 24px;
+  margin: 0;
+}
+.order-details__total-value {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.625rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  white-space: nowrap;
+}
+.order-details__heading {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  padding-bottom: 12px;
+  padding-top: 40px;
+}
+.order-details__notes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.order-details__note {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin: 0;
+  padding-bottom: 8px;
+}
+.order-details__note-date {
+  color: #6e675e;
+  display: block;
+  font-size: 0.75rem;
+}
+.order-details__actions {
+  align-items: stretch;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding-top: 55px;
+  row-gap: 1rem;
+}
+.order-details__primary {
+  margin: 0;
+}
+.order-details .order-details__primary .wp-block-button__link {
+  padding: 19px 34px 18px !important;
+}
+:root .order-details .order-details__secondary {
+  border: 1px solid #2b2926;
+  box-sizing: border-box;
+  color: #2b2926;
+  display: inline-block;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  padding: 18px 34px 17px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+:root .order-details .order-details__secondary:hover, :root .order-details .order-details__secondary:focus-visible {
+  background-color: #2b2926;
+  color: #f6f3ee;
+}
+
 .order-item {
   align-items: center;
   -moz-column-gap: 1rem;
@@ -4322,6 +5010,20 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
   line-height: 24px;
   margin: 0;
   white-space: nowrap;
+}
+.order-item--large {
+  border-bottom: 1px solid #d6cec2;
+  padding: 19px 0 17px;
+}
+.order-item--large:not(:last-child) {
+  padding-bottom: 17px;
+}
+.order-item--large .order-item__name {
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+.order-item--large .order-item__total {
+  font-size: 0.875rem;
 }
 
 .project-navigation {

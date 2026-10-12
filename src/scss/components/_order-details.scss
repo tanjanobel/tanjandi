@@ -1,0 +1,181 @@
+@use "../global" as *;
+
+// One order in the account.
+.order-details {
+  margin: 0;
+
+  :root & &__back {
+    color: $text-muted;
+    display: block;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    width: fit-content;
+    text-decoration: none;
+    transition: color $transition-speed ease-in-out;
+
+    &::before {
+      content: "←";
+      padding-right: 6px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $berry-dark;
+    }
+  }
+
+  &__status {
+    color: $text-body;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    line-height: 1.6;
+    margin: 0;
+    padding-bottom: 32px;
+    padding-top: 32px;
+  }
+
+  &__strong {
+    color: $ink;
+    font-weight: 500;
+
+    &--status {
+      color: $berry-dark;
+    }
+  }
+
+  &__items {
+    border-top: 1px solid $ink;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__rows {
+    border-bottom: 1px solid $line;
+    margin: 0;
+    padding: 17px 0 14px;
+  }
+
+  &__row {
+    align-items: baseline;
+    column-gap: $global-padding;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__label,
+  &__value {
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 30px;
+    margin: 0;
+  }
+
+  &__label {
+    color: $text-muted;
+  }
+
+  &__value {
+    color: $ink;
+    text-align: right;
+  }
+
+  &__total {
+    align-items: baseline;
+    column-gap: $global-padding;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding-top: 25px;
+  }
+
+  &__total-label {
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    line-height: 24px;
+    margin: 0;
+  }
+
+  &__total-value {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(26px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  &__heading {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(22px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    padding-bottom: 12px;
+    padding-top: 40px;
+  }
+
+  &__notes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__note {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 1.7;
+    margin: 0;
+    padding-bottom: 8px;
+  }
+
+  &__note-date {
+    color: $text-muted;
+    display: block;
+    font-size: rem-calc(12px);
+  }
+
+  &__actions {
+    align-items: stretch;
+    column-gap: $global-padding;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding-top: 55px;
+    row-gap: $global-padding;
+  }
+
+  &__primary {
+    margin: 0;
+  }
+
+  // !important: see .checkout-page__next.
+  .order-details__primary .wp-block-button__link {
+    padding: 19px 34px 18px !important;
+  }
+
+  :root & &__secondary {
+    border: 1px solid $ink;
+    box-sizing: border-box;
+    color: $ink;
+    display: inline-block;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    letter-spacing: $nav-letter-spacing;
+    line-height: 1;
+    padding: 18px 34px 17px;
+    text-decoration: none;
+    transition: background-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $ink;
+      color: $washi;
+    }
+  }
+}

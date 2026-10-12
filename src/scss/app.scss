@@ -10,6 +10,12 @@
 @use "core/spacing";
 
 @use "components/accordion";
+@use "components/account-address";
+@use "components/account-form";
+@use "components/account-nav";
+@use "components/account-order";
+@use "components/account-orders";
+@use "components/account-page";
 @use "components/breadcrumbs";
 @use "components/button";
 @use "components/cookie-notice.scss";
@@ -40,6 +46,7 @@
 @use "components/news-grid";
 @use "components/notice";
 @use "components/order-confirmation";
+@use "components/order-details";
 @use "components/order-item";
 @use "components/post-navigation";
 @use "components/product-detail";

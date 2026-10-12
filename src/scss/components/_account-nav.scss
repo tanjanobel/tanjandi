@@ -1,0 +1,50 @@
+@use "../global" as *;
+
+.account-nav {
+  margin: 0;
+
+  &__list {
+    border-top: 1px solid $line;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    border-bottom: 1px solid $line;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root & &__link {
+    color: $text-muted;
+    display: block;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    line-height: 24px;
+    padding: 15px 0 15px 18px;
+    position: relative;
+    text-decoration: none;
+    transition: color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      color: $berry-dark;
+    }
+  }
+
+  :root & &__link--current {
+    color: $ink;
+
+    &::before {
+      background-color: $berry-dark;
+      border-radius: 50%;
+      content: "";
+      height: 6px;
+      left: 0;
+      position: absolute;
+      top: 24px;
+      width: 6px;
+    }
+  }
+}

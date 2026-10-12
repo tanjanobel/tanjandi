@@ -1,0 +1,184 @@
+@use "../global" as *;
+
+.account-orders {
+  border: 0;
+  border-collapse: collapse;
+  border-top: 1px solid $ink;
+  display: block;
+  margin: 0;
+  width: 100%;
+
+  @include breakpoint(tablet) {
+    display: table;
+    table-layout: fixed;
+  }
+
+  &__head {
+    display: none;
+
+    @include breakpoint(tablet) {
+      display: table-header-group;
+    }
+  }
+
+  &__body {
+    display: block;
+
+    @include breakpoint(tablet) {
+      display: table-row-group;
+    }
+  }
+
+  &__row {
+    align-items: center;
+    border-bottom: 1px solid $line;
+    column-gap: $global-padding;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 1.25 * $global-padding 0;
+    row-gap: 4px;
+
+    @include breakpoint(tablet) {
+      display: table-row;
+    }
+  }
+
+  &__heading {
+    background-color: transparent;
+    border: 0;
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    font-weight: 400;
+    height: 46px;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    padding: 0;
+    text-align: left;
+    text-transform: uppercase;
+    vertical-align: middle;
+
+    &--number,
+    &--total {
+      width: 20.3%;
+    }
+
+    &--date,
+    &--status {
+      width: 24%;
+    }
+  }
+
+  &__cell {
+    background-color: transparent;
+    border: 0;
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0;
+    text-align: left;
+
+    @include breakpoint(tablet) {
+      height: 77px;
+      padding-right: $global-padding;
+      vertical-align: middle;
+    }
+
+    &--total {
+      color: $ink;
+    }
+
+    &--actions {
+      grid-column: 2;
+      grid-row: 1 / span 4;
+
+      @include breakpoint(tablet) {
+        padding-right: 0;
+        text-align: right;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  :root & &__number {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(17px);
+    line-height: 1.2;
+    text-decoration: none;
+    transition: color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      color: $berry-dark;
+    }
+  }
+
+  &__status {
+    color: $text-body;
+    display: inline-block;
+    padding-left: 14px;
+    position: relative;
+
+    &::before {
+      background-color: $text-muted;
+      border-radius: 50%;
+      content: "";
+      height: 6px;
+      left: 0;
+      opacity: 0.55;
+      position: absolute;
+      top: calc(50% - 3px);
+      width: 6px;
+    }
+
+    &--open::before {
+      background-color: $berry-dark;
+      opacity: 1;
+    }
+  }
+
+  &__count {
+    color: $text-muted;
+    white-space: nowrap;
+  }
+
+  :root & &__action {
+    border: 1px solid $ink;
+    box-sizing: border-box;
+    color: $ink;
+    display: inline-block;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    letter-spacing: $nav-letter-spacing;
+    line-height: 1;
+    padding: 11px 14px 10px;
+    text-decoration: none;
+    transition: background-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $ink;
+      color: $washi;
+    }
+  }
+
+  &__pagination {
+    column-gap: 1.5 * $global-padding;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1.5 * $global-padding;
+  }
+
+  :root & &__page {
+    border-bottom: 1px solid $ink;
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 1;
+    padding: 5px 0 3px;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,57 @@
+@use "../global" as *;
+
+// Forms of the account. The fields themselves are .checkout-field.
+.account-form {
+  margin: 0;
+  max-width: 620px;
+
+  &__fields {
+    column-gap: $global-padding;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  &__section {
+    border: 0;
+    border-top: 1px solid $line;
+    margin: 15px 0 0;
+    min-width: 0;
+    padding: 34px 0 0;
+  }
+
+  &__heading {
+    color: $ink;
+    float: left;
+    font-family: $heading-font-family;
+    font-size: rem-calc(22px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0 0 16px;
+    width: 100%;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(24px);
+    }
+  }
+
+  // The legend floats to sit inside the fieldset's padding.
+  &__section &__fields {
+    clear: both;
+  }
+
+  &__actions {
+    margin: 0;
+    padding-top: 5px;
+  }
+
+  &__submit {
+    margin: 0;
+  }
+
+  // !important: see .checkout-page__next.
+  .account-form__submit .wp-block-button__link {
+    cursor: pointer;
+    padding: 19px 34px !important;
+  }
+}

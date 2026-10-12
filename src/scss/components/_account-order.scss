@@ -1,0 +1,85 @@
+@use "../global" as *;
+
+.account-order {
+  align-items: flex-start;
+  background-color: $sand;
+  column-gap: 1.5 * $global-padding;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0;
+  padding: 1.5 * $global-padding;
+  row-gap: $global-padding;
+
+  @include breakpoint(tablet) {
+    align-items: center;
+    padding: 40px 36px 37px;
+  }
+
+  &__body {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-width: 0;
+  }
+
+  &__label {
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    margin: 0;
+    padding-bottom: 22px;
+    text-transform: uppercase;
+  }
+
+  &__number {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(22px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    padding-bottom: 8px;
+  }
+
+  &__meta {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 1.5;
+    margin: 0;
+    padding-bottom: 14px;
+  }
+
+  :root & &__link {
+    border-bottom: 1px solid $ink;
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 1;
+    padding: 5px 0 3px;
+    text-decoration: none;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
+    }
+  }
+
+  &__status {
+    border: 1px solid $berry-dark;
+    color: $berry-dark;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    letter-spacing: $nav-letter-spacing;
+    line-height: 1;
+    padding: 9px 14px 8px;
+    white-space: nowrap;
+  }
+}

@@ -442,3 +442,139 @@ function tanjandi_order_number( $number ) {
     return 'TJ-' . $number;
 }
 add_filter( 'woocommerce_order_number', 'tanjandi_order_number' );
+
+/**
+ * Account
+ * Menu of the account page: own labels, no downloads.
+ */
+function tanjandi_account_menu_items( $items ) {
+    unset( $items['downloads'] );
+
+    if ( isset( $items['dashboard'] ) ) {
+        $items['dashboard'] = __( 'Übersicht', 'tanjandi' );
+    }
+
+    if ( isset( $items['edit-address'] ) ) {
+        $items['edit-address'] = __( 'Adressen', 'tanjandi' );
+    }
+
+    return $items;
+}
+add_filter( 'woocommerce_account_menu_items', 'tanjandi_account_menu_items' );
+
+/**
+ * The address consists of name, street, postcode, city and country only,
+ * in the checkout as well as in the account.
+ */
+function tanjandi_billing_fields( $fields ) {
+    unset( $fields['billing_company'], $fields['billing_address_2'], $fields['billing_state'], $fields['billing_phone'] );
+
+    return $fields;
+}
+add_filter( 'woocommerce_billing_fields', 'tanjandi_billing_fields' );
+
+/**
+ * Address form in the account: same labels, widths and classes as in the
+ * checkout.
+ */
+function tanjandi_account_address_fields( $address, $load_address ) {
+    $prefix = $load_address . '_';
+    $layout = array(
+        'email'      => array( __( 'E-Mail', 'tanjandi' ), 'full' ),
+        'first_name' => array( __( 'Vorname', 'tanjandi' ), 'half' ),
+        'last_name'  => array( __( 'Nachname', 'tanjandi' ), 'half' ),
+        'address_1'  => array( __( 'Strasse und Hausnummer', 'tanjandi' ), 'full' ),
+        'postcode'   => array( __( 'PLZ', 'tanjandi' ), 'third' ),
+        'city'       => array( __( 'Ort', 'tanjandi' ), 'two-thirds' ),
+        'country'    => array( __( 'Land', 'tanjandi' ), 'full' ),
+    );
+    $sorted = array();
+
+    foreach ( $layout as $name => $settings ) {
+        $key = $prefix . $name;
+
+        if ( ! isset( $address[ $key ] ) ) {
+            continue;
+        }
+
+        $field                = $address[ $key ];
+        $field['label']       = $settings[0];
+        $field['placeholder'] = '';
+        $field['class']       = array( 'checkout-field', 'checkout-field--' . $settings[1] );
+        $field['label_class'] = array( 'checkout-field__label' );
+        $field['input_class'] = array( 'checkout-field__input' );
+
+        if ( 'country' === $name ) {
+            $countries = WC()->countries->get_allowed_countries();
+
+            if ( 1 === count( $countries ) ) {
+                $field['type']        = 'hidden';
+                $field['value']       = key( $countries );
+                $field['class']       = array( 'checkout-field', 'checkout-field--hidden' );
+                $field['input_class'] = array();
+            } else {
+                $field['type']    = 'select';
+                $field['options'] = $countries;
+            }
+        }
+
+        $sorted[ $key ] = $field;
+        unset( $address[ $key ] );
+    }
+
+    // Anything else, e.g. fields added by a plugin, follows at full width.
+    foreach ( $address as $key => $field ) {
+        $field['class']       = array( 'checkout-field', 'checkout-field--full' );
+        $field['label_class'] = array( 'checkout-field__label' );
+        $field['input_class'] = array( 'checkout-field__input' );
+        $sorted[ $key ]       = $field;
+    }
+
+    return $sorted;
+}
+add_filter( 'woocommerce_address_to_edit', 'tanjandi_account_address_fields', 20, 2 );
+
+/**
+ * Order list in the account: the link to an order reads "Ansehen".
+ */
+function tanjandi_account_orders_actions( $actions ) {
+    if ( isset( $actions['view'] ) ) {
+        $actions['view']['name'] = __( 'Ansehen', 'tanjandi' );
+    }
+
+    return $actions;
+}
+add_filter( 'woocommerce_my_account_my_orders_actions', 'tanjandi_account_orders_actions' );
+
+/**
+ * Line below the product name of an order item, e.g. "Vase · Desert Tan".
+ * Counterpart of tanjandi_cart_item_meta() for placed orders.
+ */
+function tanjandi_order_item_meta( $item ) {
+    $parts    = array();
+    $subtitle = function_exists( 'get_field' ) ? (string) get_field( 'product_subtitle', $item->get_product_id() ) : '';
+
+    if ( '' !== $subtitle ) {
+        $parts[] = trim( explode( '·', $subtitle )[0] );
+    }
+
+    $variation = $item->get_variation_id() ? wc_get_product( $item->get_variation_id() ) : null;
+
+    if ( $variation ) {
+        foreach ( $variation->get_attributes() as $taxonomy => $value ) {
+            $term    = taxonomy_exists( $taxonomy ) ? get_term_by( 'slug', $value, $taxonomy ) : false;
+            $parts[] = $term ? $term->name : $value;
+        }
+    }
+
+    return implode( ' · ', array_filter( $parts ) );
+}
+
+/**
+ * "Erneut bestellen" is offered as soon as an order is being worked on,
+ * not only once it is completed.
+ */
+function tanjandi_order_again_statuses( $statuses ) {
+    return array_unique( array_merge( $statuses, array( 'processing', 'on-hold' ) ) );
+}
+add_filter( 'woocommerce_valid_order_statuses_for_order_again', 'tanjandi_order_again_statuses' );

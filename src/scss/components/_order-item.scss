@@ -68,4 +68,23 @@
     margin: 0;
     white-space: nowrap;
   }
+
+  // Row of its own in the order view of the account.
+  &--large {
+    border-bottom: 1px solid $line;
+    padding: 19px 0 17px;
+  }
+
+  &--large:not(:last-child) {
+    padding-bottom: 17px;
+  }
+
+  &--large &__name {
+    font-size: rem-calc(18px);
+    font-weight: 400;
+  }
+
+  &--large &__total {
+    font-size: rem-calc(14px);
+  }
 }
