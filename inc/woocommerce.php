@@ -43,3 +43,9 @@ function tanjandi_cart_count_fragment( $fragments ) {
     return $fragments;
 }
 add_filter( 'woocommerce_add_to_cart_fragments', 'tanjandi_cart_count_fragment' );
+
+/**
+ * Prices
+ * Show whole amounts without decimals (CHF 45 instead of CHF 45.00).
+ */
+add_filter( 'woocommerce_price_trim_zeros', '__return_true' );

@@ -2558,7 +2558,7 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 }
 @media screen and (min-width: 1200px) {
   .hero {
-    padding-bottom: 106px;
+    padding-bottom: 123px;
     padding-top: 106px;
   }
 }
@@ -3176,6 +3176,122 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
   transform: none !important;
 }
 
+.product-card {
+  margin: 0;
+}
+.product-card__media {
+  margin: 0;
+  padding-bottom: 1.25rem;
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+  .product-card__media {
+    padding-bottom: 20px;
+  }
+}
+.product-card__image {
+  background-color: #ede7de;
+  margin: 0;
+}
+.product-card__image img {
+  display: block;
+  width: 100%;
+}
+.product-card__badge {
+  left: 14px;
+  margin: 0;
+  position: absolute;
+  top: 14px;
+}
+.product-card .product-card__badge a {
+  background-color: #9a4a5e;
+  color: #f6f3ee;
+  display: block;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  padding: 9px 10px 9px 12px;
+  text-transform: uppercase;
+}
+.product-card__info {
+  margin: 0;
+}
+.product-card__row {
+  align-items: baseline;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding-bottom: 7px;
+}
+.product-card__name {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+}
+@media screen and (min-width: 768px) {
+  .product-card__name {
+    font-size: 1.25rem;
+  }
+}
+.product-card .product-card__name a {
+  transition: color 0.3s ease-in-out;
+}
+.product-card .product-card__name a:focus-visible {
+  color: #9a4a5e;
+}
+.product-card:has(.product-card__image:hover, .product-card__name:hover) .product-card__name a,
+.product-card:has(.product-card__image:hover, .product-card__name:hover) .product-card__price {
+  color: #9a4a5e;
+}
+.product-card__price {
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  margin: 0;
+  transition: color 0.3s ease-in-out;
+  white-space: nowrap;
+}
+@media screen and (min-width: 768px) {
+  .product-card__price {
+    font-size: 0.9375rem;
+  }
+}
+.product-card__meta {
+  color: #6e675e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.product-grid .product-grid__list {
+  display: grid;
+  gap: 2rem 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media screen and (min-width: 768px) {
+  .product-grid .product-grid__list {
+    gap: 2.5rem 1.5rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .product-grid .product-grid__list {
+    gap: 2rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 .project-results {
   overflow: hidden;
   position: relative;
@@ -3646,14 +3762,14 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 }
 @media screen and (min-width: 768px) {
   .section__container {
-    padding-bottom: 4rem;
-    padding-top: 4rem;
+    padding-bottom: 4.5rem;
+    padding-top: 4.5rem;
   }
 }
 @media screen and (min-width: 992px) {
   .section__container {
-    padding-bottom: 6rem;
-    padding-top: 6rem;
+    padding-bottom: 7.5rem;
+    padding-top: 7.5rem;
   }
 }
 .section__container--first {
@@ -3704,48 +3820,66 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
     padding-top: 3rem;
   }
 }
-.section__content {
-  margin-block-start: 2rem;
+.section__header {
+  margin: 0;
+  padding-bottom: 2rem;
 }
 @media screen and (min-width: 768px) {
-  .section__content {
-    margin-block-start: 3rem;
+  .section__header {
+    align-items: flex-end;
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 63px;
   }
 }
-@media screen and (min-width: 1200px) {
-  .section__content {
-    margin-block-start: 5rem;
+.section__titles {
+  margin: 0;
+  padding-bottom: 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  .section__titles {
+    padding-bottom: 0;
   }
+}
+.section__actions {
+  flex-shrink: 0;
+  margin: 0;
+}
+@media screen and (min-width: 768px) {
+  .section__actions {
+    position: relative;
+    top: 7px;
+  }
+}
+.section__content {
+  margin: 0;
 }
 .section__intro {
-  color: #6e675e;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  color: #9a4a5e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  margin: 0;
   padding-bottom: 1rem;
   text-transform: uppercase;
 }
 @media screen and (min-width: 768px) {
   .section__intro {
     font-size: 0.8125rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 22px;
   }
-}
-@media screen and (min-width: 1200px) {
-  .section__intro {
-    font-size: 0.8125rem;
-  }
-}
-.section__intro::before {
-  content: "//";
-  padding-right: 0.2rem;
 }
 .section__heading {
   font-family: "Shippori Mincho", serif;
+  color: #2b2926;
   font-size: 2rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
   margin: 0;
   padding-bottom: 0;
 }
@@ -3755,14 +3889,11 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 @media screen and (min-width: 768px) {
   .section__heading {
     font-size: 2.5rem;
-    letter-spacing: -0.015em;
-    line-height: 1.04;
   }
 }
 @media screen and (min-width: 1200px) {
   .section__heading {
-    font-size: 3.625rem;
-    letter-spacing: -0.018em;
+    font-size: 3.125rem;
     padding-bottom: 0;
   }
   .section__heading:has(+ .section__lead) {

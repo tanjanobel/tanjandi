@@ -1,0 +1,22 @@
+@use "../global" as *;
+
+.product-grid {
+  // WooCommerce sets its own column template on the list with two classes.
+  .product-grid__list {
+    display: grid;
+    gap: 2 * $global-padding $global-padding;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint(tablet) {
+      gap: 2.5 * $global-padding 1.5 * $global-padding;
+    }
+
+    @include breakpoint(laptop) {
+      gap: 2 * $global-padding;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}

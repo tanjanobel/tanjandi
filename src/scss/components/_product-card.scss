@@ -1,0 +1,112 @@
+@use "../global" as *;
+
+.product-card {
+  margin: 0;
+
+  &__media {
+    margin: 0;
+    padding-bottom: 1.25 * $global-padding;
+    position: relative;
+
+    @include breakpoint(tablet) {
+      padding-bottom: 20px;
+    }
+  }
+
+  &__image {
+    background-color: $sand;
+    margin: 0;
+  }
+
+  // The image block offers no way to put a class on the img itself.
+  &__image img {
+    display: block;
+    width: 100%;
+  }
+
+  &__badge {
+    left: 14px;
+    margin: 0;
+    position: absolute;
+    top: 14px;
+  }
+
+  // The terms block renders the link without a class of its own. Nested
+  // under .product-card to outweigh :root a:not(.wp-element-button).
+  .product-card__badge a {
+    background-color: $berry-dark;
+    color: $washi;
+    display: block;
+    font-family: $body-font-family;
+    font-size: rem-calc(10px);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    padding: 9px 10px 9px 12px;
+    text-transform: uppercase;
+  }
+
+  &__info {
+    margin: 0;
+  }
+
+  &__row {
+    align-items: baseline;
+    column-gap: $global-padding;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding-bottom: 7px;
+  }
+
+  &__name {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(18px);
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(20px);
+    }
+  }
+
+  .product-card__name a {
+    transition: color $transition-speed ease-in-out;
+
+    &:focus-visible {
+      color: $berry-dark;
+    }
+  }
+
+  // Hovering the image or the name highlights name and price together.
+  &:has(.product-card__image:hover, .product-card__name:hover) {
+    .product-card__name a,
+    .product-card__price {
+      color: $berry-dark;
+    }
+  }
+
+  &__price {
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 1.2;
+    margin: 0;
+    transition: color $transition-speed ease-in-out;
+    white-space: nowrap;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(15px);
+    }
+  }
+
+  &__meta {
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 1.4;
+    margin: 0;
+  }
+}

@@ -12,13 +12,13 @@
     padding-top: 3 * $global-padding;
 
     @include breakpoint(tablet) {
-      padding-bottom: 4 * $global-padding;
-      padding-top: 4 * $global-padding;
+      padding-bottom: 4.5 * $global-padding;
+      padding-top: 4.5 * $global-padding;
     }
 
     @include breakpoint(laptop) {
-      padding-bottom: 6 * $global-padding;
-      padding-top: 6 * $global-padding;
+      padding-bottom: 7.5 * $global-padding;
+      padding-top: 7.5 * $global-padding;
     }
 
     &--first {
@@ -67,47 +67,69 @@
     }
   }
 
-  &__content {
-    margin-block-start: 2 * $global-margin;
+  &__header {
+    margin: 0;
+    padding-bottom: 2 * $global-padding;
 
     @include breakpoint(tablet) {
-      margin-block-start: 3 * $global-margin;
-    }
-
-    @include breakpoint(desktop) {
-      margin-block-start: 5 * $global-margin;
+      align-items: flex-end;
+      column-gap: 2 * $global-padding;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 63px;
     }
   }
 
+  &__titles {
+    margin: 0;
+    padding-bottom: 1.5 * $global-padding;
+
+    @include breakpoint(tablet) {
+      padding-bottom: 0;
+    }
+  }
+
+  &__actions {
+    flex-shrink: 0;
+    margin: 0;
+
+    // Sits the underline slightly below the heading's line box so the
+    // link text shares the heading's baseline. WordPress resets the bottom
+    // margin of the last child in a group, so this is an offset instead.
+    @include breakpoint(tablet) {
+      position: relative;
+      top: 7px;
+    }
+  }
+
+  &__content {
+    margin: 0;
+  }
+
   &__intro {
-    color: $text-muted;
-    font-size: rem-calc(12px);
-    font-weight: 600;
-    letter-spacing: 0.16em;
+    color: $berry-dark;
+    font-family: $body-font-family;
+    font-size: rem-calc(11px);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    margin: 0;
     padding-bottom: $global-padding;
     text-transform: uppercase;
 
     @include breakpoint(tablet) {
       font-size: rem-calc(13px);
-      padding-bottom: 1.5 * $global-padding;
-    }
-
-    @include breakpoint(desktop) {
-      font-size: rem-calc(13px);
-    }
-
-    &::before {
-      content: "//";
-      padding-right: 0.2 * $global-padding;
+      padding-bottom: 22px;
     }
   }
 
   &__heading {
     font-family: $heading-font-family;
+    color: $ink;
     font-size: rem-calc(32px);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
     margin: 0;
     padding-bottom: 0;
 
@@ -117,13 +139,10 @@
 
     @include breakpoint(tablet) {
       font-size: rem-calc(40px);
-      letter-spacing: -0.015em;
-      line-height: 1.04;
     }
 
     @include breakpoint(desktop) {
-      font-size: rem-calc(58px);
-      letter-spacing: -0.018em;
+      font-size: rem-calc(50px);
       padding-bottom: 0;
 
       &:has(+ .section__lead) {
