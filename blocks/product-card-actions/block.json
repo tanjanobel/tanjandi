@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "tanjandi/product-card-actions",
+    "version": "0.1.0",
+    "title": "Product Card Actions",
+    "category": "theme",
+    "icon": "cart",
+    "description": "Colours of a product and a link that adds it to the cart.",
+    "editorScript": "file:./editor.js",
+    "usesContext": [ "postId" ],
+    "supports": {
+        "html": false
+    },
+    "textdomain": "tanjandi",
+    "render": "file:./render.php"
+}

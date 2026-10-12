@@ -51,6 +51,13 @@
       }
     }
 
+    // Only section of a page, e.g. the shop.
+    &--page {
+      @include breakpoint(laptop) {
+        padding-top: 86px;
+      }
+    }
+
     &--last {
       padding-bottom: 3 * $global-padding;
       padding-top: 1.5 * $global-padding;
@@ -218,6 +225,13 @@
       font-size: rem-calc(13px);
       padding-bottom: 20px;
     }
+
+    // The large page title brings more space above its letters.
+    &:has(+ .section__heading--page) {
+      @include breakpoint(desktop) {
+        padding-bottom: 12px;
+      }
+    }
   }
 
   &__heading {
@@ -245,6 +259,20 @@
 
       &:has(+ .section__lead) {
         padding-bottom: 18px;
+      }
+    }
+
+    // Title of a page.
+    &--page {
+      font-size: rem-calc(40px);
+
+      @include breakpoint(tablet) {
+        font-size: rem-calc(56px);
+      }
+
+      @include breakpoint(desktop) {
+        font-size: rem-calc(67px);
+        line-height: 1.1;
       }
     }
 

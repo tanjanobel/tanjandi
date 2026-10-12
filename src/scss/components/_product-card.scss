@@ -109,4 +109,78 @@
     line-height: 1.4;
     margin: 0;
   }
+
+  // Last row: colours on the left, add to cart on the right.
+  &__actions {
+    align-items: center;
+    column-gap: $global-padding;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding-top: 15px;
+  }
+
+  &__swatches {
+    column-gap: 8px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__swatch {
+    background-color: $line;
+    border-radius: 50%;
+    height: 14px;
+    margin: 0;
+    width: 14px;
+
+    &--desert-tan {
+      background-color: $product-desert-tan;
+    }
+
+    &--stein {
+      background-color: $product-stone;
+    }
+
+    &--kohle {
+      background-color: $product-charcoal;
+    }
+  }
+
+  // :root: WordPress colours links with :root a:not(.wp-element-button).
+  :root & &__add {
+    border-bottom: 1px solid $ink;
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    letter-spacing: $nav-letter-spacing;
+    line-height: 1;
+    margin-left: auto;
+    padding: 5px 0 6px;
+    text-decoration: none;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out, opacity $transition-speed ease-in-out;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
+    }
+  }
+
+  // Set by WooCommerce while the product is being added and afterwards.
+  :root & &__add.loading {
+    opacity: 0.5;
+  }
+
+  &__add.added::after {
+    content: " ✓";
+  }
+
+  // WooCommerce appends a "view cart" link; the header shows the count.
+  // :root to outweigh .woocommerce a.added_to_cart.
+  :root & &__actions .added_to_cart {
+    display: none;
+  }
 }

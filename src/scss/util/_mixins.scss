@@ -152,6 +152,11 @@
     color: $nav-color;
   }
 
+  // Link of the section the visitor is in.
+  .main-nav .current-menu-item .wp-block-navigation-item__label {
+    color: $nav-active-color;
+  }
+
   .main-nav .wp-block-navigation__responsive-container-open svg {
     fill: $nav-color;
   }

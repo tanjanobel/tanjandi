@@ -1,0 +1,49 @@
+<!-- wp:template-part {"slug":"header","theme":"tanjandi","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main"} -->
+<main class="wp-block-group"><!-- wp:group {"metadata":{"name":"Section"},"className":"section","layout":{"type":"default"}} -->
+<div class="wp-block-group section"><!-- wp:group {"metadata":{"name":"Section Container"},"className":"section__container section__container\u002d\u002dpage container","layout":{"type":"default"}} -->
+<div class="wp-block-group section__container section__container--page container"><!-- wp:group {"metadata":{"name":"Shop Titles"},"className":"section__titles","layout":{"type":"default"}} -->
+<div class="wp-block-group section__titles"><!-- wp:paragraph {"metadata":{"name":"Shop Intro"},"className":"section__intro"} -->
+<p class="section__intro">Kollektion</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":1,"metadata":{"name":"Shop Heading"},"className":"section__heading section__heading\u002d\u002dpage"} -->
+<h1 class="wp-block-heading section__heading section__heading--page">Objekte für stille Räume</h1>
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
+
+<!-- wp:tanjandi/product-filter {"metadata":{"name":"Product Filter"}} /-->
+
+<!-- wp:woocommerce/store-notices /-->
+
+<!-- wp:woocommerce/product-collection {"metadata":{"name":"Product Grid"},"queryId":1,"query":{"perPage":16,"pages":0,"offset":0,"postType":"product","order":"desc","orderBy":"date","search":"","exclude":[],"inherit":true,"taxQuery":[],"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","outofstock","onbackorder"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false},"tagName":"div","displayLayout":{"type":"flex","columns":4,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"queryContextIncludes":["collection"],"className":"section__content product-grid"} -->
+<div class="wp-block-woocommerce-product-collection section__content product-grid"><!-- wp:woocommerce/product-template {"metadata":{"name":"Product Grid List"},"className":"product-grid__list"} -->
+<!-- wp:group {"metadata":{"name":"Product Card"},"className":"product-card","layout":{"type":"default"}} -->
+<div class="wp-block-group product-card"><!-- wp:group {"metadata":{"name":"Product Card Media"},"className":"product-card__media","layout":{"type":"default"}} -->
+<div class="wp-block-group product-card__media"><!-- wp:woocommerce/product-image {"showSaleBadge":false,"isDescendentOfQueryLoop":true,"aspectRatio":"4/5","scale":"cover","metadata":{"name":"Product Card Image"},"className":"product-card__image"} /-->
+
+<!-- wp:post-terms {"term":"product_tag","metadata":{"name":"Product Card Badge"},"className":"product-card__badge"} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Product Card Info"},"className":"product-card__info","layout":{"type":"default"}} -->
+<div class="wp-block-group product-card__info"><!-- wp:group {"metadata":{"name":"Product Card Row"},"className":"product-card__row","layout":{"type":"default"}} -->
+<div class="wp-block-group product-card__row"><!-- wp:post-title {"level":2,"isLink":true,"metadata":{"name":"Product Card Name"},"className":"product-card__name","__woocommerceNamespace":"woocommerce/product-collection/product-title"} /-->
+
+<!-- wp:woocommerce/product-price {"isDescendentOfQueryLoop":true,"metadata":{"name":"Product Card Price"},"className":"product-card__price"} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"metadata":{"name":"Product Card Meta","bindings":{"content":{"source":"acf/field","args":{"key":"product_subtitle"}}}},"className":"product-card__meta"} -->
+<p class="product-card__meta"></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:tanjandi/product-card-actions {"metadata":{"name":"Product Card Actions"}} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+<!-- /wp:woocommerce/product-template --></div>
+<!-- /wp:woocommerce/product-collection --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","theme":"tanjandi","tagName":"footer","className":"footer"} /-->
