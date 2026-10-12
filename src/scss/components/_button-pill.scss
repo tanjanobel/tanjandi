@@ -1,119 +1,26 @@
 @use "../global" as *;
 
 /* ------------------------------------------------
-| Pill style – base
+| Default style = Filled button
 ------------------------------------------------ */
 
 .wp-block-button:not(.is-style-outline):not(.is-style-compact):not(.is-style-outline-white-compact):not(.is-style-outline-white):not(.is-style-outline-primary) {
   .wp-block-button__link {
-    @include tanjandi-button-pill-base();
+    background-color: $ink;
+    border-radius: 0;
+    color: $washi;
+    display: inline-block;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    font-weight: 400;
+    letter-spacing: $nav-letter-spacing;
+    line-height: 1;
+    padding: 1.15 * $global-padding 2.125 * $global-padding;
+    transition: background-color $transition-speed ease-in-out;
 
-    --tanjandi-arrow-color: #{$white};
-
-    /* ------------------------------------------------
-    | 1. Filled + background = Filled pill button
-    ------------------------------------------------ */
-
-    &.has-background {
-      background-color: currentColor;
-      color: $white;
-
-      &::before {
-        background-color: $white;
-      }
-
-      &:hover,
-      &:focus-visible {
-        @media (hover: hover) {
-          background-color: transparent;
-          color: $primary;
-          filter: none;
-        }
-      }
-
-      &:active {
-        background-color: $white;
-        color: $primary;
-      }
-    }
-
-    /* ------------------------------------------------
-    | 2. Filled without background = Outline pill button
-    ------------------------------------------------ */
-
-    &:not(.has-background) {
-      --tanjandi-arrow-color: #{$white};
-
-      background-color: transparent;
-      border: 1px solid currentColor;
-      color: currentColor;
-
-      &::before {
-        background-color: currentColor;
-      }
-
-      &:hover,
-      &:focus-visible {
-        @media (hover: hover) {
-          background-color: transparent;
-          color: $white;
-          border-color: transparent;
-        }
-      }
-
-      &:active {
-        background-color: currentColor;
-        color: $white;
-        border-color: transparent;
-      }
-
-      &.has-white-color {
-        --tanjandi-arrow-color: #{$primary};
-
-        &:hover,
-        &:focus-visible {
-          @media (hover: hover) {
-            color: $primary;
-          }
-        }
-
-        &:active {
-          color: $primary;
-        }
-      }
-    }
-
-    /* ------------------------------------------------
-    | 3. Contrast adjustment
-    ------------------------------------------------ */
-
-    &.has-primary-background-color {
-      --tanjandi-arrow-color: #{$primary};
-      background-color: $primary;
-      color: $white;
-
-      &::before {
-        background-color: $tertiary;
-      }
-
-      &:hover,
-      &:focus-visible {
-        @media (hover: hover) {
-          --tanjandi-arrow-color: #{$primary};
-          background-color: transparent;
-          color: $primary;
-          border-color: transparent;
-          filter: none;
-        }
-      }
-
-      &:active {
-        --tanjandi-arrow-color: #{$primary};
-        background-color: $white;
-        color: $primary;
-        border-color: transparent;
-        filter: none;
-      }
+    &:hover,
+    &:focus-visible {
+      background-color: $berry-dark;
     }
   }
 }
@@ -126,29 +33,29 @@
 .wp-block-button.is-style-outline-white {
   .wp-block-button__link {
     @include tanjandi-button-pill-base();
-    --tanjandi-arrow-color: #{$primary};
+    --tanjandi-arrow-color: #{$ink};
     background-color: transparent;
-    border: 1px solid $white;
-    color: $white;
+    border: 1px solid $washi;
+    color: $washi;
 
     &::before {
-      background-color: $white;
+      background-color: $washi;
     }
 
     &:hover,
     &:focus-visible {
       @media (hover: hover) {
-        --tanjandi-arrow-color: #{$primary};
+        --tanjandi-arrow-color: #{$ink};
         background-color: transparent;
-        color: $primary;
+        color: $ink;
         border-color: transparent;
       }
     }
 
     &:active {
-      --tanjandi-arrow-color: #{$primary};
-      background-color: $white;
-      color: $primary;
+      --tanjandi-arrow-color: #{$ink};
+      background-color: $washi;
+      color: $ink;
       border-color: transparent;
     }
   }
@@ -158,29 +65,29 @@
 .wp-block-button.is-style-outline-primary {
   .wp-block-button__link {
     @include tanjandi-button-pill-base();
-    --tanjandi-arrow-color: #{$white};
+    --tanjandi-arrow-color: #{$washi};
     background-color: transparent;
-    border: 1px solid $primary;
-    color: $primary;
+    border: 1px solid $ink;
+    color: $ink;
 
     &::before {
-      background-color: $primary;
+      background-color: $ink;
     }
 
     &:hover,
     &:focus-visible {
       @media (hover: hover) {
-        --tanjandi-arrow-color: #{$white};
+        --tanjandi-arrow-color: #{$washi};
         background-color: transparent;
-        color: $white;
+        color: $washi;
         border-color: transparent;
       }
     }
 
     &:active {
-      --tanjandi-arrow-color: #{$white};
-      background-color: $primary;
-      color: $white;
+      --tanjandi-arrow-color: #{$washi};
+      background-color: $ink;
+      color: $washi;
       border-color: transparent;
     }
   }

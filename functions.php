@@ -49,6 +49,7 @@ add_action( 'wp_enqueue_scripts', 'wp_starter_scripts' );
  * Include separate logic files
  */
 require get_template_directory() . '/inc/gutenberg.php';
+require get_template_directory() . '/inc/woocommerce.php';
 
 
 /**

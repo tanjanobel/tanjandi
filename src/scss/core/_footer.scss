@@ -73,7 +73,7 @@
     // to white for contrast.
     &-icon {
       align-items: center;
-      border: 1px solid rgba($primary, 0.25);
+      border: 1px solid rgba($ink, 0.25);
       border-radius: 100%;
       display: flex;
       flex: 0 0 36px;
@@ -84,19 +84,19 @@
       width: 36px;
 
       &:hover {
-        background-color: $primary;
-        border-color: $primary;
+        background-color: $ink;
+        border-color: $ink;
 
         .icon-button__icon {
-          color: $white;
-          fill: $white;
+          color: $washi;
+          fill: $washi;
         }
       }
     }
   }
 
   &__top {
-    border-top: 1px solid $border;
+    border-top: 1px solid $line;
     display: flex;
     flex-direction: column;
     padding-bottom: 3 * $global-padding !important;
@@ -108,7 +108,7 @@
     // instead of this element's wider outer edge - unlike border-top
     // above, which is intentionally full-width as the section divider.
     &::after {
-      background-color: $border;
+      background-color: $line;
       bottom: 0;
       content: "";
       height: 1px;
@@ -216,7 +216,7 @@
   }
 
   &__certification-eyebrow {
-    color: $secondary;
+    color: $berry-dark;
     font-size: rem-calc(11px);
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -224,12 +224,12 @@
   }
 
   &__certification-caption {
-    color: $text-faint;
+    color: $text-muted;
     font-size: rem-calc(13px);
   }
 
   &__heading {
-    color: $primary;
+    color: $ink;
     font-family: $body-font-family;
     font-size: rem-calc(18px);
     font-weight: 600;
@@ -244,7 +244,7 @@
   }
 
   &__separator {
-    border-bottom: 1px solid $border;
+    border-bottom: 1px solid $line;
     border-top: none !important;
     max-width: unset;
   }
@@ -281,7 +281,7 @@
   }
 
   &__copyright {
-    color: $text-faint;
+    color: $text-muted;
     font-size: rem-calc(13px);
 
     @include breakpoint(tablet) {

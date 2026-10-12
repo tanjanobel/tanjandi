@@ -21,7 +21,7 @@
 
         .ue {
           &-text {
-            color: $primary !important;
+            color: $ink !important;
             font-family: $heading-font-family;
             font-size: rem-calc(24px);
             font-weight: 500;
@@ -77,9 +77,9 @@
           // layout context, while margin-bottom/padding/margin-left work fine).
           // Spacing above is controlled via .ue-text's own padding-bottom instead.
           &-text-unfold-btn {
-            @include link-underline-animation($tertiary, 2px);
+            @include link-underline-animation($berry-light, 2px);
 
-            color: $secondary;
+            color: $berry-dark;
             cursor: pointer;
             display: inline-block;
             font-size: rem-calc(15px);
@@ -118,7 +118,7 @@
           }
 
           &_company {
-            color: $text-faint;
+            color: $text-muted;
             font-size: rem-calc(14px);
             font-weight: 400;
 
@@ -168,7 +168,7 @@
         width: 24px !important;
 
         span {
-          background: $primary-40;
+          background: rgba($ink, 0.40);
           border-radius: 100px;
           display: block;
           flex-shrink: 0;
@@ -178,7 +178,7 @@
         }
 
         &.active span {
-          background: $primary-80;
+          background: rgba($ink, 0.80);
           width: 30px;
         }
       }
@@ -196,28 +196,28 @@
     // (dark-on-light) colors keep winning despite coming first.
     .uc_quote_item {
       .ue-text {
-        color: $white !important;
+        color: $washi !important;
       }
 
       .ue-text-unfold-btn {
-        color: $tertiary;
+        color: $berry-light;
       }
 
       .uc_testimonial_name {
-        color: $white;
+        color: $washi;
       }
 
       .uc_testimonial_company {
-        color: rgba($white, 0.7);
+        color: rgba($washi, 0.7);
       }
     }
 
     .owl-carousel button.owl-dot span {
-      background: rgba($white, 0.35);
+      background: rgba($washi, 0.35);
     }
 
     .owl-carousel button.owl-dot.active span {
-      background: $white;
+      background: $washi;
     }
   }
 }

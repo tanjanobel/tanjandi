@@ -2,14 +2,14 @@
 
 .service {
   align-content: flex-start;
-  border-top: 1px solid $border;
+  border-top: 1px solid $line;
   flex-direction: column;
   gap: 0;
   margin: 0;
   padding: 1.5 * $global-padding 0;
 
   &:last-of-type {
-    border-bottom: 1px solid $border;
+    border-bottom: 1px solid $line;
   }
 
   @include breakpoint(tablet) {
@@ -18,7 +18,7 @@
   }
 
   &__number {
-    color: $tertiary;
+    color: $berry-light;
     display: flex;
     flex: 0 0 40px;
     font-family: $heading-font-family;
@@ -41,7 +41,7 @@
   }
 
   &__heading {
-    color: $text-primary;
+    color: $ink;
     font-size: rem-calc(22px);
     font-weight: 700;
     letter-spacing: -0.01em;
@@ -58,7 +58,7 @@
   }
 
   &__lead {
-    color: $text-faint;
+    color: $text-muted;
     font-size: rem-calc(14px);
     font-weight: 400;
     margin-top: 0 !important;
@@ -106,7 +106,7 @@
       width: auto;
 
       &::after {
-        background-color: $primary-15;
+        background-color: rgba($ink, 0.15);
         content: "";
         height: 100%;
         left: 100%;

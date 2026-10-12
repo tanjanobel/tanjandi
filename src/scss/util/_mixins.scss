@@ -126,46 +126,13 @@
     }
   }
 
-  .main-nav {
-    .wp-block-navigation-item:not(:last-of-type) {
-      color: $white;
+  .header__cart-label,
+  .main-nav .wp-block-navigation-item__label {
+    color: $washi;
+  }
 
-      a {
-        color: $white;
-
-        &::after {
-          background-color: $white;
-        }
-      }
-
-      &.current-menu-item {
-        & > a,
-        .wp-block-navigation-item__label {
-          color: $white;
-
-          &::after {
-            background-color: $white;
-            width: 16px;
-
-            @include breakpoint(tablet) {
-              width: 20px;
-            }
-          }
-        }
-      }
-
-      .wp-block-navigation-item__label {
-        color: $white;
-
-        &::after {
-          background-color: $white;
-        }
-      }
-    }
-
-    .wp-block-navigation__responsive-container-open svg {
-      fill: $white;
-    }
+  .main-nav .wp-block-navigation__responsive-container-open svg {
+    fill: $washi;
   }
 }
 
@@ -180,45 +147,13 @@
     }
   }
 
-  .main-nav {
-    .wp-block-navigation-item:not(:last-of-type) {
-      color: $nav-color;
+  .header__cart-label,
+  .main-nav .wp-block-navigation-item__label {
+    color: $nav-color;
+  }
 
-      a {
-        color: $nav-color;
-
-        &::after {
-          @include breakpoint(tablet) {
-            background-color: $tertiary;
-          }
-        }
-      }
-
-      &.current-menu-item {
-        & > a,
-        .wp-block-navigation-item__label {
-          color: $nav-active-color;
-
-          &::after {
-            background-color: $tertiary;
-            width: 20px;
-          }
-        }
-      }
-
-      .wp-block-navigation-item__label {
-        color: $nav-color;
-        font-family: $body-font-family;
-
-        &::after {
-          background-color: $nav-color;
-        }
-      }
-    }
-
-    .wp-block-navigation__responsive-container-open svg {
-      fill: $nav-color;
-    }
+  .main-nav .wp-block-navigation__responsive-container-open svg {
+    fill: $nav-color;
   }
 }
 

@@ -1,5 +1,4 @@
 @use "../global" as *;
-// @use "button-base" as *; // Entfällt, da in global enthalten
 
 /* ------------------------------------------------
 | Outline style = Link button
@@ -7,49 +6,24 @@
 
 .wp-block-button.is-style-outline {
   .wp-block-button__link {
-    @include link-underline-animation($tertiary, 2px);
-
-    --tanjandi-arrow-color: currentColor;
-
-    align-items: center;
     background-color: transparent;
     border: 0;
+    border-bottom: 1px solid $ink;
     border-radius: 0;
-    color: $secondary;
-    display: inline-flex;
-    font-size: rem-calc(15px);
-    font-weight: 500;
-    gap: 0.5 * $global-margin;
-    padding: 0 0 3px;
-    position: relative;
-    transition: background-color $transition-speed ease, color $transition-speed ease;
-
-    @include breakpoint(tablet) {
-      font-size: rem-calc(16px);
-    }
-
-    &::after {
-      @include tanjandi-arrow-mask();
-
-      background-color: var(--tanjandi-arrow-color);
-      content: "";
-      height: 16px;
-      order: 1;
-      width: 16px;
-      transition: transform 500ms ease-in-out;
-    }
+    color: $ink;
+    display: inline-block;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    font-weight: 400;
+    letter-spacing: $nav-letter-spacing;
+    line-height: 1;
+    padding: 5px 0 6px;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
 
     &:hover,
     &:focus-visible {
-      &::after {
-        transform: translateX(2px);
-      }
+      border-color: $berry-dark;
+      color: $berry-dark;
     }
   }
-}
-
-// "Alle Referenzen ansehen" on the dark-blue section: only the underline
-// uses tertiary at 40% opacity, text color stays as-is.
-.has-primary-background-color .is-style-outline--3 .wp-block-button__link.has-tertiary-color {
-  background-image: linear-gradient(rgba($tertiary, 0.4), rgba($tertiary, 0.4));
 }

@@ -1,30 +1,30 @@
 @use "../global" as *;
 
 .cky-btn {
-  border: 1px solid $primary !important;
+  border: 1px solid $ink !important;
   border-radius: 100px !important;
-  color: $primary !important;
+  color: $ink !important;
   font-family: $body-font-family !important;
   font-weight: 600 !important;
   transition: background-color 0.25s ease-out, color 0.25s ease-out;
 
   &-accept {
-    background-color: $primary !important;
-    color: $white !important;
+    background-color: $ink !important;
+    color: $washi !important;
 
     &:hover {
-      background-color: $primary-80 !important;
-      border: 1px solid $primary-80 !important;
-      color: $white !important;
+      background-color: rgba($ink, 0.80) !important;
+      border: 1px solid rgba($ink, 0.80) !important;
+      color: $washi !important;
       opacity: 1 !important;
     }
   }
 
   &-reject,
   &-preferences {
-    border: 1px solid $primary !important;
+    border: 1px solid $ink !important;
     border-radius: 100px !important;
-    color: $primary !important;
+    color: $ink !important;
     font-family: $body-font-family !important;
     font-weight: 600 !important;
     transition: background-color 0.25s ease-out, color 0.25s ease-out;

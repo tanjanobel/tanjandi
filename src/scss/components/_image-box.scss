@@ -10,9 +10,9 @@
   // up, where the box can stay comparatively short.
   align-items: flex-end;
   background:
-    radial-gradient(640px circle at 82% 30%, rgba($tertiary, 0.5), transparent 60%),
-    repeating-linear-gradient(115deg, rgba($white, 0.04) 0 2px, transparent 2px 26px),
-    linear-gradient(115deg, $primary, $secondary 58%, $tertiary);
+    radial-gradient(640px circle at 82% 30%, rgba($berry-light, 0.5), transparent 60%),
+    repeating-linear-gradient(115deg, rgba($washi, 0.04) 0 2px, transparent 2px 26px),
+    linear-gradient(115deg, $ink, $berry-dark 58%, $berry-light);
   border-radius: 16px;
   display: flex;
   margin-top: 2 * $global-padding;
@@ -62,9 +62,9 @@
     // the no-image default background above, applied as an overlay instead.
     &::after {
       background:
-        radial-gradient(640px circle at 82% 30%, rgba($tertiary, 0.5), transparent 60%),
-        repeating-linear-gradient(115deg, rgba($white, 0.04) 0 2px, transparent 2px 26px),
-        linear-gradient(115deg, $primary, $secondary 58%, $tertiary);
+        radial-gradient(640px circle at 82% 30%, rgba($berry-light, 0.5), transparent 60%),
+        repeating-linear-gradient(115deg, rgba($washi, 0.04) 0 2px, transparent 2px 26px),
+        linear-gradient(115deg, $ink, $berry-dark 58%, $berry-light);
       content: "";
       height: 100%;
       left: 0;
@@ -76,7 +76,7 @@
   }
 
   &__heading {
-    color: $white;
+    color: $washi;
     font-size: rem-calc(24px);
     font-weight: 600;
     line-height: 1.4;

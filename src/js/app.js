@@ -1,6 +1,5 @@
 import Header from './components/header';
 import ContactForm from './components/contact-form';
-import Hero from './components/hero';
 import TestimonialSlider from './components/testimonial-slider';
 import Reveal from './components/reveal';
 import CookieBannerA11yFix from './components/cookie-banner-a11y-fix';
@@ -12,9 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const contactForm = new ContactForm();
     contactForm.init();
-
-    const hero = new Hero();
-    hero.init();
 
     const testimonialSlider = new TestimonialSlider();
     testimonialSlider.init();

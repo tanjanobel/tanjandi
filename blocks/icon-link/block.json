@@ -39,7 +39,7 @@
         "icon_color": {
             "type": "object",
             "default": {
-                "slug": "primary"
+                "slug": "ink"
             }
         },
         "icon_text": {

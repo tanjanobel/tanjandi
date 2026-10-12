@@ -91,7 +91,7 @@ $thumbnail = get_the_post_thumbnail($post_id, 'post-thumbnail', array(
 
             <div class="project-card__footer">
                 <div class="wp-block-button is-style-outline-white-compact">
-                    <span class="wp-block-button__link has-white-color has-text-color has-link-color wp-element-button">
+                    <span class="wp-block-button__link has-washi-color has-text-color has-link-color wp-element-button">
                         <span class="wp-block-button__label">
                             <span class="visually-hidden"><?php echo esc_html(sprintf(__('Projekt %s ansehen', 'tanjandi'), $title)); ?></span>
                         </span>

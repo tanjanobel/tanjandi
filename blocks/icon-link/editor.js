@@ -140,14 +140,12 @@
 
             // Farben aus Theme (vereinfacht aus theme.json bekannt)
             var colors = [
-                { name: 'Primärfarbe', slug: 'primary', color: '#0a3e5c' },
-                { name: 'Sekundärfarbe', slug: 'secondary', color: '#017abb' },
-                { name: 'Tertiärfarbe', slug: 'tertiary', color: '#57b7ef' },
-                { name: 'Hellgrau', slug: 'light-gray', color: '#f6f8fb' },
-                { name: 'Hellblau', slug: 'light-blue', color: '#e6edf3' },
-                { name: 'Schwarz', slug: 'black', color: '#000000' },
-                { name: 'Weiss', slug: 'white', color: '#fcfcfd' },
-                { name: 'Text Sekundär', slug: 'text-secondary', color: '#4f6f82' }
+                { name: 'Tinte', slug: 'ink', color: '#2b2926' },
+                { name: 'Washi', slug: 'washi', color: '#f6f3ee' },
+                { name: 'Beere dunkel', slug: 'berry-dark', color: '#9a4a5e' },
+                { name: 'Beere hell', slug: 'berry-light', color: '#c27f8f' },
+                { name: 'Sand', slug: 'sand', color: '#ede7de' },
+                { name: 'Text sekundär', slug: 'text-secondary', color: '#5e584f' }
             ];
 
             return [

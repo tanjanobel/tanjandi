@@ -2,11 +2,11 @@
 
 .marquee {
   .ue-marquee {
-    background-color: $primary !important;
+    background-color: $ink !important;
     padding: 0 !important;
 
     &-tag {
-      background-color: $primary;
+      background-color: $ink;
       margin: 0 !important;
       padding: $global-padding 0.5 * $global-padding !important;
 
@@ -30,7 +30,7 @@
         }
 
         &::before {
-          color: $tertiary;
+          color: $berry-light;
           content: "✦";
           font-size: rem-calc(14px) !important;
 
@@ -48,7 +48,7 @@
         display: flex !important;
 
         i {
-          color: $tertiary;
+          color: $berry-light;
           font-size: rem-calc(12px) !important;
         }
       }

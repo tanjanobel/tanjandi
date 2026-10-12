@@ -1,7 +1,7 @@
 @use "../global" as *;
 
 .project-card {
-  border: 1px solid $border;
+  border: 1px solid $line;
   border-radius: $border-radius;
   display: flex;
   flex-direction: column;
@@ -20,11 +20,11 @@
 
     // Default (white card): dark outline fills dark, arrow turns white.
     .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
-      background-color: $primary;
-      border-color: $primary;
+      background-color: $ink;
+      border-color: $ink;
 
       &::after {
-        background-color: $white;
+        background-color: $washi;
         transform: translate(-50%, -50%) translateX(2px);
       }
     }
@@ -47,7 +47,7 @@
   }
 
   &__body {
-    background-color: $white;
+    background-color: $washi;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -59,7 +59,7 @@
   }
 
   &__company {
-    color: $secondary;
+    color: $berry-dark;
     font-size: rem-calc(12px);
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -81,7 +81,7 @@
   }
 
   &__heading {
-    color: $primary;
+    color: $ink;
     font-family: $heading-font-family;
     font-size: rem-calc(21px);
     font-weight: 500;
@@ -116,39 +116,39 @@
     }
 
     .project-card__body {
-      background-color: $primary-mid;
+      background-color: $ink;
     }
 
     .project-card__company {
-      color: $tertiary-light;
+      color: $berry-light;
     }
 
     .project-card__heading {
-      color: $white;
+      color: $washi;
     }
 
     .project-card__lead {
-      color: $white;
+      color: $washi;
     }
 
     // White outline instead of the default dark one, since this variant's
     // body is dark - hover fills white with a dark arrow instead.
     .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
-      border-color: $white;
+      border-color: $washi;
 
       &::after {
-        background-color: $white;
+        background-color: $washi;
       }
     }
 
     &:hover,
     &:focus-within {
       .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
-        background-color: $white;
-        border-color: $white;
+        background-color: $washi;
+        border-color: $washi;
 
         &::after {
-          background-color: $primary;
+          background-color: $ink;
         }
       }
     }
@@ -221,9 +221,9 @@
   // the CTA's "Projekt besprechen") - these aren't clickable, and matching
   // that outline style too closely risked reading as one.
   &__tag {
-    background-color: rgba($white, 0.15);
+    background-color: rgba($washi, 0.15);
     border-radius: 100px;
-    color: $white;
+    color: $washi;
     font-size: rem-calc(13px);
     padding: 0.4 * $global-padding $global-padding;
   }
@@ -237,7 +237,7 @@
   .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
     align-items: center;
     background-color: transparent;
-    border: 1px solid $primary;
+    border: 1px solid $ink;
     border-radius: 50%;
     color: transparent;
     cursor: pointer;
@@ -258,7 +258,7 @@
 
     &::after {
       @include tanjandi-arrow-mask();
-      background-color: $primary;
+      background-color: $ink;
       content: "";
       height: 12px;
       left: 50%;
@@ -281,10 +281,10 @@
   // &--featured earlier, it was losing to the later default rule instead
   // of overriding it.
   &--featured .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
-    border-color: $white;
+    border-color: $washi;
 
     &::after {
-      background-color: $white;
+      background-color: $washi;
     }
   }
 }
@@ -354,40 +354,40 @@
   // dark-on-navy look rather than the grid's white cards - scoped to this
   // carousel context specifically, same idea as &--featured.
   .project-card {
-    border: 1px solid rgba($white, 0.2);
+    border: 1px solid rgba($washi, 0.2);
 
     &__body {
-      background-color: $primary-mid;
+      background-color: $ink;
     }
 
     &__company {
-      color: $tertiary-light;
+      color: $berry-light;
     }
 
     &__heading {
-      color: $white;
+      color: $washi;
     }
 
     &__lead {
-      color: $white;
+      color: $washi;
     }
 
     .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
-      border-color: $white;
+      border-color: $washi;
 
       &::after {
-        background-color: $white;
+        background-color: $washi;
       }
     }
 
     &:hover,
     &:focus-within {
       .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
-        background-color: $white;
-        border-color: $white;
+        background-color: $washi;
+        border-color: $washi;
 
         &::after {
-          background-color: $primary;
+          background-color: $ink;
         }
       }
     }

@@ -80,7 +80,7 @@
   }
 
   &__intro {
-    color: $text-meta;
+    color: $text-muted;
     font-size: rem-calc(12px);
     font-weight: 600;
     letter-spacing: 0.16em;
@@ -161,18 +161,18 @@
     }
 
     &--white {
-      color: $white;
+      color: $washi;
     }
 
     &--highlight {
-      color: $secondary;
+      color: $berry-dark;
 
       &-light {
-        color: $tertiary;
+        color: $berry-light;
       }
 
       &-light-tertiary {
-        color: $tertiary-light;
+        color: $berry-light;
       }
     }
   }
@@ -218,7 +218,7 @@
         word-wrap: break-word;
 
         &::before {
-          background-color: $primary;
+          background-color: $ink;
           border-radius: 100%;
           content: "";
           display: block;

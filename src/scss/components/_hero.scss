@@ -1,271 +1,107 @@
 @use "../global" as *;
 
 .hero {
-  background-color: $paper;
+  background-color: $washi;
   padding-bottom: 3 * $global-padding;
-  padding-top: 1.5 * $global-padding;
+  padding-top: 2.5 * $global-padding;
 
   @include breakpoint(tablet) {
-    padding-bottom: 4 * $global-padding;
-    padding-top: 2 * $global-padding;
+    padding-bottom: 4.5 * $global-padding;
+    padding-top: 4 * $global-padding;
   }
 
   @include breakpoint(desktop) {
-    padding-bottom: 6 * $global-padding;
-    padding-top: 3 * $global-padding;
+    padding-bottom: 106px;
+    padding-top: 106px;
   }
 
-  &__body {
-    margin-top: 0;
+  &__content {
+    display: grid;
+    row-gap: 3 * $global-padding;
 
-    .wp-block-columns {
-      .wp-block-column:first-child { order: 2; }
-      .wp-block-column:last-child { order: 1; }
-
-      @include breakpoint(tablet) {
-        .wp-block-column:first-child { order: unset; }
-        .wp-block-column:last-child { order: unset; }
-      }
+    @include breakpoint(laptop) {
+      align-items: center;
+      column-gap: 2.5 * $global-padding;
+      grid-template-columns: 1.1fr 1fr;
     }
   }
 
-  &__intro {
-    color: $secondary;
-    font-family: $body-font-family;
-    font-size: rem-calc(12px);
-    font-weight: 600;
-    letter-spacing: 0.16em;
+  &__body {
     margin: 0;
-    padding-bottom: $global-padding;
+  }
+
+  &__intro {
+    color: $berry-dark;
+    font-family: $body-font-family;
+    font-size: rem-calc(11px);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    margin: 0;
+    padding-bottom: 1.5 * $global-padding;
     text-transform: uppercase;
 
     @include breakpoint(tablet) {
       font-size: rem-calc(13px);
-    }
-
-    @include breakpoint(desktop) {
-      font-size: rem-calc(14px);
+      padding-bottom: 35px;
     }
   }
 
   &__heading {
-    color: $primary;
+    color: $ink;
     font-family: $heading-font-family;
     font-size: rem-calc(44px);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
     margin: 0;
-    padding-bottom: 1.25 * $global-padding;
+    padding-bottom: 1.5 * $global-padding;
 
     @include breakpoint(tablet) {
-      font-size: rem-calc(80px);
-      letter-spacing: -0.015em;
-      line-height: 1;
-      max-width: 500px;
-      padding-bottom: 2 * $global-padding;
+      font-size: rem-calc(64px);
+      padding-bottom: 33px;
     }
 
     @include breakpoint(desktop) {
-      font-size: rem-calc(120px);
-      letter-spacing: -0.02em;
-      max-width: 700px;
-      padding-bottom: 0;
-    }
-
-    &--highlight {
-      color: $secondary;
+      font-size: rem-calc(84px);
     }
   }
 
   &__lead {
     color: $text-secondary;
     font-family: $body-font-family;
-    font-size: rem-calc(18px);
-    line-height: 1.6;
+    font-size: rem-calc(16px);
+    line-height: 1.75;
+    margin: 0;
+    max-width: 480px;
+    padding-bottom: 2 * $global-padding;
 
     @include breakpoint(tablet) {
-      font-size: rem-calc(20px);
+      font-size: rem-calc(17px);
+      padding-bottom: 33px;
     }
+  }
 
-    @include breakpoint(desktop) {
-      font-size: rem-calc(22px);
-    }
+  &__actions {
+    align-items: center;
+    column-gap: 1.75 * $global-padding;
+    margin: 0;
+    row-gap: 1.25 * $global-padding;
   }
 
   &__image {
-    border-radius: $border-radius;
-    margin-top: 2 * $global-padding;
-    max-height: 480px;
+    aspect-ratio: 4 / 5;
+    margin: 0;
     overflow: hidden;
-    position: relative;
     width: 100%;
-
-    @include breakpoint(tablet) {
-      margin-top: 3 * $global-padding;
-    }
-
-    @include breakpoint(desktop) {
-      margin-top: 4 * $global-padding;
-    }
-
-    // Only target the direct hero poster image, not avatars
-    > .wp-block-image img,
-    .wp-block-cover__image-background {
-      display: block;
-      height: 400px;
-      object-fit: cover;
-      object-position: center;
-      width: 100%;
-
-      @include breakpoint(tablet) {
-        height: 500px;
-      }
-
-      @include breakpoint(desktop) {
-        height: 600px;
-      }
-    }
   }
 
-  &__avatar {
-    align-items: center;
-    background-color: $white-80;
-    border-radius: 12px 0 0 0;
-    bottom: 0;
-    display: flex;
-    gap: $global-padding;
-    margin-top: 0;
-    padding: $global-padding;
-    position: absolute;
-    right: 0;
-    z-index: 2;
-
-    @include breakpoint(tablet) {
-      border-radius: 100px;
-      bottom: 2 * $global-padding;
-      box-shadow: rgba(0, 0, 0, 0.4) 0 18px 40px -16px;
-      right: 2 * $global-padding;
-    }
-
-    &__images {
-      display: flex;
-      flex: 0 0 auto;
-      gap: 0 !important;
-
-      .wp-block-image {
-        flex: 0 0 auto;
-        margin: 0 !important;
-
-        img {
-          border: 2px solid $white;
-          border-radius: 100%;
-          box-shadow: 0 2px 6px rgba(7,32,52,.15);
-          display: block;
-          height: 44px;
-          object-fit: cover;
-          width: 44px;
-        }
-
-        &:not(:first-of-type) {
-          margin-left: -0.6 * $global-margin !important;
-        }
-
-        @for $i from 1 through 5 {
-          &:nth-of-type(#{$i}) {
-            position: relative;
-            z-index: #{6 - $i};
-          }
-        }
-      }
-    }
-
-    &__text {
-      margin-top: 0;
-    }
-
-    &__title {
-      color: $primary;
-      font-size: rem-calc(14px);
-      font-weight: 600;
-      margin: 0 !important;
-    }
-
-    &__sub {
-      color: $primary-80;
-      font-size: rem-calc(12px);
-      margin: 0 !important;
-    }
-  }
-
-  // "Los geht's" CTA - a plain wp:button using the sitewide pill button
-  // style, sized up here since this one leads the page and can afford to
-  // stand out more than the same button used elsewhere. _button-pill.scss's
-  // own selector for this (".wp-block-button:not(...):not(...):not(...)
-  // :not(...):not(...) .wp-block-button__link") stacks five :not() clauses,
-  // putting it far beyond what this selector could realistically match -
-  // !important is the pragmatic way to actually win here.
-  &__body .wp-block-button .wp-block-button__link {
-    font-size: rem-calc(18px) !important;
-    padding: $global-padding 4.25 * $global-padding $global-padding 1.25 * $global-padding !important;
-
-    @include breakpoint(tablet) {
-      padding: 1.25 * $global-padding 4.75 * $global-padding 1.25 * $global-padding 1.5 * $global-padding !important;
-    }
-
-    &::before {
-      height: 40px !important;
-      right: calc(0.4 * #{$global-padding} + 20px) !important;
-      width: 40px !important;
-
-      @include breakpoint(tablet) {
-        height: 46px !important;
-        right: calc(0.4 * #{$global-padding} + 23px) !important;
-        width: 46px !important;
-      }
-    }
-
-    &::after {
-      height: 16px !important;
-      right: calc(0.4 * #{$global-padding} + 12px) !important;
-      width: 16px !important;
-
-      @include breakpoint(tablet) {
-        height: 19px !important;
-        right: calc(0.4 * #{$global-padding} + 13.5px) !important;
-        width: 19px !important;
-      }
-    }
-  }
-
-  &__button {
-    align-items: flex-end;
-    display: flex;
-    flex: 0 0 auto;
-    justify-content: flex-end;
-    width: auto;
-
-    a {
-      align-items: center;
-      background-color: $primary;
-      border-radius: 100%;
-      display: flex;
-      height: 30px;
-      justify-content: center;
-      padding: 8px;
-      width: 30px;
-    }
-
-    svg {
-      fill: $white;
-      height: 30px;
-      width: 30px;
-    }
-
-    &--tip {
-      color: $text-faint;
-      font-size: rem-calc(14px);
-      line-height: 1.2;
-    }
+  // The image block offers no way to put a class on the img itself.
+  &__image img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
   }
 }

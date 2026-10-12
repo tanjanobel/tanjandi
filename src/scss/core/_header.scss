@@ -1,7 +1,8 @@
 @use "../global" as *;
 
 .header {
-  background-color: $paper;
+  background-color: $washi;
+  border-bottom: 1px solid $header-border-color;
   transition: background-color 0.3s ease-in-out;
   width: 100%;
   z-index: 100;
@@ -16,7 +17,7 @@
 
   &.header--fixed {
     backdrop-filter: blur(10px);
-    background-color: $paper !important;
+    background-color: $washi !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
     opacity: 0;
@@ -33,7 +34,7 @@
     }
 
     &.header--visible {
-      background-color: $paper !important;
+      background-color: $washi !important;
       opacity: 1;
       transition: opacity 0.5s ease-in-out, visibility 0s, background-color 0.3s ease-in-out;
       visibility: visible;
@@ -60,31 +61,29 @@
   // Header Bottom / Layout
   &__bottom {
     align-items: center;
+    column-gap: $global-margin;
     display: flex;
     height: $header-height-mobile;
-    justify-content: space-between;
-    padding: 0 $global-margin;
     width: 100%;
 
     @include breakpoint(tablet) {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       height: $header-height;
-      padding-top: 0;
     }
+  }
 
-    .header--fixed & {
-      @include breakpoint(tablet) {
-        height: $header-height-tablet;
-      }
-    }
+  &__brand {
+    margin: 0 auto 0 0;
 
-    @include breakpoint(screen) {
-      margin: 0 auto;
-      padding: 0;
+    @include breakpoint(tablet) {
+      margin: 0;
     }
   }
 
   // Logo
   &__logo {
+    margin: 0;
     z-index: 1;
 
     // Default logo visibility (overridden by state classes)
@@ -97,6 +96,7 @@
     }
 
     img {
+      display: block;
       height: auto;
       width: $logo-mobile-width;
 
@@ -111,6 +111,7 @@
 
     a {
       border-bottom: none;
+      display: block;
 
       &::after {
         display: none;
@@ -118,9 +119,51 @@
     }
   }
 
+  // Cart
+  &__cart {
+    align-items: center;
+    column-gap: 9px;
+    display: flex;
+    margin: 0;
+
+    @include breakpoint(tablet) {
+      justify-self: end;
+    }
+  }
+
+  &__cart-label {
+    font-size: $nav-font-size;
+    letter-spacing: $nav-letter-spacing;
+    line-height: 1;
+    transition: color $transition-speed ease-in-out;
+  }
+
+  &__cart:hover &__cart-label,
+  &__cart:focus-visible &__cart-label {
+    color: $nav-hover-color;
+  }
+
+  &__cart-count {
+    align-items: center;
+    background-color: $berry-dark;
+    border-radius: 50%;
+    color: $washi;
+    display: flex;
+    font-size: $cart-count-font-size;
+    height: $cart-count-size;
+    justify-content: center;
+    line-height: 1;
+    width: $cart-count-size;
+
+    &--empty {
+      display: none;
+    }
+  }
+
   // Transparent / Overlay State (White text on dark/image bg)
   &--transparent {
     background-color: transparent;
+    border-bottom-color: transparent;
     left: 0;
     position: absolute;
     top: 0;

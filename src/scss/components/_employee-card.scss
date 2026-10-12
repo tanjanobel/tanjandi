@@ -1,8 +1,8 @@
 @use "../global" as *;
 
 .employee-card {
-  background-color: $primary-mid;
-  border: 1px solid rgba($white, 0.1);
+  background-color: $ink;
+  border: 1px solid rgba($washi, 0.1);
   border-radius: $border-radius;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@
   }
 
   &__heading {
-    color: $white;
+    color: $washi;
     font-family: $heading-font-family;
     font-size: rem-calc(22px);
     font-weight: 600;
@@ -60,7 +60,7 @@
   }
 
   &__lead {
-    color: $tertiary-light;
+    color: $berry-light;
     font-size: rem-calc(16px);
     font-weight: 400;
     margin: 0;
@@ -74,11 +74,11 @@
 
   // Outlined on the card's dark background at rest, filling solid white on
   // hover (inverted from the footer's own social-icon treatment, which
-  // fills $primary instead - here the card background already is that dark
+  // fills $ink instead - here the card background already is that dark
   // a tone, so filling light is what actually shows up as a hover state).
   &__social-link {
     align-items: center;
-    border: 1px solid rgba($white, 0.3);
+    border: 1px solid rgba($washi, 0.3);
     border-radius: 100%;
     display: flex;
     flex: 0 0 36px;
@@ -88,12 +88,12 @@
     width: 36px;
 
     &:hover {
-      background-color: $white;
-      border-color: $white;
+      background-color: $washi;
+      border-color: $washi;
 
       .employee-card__social-icon {
-        color: $primary;
-        fill: $primary;
+        color: $ink;
+        fill: $ink;
       }
     }
   }
@@ -103,8 +103,8 @@
   // do nothing for them (kept as a fallback for any icon using literal
   // fill="..." instead).
   &__social-icon {
-    color: $white;
-    fill: $white;
+    color: $washi;
+    fill: $washi;
     transition: color $transition-speed ease, fill $transition-speed ease;
   }
 }

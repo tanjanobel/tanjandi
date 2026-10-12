@@ -40,6 +40,6 @@
   // global ":root a:not(.wp-element-button)" link-color rule, which is
   // otherwise more specific than a single class.
   &--faint a {
-    color: $text-faint !important;
+    color: $text-muted !important;
   }
 }

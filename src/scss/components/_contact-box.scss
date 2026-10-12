@@ -1,9 +1,9 @@
 @use "../global" as *;
 
 .contact-box {
-  background-color: $primary;
+  background-color: $ink;
   border-radius: $border-radius;
-  color: $white;
+  color: $washi;
   padding: 1.5 * $global-padding;
 
   @include breakpoint(tablet) {
@@ -20,11 +20,11 @@
 
     // Same wipe-out/wipe-in underline as .breadcrumbs (also on a dark
     // background) instead of a plain static underline.
-    @include link-underline-animation($white-80);
+    @include link-underline-animation(rgba($washi, 0.80));
   }
 
   &__heading {
-    color: $tertiary;
+    color: $berry-light;
     font-size: rem-calc(14px);
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -57,9 +57,9 @@
   // The circle badge itself.
   &__icon {
     align-items: center;
-    background-color: rgba($tertiary, 0.15) !important;
+    background-color: rgba($berry-light, 0.15) !important;
     border-radius: 50%;
-    color: $tertiary !important;
+    color: $berry-light !important;
     display: flex !important;
     flex-shrink: 0;
     height: 48px !important;
@@ -84,7 +84,7 @@
   }
 
   &__label {
-    color: $white-60;
+    color: rgba($washi, 0.60);
     font-size: rem-calc(14px);
     margin: 0 0 0.25 * $global-padding;
 
@@ -98,7 +98,7 @@
   }
 
   &__value {
-    color: $white;
+    color: $washi;
     font-size: rem-calc(16px);
     font-weight: 600;
     line-height: 1.4;
@@ -111,7 +111,7 @@
   }
 
   &__divider {
-    background-color: rgba($white, 0.15);
+    background-color: rgba($washi, 0.15);
     border: none;
     height: 1px;
     margin: 1.5 * $global-padding 0;
@@ -127,7 +127,7 @@
   // itself to a 30px circle via flex-basis, which fought a same-named
   // override here and squashed it into an oval instead of resizing it.
   &__social-wrapper {
-    border-top: 1px solid rgba($white, 0.15);
+    border-top: 1px solid rgba($washi, 0.15);
     display: flex !important;
     gap: $global-padding;
     margin-top: 1.5 * $global-padding;
@@ -139,7 +139,7 @@
   // truth for the circle's size instead of nesting two circles.
   &__social-icon {
     align-items: center;
-    border: 1px solid rgba($white, 0.25);
+    border: 1px solid rgba($washi, 0.25);
     border-radius: 50%;
     display: flex;
     flex: 0 0 36px;
@@ -151,16 +151,16 @@
 
     // Same fill-solid-on-hover treatment as .employee-card__social-link -
     // both sit on a dark background, so hover fills white with the icon
-    // switching to $primary, instead of the footer's fill-$primary version
+    // switching to $ink, instead of the footer's fill-$ink version
     // (which relies on a light background to read as a fill in the first
     // place).
     &:hover {
-      background-color: $white;
-      border-color: $white;
+      background-color: $washi;
+      border-color: $washi;
 
       .icon-button__icon.primary {
-        fill: $primary;
-        color: $primary;
+        fill: $ink;
+        color: $ink;
       }
     }
 
@@ -173,8 +173,8 @@
     }
 
     .icon-button__icon.primary {
-      fill: $white;
-      color: $white;
+      fill: $washi;
+      color: $washi;
       transition: fill $transition-speed ease, color $transition-speed ease;
     }
   }
@@ -184,7 +184,7 @@
   // the iframe's own width/height attributes.
   &__map {
     aspect-ratio: 4 / 3;
-    border: 1px solid $border;
+    border: 1px solid $line;
     border-radius: $border-radius;
     margin-top: 1.5 * $global-padding;
     overflow: hidden;

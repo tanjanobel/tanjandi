@@ -14,7 +14,7 @@ html {
 
 body {
   background-color: $body-background-color;
-  color: $text-primary;
+  color: $ink;
   font-family: $body-font-family;
   position: relative;
   -webkit-font-smoothing: antialiased;
@@ -41,7 +41,7 @@ p {
   }
 
   & > a {
-    @include link-underline-animation($primary);
+    @include link-underline-animation($ink);
   }
 }
 
@@ -64,7 +64,7 @@ p {
   }
 
   :where(.wp-block-image figcaption) {
-    color: $primary-80;
+    color: rgba($ink, 0.80);
     letter-spacing: 0.01em;
     margin-top: 0.5 * $global-margin;
     padding-left: 2px;

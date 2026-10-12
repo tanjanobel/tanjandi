@@ -1,7 +1,13 @@
 @use "../global" as *;
 
 .main-nav {
+  margin: 0;
+  order: 3;
   z-index: 1;
+
+  @include breakpoint(tablet) {
+    order: 0;
+  }
 
   .wp-block-navigation {
     &:not(.has-background) {
@@ -13,314 +19,28 @@
     }
 
     &-item {
-      color: $nav-color;
       position: relative;
 
-      &:not(:last-of-type) a {
-        &::after {
-          background-color: $nav-color-mobile;
-          backface-visibility: hidden;
-          bottom: 0;
-          content: "";
-          height: 2px;
-          left: 0;
-          position: absolute;
-          transition: background-color 0.25s ease-in-out, width 0.36s cubic-bezier(0.51, 0.5, 0.07, 0.99);
-          visibility: visible;
-          width: 0;
-
-          @include breakpoint(tablet) {
-            background-color: $nav-color;
-          }
-        }
-
-        &:hover {
-          &::after {
-            width: 20px;
-          }
-        }
+      &__content {
+        transition: color $transition-speed ease-in-out;
       }
-
-      &:last-of-type {
-        a {
-          @include tanjandi-button-pill-base();
-
-          --tanjandi-arrow-color: #{$white};
-
-          background-color: $primary;
-          color: $white !important;
-          font-size: rem-calc(14px);
-          padding: 0.55 * $global-padding 3 * $global-padding 0.55 * $global-padding $global-padding !important;
-
-          .wp-block-navigation-item__label {
-            color: inherit !important;
-            font-size: rem-calc(22px);
-
-            @include breakpoint(tablet) {
-              font-size: rem-calc(16px);
-            }
-
-            @include breakpoint(laptop) {
-              font-size: rem-calc(18px);
-            }
-
-            @include breakpoint(desktop) {
-              font-size: rem-calc(18px);
-            }
-          }
-
-          &::before {
-            background-color: $tertiary;
-            height: 30px;
-            right: 20px;
-            top: 50%;
-            transform: translate(50%, -50%);
-            width: 30px;
-          }
-
-          &::after {
-            background-color: $primary !important;
-            display: block !important;
-            height: 12px;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 12px;
-            z-index: 2;
-          }
-
-          .wp-block-navigation-item__label,
-          span:not([class]) {
-            position: relative;
-            z-index: 2;
-          }
-
-          &:hover,
-          &:focus-visible {
-            @media (hover: hover) {
-              background-color: transparent;
-              color: $primary !important;
-
-              &::before {
-                transform: translate(-50%, -50%) scale(10);
-              }
-
-              &::after {
-                transform: translateY(-50%) translateX(2px);
-              }
-            }
-          }
-
-          &:active {
-            background-color: $primary !important;
-            color: $white !important;
-
-            &::after {
-              background-color: $white !important;
-              transform: translateY(-50%) translateX(2px);
-            }
-          }
-
-          &.current-menu-item,
-          .current-menu-item & {
-            &::after {
-              transform: translateY(-50%);
-            }
-
-            &:hover,
-            &:focus-visible {
-              @media (hover: hover) {
-                &::after {
-                  transform: translateY(-50%) translateX(2px);
-                }
-              }
-            }
-
-            &:active {
-              &::after {
-                transform: translateY(-50%) translateX(2px);
-              }
-            }
-          }
-        }
-
-        @include breakpoint(tablet) {
-          &.current-menu-item {
-            & > a {
-              &::after {
-                transform: translateY(-50%);
-              }
-
-              &:hover,
-              &:focus-visible {
-                @media (hover: hover) {
-                  &::after {
-                    transform: translateY(-50%) translateX(2px);
-                  }
-                }
-              }
-
-              &:active {
-                &::after {
-                  transform: translateY(-50%) translateX(2px);
-                }
-              }
-            }
-          }
-
-          a {
-            --tanjandi-arrow-color: #{$primary};
-
-            background-color: transparent;
-            border: 1px solid $white;
-            color: $white !important;
-
-          &::before {
-            background-color: $white;
-            height: 32px;
-            right: 18px;
-            top: 50%;
-            transform: translate(40%, -50%);
-            width: 32px;
-          }
-
-            &::after {
-              height: 10px;
-              right: 16px;
-              top: 50%;
-              transform: translateY(-50%);
-              width: 12px;
-              background-color: $primary !important;
-              z-index: 2;
-            }
-
-            .wp-block-navigation-item__label,
-            span:not([class]) {
-              font-weight: 400;
-              position: relative;
-              z-index: 2;
-            }
-
-            &:hover,
-            &:focus-visible {
-              @media (hover: hover) {
-                background-color: transparent;
-                color: $primary !important;
-
-                &::before {
-                  transform: translate(-50%, -50%) scale(10);
-                }
-
-                &::after {
-                  transform: translateY(-50%) translateX(2px);
-                }
-              }
-            }
-
-            &:active {
-              background-color: $white !important;
-              color: $primary !important;
-
-              &::after {
-                transform: translateY(-50%) translateX(2px);
-              }
-            }
-
-            .header:not(.header--transparent):not(.header--home) &,
-            .header--fixed &,
-            .header--visible &,
-            .header--visible:not(.header--transparent) & {
-              --tanjandi-arrow-color: #{$primary};
-              background-color: $primary;
-              border-color: transparent;
-              color: $white !important;
-
-              &::before {
-                background-color: $tertiary;
-                height: 32px;
-                right: 18px;
-                top: 50%;
-                transform: translate(40%, -50%);
-                width: 32px;
-              }
-
-              &::after {
-                background-color: $primary !important;
-                height: 10px;
-                right: 16px;
-                top: 50%;
-                transform: translateY(-50%) translateX(0);
-                width: 12px;
-                z-index: 2;
-              }
-
-              .wp-block-navigation-item__label,
-              span:not([class]) {
-                position: relative;
-                z-index: 2;
-              }
-
-              &:hover,
-              &:focus-visible {
-                @media (hover: hover) {
-                  background-color: transparent;
-                  color: $primary !important;
-
-                  &::before {
-                    transform: translate(-50%, -50%) scale(10);
-                  }
-
-                  &::after {
-                    transform: translateY(-50%) translateX(2px);
-                  }
-                }
-              }
-
-              &:active {
-                background-color: $primary !important;
-                color: $white !important;
-
-                &::after {
-                  transform: translateY(-50%) translateX(2px);
-                }
-              }
-            }
-          }
-        }
-      }
-
-    &-item:not(:last-of-type) {
-      &.current-menu-item,
-      &.current-menu-ancestor,
-      &.current-page-ancestor,
-      &.current_page_parent,
-      &.current_page_ancestor {
-        & > a {
-          color: $nav-active-color-mobile;
-
-          @include breakpoint(tablet) {
-            color: $nav-active-color;
-          }
-
-          &::after {
-            width: 20px;
-          }
-        }
-      }
-    }
 
       &__label {
         font-family: $body-font-family;
         font-size: $nav-font-size-mobile;
-        font-weight: 500;
+        font-weight: 400;
+        letter-spacing: $nav-letter-spacing;
+        line-height: 1;
+        transition: color $transition-speed ease-in-out;
 
         @include breakpoint(tablet) {
-          font-size: $nav-font-size-tablet;
-        }
-
-        @include breakpoint(laptop) {
           font-size: $nav-font-size;
         }
+      }
+
+      &__content:hover &__label,
+      &__content:focus-visible &__label {
+        color: $nav-hover-color;
       }
     }
 
@@ -329,16 +49,8 @@
       width: 100%;
 
       @include breakpoint(tablet) {
-        gap: 1.5 * $global-padding !important;
+        gap: $nav-gap !important;
         padding: 0 !important;
-      }
-
-      @include breakpoint(laptop) {
-        gap: 2 * $global-padding !important;
-      }
-
-      @include breakpoint(desktop) {
-        gap: 2.5 * $global-padding !important;
       }
     }
 
@@ -355,14 +67,6 @@
             @include breakpoint(tablet) {
               display: flex !important;
             }
-          }
-        }
-
-        &-content {
-          color: $nav-color-mobile;
-
-          @include breakpoint(tablet) {
-            color: $text-primary;
           }
         }
 
@@ -449,68 +153,6 @@
           border: 0 !important;
           top: 64px !important;
         }
-
-        .wp-block-navigation-link {
-          &::after {
-            display: none;
-          }
-        }
-      }
-    }
-  }
-}
-
-
-// White variant for main navigation
-.main-nav--white {
-  .wp-block-navigation {
-    &-item {
-      color: $nav-color-mobile;
-
-      a {
-        color: $nav-color-mobile;
-
-        &::after {
-          background-color: $nav-color-mobile;
-        }
-      }
-
-      &.current-menu-item,
-      &.current-menu-ancestor,
-      &.current-page-ancestor,
-      &.current_page_parent,
-      &.current_page_ancestor {
-        & > a {
-          color: $nav-active-color-mobile;
-        }
-      }
-
-      &__label {
-        color: $nav-color-mobile;
-      }
-    }
-
-    &__responsive {
-      &-content {
-        color: $nav-color-mobile;
-      }
-
-      &-container {
-        &-open {
-          svg {
-            fill: $nav-color-mobile;
-          }
-        }
-      }
-    }
-  }
-
-  // Mobile submenu toggle chevrons
-  @include breakpoint(phablet down) {
-    .wp-block-navigation-submenu__toggle {
-      &::before,
-      &::after {
-        background-color: $nav-color-mobile;
       }
     }
   }
@@ -524,24 +166,12 @@
     left: $global-margin;
     z-index: 100001;
 
-    @include breakpoint(tablet) {
-      height: $header-height;
-    }
-
     &--dark {
       display: block !important;
     }
 
     &--white {
       display: none !important;
-    }
-
-    img {
-      max-width: $logo-mobile-width;
-
-      @include breakpoint(tablet) {
-        max-width: $logo-tablet-width;
-      }
     }
   }
 }
@@ -568,64 +198,13 @@ body:has(.is-menu-open) {
   z-index: 100000 !important;
 
   .wp-block-navigation-item {
-    border-bottom: 1px solid $border;
+    border-bottom: 1px solid $line;
     padding-bottom: 1.5 * $global-padding;
+    padding-top: $global-padding;
     width: 100%;
 
-    &.main-nav__contact {
-      border-bottom: 0;
-      padding-top: 2 * $global-padding;
-    }
-
-    &:not(.main-nav__contact) {
-      padding-top: $global-padding;
-
-      .wp-block-navigation-item__label,
-      a {
-        color: $nav-color-mobile !important;
-        font-family: $body-font-family;
-        font-size: rem-calc(26px);
-        font-weight: 600;
-
-        //&::after {
-        //  background-color: $tertiary !important;
-        //  height: 3px;
-        //}
-      }
-
-      // No active/current-page indicator in the mobile overlay - every
-      // link should look the same regardless of which page is open.
-      &.current-menu-item,
-      &.current-menu-ancestor,
-      &.current-page-ancestor,
-      &.current_page_parent,
-      &.current_page_ancestor {
-        a::after {
-          width: 0 !important;
-        }
-      }
-    }
-
-    // Bigger Kontakt pill in the mobile overlay specifically - scoped here
-    // (not in the shared base rule above) so it never leaks into the
-    // tablet+/desktop nav, which only resets colors/circle-size, not
-    // font-size or padding. Targets the dedicated class (rather than
-    // :last-of-type) so it can't accidentally match anything else.
-    &.main-nav__contact a {
-      font-size: rem-calc(13px);
-      padding: 0.8 * $global-padding 4 * $global-padding 0.8 * $global-padding 1.5 * $global-padding !important;
-
-      &::before {
-        height: 38px;
-        right: 26px;
-        width: 38px;
-      }
-
-      &::after {
-        height: 15px;
-        right: 18px;
-        width: 15px;
-      }
+    .wp-block-navigation-item__label {
+      color: $nav-color-mobile !important;
     }
   }
 
@@ -645,10 +224,6 @@ body:has(.is-menu-open) {
     padding: 0 12px;
     position: relative;
 
-    @include breakpoint(tablet) {
-      height: $header-height;
-    }
-
     svg {
       fill: $nav-color-mobile !important;
     }
@@ -656,40 +231,5 @@ body:has(.is-menu-open) {
 
   &::before {
     content: none !important;
-  }
-}
-
-// Specific Active State for Custom Post Type "Referenzen"
-// If WordPress doesn't automatically add ancestor classes, we force it via body class
-body.single-reference,
-body.single-reference {
-  .main-nav {
-    .wp-block-navigation-item {
-      // Find the link that points to the projects page.
-      // We assume it contains "/projekte" in the URL.
-      a[href*="/referenzen"] {
-        color: $nav-active-color-mobile;
-
-        @include breakpoint(tablet) {
-          color: $nav-active-color;
-        }
-
-        &::after {
-          width: 20px;
-        }
-      }
-    }
-  }
-
-  .main-nav--white {
-    .wp-block-navigation-item {
-      a[href*="/projekte"] {
-        color: $white;
-
-        &::after {
-          width: 20px;
-        }
-      }
-    }
   }
 }

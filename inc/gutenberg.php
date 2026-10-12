@@ -39,17 +39,17 @@ function wp_starter_gutenberg_settings() {
         register_block_type( $block_path );
     }
 
-    $block_path = get_template_directory() . '/blocks/hero';
-    if ( file_exists( $block_path . '/block.json' ) ) {
-        register_block_type( $block_path );
-    }
-
     $block_path = get_template_directory() . '/blocks/icon-link';
     if ( file_exists( $block_path . '/block.json' ) ) {
         register_block_type( $block_path );
     }
 
     $block_path = get_template_directory() . '/blocks/image-box';
+    if ( file_exists( $block_path . '/block.json' ) ) {
+        register_block_type( $block_path );
+    }
+
+    $block_path = get_template_directory() . '/blocks/cart-link';
     if ( file_exists( $block_path . '/block.json' ) ) {
         register_block_type( $block_path );
     }

@@ -4,47 +4,40 @@
 @use "sass:map";
 
 // Base Font
-@import "https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap";
-@import "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap";
 
-$body-font-family: "Hanken Grotesk", sans-serif;
-$heading-font-family: "Outfit", sans-serif;
+$body-font-family: "Zen Kaku Gothic New", sans-serif;
+$heading-font-family: "Shippori Mincho", serif;
 
-// Color Variables
-$primary: #0a3e5c;
-$primary-mid: #0c4a6e;
-$primary-80: rgba($primary, 0.8);
-$primary-60: rgba($primary, 0.6);
-$primary-40: rgba($primary, 0.4);
-$primary-20: rgba($primary, 0.2);
-$primary-15: rgba($primary, 0.15);
-$primary-10: rgba($primary, 0.1);
-$secondary: #016aa3;
-$tertiary: #57b7ef;
-$tertiary-light: #9fd4f5;
-$text-primary: $primary;
-$text-secondary: #36586a;
-$text-muted: #5b7585;
-$text-faint: #5f6f79;
-$text-fainter: #9aa9b1;
-$text-meta: $secondary;
-$text-inverse: #fcfcfd;
-$paper: #f6f3ee;
-$paper-input: #faf8f4;
-$hairline: #e1dccf;
-$light-gray: #f6f8fb;
-$medium-gray: #d9d9d9;
-$light-blue: #e6edf3;
-$white: #fcfcfd;
-$white-60: rgba($white, 0.6);
-$white-80: rgba($white, 0.8);
-$soft-white: #ffffffb3;
-$black: #000000;
-$border: #e1dccf;
+// Brand Colors
+$ink: #2b2926;
+$washi: #f6f3ee;
+$berry-dark: #9a4a5e;
+$berry-light: #c27f8f;
+
+// Surfaces
+$sand: #ede7de;
+$sand-dark: #e2d9cb;
+$linen: #e9e4dc;
+$input-background: #fbf9f6;
+
+// Lines
+$line: #d6cec2;
+$line-light: #e4ddd2;
+
+// Product Colors
+$product-desert-tan: #d9c7a6;
+$product-stone: #a8a39a;
+$product-charcoal: #3a3734;
+
+// Text Colors
+$text-body: #3f3b36;
+$text-secondary: #5e584f;
+$text-muted: #6e675e;
 
 // Global
-$anchor-color: $primary;
-$body-background-color: $paper;
+$anchor-color: $ink;
+$body-background-color: $washi;
 $border-radius: 20px;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -52,33 +45,36 @@ $transition-speed: 0.3s;
 
 // Typography
 $base-font-size: 16px;
-$body-font-color: #46606f;
+$body-font-color: $ink;
 
 // Containers
 $container-max-width: 1400px;
 
 // Header
-$header-height: 120px;
-$header-height-desktop: 120px;
-$header-height-tablet: 100px;
-$header-height-mobile: 80px;
-$logo-mobile-width: 160px;
-$logo-tablet-width: 150px;
-$logo-laptop-width: 180px;
-$logo-desktop-width: 200px;
+$header-height: 84px;
+$header-height-desktop: 84px;
+$header-height-tablet: 84px;
+$header-height-mobile: 72px;
+$logo-mobile-width: 100px;
+$logo-tablet-width: 110px;
+$logo-laptop-width: 110px;
+$logo-desktop-width: 110px;
+$header-border-color: $line-light;
+$cart-count-size: 22px;
+$cart-count-font-size: rem-calc(12px);
 
 // Main Nav
-$nav-color: $primary;
-$nav-color-mobile: $primary;
-$nav-font-size: rem-calc(20px);
-$nav-font-size-mobile: rem-calc(34px);
-$nav-font-size-tablet: rem-calc(17px);
-$nav-font-size-laptop: rem-calc(18px);
-$nav-background-mobile: $paper;
-$nav-active-color: $primary;
-$nav-active-color-mobile: $primary;
-$nav-hover-color-mobile: $primary;
+$nav-color: $ink;
+$nav-color-mobile: $ink;
+$nav-hover-color: $berry-dark;
+$nav-font-size: rem-calc(14px);
+$nav-font-size-mobile: rem-calc(26px);
+$nav-letter-spacing: 0.06em;
+$nav-gap: 40px;
+$nav-background-mobile: $washi;
+$nav-active-color: $ink;
+$nav-active-color-mobile: $ink;
 
 // Footer
 $footer-height: 260px;
-$footer-color: $text-faint;
+$footer-color: $text-muted;

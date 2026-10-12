@@ -6,7 +6,7 @@
   &__container {
     // Overrides the inline background-image set via the block editor's
     // cover-image background.
-    background: linear-gradient(120deg, $primary, $secondary) !important;
+    background: linear-gradient(120deg, $ink, $berry-dark) !important;
     border-radius: $border-radius;
     overflow: hidden;
     padding-bottom: 2 * $global-padding;
@@ -30,7 +30,7 @@
     // Decorative glow circle, top right.
     &::before {
       animation: floatY 7s ease-in-out infinite;
-      background: radial-gradient(circle, rgba($tertiary, 0.55), transparent 70%);
+      background: radial-gradient(circle, rgba($berry-light, 0.55), transparent 70%);
       border-radius: 50%;
       content: "";
       height: 340px;
@@ -50,7 +50,7 @@
   // Same type scale/structure as .section__heading, colors adapted for
   // this component's dark background instead of a light one.
   &__heading {
-    color: $white;
+    color: $washi;
     font-family: $heading-font-family;
     font-size: rem-calc(32px);
     font-weight: 500;

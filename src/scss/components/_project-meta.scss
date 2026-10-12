@@ -10,7 +10,7 @@
     padding-top: 1.5 * $global-padding;
 
     &:not(:last-child) {
-      border-bottom: 1px solid $border;
+      border-bottom: 1px solid $line;
       padding-bottom: 1.5 * $global-padding;
     }
 
@@ -20,7 +20,7 @@
   }
 
   &__label {
-    color: $secondary !important;
+    color: $berry-dark !important;
     font-size: rem-calc(13px) !important;
     font-weight: 600 !important;
     letter-spacing: 0.08em;
@@ -29,7 +29,7 @@
   }
 
   &__value {
-    color: $primary;
+    color: $ink;
     font-size: rem-calc(18px);
     font-weight: 600;
     margin: 0;
@@ -39,7 +39,7 @@
     }
 
     a {
-      color: $secondary;
+      color: $berry-dark;
       text-decoration: underline;
     }
   }

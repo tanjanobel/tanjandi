@@ -10,66 +10,71 @@
             "defaultPalette": false,
             "palette": [
                 {
-                    "name": "Primärfarbe",
-                    "slug": "primary",
-                    "color": "#0a3e5c"
+                    "name": "Tinte",
+                    "slug": "ink",
+                    "color": "#2b2926"
                 },
                 {
-                    "name": "Sekundärfarbe",
-                    "slug": "secondary",
-                    "color": "#017abb"
-                },
-                {
-                    "name": "Tertiärfarbe",
-                    "slug": "tertiary",
-                    "color": "#57b7ef"
-                },
-                {
-                    "name": "Hellgrau",
-                    "slug": "light-gray",
-                    "color": "#f6f8fb"
-                },
-                {
-                    "name": "Hellblau",
-                    "slug": "light-blue",
-                    "color": "#e6edf3"
-                },
-                {
-                    "name": "Papier",
-                    "slug": "paper",
+                    "name": "Washi",
+                    "slug": "washi",
                     "color": "#f6f3ee"
                 },
                 {
-                    "name": "Soft White",
-                    "slug": "soft-white",
-                    "color": "#ffffffb3"
+                    "name": "Beere dunkel",
+                    "slug": "berry-dark",
+                    "color": "#9a4a5e"
                 },
                 {
-                    "name": "Haarlinie",
-                    "slug": "haarlinie",
-                    "color": "#e1dccf"
+                    "name": "Beere hell",
+                    "slug": "berry-light",
+                    "color": "#c27f8f"
                 },
                 {
-                    "name": "Schwarz",
-                    "slug": "black",
-                    "color": "#000000"
+                    "name": "Sand",
+                    "slug": "sand",
+                    "color": "#ede7de"
                 },
                 {
-                    "name": "Weiss",
-                    "slug": "white",
-                    "color": "#fcfcfd"
+                    "name": "Sand dunkel",
+                    "slug": "sand-dark",
+                    "color": "#e2d9cb"
                 },
                 {
-                    "name": "Text Sekundär",
+                    "name": "Leinen",
+                    "slug": "linen",
+                    "color": "#e9e4dc"
+                },
+                {
+                    "name": "Fliesstext",
+                    "slug": "text-body",
+                    "color": "#3f3b36"
+                },
+                {
+                    "name": "Text sekundär",
                     "slug": "text-secondary",
-                    "color": "#4f6f82"
+                    "color": "#5e584f"
+                },
+                {
+                    "name": "Text gedämpft",
+                    "slug": "text-muted",
+                    "color": "#6e675e"
+                },
+                {
+                    "name": "Linie",
+                    "slug": "line",
+                    "color": "#d6cec2"
+                },
+                {
+                    "name": "Linie hell",
+                    "slug": "line-light",
+                    "color": "#e4ddd2"
                 }
             ],
             "gradients": [
                 {
                     "name": "Subheader Verlauf",
                     "slug": "subheader-gradient",
-                    "gradient": "linear-gradient(to right, rgba(10,62,92,0.98) 0%, rgba(10,62,92,0.96) 25%, rgba(10,62,92,0.90) 50%, rgba(10,62,92,0.80) 70%, rgba(10,62,92,0.70) 85%, rgba(10,62,92,0.65) 100%)"                }
+                    "gradient": "linear-gradient(to right, rgba(43,41,38,0.98) 0%, rgba(43,41,38,0.96) 25%, rgba(43,41,38,0.90) 50%, rgba(43,41,38,0.80) 70%, rgba(43,41,38,0.70) 85%, rgba(43,41,38,0.65) 100%)"                }
             ]
         },
         "spacing": {

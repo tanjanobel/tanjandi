@@ -14,7 +14,7 @@ $icon_title = isset($attributes['icon_title']) ? $attributes['icon_title'] : '';
 $icon_width_mobile = isset($attributes['icon_width_mobile']) ? $attributes['icon_width_mobile'] : '24';
 $icon_width = isset($attributes['icon_width']) ? $attributes['icon_width'] : '24';
 $icon_symbol = isset($attributes['icon_symbol']) ? $attributes['icon_symbol'] : 'arrow-right';
-$icon_color_slug = isset($attributes['icon_color']['slug']) ? $attributes['icon_color']['slug'] : 'primary';
+$icon_color_slug = isset($attributes['icon_color']['slug']) ? $attributes['icon_color']['slug'] : 'ink';
 $icon_text = isset($attributes['icon_text']) ? $attributes['icon_text'] : '';
 
 $wrapper_class = 'icon-button';

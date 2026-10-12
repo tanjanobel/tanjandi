@@ -9,7 +9,7 @@
   }
 
   span {
-    color: $white-80;
+    color: rgba($washi, 0.80);
     font-size: rem-calc(12px);
     letter-spacing: 0.02em;
 
@@ -19,11 +19,11 @@
   }
 
   a {
-    @include link-underline-animation($white-80);
-    color: $white-80 !important;
+    @include link-underline-animation(rgba($washi, 0.80));
+    color: rgba($washi, 0.80) !important;
   }
 
   .current-item {
-    color: $white-80;
+    color: rgba($washi, 0.80);
   }
 }

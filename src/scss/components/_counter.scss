@@ -11,7 +11,7 @@
     padding: 1.5 * $global-padding 1 * $global-padding !important;
 
     &:not(:first-child) {
-      border-top: 1px solid $border;
+      border-top: 1px solid $line;
     }
   }
 }
@@ -39,11 +39,11 @@
     }
 
     &:nth-child(even) {
-      border-left: 1px solid $border;
+      border-left: 1px solid $line;
     }
 
     &:nth-child(n + 3) {
-      border-top: 1px solid $border;
+      border-top: 1px solid $line;
     }
   }
 
@@ -58,7 +58,7 @@
     }
 
     &:not(:first-child) {
-      border-left: 1px solid $border;
+      border-left: 1px solid $line;
     }
 
     &:nth-child(n) {
@@ -72,8 +72,8 @@
 // actual counter block inside rather than relying on a class being present
 // on the row itself.
 .wp-block-columns:has(.wp-block-column > .counter) {
-  border-bottom: 1px solid $border;
-  border-top: 1px solid $border;
+  border-bottom: 1px solid $line;
+  border-top: 1px solid $line;
 }
 
 .uc_counter_box {
@@ -81,7 +81,7 @@
   padding: 0 !important;
 
   .ue_divider {
-    background-color: $white-60 !important;
+    background-color: rgba($washi, 0.60) !important;
 
     &_holder {
       margin: 0 !important;

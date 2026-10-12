@@ -152,12 +152,12 @@
     &::before {
       background: linear-gradient(
           to right,
-          rgba(10, 62, 92, 0.98) 0%,
-          rgba(10, 62, 92, 0.96) 25%,
-          rgba(10, 62, 92, 0.90) 50%,
-          rgba(10, 62, 92, 0.80) 70%,
-          rgba(10, 62, 92, 0.70) 85%,
-          rgba(10, 62, 92, 0.55) 100%
+          rgba($ink, 0.98) 0%,
+          rgba($ink, 0.96) 25%,
+          rgba($ink, 0.90) 50%,
+          rgba($ink, 0.80) 70%,
+          rgba($ink, 0.70) 85%,
+          rgba($ink, 0.55) 100%
       ) center;
       background-size: cover;
       content: "";
@@ -218,7 +218,7 @@
 
   &__intro {
     align-items: center;
-    color: $secondary;
+    color: $berry-dark;
     display: flex;
     font-size: rem-calc(12px);
     font-weight: 600;
@@ -242,7 +242,7 @@
     }
 
     &::after {
-      background-color: $border;
+      background-color: $line;
       content: "";
       flex: 1 1 auto;
       height: 1px;
@@ -251,7 +251,7 @@
   }
 
   &__heading {
-    color: $primary;
+    color: $ink;
     font-family: $heading-font-family;
     font-size: rem-calc(42px);
     font-weight: 500;
@@ -274,18 +274,18 @@
     }
 
     &--white {
-      color: $white;
+      color: $washi;
     }
 
     &--highlight {
-      color: $secondary;
+      color: $berry-dark;
 
       &-light {
-        color: $tertiary;
+        color: $berry-light;
       }
 
       &-light-tertiary {
-        color: $tertiary-light;
+        color: $berry-light;
       }
     }
 

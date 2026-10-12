@@ -32,7 +32,7 @@
     &::after {
       @include tanjandi-arrow-mask();
 
-      background-color: var(--tanjandi-arrow-color, #{$white});
+      background-color: var(--tanjandi-arrow-color, #{$washi});
       content: "";
       height: 14px;
       left: 50%;
@@ -55,7 +55,7 @@
         filter: brightness(0.95);
 
         &::after {
-          background-color: $primary;
+          background-color: $ink;
           transform: translate(-50%, -50%) translateX(2px);
         }
       }
@@ -66,7 +66,7 @@
       transform: scale(0.96);
 
       &::after {
-        background-color: $primary;
+        background-color: $ink;
         transform: translate(-50%, -50%) translateX(2px);
       }
     }
@@ -79,10 +79,10 @@
     /* Gutenberg background color */
     &.has-background {
       background-color: var(--wp--style--color--background, transparent);
-      border: 1px solid $border;
+      border: 1px solid $line;
 
-      &.has-white-color {
-        border-color: rgba($white, 0.8);
+      &.has-washi-color {
+        border-color: rgba($washi, 0.8);
       }
     }
 
@@ -95,24 +95,24 @@
       &:not(.has-background) {
         border: 1px solid var(--wp--style--color--text, currentColor);
 
-        &.has-white-color {
-          border-color: rgba($white, 0.8);
+        &.has-washi-color {
+          border-color: rgba($washi, 0.8);
         }
       }
     }
 
     /* Default fallback */
     &:not(.has-background):not(.has-text-color) {
-      --tanjandi-arrow-color: #{$primary};
-      background-color: rgba($primary, 0.1);
-      border: 1px solid rgba($primary, 0.2);
+      --tanjandi-arrow-color: #{$ink};
+      background-color: rgba($ink, 0.1);
+      border: 1px solid rgba($ink, 0.2);
     }
 
-    &.has-primary-background-color {
-      --tanjandi-arrow-color: #{$primary} !important;
-      background-color: $primary !important;
-      color: $white !important;
-      border-color: $primary;
+    &.has-ink-background-color {
+      --tanjandi-arrow-color: #{$ink} !important;
+      background-color: $ink !important;
+      color: $washi !important;
+      border-color: $ink;
 
       @media (hover: hover) {
         &:hover,
@@ -132,29 +132,29 @@
 .wp-block-button.is-style-outline-white-compact {
   .wp-block-button__link {
     background-color: transparent;
-    border: 1px solid $white;
+    border: 1px solid $washi;
     color: transparent; // Hide label text
 
     &::after {
-      background-color: $white;
+      background-color: $washi;
     }
 
     @media (hover: hover) {
       &:hover,
       &:focus-visible {
-        background-color: $white;
+        background-color: $washi;
 
         &::after {
-          background-color: $primary;
+          background-color: $ink;
         }
       }
     }
 
     &:active {
-      background-color: $white;
+      background-color: $washi;
 
       &::after {
-        background-color: $primary;
+        background-color: $ink;
       }
     }
   }

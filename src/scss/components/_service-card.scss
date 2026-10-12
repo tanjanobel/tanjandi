@@ -1,8 +1,8 @@
 @use "../global" as *;
 
 .service-card {
-  background-color: $white;
-  border: 1px solid $border;
+  background-color: $washi;
+  border: 1px solid $line;
   border-radius: $border-radius;
   display: flex !important;
   flex-direction: column;
@@ -29,9 +29,9 @@
   // set per-instance in the block's own sidebar.
   &__icon {
     align-items: center;
-    background-color: rgba($secondary, 0.1) !important;
+    background-color: rgba($berry-dark, 0.1) !important;
     border-radius: 50%;
-    color: $secondary !important;
+    color: $berry-dark !important;
     display: flex !important;
     height: 48px !important;
     justify-content: center;
@@ -56,7 +56,7 @@
   }
 
   &__heading {
-    color: $primary;
+    color: $ink;
     font-family: $heading-font-family;
     font-size: rem-calc(22px);
     font-weight: 600;
@@ -73,7 +73,7 @@
   }
 
   &__text {
-    color: $text-faint;
+    color: $text-muted;
     font-weight: 400;
     line-height: 1.6;
     padding-bottom: $global-padding;
@@ -101,7 +101,7 @@
 
     .service-card__icon {
       background-color: transparent !important;
-      color: $tertiary !important;
+      color: $berry-light !important;
       height: 28px !important;
       margin-bottom: $global-padding !important;
       width: 28px !important;
@@ -123,7 +123,7 @@
     padding: 0;
 
     li {
-      color: $primary;
+      color: $ink;
       font-size: rem-calc(14px);
       min-height: 18px;
       padding-left: 1.75rem;
@@ -135,7 +135,7 @@
 
       // Filled circle badge behind the checkmark.
       &::before {
-        background-color: $tertiary;
+        background-color: $berry-light;
         border-radius: 50%;
         content: "";
         height: 18px;
@@ -149,7 +149,7 @@
       // (not the thin filled path) so the weight is controllable directly
       // via stroke-width - currently bold at 2.5.
       &::after {
-        background-color: $primary;
+        background-color: $ink;
         content: "";
         height: 7px;
         left: 4.5px;
@@ -178,7 +178,7 @@
 // a divider between each.
 //
 .service-card__wrapper {
-  border-top: 1px solid $border;
+  border-top: 1px solid $line;
   gap: 0;
 
   // _columns.scss has a generic "tablet only" rule forcing every
@@ -191,7 +191,7 @@
   // tablet, back to a single row of 4 from laptop up.
   > .service-card__column {
     &.service-card__column {
-      border-top: 1px solid $border;
+      border-top: 1px solid $line;
       padding: 1.5 * $global-padding !important;
 
       &:first-child {
@@ -206,11 +206,11 @@
         padding: 2 * $global-padding !important;
 
         &:nth-child(even) {
-          border-left: 1px solid $border;
+          border-left: 1px solid $line;
         }
 
         &:nth-child(n + 3) {
-          border-top: 1px solid $border;
+          border-top: 1px solid $line;
         }
       }
 
@@ -224,7 +224,7 @@
         }
 
         &:not(:first-child) {
-          border-left: 1px solid $border;
+          border-left: 1px solid $line;
         }
       }
     }
