@@ -9,6 +9,7 @@
 @use "core/main-nav";
 @use "core/spacing";
 
+@use "components/accordion";
 @use "components/breadcrumbs";
 @use "components/button";
 @use "components/cookie-notice.scss";
@@ -29,6 +30,7 @@
 @use "components/news-card";
 @use "components/news-grid";
 @use "components/post-navigation";
+@use "components/product-detail";
 @use "components/product-card";
 @use "components/product-grid";
 @use "components/project-advantage";

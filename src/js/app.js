@@ -1,4 +1,5 @@
 import Header from './components/header';
+import CartCount from './components/cart-count';
 import ContactForm from './components/contact-form';
 import TestimonialSlider from './components/testimonial-slider';
 import Reveal from './components/reveal';
@@ -8,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize components
     const header = new Header();
     header.init();
+
+    const cartCount = new CartCount();
+    cartCount.init();
 
     const contactForm = new ContactForm();
     contactForm.init();

@@ -1,0 +1,377 @@
+@use "../global" as *;
+
+.product-detail {
+  padding-bottom: 4 * $global-padding;
+  padding-top: 1.5 * $global-padding;
+
+  @include breakpoint(laptop) {
+    padding-bottom: 120px;
+    padding-top: 30px;
+  }
+
+  &__breadcrumbs {
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    margin: 0;
+    padding-bottom: 1.5 * $global-padding;
+
+    @include breakpoint(laptop) {
+      padding-bottom: 30px;
+    }
+  }
+
+  // WooCommerce renders the breadcrumb links without a class of their own.
+  // Nested under .product-detail to outweigh :root a:not(.wp-element-button).
+  .product-detail__breadcrumbs .woocommerce-breadcrumb {
+    color: $ink;
+    font-size: inherit;
+    margin: 0;
+  }
+
+  &__breadcrumb-separator {
+    color: $text-muted;
+    padding: 0 10px;
+  }
+
+  .product-detail__breadcrumbs a {
+    color: $text-muted;
+    transition: color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      color: $nav-hover-color;
+    }
+  }
+
+  &__columns {
+    display: grid;
+    margin: 0;
+    row-gap: 2.5 * $global-padding;
+
+    @include breakpoint(laptop) {
+      align-items: start;
+      column-gap: 4 * $global-padding;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include breakpoint(desktop) {
+      column-gap: 92px;
+    }
+  }
+
+  // Gallery: WooCommerce outputs the wrapper and one div per image without
+  // classes of our own. The first image spans both columns.
+  &__gallery {
+    margin: 0;
+  }
+
+  // Nested to outweigh WooCommerce's two-class rule limiting it to 512px.
+  .product-detail__columns .product-detail__gallery {
+    max-width: none;
+  }
+
+  &__gallery .woocommerce-product-gallery {
+    float: none;
+    opacity: 1 !important;
+    width: 100% !important;
+  }
+
+  &__gallery .woocommerce-product-gallery__wrapper {
+    display: grid;
+    gap: $global-padding;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+  }
+
+  // !important: WooCommerce sizes every image after the first to 25%
+  // with a selector of four classes and three tags.
+  &__gallery .woocommerce-product-gallery__image {
+    aspect-ratio: 1 / 1;
+    background-color: $sand;
+    overflow: hidden;
+    width: 100% !important;
+
+    &:first-child {
+      aspect-ratio: 4 / 5;
+      grid-column: span 2;
+    }
+  }
+
+  &__gallery .woocommerce-product-gallery__image a {
+    display: block;
+    height: 100%;
+  }
+
+  &__gallery .woocommerce-product-gallery__image img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &__gallery .woocommerce-product-gallery__trigger {
+    display: none;
+  }
+
+  &__summary {
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: $berry-dark;
+    font-family: $body-font-family;
+    font-size: rem-calc(11px);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    margin: 0;
+    padding-bottom: $global-padding;
+    padding-top: 2px;
+    text-transform: uppercase;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(13px);
+      padding-bottom: 15px;
+    }
+  }
+
+  &__title {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(44px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+    padding-bottom: 16px;
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(64px);
+    }
+  }
+
+  &__price {
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(20px);
+    line-height: 1.2;
+    margin: 0;
+    padding-bottom: 1.5 * $global-padding;
+  }
+
+  &__excerpt {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    line-height: 1.8;
+    margin: 0;
+    padding-bottom: 36px;
+  }
+
+  &__form {
+    margin: 0;
+  }
+
+  // WooCommerce wraps the form in a notices container and appends an empty
+  // variation wrapper, both without a class of our own and both spaced by
+  // the default block gap.
+  &__summary .wc-block-components-notices,
+  &__form .single_variation_wrap {
+    margin: 0;
+  }
+
+  &__options {
+    margin: 0;
+    padding-bottom: 36px;
+  }
+
+  &__option {
+    margin: 0;
+    position: relative;
+  }
+
+  &__option-name {
+    color: $ink;
+    display: block;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0;
+    padding-bottom: 12px;
+  }
+
+  &__swatches {
+    margin: 0;
+  }
+
+  // Colour swatches: WooCommerce renders the options as radio buttons with
+  // the colour slug as value and without classes of our own.
+  &__swatches .wc-block-product-filter-chips__fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__swatches .wc-block-product-filter-chips__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  &__swatches .wc-block-product-filter-chips__item {
+    background-clip: content-box;
+    background-color: $line;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 40px;
+    margin: 0;
+    padding: 4px;
+    transition: border-color $transition-speed ease-in-out;
+    width: 40px;
+
+    &[value="desert-tan"] {
+      background-color: $product-desert-tan;
+    }
+
+    &[value="stein"] {
+      background-color: $product-stone;
+    }
+
+    &[value="kohle"] {
+      background-color: $product-charcoal;
+    }
+
+    &:hover,
+    &:focus-visible,
+    &[aria-checked="true"] {
+      border-color: $ink;
+    }
+  }
+
+  // The name of the selected colour sits on the right of the option name;
+  // the names of the other colours stay available to screen readers only.
+  &__swatches .wc-block-product-filter-chips__label {
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  &__swatches .wc-block-product-filter-chips__item[aria-checked="true"] .wc-block-product-filter-chips__label {
+    clip-path: none;
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    height: auto;
+    line-height: 20px;
+    overflow: visible;
+    right: 0;
+    top: 0;
+    width: auto;
+  }
+
+  &__purchase {
+    column-gap: 12px;
+    display: flex;
+    margin: 0;
+    padding-bottom: 36px;
+  }
+
+  &__quantity {
+    border: 0;
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  // WooCommerce renders the stepper without classes of our own.
+  &__quantity .wc-block-components-quantity-selector {
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid $line;
+    border-radius: 0;
+    box-sizing: border-box;
+    display: flex;
+    height: 58px;
+    margin: 0;
+    width: 126px;
+
+    &::after {
+      content: none;
+    }
+  }
+
+  &__quantity .wc-block-components-quantity-selector__button {
+    background-color: transparent;
+    border: 0;
+    color: $ink;
+    cursor: pointer;
+    flex: 0 0 48px;
+    font-size: rem-calc(20px);
+    font-weight: 300;
+    height: 100%;
+    opacity: 1;
+    padding: 0;
+  }
+
+  &__quantity .qty {
+    appearance: textfield;
+    background-color: transparent;
+    border: 0;
+    color: $ink;
+    flex: 1 1 auto;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    min-width: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  // Nested to outweigh WooCommerce's own two- and three-class rules that
+  // centre the button and size it to its text.
+  .product-detail__purchase .product-detail__add {
+    align-items: stretch;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  // The button itself is styled by the shared default button; here it only
+  // fills the row.
+  .product-detail__purchase .product-detail__add .wp-block-button__link {
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__notes {
+    margin: 0;
+    padding-bottom: 34px;
+  }
+
+  &__note {
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    margin: 0;
+
+    &:not(:last-child) {
+      padding-bottom: 7px;
+    }
+  }
+
+  &__accordions {
+    border-bottom: 1px solid $line;
+    margin: 0;
+  }
+}

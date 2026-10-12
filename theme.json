@@ -214,6 +214,16 @@
             "name": "subheader",
             "title": "Subheader",
             "area": "subheader"
+        },
+        {
+            "name": "variable-product-add-to-cart-with-options",
+            "title": "In den Warenkorb: Produkt mit Varianten",
+            "area": "uncategorized"
+        },
+        {
+            "name": "simple-product-add-to-cart-with-options",
+            "title": "In den Warenkorb: Einfaches Produkt",
+            "area": "uncategorized"
         }
     ]
 }

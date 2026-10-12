@@ -830,6 +830,77 @@ body:has(.is-menu-open) .hero {
   }
 }
 
+.accordion {
+  border-top: 1px solid #d6cec2;
+  margin: 0;
+}
+.accordion summary {
+  align-items: center;
+  color: #2b2926;
+  cursor: pointer;
+  display: flex;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.9375rem;
+  justify-content: space-between;
+  line-height: 24px;
+  list-style: none;
+  padding: 21px 0;
+  transition: color 0.3s ease-in-out;
+}
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+.accordion summary::after {
+  content: "+";
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 24px;
+}
+.accordion summary:hover, .accordion summary:focus-visible {
+  color: #9a4a5e;
+}
+.accordion[open] summary {
+  padding-bottom: 16px;
+}
+.accordion[open] summary::after {
+  content: "–";
+}
+.accordion__text {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin: 0;
+  padding-bottom: 22px;
+}
+.accordion__table {
+  margin: 0;
+  padding-bottom: 17px;
+}
+.accordion__table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.accordion__table th, .accordion__table td {
+  border: 0;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 5px 0;
+}
+.accordion__table .wp-block-product-specifications-item-attribute_pa_farbe {
+  display: none;
+}
+.accordion__table th {
+  color: #6e675e;
+  text-align: left;
+}
+.accordion__table td {
+  color: #2b2926;
+  text-align: right;
+}
+
 .breadcrumbs {
   padding-bottom: 1.5rem;
 }
@@ -3138,6 +3209,324 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
   transform: none !important;
 }
 
+.product-detail {
+  padding-bottom: 4rem;
+  padding-top: 1.5rem;
+}
+@media screen and (min-width: 992px) {
+  .product-detail {
+    padding-bottom: 120px;
+    padding-top: 30px;
+  }
+}
+.product-detail__breadcrumbs {
+  color: #6e675e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 20px;
+  margin: 0;
+  padding-bottom: 1.5rem;
+}
+@media screen and (min-width: 992px) {
+  .product-detail__breadcrumbs {
+    padding-bottom: 30px;
+  }
+}
+.product-detail .product-detail__breadcrumbs .woocommerce-breadcrumb {
+  color: #2b2926;
+  font-size: inherit;
+  margin: 0;
+}
+.product-detail__breadcrumb-separator {
+  color: #6e675e;
+  padding: 0 10px;
+}
+.product-detail .product-detail__breadcrumbs a {
+  color: #6e675e;
+  transition: color 0.3s ease-in-out;
+}
+.product-detail .product-detail__breadcrumbs a:hover, .product-detail .product-detail__breadcrumbs a:focus-visible {
+  color: #9a4a5e;
+}
+.product-detail__columns {
+  display: grid;
+  margin: 0;
+  row-gap: 2.5rem;
+}
+@media screen and (min-width: 992px) {
+  .product-detail__columns {
+    align-items: start;
+    -moz-column-gap: 4rem;
+         column-gap: 4rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media screen and (min-width: 1200px) {
+  .product-detail__columns {
+    -moz-column-gap: 92px;
+         column-gap: 92px;
+  }
+}
+.product-detail__gallery {
+  margin: 0;
+}
+.product-detail .product-detail__columns .product-detail__gallery {
+  max-width: none;
+}
+.product-detail__gallery .woocommerce-product-gallery {
+  float: none;
+  opacity: 1 !important;
+  width: 100% !important;
+}
+.product-detail__gallery .woocommerce-product-gallery__wrapper {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+.product-detail__gallery .woocommerce-product-gallery__image {
+  aspect-ratio: 1/1;
+  background-color: #ede7de;
+  overflow: hidden;
+  width: 100% !important;
+}
+.product-detail__gallery .woocommerce-product-gallery__image:first-child {
+  aspect-ratio: 4/5;
+  grid-column: span 2;
+}
+.product-detail__gallery .woocommerce-product-gallery__image a {
+  display: block;
+  height: 100%;
+}
+.product-detail__gallery .woocommerce-product-gallery__image img {
+  display: block;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+.product-detail__gallery .woocommerce-product-gallery__trigger {
+  display: none;
+}
+.product-detail__summary {
+  margin: 0;
+}
+.product-detail__subtitle {
+  color: #9a4a5e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  margin: 0;
+  padding-bottom: 1rem;
+  padding-top: 2px;
+  text-transform: uppercase;
+}
+@media screen and (min-width: 768px) {
+  .product-detail__subtitle {
+    font-size: 0.8125rem;
+    padding-bottom: 15px;
+  }
+}
+.product-detail__title {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 2.75rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+  padding-bottom: 16px;
+}
+@media screen and (min-width: 1200px) {
+  .product-detail__title {
+    font-size: 4rem;
+  }
+}
+.product-detail__price {
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin: 0;
+  padding-bottom: 1.5rem;
+}
+.product-detail__excerpt {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin: 0;
+  padding-bottom: 36px;
+}
+.product-detail__form {
+  margin: 0;
+}
+.product-detail__summary .wc-block-components-notices, .product-detail__form .single_variation_wrap {
+  margin: 0;
+}
+.product-detail__options {
+  margin: 0;
+  padding-bottom: 36px;
+}
+.product-detail__option {
+  margin: 0;
+  position: relative;
+}
+.product-detail__option-name {
+  color: #2b2926;
+  display: block;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0;
+  padding-bottom: 12px;
+}
+.product-detail__swatches {
+  margin: 0;
+}
+.product-detail__swatches .wc-block-product-filter-chips__fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.product-detail__swatches .wc-block-product-filter-chips__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.product-detail__swatches .wc-block-product-filter-chips__item {
+  background-clip: content-box;
+  background-color: #d6cec2;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 40px;
+  margin: 0;
+  padding: 4px;
+  transition: border-color 0.3s ease-in-out;
+  width: 40px;
+}
+.product-detail__swatches .wc-block-product-filter-chips__item[value=desert-tan] {
+  background-color: #d9c7a6;
+}
+.product-detail__swatches .wc-block-product-filter-chips__item[value=stein] {
+  background-color: #a8a39a;
+}
+.product-detail__swatches .wc-block-product-filter-chips__item[value=kohle] {
+  background-color: #3a3734;
+}
+.product-detail__swatches .wc-block-product-filter-chips__item:hover, .product-detail__swatches .wc-block-product-filter-chips__item:focus-visible, .product-detail__swatches .wc-block-product-filter-chips__item[aria-checked=true] {
+  border-color: #2b2926;
+}
+.product-detail__swatches .wc-block-product-filter-chips__label {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.product-detail__swatches .wc-block-product-filter-chips__item[aria-checked=true] .wc-block-product-filter-chips__label {
+  clip-path: none;
+  color: #6e675e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  height: auto;
+  line-height: 20px;
+  overflow: visible;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+.product-detail__purchase {
+  -moz-column-gap: 12px;
+       column-gap: 12px;
+  display: flex;
+  margin: 0;
+  padding-bottom: 36px;
+}
+.product-detail__quantity {
+  border: 0;
+  flex-shrink: 0;
+  margin: 0;
+}
+.product-detail__quantity .wc-block-components-quantity-selector {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #d6cec2;
+  border-radius: 0;
+  box-sizing: border-box;
+  display: flex;
+  height: 58px;
+  margin: 0;
+  width: 126px;
+}
+.product-detail__quantity .wc-block-components-quantity-selector::after {
+  content: none;
+}
+.product-detail__quantity .wc-block-components-quantity-selector__button {
+  background-color: transparent;
+  border: 0;
+  color: #2b2926;
+  cursor: pointer;
+  flex: 0 0 48px;
+  font-size: 1.25rem;
+  font-weight: 300;
+  height: 100%;
+  opacity: 1;
+  padding: 0;
+}
+.product-detail__quantity .qty {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+  background-color: transparent;
+  border: 0;
+  color: #2b2926;
+  flex: 1 1 auto;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  min-width: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+.product-detail .product-detail__purchase .product-detail__add {
+  align-items: stretch;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  margin: 0;
+}
+.product-detail .product-detail__purchase .product-detail__add .wp-block-button__link {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  width: 100%;
+}
+.product-detail__notes {
+  margin: 0;
+  padding-bottom: 34px;
+}
+.product-detail__note {
+  color: #6e675e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 20px;
+  margin: 0;
+}
+.product-detail__note:not(:last-child) {
+  padding-bottom: 7px;
+}
+.product-detail__accordions {
+  border-bottom: 1px solid #d6cec2;
+  margin: 0;
+}
+
 .product-card {
   margin: 0;
 }
@@ -3796,6 +4185,11 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
     padding-bottom: 63px;
   }
 }
+@media screen and (min-width: 768px) {
+  .section__header:has(.section__heading--small) {
+    padding-bottom: 52px;
+  }
+}
 .section__titles {
   margin: 0;
   padding-bottom: 1.5rem;
@@ -3852,6 +4246,49 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 .section__body {
   margin: 0;
 }
+.section__centered {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+}
+.section__symbol {
+  color: #9a4a5e;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.875rem;
+  line-height: 1.1;
+  margin: 0;
+  padding-bottom: 1.5rem;
+}
+@media screen and (min-width: 1200px) {
+  .section__symbol {
+    font-size: 2.25rem;
+    padding-bottom: 31px;
+  }
+}
+.section__centered .section__heading {
+  padding-bottom: 1.5rem;
+}
+@media screen and (min-width: 1200px) {
+  .section__centered .section__heading {
+    padding-bottom: 30px;
+  }
+}
+.section__text {
+  margin: 0;
+}
+.section__text p {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1rem;
+  line-height: 1.85;
+  margin: 0;
+}
+.section__text p:not(:last-child) {
+  padding-bottom: 20px;
+}
+.section--optional:has(.section__heading:empty) {
+  display: none;
+}
 .section__content {
   margin: 0;
 }
@@ -3901,17 +4338,16 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
   }
 }
 .section__heading--small {
-  font-size: 1.375rem;
-  padding-bottom: 1rem;
+  font-size: 1.75rem;
 }
 @media screen and (min-width: 768px) {
   .section__heading--small {
-    font-size: 1.75rem;
+    font-size: 2.125rem;
   }
 }
 @media screen and (min-width: 1200px) {
   .section__heading--small {
-    font-size: 2rem;
+    font-size: 2.5625rem;
   }
 }
 .section__heading--large {

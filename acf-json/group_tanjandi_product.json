@@ -1,0 +1,154 @@
+{
+    "key": "group_tanjandi_product",
+    "title": "Produkt",
+    "fields": [
+        {
+            "key": "field_tanjandi_product_subtitle",
+            "label": "Untertitel",
+            "name": "product_subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Erscheint über dem Namen und auf der Produktkarte, z.B. «Vase · Regen».",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_in_bindings": 1,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_tanjandi_product_kanji",
+            "label": "Schriftzeichen",
+            "name": "product_kanji",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Japanisches Zeichen über der Geschichte, z.B. «雨».",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_in_bindings": 1,
+            "maxlength": 4,
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_tanjandi_product_story_title",
+            "label": "Titel der Geschichte",
+            "name": "product_story_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Der Text der Geschichte ist die Produktbeschreibung.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_in_bindings": 1,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_tanjandi_product_usage",
+            "label": "Verwendung",
+            "name": "product_usage",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Text für das Aufklappfeld «Verwendung».",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_in_bindings": 1,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_tanjandi_product_details",
+            "label": "Details",
+            "name": "product_details",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Text für das Aufklappfeld «Details».",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_in_bindings": 1,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_tanjandi_product_care",
+            "label": "Pflege",
+            "name": "product_care",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Text für das Aufklappfeld «Pflege».",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_in_bindings": 1,
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "",
+    "show_in_rest": false,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1791807663
+}

@@ -1,0 +1,90 @@
+@use "../global" as *;
+
+.accordion {
+  border-top: 1px solid $line;
+  margin: 0;
+
+  // The details block offers no way to put a class on the summary itself.
+  summary {
+    align-items: center;
+    color: $ink;
+    cursor: pointer;
+    display: flex;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    justify-content: space-between;
+    line-height: 24px;
+    list-style: none;
+    padding: 21px 0;
+    transition: color $transition-speed ease-in-out;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::after {
+      content: "+";
+      font-size: rem-calc(20px);
+      font-weight: 300;
+      line-height: 24px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $nav-hover-color;
+    }
+  }
+
+  &[open] summary {
+    padding-bottom: 16px;
+
+    &::after {
+      content: "–";
+    }
+  }
+
+  &__text {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 1.7;
+    margin: 0;
+    padding-bottom: 22px;
+  }
+
+  &__table {
+    margin: 0;
+    padding-bottom: 17px;
+  }
+
+  // WooCommerce renders the specifications table without classes of our own.
+  &__table table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  &__table th,
+  &__table td {
+    border: 0;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    font-weight: 400;
+    line-height: 20px;
+    padding: 5px 0;
+  }
+
+  // The colour is chosen via the swatches and is left out of the table.
+  &__table .wp-block-product-specifications-item-attribute_pa_farbe {
+    display: none;
+  }
+
+  &__table th {
+    color: $text-muted;
+    text-align: left;
+  }
+
+  &__table td {
+    color: $ink;
+    text-align: right;
+  }
+}
