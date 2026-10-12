@@ -51,6 +51,14 @@
       }
     }
 
+    // Opening section of a page: title only.
+    &--intro {
+      @include breakpoint(laptop) {
+        padding-bottom: 94px;
+        padding-top: 112px;
+      }
+    }
+
     // Only section of a page, e.g. the shop.
     &--page {
       @include breakpoint(laptop) {
@@ -101,6 +109,11 @@
     @include breakpoint(tablet) {
       padding-bottom: 0;
     }
+  }
+
+  // Keeps a long page title on short lines.
+  &__titles--narrow {
+    max-width: 700px;
   }
 
   &__actions {
@@ -273,6 +286,21 @@
       @include breakpoint(desktop) {
         font-size: rem-calc(67px);
         line-height: 1.1;
+      }
+    }
+
+    // Title of a page that stands alone in its section, on several lines.
+    &--display {
+      font-size: rem-calc(44px);
+      line-height: 1.05;
+
+      @include breakpoint(tablet) {
+        font-size: rem-calc(60px);
+      }
+
+      @include breakpoint(desktop) {
+        font-size: rem-calc(75px);
+        line-height: 1.05;
       }
     }
 
