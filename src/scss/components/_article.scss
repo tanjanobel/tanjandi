@@ -4,7 +4,8 @@
 $article-header-width: 760px;
 $article-text-width: 600px;
 
-// A single news post.
+// A single news post; with the modifier --page a plain text page such as
+// the imprint.
 .article {
   margin: 0;
   padding-bottom: 4 * $global-padding;
@@ -168,16 +169,16 @@ $article-text-width: 600px;
   &__content h3 {
     color: $ink;
     font-family: $heading-font-family;
-    font-size: rem-calc(26px);
+    font-size: rem-calc(22px);
     font-weight: 400;
     line-height: 1.2;
     margin-bottom: 0;
     margin-top: 0;
-    padding-bottom: $global-padding;
-    padding-top: $global-padding;
+    padding-bottom: 14px;
+    padding-top: 18px;
 
     @include breakpoint(tablet) {
-      font-size: rem-calc(30px);
+      font-size: rem-calc(24px);
     }
   }
 
@@ -217,5 +218,122 @@ $article-text-width: 600px;
     height: 100%;
     object-fit: cover;
     width: 100%;
+  }
+
+  // Short facts side by side, e.g. address and contact in the imprint.
+  &__facts {
+    display: grid;
+    gap: 2.5 * $global-padding 1.25 * $global-padding;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 47px;
+    padding-top: 1.25 * $global-padding;
+
+    @include breakpoint(tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 42px;
+    }
+
+    @include breakpoint(desktop) {
+      padding-top: 36px;
+    }
+  }
+
+  &__fact {
+    margin: 0;
+  }
+
+  // Three classes to outweigh the paragraph styles of the content.
+  & &__content &__fact-label {
+    color: $berry-dark;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    padding-bottom: 15px;
+    text-transform: uppercase;
+  }
+
+  & &__content &__fact-text {
+    color: $ink;
+    font-size: rem-calc(16px);
+    line-height: 28px;
+    padding-bottom: 0;
+  }
+
+  // Three classes to outweigh the width WordPress gives a separator.
+  & &__content &__rule {
+    background-color: transparent;
+    border: 0;
+    border-top: 1px solid $line;
+    box-sizing: content-box;
+    height: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 44px;
+    width: 100%;
+  }
+
+  // Introduction of a text page, right below the title. Three classes to
+  // outweigh the paragraph styles of the content.
+  & &__content &__lead {
+    color: $text-secondary;
+    font-size: rem-calc(16px);
+    line-height: 1.8;
+    padding-bottom: 2 * $global-padding;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(17px);
+      padding-bottom: 38px;
+    }
+  }
+
+  // Small print at the end, e.g. the date of the last change.
+  & &__content &__note {
+    color: $text-muted;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    padding-top: 33px;
+  }
+
+  // After a numbered list the last line already separates the note.
+  & &__content .step__wrapper + &__note {
+    padding-top: 41px;
+  }
+
+  // Plain text page: everything in the width of the text.
+  &--page &__header {
+    max-width: 640px;
+    padding-bottom: 0;
+  }
+
+  // Long single words such as «Geschäftsbedingungen»: hyphenated on small
+  // screens; on large ones they stay whole and may reach beyond the text
+  // column.
+  &--page &__title {
+    hyphens: auto;
+    overflow-wrap: break-word;
+    padding-bottom: 1.25 * $global-padding;
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(66px);
+      hyphens: manual;
+      overflow-wrap: normal;
+      padding-bottom: 20px;
+      // WordPress lets post titles break inside a word.
+      word-break: normal;
+    }
+  }
+
+  &--page &__content {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  &--page &__content p {
+    color: $text-secondary;
+    font-size: rem-calc(15px);
+    line-height: 1.85;
   }
 }

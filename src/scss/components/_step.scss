@@ -50,4 +50,40 @@
     line-height: 1.6;
     margin: 0;
   }
+
+  // Sections of a long text page, e.g. the privacy policy: larger heading,
+  // more space, running text as on the rest of the page. The class is
+  // doubled to outweigh the paragraph styles of the article content.
+  &--large {
+    padding-bottom: 31px;
+    padding-top: 38px;
+  }
+
+  &#{&}--large &__number {
+    color: $berry-dark;
+    font-family: $heading-font-family;
+    font-size: rem-calc(14px);
+    line-height: 29px;
+    padding-bottom: 0;
+  }
+
+  &--large &__heading {
+    font-family: $heading-font-family;
+    font-size: rem-calc(22px);
+    line-height: 1.2;
+    padding-bottom: 15px;
+    padding-top: 0;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(24px);
+    }
+  }
+
+  &#{&}--large &__text {
+    padding-bottom: 11px;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
 }

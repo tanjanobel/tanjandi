@@ -1,9 +1,15 @@
 <!-- wp:template-part {"slug":"header","theme":"tanjandi","tagName":"header"} /-->
 
 <!-- wp:group {"tagName":"main"} -->
-<main id="main" class="wp-block-group"><!-- wp:template-part {"slug":"subheader","theme":"tanjandi","tagName":"header","area":"uncategorized","className":"entry-header"} /-->
+<main id="main" class="wp-block-group"><!-- wp:group {"tagName":"article","metadata":{"name":"Article"},"className":"article article--page","layout":{"type":"default"}} -->
+<article class="wp-block-group article article--page"><!-- wp:group {"metadata":{"name":"Article Container"},"className":"article__container container","layout":{"type":"default"}} -->
+<div class="wp-block-group article__container container"><!-- wp:group {"metadata":{"name":"Article Header"},"className":"article__header","layout":{"type":"default"}} -->
+<div class="wp-block-group article__header"><!-- wp:post-title {"level":1,"metadata":{"name":"Article Title"},"className":"article__title"} /--></div>
+<!-- /wp:group -->
 
-    <!-- wp:post-content /--></main>
+<!-- wp:post-content {"metadata":{"name":"Article Content"},"className":"article__content","layout":{"type":"constrained","contentSize":"640px","wideSize":"1152px"}} /--></div>
+<!-- /wp:group --></article>
+<!-- /wp:group --></main>
 <!-- /wp:group -->
 
 <!-- wp:template-part {"slug":"footer","theme":"tanjandi","tagName":"footer","className":"footer"} /-->
