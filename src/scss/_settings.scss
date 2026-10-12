@@ -76,5 +76,9 @@ $nav-active-color: $ink;
 $nav-active-color-mobile: $ink;
 
 // Footer
-$footer-height: 260px;
 $footer-color: $text-muted;
+$footer-border-color: $line-light;
+$footer-font-size: rem-calc(14px);
+$footer-line-height: rem-calc(24px);
+$footer-font-size-small: rem-calc(12px);
+$footer-logo-width: 93px;

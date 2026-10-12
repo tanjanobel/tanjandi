@@ -1,300 +1,114 @@
 @use "../global" as *;
 
 .footer {
+  border-top: 1px solid $footer-border-color;
   color: $footer-color;
   font-family: $body-font-family;
-  font-size: rem-calc(16px);
+  font-size: $footer-font-size;
+  line-height: $footer-line-height;
   padding-bottom: 2 * $global-padding;
   padding-top: 3 * $global-padding;
-  position: relative;
 
-  @include breakpoint(tablet) {
-    padding-bottom: 2 * $global-padding;
-    padding-top: 4 * $global-padding;
+  @include breakpoint(laptop) {
+    padding-bottom: 38px;
+    padding-top: 56px;
   }
 
-  @include breakpoint(desktop) {
-    padding-bottom: 2 * $global-padding;
-    padding-top: 6 * $global-padding;
-  }
+  &__top {
+    column-gap: 2.5 * $global-padding;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
-  &__column {
-    padding-bottom: $global-padding;
-
-    @include breakpoint(tablet) {
-      margin-top: 0;
+    @include breakpoint(laptop) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+  }
 
-    @include breakpoint(desktop) {
-      padding-bottom: 0;
+  &__brand {
+    grid-column: span 2;
+    margin: 0;
+    padding-bottom: 2.5 * $global-padding;
+
+    @include breakpoint(laptop) {
+      grid-column: auto;
+      padding-bottom: 52px;
+      padding-top: 6px;
     }
   }
 
   &__logo {
-    & > .footer__social-wrapper {
-      display: none;
-
-      @include breakpoint(desktop) {
-        display: flex;
-      }
-    }
-
-    @include breakpoint(desktop) {
-      flex: 1 1 30%;
-    }
+    margin: 0;
+    padding-bottom: 7px;
+    width: $footer-logo-width;
   }
 
-  &__nav {
-    display: flex;
-    flex: 1 1 100%;
-    flex-direction: column;
-    width: 100%;
-
-    @include breakpoint(tablet) {
-      flex-direction: row;
-      gap: 2 * $global-padding;
-    }
-
-    @include breakpoint(desktop) {
-      flex: 1 1 70%;
-      margin-top: 0;
-    }
-  }
-
-  &__social {
-    &-wrapper {
-      display: flex;
-      gap: 0.75 * $global-padding;
-      margin-top: $global-margin !important;
-    }
-
-    // Same circle-button treatment as the project-card / CTA icon circles:
-    // muted border at rest, fills primary on hover with the icon switching
-    // to white for contrast.
-    &-icon {
-      align-items: center;
-      border: 1px solid rgba($ink, 0.25);
-      border-radius: 100%;
-      display: flex;
-      flex: 0 0 36px;
-      height: 36px;
-      justify-content: center;
-      margin: 0 !important;
-      transition: background-color $transition-speed ease, border-color $transition-speed ease;
-      width: 36px;
-
-      &:hover {
-        background-color: $ink;
-        border-color: $ink;
-
-        .icon-button__icon {
-          color: $washi;
-          fill: $washi;
-        }
-      }
-    }
-  }
-
-  &__top {
-    border-top: 1px solid $line;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 3 * $global-padding !important;
-    padding-top: 3 * $global-padding !important;
-    position: relative;
-
-    // Bottom line inset to match .container's own left/right padding
-    // (12px, 24px from phablet up), so it stays flush with the content
-    // instead of this element's wider outer edge - unlike border-top
-    // above, which is intentionally full-width as the section divider.
-    &::after {
-      background-color: $line;
-      bottom: 0;
-      content: "";
-      height: 1px;
-      left: 12px;
-      position: absolute;
-      right: 12px;
-
-      @include breakpoint(phablet) {
-        left: 24px;
-        right: 24px;
-      }
-    }
-
-    @include breakpoint(tablet) {
-      padding-bottom: 0;
-    }
-
-    @include breakpoint(desktop) {
-      flex-direction: row;
-      padding-bottom: 4 * $global-padding !important;
-      padding-top: 4 * $global-padding !important;
-    }
-
-    .wp-block-group {
-      margin-left: 0 !important;
-    }
-  }
-
-  &__address {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5 * $global-padding;
-
-    & > .footer__social-wrapper {
-      @include breakpoint(desktop) {
-        display: none;
-      }
-    }
-
-    // Street/city are two <span>s (see block markup) sitting as direct
-    // flex children alongside the phone/email <p>s, so the container's
-    // own gap handles spacing between all of them uniformly. Gutenberg's
-    // flex-layout margin fallback (margin-block-start on "> * + *") would
-    // otherwise add extra space on top of the gap - reset it here.
-    & > p,
-    & > span {
-      margin: 0;
-    }
-  }
-
-  &__bottom {
-    padding-top: $global-padding !important;
-
-    @include breakpoint(tablet) {
-      padding-top: 1.5 * $global-padding !important;
-    }
-  }
-
-  // Trust badge + label, opposite the copyright in &__bottom. A plain link
-  // wrapping both (via wp:html, see parts/footer.html) rather than separate
-  // Gutenberg blocks - simplest way to keep badge/eyebrow/caption as one
-  // clickable unit without fighting the block model for an inline layout.
-  &__certification {
-    align-items: center;
-    display: flex;
-    gap: 0.75 * $global-padding;
-
-    @include breakpoint(tablet) {
-      justify-content: flex-end;
-    }
-  }
-
-  // Extra &__bottom ancestor to outweigh the generic ".footer a:hover"
-  // underline rule further below, regardless of source order.
-  &__bottom &__certification:hover {
-    text-decoration: none;
-  }
-
-  // _columns.scss's sitewide "2-up on tablet" rule
-  // (".wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column")
-  // forces every plain columns block into 50/50 between 768-991px, which
-  // would otherwise override this column's own "width: auto" and stretch
-  // it to half the row instead of staying right-aligned/content-width like
-  // on every other breakpoint. Matches that rule's specificity (3 classes)
-  // plus one, so it wins regardless of SCSS partial import order.
-  &__bottom.wp-block-columns > .wp-block-column#{&}__certification-column {
-    @include breakpoint(tablet only) {
-      flex-basis: auto !important;
-      flex-grow: 0 !important;
-      flex-shrink: 0 !important;
-    }
-  }
-
-  &__badge {
+  // The image block offers no way to put a class on the img itself.
+  &__logo img {
     display: block;
-    flex: 0 0 auto;
-    height: 56px;
-    width: 56px;
+    height: auto;
+    width: 100%;
   }
 
-  &__certification-text {
-    display: flex;
-    flex-direction: column;
+  &__tagline {
+    margin: 0;
   }
 
-  &__certification-eyebrow {
-    color: $berry-dark;
-    font-size: rem-calc(11px);
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
+  &__column {
+    margin: 0;
+    padding-bottom: 2.5 * $global-padding;
 
-  &__certification-caption {
-    color: $text-muted;
-    font-size: rem-calc(13px);
+    @include breakpoint(laptop) {
+      padding-bottom: 52px;
+    }
   }
 
   &__heading {
     color: $ink;
     font-family: $body-font-family;
-    font-size: rem-calc(18px);
-    font-weight: 600;
+    font-size: $footer-font-size;
+    font-weight: 400;
     letter-spacing: 0;
-    margin-bottom: 0;
-    padding-bottom: $global-padding;
-    text-transform: none;
-
-    @include breakpoint(tablet) {
-      font-size: rem-calc(20px);
-    }
+    line-height: $footer-line-height;
+    margin: 0;
+    padding-bottom: 6px;
   }
 
-  &__separator {
-    border-bottom: 1px solid $line;
-    border-top: none !important;
-    max-width: unset;
-  }
-
-  .wp-block {
-    &-navigation {
-      &__container {
-        align-items: flex-start;
-        gap: 0.5 * $global-padding;
-        padding: 0 !important;
-      }
-
-      &-item {
-        &__label {
-          font-size: rem-calc(16px);
-        }
-      }
-    }
-  }
-
-  a {
+  &__nav,
+  &__legal {
     color: $footer-color;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    gap: 6px;
+    margin: 0;
   }
 
-  &__image {
-    img {
-      max-width: 225px;
-      width: 100%;
-    }
+  &__bottom {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $global-padding 1.5 * $global-padding;
+    justify-content: space-between;
   }
 
   &__copyright {
-    color: $text-muted;
-    font-size: rem-calc(13px);
-
-    @include breakpoint(tablet) {
-      font-size: rem-calc(14px);
-    }
+    font-size: $footer-font-size-small;
+    line-height: 20px;
+    margin: 0;
   }
 
-  .icon-button__link {
-    border-bottom: none;
-    display: flex;
+  &__legal {
+    column-gap: 1.5 * $global-padding;
+    font-size: $footer-font-size-small;
+    line-height: 20px;
+  }
 
-    &::after {
-      display: none;
+  // The navigation block renders its links without a class of our own.
+  // Nested under .footer to outweigh the block's own colour rule.
+  .footer__nav .wp-block-navigation-item__content,
+  .footer__legal .wp-block-navigation-item__content {
+    transition: color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      color: $nav-hover-color;
     }
   }
 }
