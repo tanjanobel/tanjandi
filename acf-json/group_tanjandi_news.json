@@ -1,0 +1,78 @@
+{
+    "key": "group_tanjandi_news",
+    "title": "News",
+    "fields": [
+        {
+            "key": "field_tanjandi_news_category",
+            "label": "Kategorie",
+            "name": "news_category",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Erscheint über dem Titel, z.B. «Neues Objekt».",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "neues-objekt": "Neues Objekt",
+                "atelier": "Atelier"
+            },
+            "default_value": "neues-objekt",
+            "return_format": "label",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "allow_in_bindings": 1,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_tanjandi_news_teaser",
+            "label": "Kurztext",
+            "name": "news_teaser",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Ein bis zwei Sätze für die News-Karte.",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "maxlength": 160,
+            "allow_in_bindings": 1,
+            "default_value": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "news"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1791806372
+}

@@ -1,0 +1,27 @@
+@use "../global" as *;
+
+.news-grid {
+  &__list {
+    display: grid;
+    gap: 2.5 * $global-padding;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint(tablet) {
+      gap: 2.5 * $global-padding 1.5 * $global-padding;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include breakpoint(laptop) {
+      gap: 2 * $global-padding;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  // The query loop renders the list items without a class of their own;
+  // WordPress gives every item after the first a top margin.
+  &__list li {
+    margin: 0;
+  }
+}
