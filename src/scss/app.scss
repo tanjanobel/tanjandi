@@ -13,6 +13,9 @@
 @use "components/breadcrumbs";
 @use "components/button";
 @use "components/cookie-notice.scss";
+@use "components/cart-item";
+@use "components/cart-page";
+@use "components/cart-summary";
 @use "components/columns";
 @use "components/contact-box";
 @use "components/contact-form";
@@ -29,6 +32,7 @@
 @use "components/marquee";
 @use "components/news-card";
 @use "components/news-grid";
+@use "components/notice";
 @use "components/post-navigation";
 @use "components/product-detail";
 @use "components/product-card";

@@ -41,7 +41,7 @@ var CartCount = /*#__PURE__*/function () {
         return _this.refresh();
       });
       if (window.jQuery) {
-        window.jQuery(document.body).on('added_to_cart removed_from_cart', function () {
+        window.jQuery(document.body).on('added_to_cart removed_from_cart updated_wc_div updated_cart_totals', function () {
           return _this.refresh();
         });
       }
@@ -94,6 +94,80 @@ var CartCount = /*#__PURE__*/function () {
   }]);
 }();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CartCount);
+
+/***/ },
+
+/***/ "./src/js/components/cart-quantity.js"
+/*!********************************************!*\
+  !*** ./src/js/components/cart-quantity.js ***!
+  \********************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+var BUTTON_SELECTOR = '.cart-item__quantity-button';
+var INPUT_SELECTOR = '.cart-item__quantity-input';
+var UPDATE_SELECTOR = '.cart-page__update';
+var UPDATE_DELAY = 500;
+
+// Plus/minus buttons of the cart quantity field. WooCommerce only ships a
+// plain number input plus an "update cart" button; this steps the value and
+// presses that button once the visitor stops clicking. Listeners are
+// delegated because WooCommerce replaces the cart markup after each update.
+var CartQuantity = /*#__PURE__*/function () {
+  function CartQuantity() {
+    _classCallCheck(this, CartQuantity);
+  }
+  return _createClass(CartQuantity, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+      if (!document.querySelector('.cart-page')) return;
+      this.timer = null;
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest(BUTTON_SELECTOR);
+        if (!button) return;
+        var input = button.parentElement.querySelector(INPUT_SELECTOR);
+        if (!input) return;
+        var before = input.value;
+        if (Number(button.dataset.step) > 0) {
+          input.stepUp();
+        } else {
+          input.stepDown();
+        }
+        if (input.value !== before) {
+          input.dispatchEvent(new Event('change', {
+            bubbles: true
+          }));
+        }
+      });
+      document.addEventListener('change', function (event) {
+        if (!event.target.matches(INPUT_SELECTOR)) return;
+        clearTimeout(_this.timer);
+        _this.timer = setTimeout(function () {
+          return _this.update();
+        }, UPDATE_DELAY);
+      });
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      var button = document.querySelector(UPDATE_SELECTOR);
+      if (!button) return;
+      button.disabled = false;
+      button.click();
+    }
+  }]);
+}();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CartQuantity);
 
 /***/ },
 
@@ -507,10 +581,12 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/header */ "./src/js/components/header.js");
 /* harmony import */ var _components_cart_count__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/cart-count */ "./src/js/components/cart-count.js");
-/* harmony import */ var _components_contact_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/contact-form */ "./src/js/components/contact-form.js");
-/* harmony import */ var _components_testimonial_slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/testimonial-slider */ "./src/js/components/testimonial-slider.js");
-/* harmony import */ var _components_reveal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/reveal */ "./src/js/components/reveal.js");
-/* harmony import */ var _components_cookie_banner_a11y_fix__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/cookie-banner-a11y-fix */ "./src/js/components/cookie-banner-a11y-fix.js");
+/* harmony import */ var _components_cart_quantity__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/cart-quantity */ "./src/js/components/cart-quantity.js");
+/* harmony import */ var _components_contact_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/contact-form */ "./src/js/components/contact-form.js");
+/* harmony import */ var _components_testimonial_slider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/testimonial-slider */ "./src/js/components/testimonial-slider.js");
+/* harmony import */ var _components_reveal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/reveal */ "./src/js/components/reveal.js");
+/* harmony import */ var _components_cookie_banner_a11y_fix__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/cookie-banner-a11y-fix */ "./src/js/components/cookie-banner-a11y-fix.js");
+
 
 
 
@@ -523,13 +599,15 @@ document.addEventListener('DOMContentLoaded', function () {
   header.init();
   var cartCount = new _components_cart_count__WEBPACK_IMPORTED_MODULE_1__["default"]();
   cartCount.init();
-  var contactForm = new _components_contact_form__WEBPACK_IMPORTED_MODULE_2__["default"]();
+  var cartQuantity = new _components_cart_quantity__WEBPACK_IMPORTED_MODULE_2__["default"]();
+  cartQuantity.init();
+  var contactForm = new _components_contact_form__WEBPACK_IMPORTED_MODULE_3__["default"]();
   contactForm.init();
-  var testimonialSlider = new _components_testimonial_slider__WEBPACK_IMPORTED_MODULE_3__["default"]();
+  var testimonialSlider = new _components_testimonial_slider__WEBPACK_IMPORTED_MODULE_4__["default"]();
   testimonialSlider.init();
-  var reveal = new _components_reveal__WEBPACK_IMPORTED_MODULE_4__["default"]();
+  var reveal = new _components_reveal__WEBPACK_IMPORTED_MODULE_5__["default"]();
   reveal.init();
-  var cookieBannerA11yFix = new _components_cookie_banner_a11y_fix__WEBPACK_IMPORTED_MODULE_5__["default"]();
+  var cookieBannerA11yFix = new _components_cookie_banner_a11y_fix__WEBPACK_IMPORTED_MODULE_6__["default"]();
   cookieBannerA11yFix.init();
 });
 })();

@@ -1,0 +1,140 @@
+@use "../global" as *;
+
+.cart-page {
+  padding-bottom: 4 * $global-padding;
+  padding-top: 3 * $global-padding;
+
+  @include breakpoint(laptop) {
+    padding-bottom: 140px;
+    padding-top: 92px;
+  }
+
+  &__header {
+    margin: 0;
+    padding-bottom: 2.5 * $global-padding;
+
+    @include breakpoint(tablet) {
+      align-items: flex-end;
+      column-gap: 2 * $global-padding;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 64px;
+    }
+  }
+
+  &__title {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(44px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+    padding-bottom: 1.5 * $global-padding;
+
+    @include breakpoint(tablet) {
+      padding-bottom: 0;
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(66px);
+    }
+  }
+
+  &__actions {
+    flex-shrink: 0;
+  }
+
+  &__content {
+    margin: 0;
+  }
+
+  // WooCommerce wraps the classic cart in a div limited to 1000px.
+  .cart-page__content .woocommerce {
+    max-width: none;
+  }
+
+  &__columns {
+    display: grid;
+    row-gap: 3 * $global-padding;
+
+    @include breakpoint(laptop) {
+      align-items: start;
+      column-gap: 4 * $global-padding;
+      grid-template-columns: minmax(0, 1fr) 393px;
+    }
+
+    @include breakpoint(desktop) {
+      column-gap: 91px;
+    }
+  }
+
+  &__items {
+    margin: 0;
+  }
+
+  &__list {
+    border-bottom: 1px solid $line;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // Pressed by cart-quantity.js; visitors never need it themselves.
+  &__update {
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  &__note {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    margin: 0;
+    padding-left: 18px;
+    padding-top: 24px;
+    position: relative;
+
+    &::before {
+      background-color: $berry-dark;
+      border-radius: 50%;
+      content: "";
+      height: 6px;
+      left: 1px;
+      position: absolute;
+      top: 31px;
+      width: 6px;
+    }
+  }
+
+  &__sidebar {
+    margin: 0;
+  }
+
+  &__empty {
+    margin: 0;
+  }
+
+  &__empty-text {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(17px);
+    line-height: 1.75;
+    margin: 0;
+    padding-bottom: 2 * $global-padding;
+  }
+
+  &__empty-actions {
+    margin: 0;
+  }
+
+  // The message area WooCommerce puts above the cart.
+  .woocommerce-notices-wrapper:not(:empty) {
+    padding-bottom: $global-padding;
+  }
+}

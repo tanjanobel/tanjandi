@@ -1,0 +1,181 @@
+@use "../global" as *;
+
+.cart-item {
+  border-top: 1px solid $line;
+  column-gap: $global-padding;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  margin: 0;
+  padding: 1.5 * $global-padding 0;
+
+  @include breakpoint(tablet) {
+    column-gap: 2 * $global-padding;
+    grid-template-columns: 139px minmax(0, 1fr);
+    padding: 29px 0;
+  }
+
+  &__image {
+    aspect-ratio: 4 / 5;
+    background-color: $sand;
+    display: block;
+    overflow: hidden;
+  }
+
+  &__img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &__body {
+    column-gap: $global-padding;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 1fr auto;
+    row-gap: $global-padding;
+  }
+
+  &__info {
+    padding-top: 4px;
+  }
+
+  &__name {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(20px);
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0;
+    padding-bottom: 6px;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(24px);
+    }
+  }
+
+  &__link {
+    transition: color $transition-speed ease-in-out;
+  }
+
+  // Nested to outweigh :root a:not(.wp-element-button).
+  .cart-item__name .cart-item__link:hover,
+  .cart-item__name .cart-item__link:focus-visible {
+    color: $berry-dark;
+  }
+
+  &__meta,
+  &__unit-price {
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 24px;
+    margin: 0;
+  }
+
+  &__total {
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    line-height: 24px;
+    margin: 0;
+    padding-top: 10px;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  &__quantity {
+    align-items: center;
+    align-self: end;
+    border: 1px solid $line;
+    box-sizing: border-box;
+    display: flex;
+    height: 45px;
+    justify-self: start;
+    width: 114px;
+  }
+
+  // The plus and minus signs are drawn as hairlines.
+  &__quantity-button {
+    background-color: transparent;
+    border: 0;
+    color: $ink;
+    cursor: pointer;
+    flex: 0 0 44px;
+    height: 100%;
+    padding: 0;
+    position: relative;
+    transition: color $transition-speed ease-in-out;
+
+    &::before,
+    &::after {
+      background-color: currentColor;
+      content: "";
+      height: 1px;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 11px;
+    }
+
+    &::after {
+      content: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $nav-hover-color;
+    }
+
+    &--plus::after {
+      content: "";
+      height: 11px;
+      width: 1px;
+    }
+  }
+
+  &__quantity-input {
+    appearance: textfield;
+    background-color: transparent;
+    border: 0;
+    color: $ink;
+    flex: 1 1 auto;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    font-weight: 400;
+    min-width: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+  }
+
+  &__remove {
+    align-self: center;
+    border-bottom: 1px solid $line;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    justify-self: end;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    padding: 4px 0 3px;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+  }
+
+  // Nested to outweigh :root a:not(.wp-element-button).
+  .cart-item__body .cart-item__remove {
+    color: $text-muted;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
+    }
+  }
+}

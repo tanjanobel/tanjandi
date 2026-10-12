@@ -11,7 +11,7 @@ class CartCount {
         document.body.addEventListener('wc-blocks_added_to_cart', () => this.refresh());
 
         if (window.jQuery) {
-            window.jQuery(document.body).on('added_to_cart removed_from_cart', () => this.refresh());
+            window.jQuery(document.body).on('added_to_cart removed_from_cart updated_wc_div updated_cart_totals', () => this.refresh());
         }
     }
 

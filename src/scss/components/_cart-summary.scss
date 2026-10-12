@@ -1,0 +1,222 @@
+@use "../global" as *;
+
+.cart-summary {
+  background-color: $sand;
+  box-sizing: border-box;
+  float: none;
+  padding: 2 * $global-padding 1.5 * $global-padding;
+
+  @include breakpoint(tablet) {
+    padding: 40px;
+  }
+
+  &__title {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(26px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    padding-bottom: 27px;
+    padding-top: 4px;
+  }
+
+  &__goal {
+    padding-bottom: 28px;
+  }
+
+  &__goal-text {
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    margin: 0;
+    padding-bottom: 8px;
+  }
+
+  &__progress {
+    background-color: $line;
+    height: 3px;
+    overflow: hidden;
+  }
+
+  &__progress-bar {
+    background-color: $berry-dark;
+    display: block;
+    height: 100%;
+    transition: width $transition-speed ease-in-out;
+  }
+
+  &__rows {
+    margin: 0;
+    padding-bottom: 33px;
+  }
+
+  &__row {
+    align-items: baseline;
+    column-gap: $global-padding;
+    display: flex;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      padding-bottom: 10px;
+    }
+  }
+
+  &__label,
+  &__value {
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    line-height: 24px;
+    margin: 0;
+  }
+
+  &__value {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  &__coupon-remove {
+    font-size: rem-calc(12px);
+    padding-left: 8px;
+  }
+
+  // Nested to outweigh :root a:not(.wp-element-button).
+  .cart-summary__label .cart-summary__coupon-remove {
+    color: $text-muted;
+
+    &:hover,
+    &:focus-visible {
+      color: $berry-dark;
+    }
+  }
+
+  &__coupon {
+    align-items: center;
+    border-bottom: 1px solid $ink;
+    column-gap: $global-padding;
+    display: flex;
+    margin: 0;
+    padding-bottom: 8px;
+  }
+
+  &__coupon-input {
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    color: $ink;
+    flex: 1 1 auto;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 24px;
+    min-width: 0;
+    outline-offset: 4px;
+    padding: 0;
+
+    &::placeholder {
+      color: $text-muted;
+      opacity: 1;
+    }
+  }
+
+  &__coupon-button {
+    background-color: transparent;
+    border: 0;
+    color: $ink;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    letter-spacing: 0.08em;
+    line-height: 24px;
+    padding: 0;
+    transition: color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      color: $berry-dark;
+    }
+  }
+
+  &__total {
+    align-items: baseline;
+    border-top: 1px solid $line;
+    column-gap: $global-padding;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    // Margin, not padding on the coupon row: its bottom border is the
+    // underline of the field.
+    margin-top: 25px;
+    padding-bottom: 22px;
+    padding-top: 25px;
+  }
+
+  &__total-label {
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    line-height: 24px;
+    margin: 0;
+  }
+
+  &__total-value {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(28px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  &__tax-note {
+    color: $text-muted;
+    flex: 0 0 100%;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    line-height: 20px;
+    margin: 0;
+    padding-top: 9px;
+  }
+
+  &__checkout {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  // Nested to outweigh WooCommerce's own padding on the checkout wrapper.
+  .cart-summary__total + .cart-summary__checkout {
+    padding: 0 0 25px;
+  }
+
+  // The button itself is styled by the shared default button; here it only
+  // fills the row. Four classes to outweigh WooCommerce's own size, margin
+  // and padding for the classic checkout button.
+  .cart-summary__checkout.wc-proceed-to-checkout .wp-block-button__link.checkout-button {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    font-size: rem-calc(14px);
+    height: 55px;
+    justify-content: center;
+    margin: 0;
+    padding: 0 2 * $global-padding;
+    width: 100%;
+  }
+
+  &__note {
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    margin: 0;
+
+    &:not(:last-of-type) {
+      padding-bottom: 7px;
+    }
+  }
+}

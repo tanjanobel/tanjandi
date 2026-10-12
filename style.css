@@ -1408,6 +1408,490 @@ body:has(.is-menu-open) .hero {
   transition: background-color 0.25s ease-out, color 0.25s ease-out;
 }
 
+.cart-item {
+  border-top: 1px solid #d6cec2;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  margin: 0;
+  padding: 1.5rem 0;
+}
+@media screen and (min-width: 768px) {
+  .cart-item {
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    grid-template-columns: 139px minmax(0, 1fr);
+    padding: 29px 0;
+  }
+}
+.cart-item__image {
+  aspect-ratio: 4/5;
+  background-color: #ede7de;
+  display: block;
+  overflow: hidden;
+}
+.cart-item__img {
+  display: block;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+.cart-item__body {
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 1fr auto;
+  row-gap: 1rem;
+}
+.cart-item__info {
+  padding-top: 4px;
+}
+.cart-item__name {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  padding-bottom: 6px;
+}
+@media screen and (min-width: 768px) {
+  .cart-item__name {
+    font-size: 1.5rem;
+  }
+}
+.cart-item__link {
+  transition: color 0.3s ease-in-out;
+}
+.cart-item .cart-item__name .cart-item__link:hover,
+.cart-item .cart-item__name .cart-item__link:focus-visible {
+  color: #9a4a5e;
+}
+.cart-item__meta, .cart-item__unit-price {
+  color: #6e675e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 24px;
+  margin: 0;
+}
+.cart-item__total {
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1rem;
+  line-height: 24px;
+  margin: 0;
+  padding-top: 10px;
+  text-align: right;
+  white-space: nowrap;
+}
+.cart-item__quantity {
+  align-items: center;
+  align-self: end;
+  border: 1px solid #d6cec2;
+  box-sizing: border-box;
+  display: flex;
+  height: 45px;
+  justify-self: start;
+  width: 114px;
+}
+.cart-item__quantity-button {
+  background-color: transparent;
+  border: 0;
+  color: #2b2926;
+  cursor: pointer;
+  flex: 0 0 44px;
+  height: 100%;
+  padding: 0;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+.cart-item__quantity-button::before, .cart-item__quantity-button::after {
+  background-color: currentColor;
+  content: "";
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 11px;
+}
+.cart-item__quantity-button::after {
+  content: none;
+}
+.cart-item__quantity-button:hover, .cart-item__quantity-button:focus-visible {
+  color: #9a4a5e;
+}
+.cart-item__quantity-button--plus::after {
+  content: "";
+  height: 11px;
+  width: 1px;
+}
+.cart-item__quantity-input {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+  background-color: transparent;
+  border: 0;
+  color: #2b2926;
+  flex: 1 1 auto;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  min-width: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+.cart-item__quantity-input::-webkit-inner-spin-button, .cart-item__quantity-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+          appearance: none;
+  margin: 0;
+}
+.cart-item__remove {
+  align-self: center;
+  border-bottom: 1px solid #d6cec2;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.75rem;
+  justify-self: end;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 4px 0 3px;
+  transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.cart-item .cart-item__body .cart-item__remove {
+  color: #6e675e;
+}
+.cart-item .cart-item__body .cart-item__remove:hover, .cart-item .cart-item__body .cart-item__remove:focus-visible {
+  border-color: #9a4a5e;
+  color: #9a4a5e;
+}
+
+.cart-page {
+  padding-bottom: 4rem;
+  padding-top: 3rem;
+}
+@media screen and (min-width: 992px) {
+  .cart-page {
+    padding-bottom: 140px;
+    padding-top: 92px;
+  }
+}
+.cart-page__header {
+  margin: 0;
+  padding-bottom: 2.5rem;
+}
+@media screen and (min-width: 768px) {
+  .cart-page__header {
+    align-items: flex-end;
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 64px;
+  }
+}
+.cart-page__title {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 2.75rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+  padding-bottom: 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  .cart-page__title {
+    padding-bottom: 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .cart-page__title {
+    font-size: 4.125rem;
+  }
+}
+.cart-page__actions {
+  flex-shrink: 0;
+}
+.cart-page__content {
+  margin: 0;
+}
+.cart-page .cart-page__content .woocommerce {
+  max-width: none;
+}
+.cart-page__columns {
+  display: grid;
+  row-gap: 3rem;
+}
+@media screen and (min-width: 992px) {
+  .cart-page__columns {
+    align-items: start;
+    -moz-column-gap: 4rem;
+         column-gap: 4rem;
+    grid-template-columns: minmax(0, 1fr) 393px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .cart-page__columns {
+    -moz-column-gap: 91px;
+         column-gap: 91px;
+  }
+}
+.cart-page__items {
+  margin: 0;
+}
+.cart-page__list {
+  border-bottom: 1px solid #d6cec2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cart-page__update {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.cart-page__note {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 20px;
+  margin: 0;
+  padding-left: 18px;
+  padding-top: 24px;
+  position: relative;
+}
+.cart-page__note::before {
+  background-color: #9a4a5e;
+  border-radius: 50%;
+  content: "";
+  height: 6px;
+  left: 1px;
+  position: absolute;
+  top: 31px;
+  width: 6px;
+}
+.cart-page__sidebar {
+  margin: 0;
+}
+.cart-page__empty {
+  margin: 0;
+}
+.cart-page__empty-text {
+  color: #5e584f;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  margin: 0;
+  padding-bottom: 2rem;
+}
+.cart-page__empty-actions {
+  margin: 0;
+}
+.cart-page .woocommerce-notices-wrapper:not(:empty) {
+  padding-bottom: 1rem;
+}
+
+.cart-summary {
+  background-color: #ede7de;
+  box-sizing: border-box;
+  float: none;
+  padding: 2rem 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  .cart-summary {
+    padding: 40px;
+  }
+}
+.cart-summary__title {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.625rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  padding-bottom: 27px;
+  padding-top: 4px;
+}
+.cart-summary__goal {
+  padding-bottom: 28px;
+}
+.cart-summary__goal-text {
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 20px;
+  margin: 0;
+  padding-bottom: 8px;
+}
+.cart-summary__progress {
+  background-color: #d6cec2;
+  height: 3px;
+  overflow: hidden;
+}
+.cart-summary__progress-bar {
+  background-color: #9a4a5e;
+  display: block;
+  height: 100%;
+  transition: width 0.3s ease-in-out;
+}
+.cart-summary__rows {
+  margin: 0;
+  padding-bottom: 33px;
+}
+.cart-summary__row {
+  align-items: baseline;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.cart-summary__row:not(:last-child) {
+  padding-bottom: 10px;
+}
+.cart-summary__label, .cart-summary__value {
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.9375rem;
+  line-height: 24px;
+  margin: 0;
+}
+.cart-summary__value {
+  text-align: right;
+  white-space: nowrap;
+}
+.cart-summary__coupon-remove {
+  font-size: 0.75rem;
+  padding-left: 8px;
+}
+.cart-summary .cart-summary__label .cart-summary__coupon-remove {
+  color: #6e675e;
+}
+.cart-summary .cart-summary__label .cart-summary__coupon-remove:hover, .cart-summary .cart-summary__label .cart-summary__coupon-remove:focus-visible {
+  color: #9a4a5e;
+}
+.cart-summary__coupon {
+  align-items: center;
+  border-bottom: 1px solid #2b2926;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: flex;
+  margin: 0;
+  padding-bottom: 8px;
+}
+.cart-summary__coupon-input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  color: #2b2926;
+  flex: 1 1 auto;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 24px;
+  min-width: 0;
+  outline-offset: 4px;
+  padding: 0;
+}
+.cart-summary__coupon-input::-moz-placeholder {
+  color: #6e675e;
+  opacity: 1;
+}
+.cart-summary__coupon-input::placeholder {
+  color: #6e675e;
+  opacity: 1;
+}
+.cart-summary__coupon-button {
+  background-color: transparent;
+  border: 0;
+  color: #2b2926;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  line-height: 24px;
+  padding: 0;
+  transition: color 0.3s ease-in-out;
+}
+.cart-summary__coupon-button:hover, .cart-summary__coupon-button:focus-visible {
+  color: #9a4a5e;
+}
+.cart-summary__total {
+  align-items: baseline;
+  border-top: 1px solid #d6cec2;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 25px;
+  padding-bottom: 22px;
+  padding-top: 25px;
+}
+.cart-summary__total-label {
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1rem;
+  line-height: 24px;
+  margin: 0;
+}
+.cart-summary__total-value {
+  color: #2b2926;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  white-space: nowrap;
+}
+.cart-summary__tax-note {
+  color: #6e675e;
+  flex: 0 0 100%;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.75rem;
+  line-height: 20px;
+  margin: 0;
+  padding-top: 9px;
+}
+.cart-summary__checkout {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.cart-summary .cart-summary__total + .cart-summary__checkout {
+  padding: 0 0 25px;
+}
+.cart-summary .cart-summary__checkout.wc-proceed-to-checkout .wp-block-button__link.checkout-button {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 0.875rem;
+  height: 55px;
+  justify-content: center;
+  margin: 0;
+  padding: 0 2rem;
+  width: 100%;
+}
+.cart-summary__note {
+  color: #6e675e;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 20px;
+  margin: 0;
+}
+.cart-summary__note:not(:last-of-type) {
+  padding-bottom: 7px;
+}
+
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .wp-block-columns:not(.is-not-stacked-on-mobile) {
     flex-flow: row wrap !important;
@@ -2942,6 +3426,75 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 }
 .news-grid__list li {
   margin: 0;
+}
+
+:root .wc-block-components-notice-banner {
+  align-items: flex-start;
+  background-color: #ede7de;
+  border: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: #2b2926;
+  -moz-column-gap: 12px;
+       column-gap: 12px;
+  display: flex;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.875rem;
+  line-height: 24px;
+  margin: 0 0 1rem;
+  padding: 14px 20px;
+}
+:root .wc-block-components-notice-banner::before {
+  background-color: #9a4a5e;
+  border-radius: 50%;
+  content: "";
+  flex: 0 0 6px;
+  height: 6px;
+  margin-top: 9px;
+  width: 6px;
+}
+:root .wc-block-components-notice-banner:focus {
+  outline: 0;
+}
+:root .wc-block-components-notice-banner:focus-visible {
+  outline: 1px solid #2b2926;
+  outline-offset: 2px;
+}
+:root .wc-block-components-notice-banner > svg {
+  display: none;
+}
+:root .wc-block-components-notice-banner.is-success, :root .wc-block-components-notice-banner.is-info, :root .wc-block-components-notice-banner.is-warning, :root .wc-block-components-notice-banner.is-error {
+  background-color: #ede7de;
+  border: 0;
+}
+:root .wc-block-components-notice-banner.is-error {
+  color: #9a4a5e;
+}
+:root .wc-block-components-notice-banner .wc-block-components-notice-banner__content {
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 0;
+}
+:root .wc-block-components-notice-banner .wc-block-components-notice-banner__content a {
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+:root .wc-block-components-notice-banner .wc-block-components-notice-banner__content a:hover, :root .wc-block-components-notice-banner .wc-block-components-notice-banner__content a:focus-visible {
+  color: #9a4a5e;
+}
+:root .wc-block-components-notice-banner .wc-block-components-notice-banner__content .button {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  color: inherit;
+  float: right;
+  font-size: inherit;
+  font-weight: 400;
+  margin: 0 0 0 1rem;
+  padding: 0;
 }
 
 .project-navigation {

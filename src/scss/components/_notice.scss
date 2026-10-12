@@ -1,0 +1,92 @@
+@use "../global" as *;
+
+// Shop messages (added to cart, removed, errors). WooCommerce renders them
+// both in PHP and in JavaScript with its own markup, so they are styled via
+// WooCommerce's class. :root adds the weight needed to outweigh its own
+// two-class colour rules.
+:root .wc-block-components-notice-banner {
+  align-items: flex-start;
+  background-color: $sand;
+  border: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: $ink;
+  column-gap: 12px;
+  display: flex;
+  font-family: $body-font-family;
+  font-size: rem-calc(14px);
+  line-height: 24px;
+  margin: 0 0 $global-padding;
+  padding: 14px 20px;
+
+  // A small dot instead of WooCommerce's coloured icon.
+  &::before {
+    background-color: $berry-dark;
+    border-radius: 50%;
+    content: "";
+    flex: 0 0 6px;
+    height: 6px;
+    margin-top: 9px;
+    width: 6px;
+  }
+
+  // WooCommerce moves the focus to a new message; the outline is kept for
+  // keyboard users only.
+  &:focus {
+    outline: 0;
+  }
+
+  &:focus-visible {
+    outline: 1px solid $ink;
+    outline-offset: 2px;
+  }
+
+  > svg {
+    display: none;
+  }
+
+  // WooCommerce tints each type in its own colour.
+  &.is-success,
+  &.is-info,
+  &.is-warning,
+  &.is-error {
+    background-color: $sand;
+    border: 0;
+  }
+
+  &.is-error {
+    color: $berry-dark;
+  }
+
+  .wc-block-components-notice-banner__content {
+    flex: 1 1 auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wc-block-components-notice-banner__content a {
+    border-bottom: 1px solid currentColor;
+    color: inherit;
+    text-decoration: none;
+    transition: color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      color: $berry-dark;
+    }
+  }
+
+  // The "view cart" style buttons WooCommerce puts into some messages.
+  .wc-block-components-notice-banner__content .button {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid currentColor;
+    border-radius: 0;
+    color: inherit;
+    float: right;
+    font-size: inherit;
+    font-weight: 400;
+    margin: 0 0 0 $global-padding;
+    padding: 0;
+  }
+}
