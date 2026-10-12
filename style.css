@@ -1013,6 +1013,10 @@ body:has(.is-menu-open) .hero {
 /* ------------------------------------------------
 | Base (shared)
 ------------------------------------------------ */
+.wp-block-buttons {
+  margin: 0;
+}
+
 .wp-block-button {
   margin: 0;
 }
@@ -2558,7 +2562,7 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 }
 @media screen and (min-width: 1200px) {
   .hero {
-    padding-bottom: 123px;
+    padding-bottom: 106px;
     padding-top: 106px;
   }
 }
@@ -3768,8 +3772,8 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 }
 @media screen and (min-width: 992px) {
   .section__container {
-    padding-bottom: 7.5rem;
-    padding-top: 7.5rem;
+    padding-bottom: 140px;
+    padding-top: 140px;
   }
 }
 .section__container--first {
@@ -3848,10 +3852,47 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
   margin: 0;
 }
 @media screen and (min-width: 768px) {
-  .section__actions {
+  .section__header .section__actions {
     position: relative;
-    top: 7px;
+    top: 5px;
   }
+}
+.section__columns {
+  display: grid;
+  margin: 0;
+  row-gap: 2.5rem;
+}
+@media screen and (min-width: 992px) {
+  .section__columns {
+    align-items: center;
+    -moz-column-gap: 4rem;
+         column-gap: 4rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media screen and (min-width: 1200px) {
+  .section__columns {
+    -moz-column-gap: 108px;
+         column-gap: 108px;
+  }
+}
+.section__image {
+  aspect-ratio: 1/1;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+.section__image img {
+  display: block;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+}
+.section__body {
+  margin: 0;
 }
 .section__content {
   margin: 0;
@@ -3870,7 +3911,7 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 @media screen and (min-width: 768px) {
   .section__intro {
     font-size: 0.8125rem;
-    padding-bottom: 22px;
+    padding-bottom: 20px;
   }
 }
 .section__heading {
@@ -3894,10 +3935,11 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 @media screen and (min-width: 1200px) {
   .section__heading {
     font-size: 3.125rem;
+    line-height: 1.15;
     padding-bottom: 0;
   }
   .section__heading:has(+ .section__lead) {
-    padding-bottom: 1.5rem;
+    padding-bottom: 18px;
   }
 }
 .section__heading--small {
@@ -3943,22 +3985,18 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 .section__lead {
   color: #5e584f;
   font-family: "Zen Kaku Gothic New", sans-serif;
-  font-size: 1.0625rem;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 1.6;
-  margin-top: 0 !important;
+  line-height: 1.8;
+  margin: 0;
+  max-width: 500px;
 }
-.section__lead + .section__lead {
-  margin-top: 1rem !important;
+.section__lead:not(:last-child) {
+  padding-bottom: 2rem;
 }
 @media screen and (min-width: 768px) {
-  .section__lead {
-    font-size: 1.125rem;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .section__lead {
-    font-size: 1.25rem;
+  .section__lead:not(:last-child) {
+    padding-bottom: 2.5rem;
   }
 }
 .section--no-padding .section__container {
