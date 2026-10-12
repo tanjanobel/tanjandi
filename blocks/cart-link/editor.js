@@ -8,9 +8,8 @@
         edit: function () {
             return el(
                 'span',
-                { className: 'header__cart' },
-                el( 'span', { className: 'header__cart-label' }, 'Warenkorb' ),
-                el( 'span', { className: 'header__cart-count' }, '1' )
+                { className: 'header__actions' },
+                'Konto · Warenkorb'
             );
         },
         save: function () {

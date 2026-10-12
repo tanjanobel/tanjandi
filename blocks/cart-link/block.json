@@ -6,7 +6,7 @@
     "title": "Cart Link",
     "category": "theme",
     "icon": "cart",
-    "description": "Header link to the cart with item count.",
+    "description": "Header icons for the account and the cart with item count.",
     "editorScript": "file:./editor.js",
     "supports": {
         "html": false

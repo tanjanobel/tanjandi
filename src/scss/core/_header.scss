@@ -119,28 +119,79 @@
     }
   }
 
-  // Cart
-  &__cart {
+  // Account and cart icons
+  // The links are larger than the icons (44px touch target); the negative
+  // margin keeps the icons on the edge of the container.
+  &__actions {
     align-items: center;
-    column-gap: 9px;
+    column-gap: 4px;
     display: flex;
-    margin: 0;
+    margin: 0 -12px 0 0;
 
     @include breakpoint(tablet) {
       justify-self: end;
     }
   }
 
-  &__cart-label {
-    font-size: $nav-font-size;
-    letter-spacing: $nav-letter-spacing;
-    line-height: 1;
+  &__action {
+    display: block;
+    line-height: 0;
+    padding: 12px;
+    position: relative;
     transition: color $transition-speed ease-in-out;
   }
 
-  &__cart:hover &__cart-label,
-  &__cart:focus-visible &__cart-label {
+  // The class is repeated to outweigh the header colour of the current
+  // state, which is set with up to four classes.
+  &#{&}#{&}#{&} &__action:hover,
+  &#{&}#{&}#{&} &__action:focus-visible {
     color: $nav-hover-color;
+  }
+
+  &__action-icon {
+    display: block;
+    height: 20px;
+    width: 20px;
+  }
+
+  // Name of the icon. Read by screen readers; with a mouse or keyboard it
+  // fades in below the icon in small type.
+  &__action-label {
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+
+    @include breakpoint(tablet) {
+      clip-path: none;
+      font-family: $body-font-family;
+      font-size: rem-calc(10px);
+      height: auto;
+      left: 50%;
+      letter-spacing: $nav-letter-spacing;
+      line-height: 1;
+      opacity: 0;
+      overflow: visible;
+      pointer-events: none;
+      top: calc(100% - 7px);
+      transform: translate(-50%, -3px);
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      width: auto;
+    }
+  }
+
+  &__action:focus-visible &__action-label {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  @media (hover: hover) {
+    &__action:hover &__action-label {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
   }
 
   &__cart-count {
@@ -152,7 +203,10 @@
     font-size: $cart-count-font-size;
     height: $cart-count-size;
     justify-content: center;
+    left: 24px;
     line-height: 1;
+    position: absolute;
+    top: 4px;
     width: $cart-count-size;
 
     &--empty {
