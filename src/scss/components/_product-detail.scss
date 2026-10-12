@@ -306,20 +306,59 @@
     }
   }
 
+  // The plus and minus signs are drawn as hairlines; the characters
+  // WooCommerce puts into the buttons are hidden.
   &__quantity .wc-block-components-quantity-selector__button {
     background-color: transparent;
     border: 0;
     color: $ink;
     cursor: pointer;
     flex: 0 0 48px;
-    font-size: rem-calc(20px);
-    font-weight: 300;
+    font-size: 0;
     height: 100%;
     opacity: 1;
     padding: 0;
+    position: relative;
+    transition: color $transition-speed ease-in-out;
+
+    &::before,
+    &::after {
+      background-color: currentColor;
+      content: "";
+      height: 1px;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 13px;
+    }
+
+    &::after {
+      content: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $nav-hover-color;
+    }
+
+    // WooCommerce fades the minus while the quantity is 1.
+    &:disabled {
+      color: $ink;
+      cursor: default;
+      opacity: 1;
+    }
   }
 
-  &__quantity .qty {
+  &__quantity .wc-block-components-quantity-selector__button--plus::after {
+    content: "";
+    height: 13px;
+    width: 1px;
+  }
+
+  // Three classes to outweigh WooCommerce's minimum width for the input,
+  // which would push the plus button out of the box.
+  &__quantity .wc-block-components-quantity-selector .qty {
     appearance: textfield;
     background-color: transparent;
     border: 0;
@@ -327,6 +366,7 @@
     flex: 1 1 auto;
     font-family: $body-font-family;
     font-size: rem-calc(14px);
+    font-weight: 400;
     min-width: 0;
     padding: 0;
     text-align: center;

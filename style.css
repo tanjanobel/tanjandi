@@ -3473,13 +3473,40 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
   color: #2b2926;
   cursor: pointer;
   flex: 0 0 48px;
-  font-size: 1.25rem;
-  font-weight: 300;
+  font-size: 0;
   height: 100%;
   opacity: 1;
   padding: 0;
+  position: relative;
+  transition: color 0.3s ease-in-out;
 }
-.product-detail__quantity .qty {
+.product-detail__quantity .wc-block-components-quantity-selector__button::before, .product-detail__quantity .wc-block-components-quantity-selector__button::after {
+  background-color: currentColor;
+  content: "";
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 13px;
+}
+.product-detail__quantity .wc-block-components-quantity-selector__button::after {
+  content: none;
+}
+.product-detail__quantity .wc-block-components-quantity-selector__button:hover, .product-detail__quantity .wc-block-components-quantity-selector__button:focus-visible {
+  color: #9a4a5e;
+}
+.product-detail__quantity .wc-block-components-quantity-selector__button:disabled {
+  color: #2b2926;
+  cursor: default;
+  opacity: 1;
+}
+.product-detail__quantity .wc-block-components-quantity-selector__button--plus::after {
+  content: "";
+  height: 13px;
+  width: 1px;
+}
+.product-detail__quantity .wc-block-components-quantity-selector .qty {
   -webkit-appearance: textfield;
      -moz-appearance: textfield;
           appearance: textfield;
@@ -3489,6 +3516,7 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
   flex: 1 1 auto;
   font-family: "Zen Kaku Gothic New", sans-serif;
   font-size: 0.875rem;
+  font-weight: 400;
   min-width: 0;
   padding: 0;
   text-align: center;

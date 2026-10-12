@@ -90,3 +90,16 @@ function tanjandi_breadcrumb_home_url() {
     return wc_get_page_permalink( 'shop' );
 }
 add_filter( 'woocommerce_breadcrumb_home_url', 'tanjandi_breadcrumb_home_url' );
+
+/**
+ * Add to cart button, once the product is in the cart
+ * WooCommerce's own wording is "%s im Warenkorb" and offers no filter.
+ */
+function tanjandi_in_cart_button_text( $translation, $text, $domain ) {
+    if ( 'woocommerce' === $domain && '%s in cart' === $text ) {
+        return '%s Artikel im Warenkorb';
+    }
+
+    return $translation;
+}
+add_filter( 'gettext', 'tanjandi_in_cart_button_text', 10, 3 );
