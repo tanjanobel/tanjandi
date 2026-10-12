@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "tanjandi/product-teaser",
+    "version": "0.1.0",
+    "title": "Product Teaser",
+    "category": "theme",
+    "icon": "products",
+    "description": "Box with the product a news post is about (field «Produkt im Shop»).",
+    "editorScript": "file:./editor.js",
+    "usesContext": [ "postId" ],
+    "supports": {
+        "html": false
+    },
+    "textdomain": "tanjandi",
+    "render": "file:./render.php"
+}

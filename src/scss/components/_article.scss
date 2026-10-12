@@ -1,0 +1,221 @@
+@use "../global" as *;
+
+// Widths of the centred columns of an article.
+$article-header-width: 760px;
+$article-text-width: 600px;
+
+// A single news post.
+.article {
+  margin: 0;
+  padding-bottom: 4 * $global-padding;
+  padding-top: 3 * $global-padding;
+
+  @include breakpoint(laptop) {
+    padding-bottom: 140px;
+    padding-top: 86px;
+  }
+
+  &__header {
+    margin: 0 auto;
+    max-width: $article-header-width;
+    padding-bottom: 3 * $global-padding;
+
+    @include breakpoint(tablet) {
+      padding-bottom: 72px;
+    }
+  }
+
+  &__back {
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 20px;
+    margin: 0;
+    padding-bottom: 26px;
+  }
+
+  // The paragraph block renders the link without a class of its own.
+  // :root: WordPress colours links with :root a:not(.wp-element-button).
+  // No animated underline, which paragraph links get by default.
+  :root & &__back a {
+    animation: none;
+    background-image: none;
+    color: $text-muted;
+    text-decoration: none;
+    transition: color $transition-speed ease-in-out;
+
+    &::before {
+      content: "←";
+      padding-right: 6px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $berry-dark;
+    }
+  }
+
+  &__meta {
+    align-items: baseline;
+    column-gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding-bottom: 25px;
+  }
+
+  &__category,
+  &__date {
+    font-family: $body-font-family;
+    font-size: rem-calc(11px);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(12px);
+    }
+  }
+
+  &__category {
+    color: $berry-dark;
+  }
+
+  &__date {
+    color: $text-muted;
+    font-weight: 400;
+
+    &::before {
+      content: "·";
+      padding-right: 10px;
+    }
+  }
+
+  &__title {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(40px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+    padding-bottom: 1.5 * $global-padding;
+    text-wrap: balance;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(56px);
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(70px);
+      line-height: 1.06;
+      padding-bottom: 23px;
+    }
+  }
+
+  &__lead {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(17px);
+    line-height: 1.7;
+    margin: 0;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(19px);
+    }
+  }
+
+  &__image {
+    background-color: $sand;
+    margin: 0 auto;
+    max-width: $article-text-width;
+  }
+
+  // The featured image block offers no way to put a class on the img itself.
+  &__image img {
+    display: block;
+    width: 100%;
+  }
+
+  &__content {
+    margin: 0;
+    padding-bottom: 3 * $global-padding;
+    padding-top: 3 * $global-padding;
+
+    @include breakpoint(tablet) {
+      padding-bottom: 113px;
+      padding-top: 74px;
+    }
+  }
+
+  // Blocks written in the editor come without classes of their own.
+  &__content p {
+    color: $text-body;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    line-height: 1.9;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 22px;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(17px);
+    }
+  }
+
+  &__content h2,
+  &__content h3 {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(26px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: $global-padding;
+    padding-top: $global-padding;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(30px);
+    }
+  }
+
+  &__content h3 {
+    font-size: rem-calc(22px);
+  }
+
+  // The last block of the text needs no space of its own below.
+  &__content > :last-child {
+    padding-bottom: 0;
+  }
+
+  // Images side by side, wider than the text.
+  &__gallery {
+    display: grid;
+    gap: $global-padding;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 22px;
+    padding-top: 2.5 * $global-padding;
+
+    @include breakpoint(tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-top: 58px;
+    }
+  }
+
+  &__gallery-image {
+    aspect-ratio: 1 / 1;
+    background-color: $sand;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  &__gallery-image img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+}

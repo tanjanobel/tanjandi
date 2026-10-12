@@ -1,0 +1,81 @@
+@use "../global" as *;
+
+// Box with one product, e.g. below a news post.
+.product-teaser {
+  align-items: center;
+  background-color: $sand;
+  column-gap: 1.5 * $global-padding;
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  margin: 0 auto;
+  max-width: 760px;
+  padding: $global-padding;
+  row-gap: $global-padding;
+
+  @include breakpoint(tablet) {
+    grid-template-columns: 120px minmax(0, 1fr) auto;
+    padding: 1.5 * $global-padding;
+  }
+
+  &__media {
+    aspect-ratio: 4 / 5;
+    background-color: $sand-dark;
+    display: block;
+  }
+
+  &__img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &__body {
+    margin: 0;
+    min-width: 0;
+  }
+
+  &__label {
+    color: $berry-dark;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    margin: 0;
+    padding-bottom: 14px;
+    text-transform: uppercase;
+  }
+
+  &__name {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(24px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+
+  &__price {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  &__action {
+    grid-column: 1 / -1;
+    margin: 0;
+
+    @include breakpoint(tablet) {
+      grid-column: auto;
+    }
+  }
+
+  // !important: see .checkout-page__next.
+  .product-teaser__action .wp-block-button__link {
+    padding: 17px 22px !important;
+  }
+}

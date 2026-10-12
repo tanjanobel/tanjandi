@@ -16,6 +16,7 @@
 @use "components/account-order";
 @use "components/account-orders";
 @use "components/account-page";
+@use "components/article";
 @use "components/breadcrumbs";
 @use "components/button";
 @use "components/cookie-notice.scss";
@@ -53,6 +54,7 @@
 @use "components/product-filter";
 @use "components/product-card";
 @use "components/product-grid";
+@use "components/product-teaser";
 @use "components/project-advantage";
 @use "components/project-card";
 @use "components/project-meta";

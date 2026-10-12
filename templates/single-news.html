@@ -1,0 +1,35 @@
+<!-- wp:template-part {"slug":"header","theme":"tanjandi","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main"} -->
+<main class="wp-block-group"><!-- wp:group {"tagName":"article","metadata":{"name":"Article"},"className":"article","layout":{"type":"default"}} -->
+<article class="wp-block-group article"><!-- wp:group {"metadata":{"name":"Article Container"},"className":"article__container container","layout":{"type":"default"}} -->
+<div class="wp-block-group article__container container"><!-- wp:group {"metadata":{"name":"Article Header"},"className":"article__header","layout":{"type":"default"}} -->
+<div class="wp-block-group article__header"><!-- wp:paragraph {"metadata":{"name":"Article Back"},"className":"article__back"} -->
+<p class="article__back"><a href="/news/">Alle News</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"metadata":{"name":"Article Meta"},"className":"article__meta","layout":{"type":"default"}} -->
+<div class="wp-block-group article__meta"><!-- wp:paragraph {"metadata":{"name":"Article Category","bindings":{"content":{"source":"acf/field","args":{"key":"news_category"}}}},"className":"article__category"} -->
+<p class="article__category"></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:post-date {"format":"j. F Y","metadata":{"name":"Article Date"},"className":"article__date"} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:post-title {"level":1,"metadata":{"name":"Article Title"},"className":"article__title"} /-->
+
+<!-- wp:paragraph {"metadata":{"name":"Article Lead","bindings":{"content":{"source":"acf/field","args":{"key":"news_teaser"}}}},"className":"article__lead"} -->
+<p class="article__lead"></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:post-featured-image {"aspectRatio":"4/5","metadata":{"name":"Article Image"},"className":"article__image"} /-->
+
+<!-- wp:post-content {"metadata":{"name":"Article Content"},"className":"article__content","layout":{"type":"constrained","contentSize":"600px","wideSize":"1152px"}} /-->
+
+<!-- wp:tanjandi/product-teaser {"metadata":{"name":"Product Teaser"}} /--></div>
+<!-- /wp:group --></article>
+<!-- /wp:group --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","theme":"tanjandi","tagName":"footer","className":"footer"} /-->
