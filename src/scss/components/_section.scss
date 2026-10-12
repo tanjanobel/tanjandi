@@ -111,6 +111,13 @@
     }
   }
 
+  // A header that ends with a lead paragraph instead of a title.
+  &__header:has(.section__lead) {
+    @include breakpoint(tablet) {
+      padding-bottom: 78px;
+    }
+  }
+
   // Keeps a long page title on short lines.
   &__titles--narrow {
     max-width: 700px;
@@ -286,6 +293,10 @@
       @include breakpoint(desktop) {
         font-size: rem-calc(67px);
         line-height: 1.1;
+
+        &:has(+ .section__lead) {
+          padding-bottom: 14px;
+        }
       }
     }
 

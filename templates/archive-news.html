@@ -1,0 +1,47 @@
+<!-- wp:template-part {"slug":"header","theme":"tanjandi","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main"} -->
+<main class="wp-block-group"><!-- wp:group {"metadata":{"name":"Section"},"className":"section","layout":{"type":"default"}} -->
+<div class="wp-block-group section"><!-- wp:group {"metadata":{"name":"Section Container"},"className":"section__container section__container--page container","layout":{"type":"default"}} -->
+<div class="wp-block-group section__container section__container--page container"><!-- wp:group {"metadata":{"name":"News Header"},"className":"section__header","layout":{"type":"default"}} -->
+<div class="wp-block-group section__header"><!-- wp:group {"metadata":{"name":"News Titles"},"className":"section__titles","layout":{"type":"default"}} -->
+<div class="wp-block-group section__titles"><!-- wp:paragraph {"metadata":{"name":"News Intro"},"className":"section__intro"} -->
+<p class="section__intro">News</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":1,"metadata":{"name":"News Heading"},"className":"section__heading section__heading--page"} -->
+<h1 class="wp-block-heading section__heading section__heading--page">Aus dem Atelier</h1>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"metadata":{"name":"News Lead"},"className":"section__lead"} -->
+<p class="section__lead">Neue Objekte, Gedanken zur Form und was sonst gerade entsteht.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:query {"queryId":1,"query":{"perPage":12,"pages":0,"offset":0,"postType":"news","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"metadata":{"name":"News Grid"},"className":"section__content news-grid"} -->
+<div class="wp-block-query section__content news-grid"><!-- wp:post-template {"metadata":{"name":"News Grid List"},"className":"news-grid__list"} -->
+<!-- wp:group {"metadata":{"name":"News Card"},"className":"news-card","layout":{"type":"default"}} -->
+<div class="wp-block-group news-card"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3","metadata":{"name":"News Card Image"},"className":"news-card__image"} /-->
+
+<!-- wp:group {"metadata":{"name":"News Card Meta"},"className":"news-card__meta","layout":{"type":"default"}} -->
+<div class="wp-block-group news-card__meta"><!-- wp:paragraph {"metadata":{"name":"News Card Category","bindings":{"content":{"source":"acf/field","args":{"key":"news_category"}}}},"className":"news-card__category"} -->
+<p class="news-card__category"></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:post-date {"format":"j. F Y","metadata":{"name":"News Card Date"},"className":"news-card__date"} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:post-title {"level":2,"isLink":true,"metadata":{"name":"News Card Title"},"className":"news-card__title"} /-->
+
+<!-- wp:paragraph {"metadata":{"name":"News Card Text","bindings":{"content":{"source":"acf/field","args":{"key":"news_teaser"}}}},"className":"news-card__text"} -->
+<p class="news-card__text"></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+<!-- /wp:post-template --></div>
+<!-- /wp:query --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","theme":"tanjandi","tagName":"footer","className":"footer"} /-->
