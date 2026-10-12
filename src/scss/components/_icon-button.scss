@@ -1,0 +1,61 @@
+@use "../global" as *;
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 10px;
+    min-width: 24px;
+    min-height: 24px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+
+    &.primary { fill: $primary; color: $primary; }
+    &.secondary { fill: $secondary; color: $secondary; }
+    &.tertiary { fill: $tertiary; color: $tertiary; }
+    &.white { fill: $white; color: $white; }
+    &.black { fill: $black; color: $black; }
+    &.light-gray { fill: $light-gray; color: $light-gray; }
+    &.light-blue { fill: $light-blue; color: $light-blue; }
+    &.text-secondary { fill: $text-secondary; color: $text-secondary; }
+  }
+
+  &__text {
+    font-weight: 500;
+    white-space: nowrap;
+
+    &.primary { color: $primary; }
+    &.secondary { color: $secondary; }
+    &.tertiary { color: $tertiary; }
+    &.white { color: $white; }
+    &.black { color: $black; }
+    &.light-gray { color: $light-gray; }
+    &.light-blue { color: $light-blue; }
+    &.text-secondary { color: $text-secondary; }
+  }
+}
+
+/* Editor Specifics */
+.is-selected .icon-button__preview {
+  outline: 1px dashed #ccc;
+  outline-offset: 4px;
+}

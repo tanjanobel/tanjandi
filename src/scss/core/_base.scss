@@ -1,0 +1,115 @@
+@use "../util/mixins" as *;
+@use "../global" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $body-background-color;
+  color: $text-primary;
+  font-family: $body-font-family;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  //.is-layout-flow > * + * {
+  //  margin-block-start: 0;
+  //}
+}
+
+p,
+h1, h2, h3, h4, h5, h6,
+figure,
+ul, ol,
+blockquote {
+  margin: 0;
+}
+
+p {
+  margin: $global-margin 0 0 0;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  & > a {
+    @include link-underline-animation($primary);
+  }
+}
+
+:root {
+  a:not(.wp-element-button) {
+    color: $anchor-color;
+    text-decoration: none;
+  }
+
+  :where(.is-layout-flex) {
+    margin-block-start: 1.5 * $global-margin;
+
+    @include breakpoint(desktop) {
+      margin-block-start: 2 * $global-margin;
+    }
+  }
+
+  :where(.wp-block-columns-is-layout-flex) {
+    gap: 2 * $global-padding;
+  }
+
+  :where(.wp-block-image figcaption) {
+    color: $primary-80;
+    letter-spacing: 0.01em;
+    margin-top: 0.5 * $global-margin;
+    padding-left: 2px;
+    text-align: left;
+  }
+}
+
+.no-js {
+  .header__nav {
+    display: none;
+  }
+
+  @include breakpoint(small) {
+    .header-mobile__nav {
+      display: none;
+    }
+  }
+
+  @include breakpoint(desktop) {
+    .header-mobile__nav {
+      display: none;
+    }
+  }
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.wp-site-blocks {
+  > * + * {
+    margin-block-start: 0;
+  }
+}
+
+// Remove margin for loop items
+ul.wp-block-post-template.is-layout-grid.wp-block-post-template-is-layout-grid {
+  margin-left: 0 !important;
+}

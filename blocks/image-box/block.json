@@ -1,0 +1,37 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "tanjandi/image-box",
+    "version": "0.1.0",
+    "title": "Bild-Box",
+    "category": "theme",
+    "icon": "format-image",
+    "description": "Grosse Foto-Box mit Titeltext. Eigene Bilder für Desktop und Mobile möglich, damit der Text das Motiv nicht verdeckt.",
+    "attributes": {
+        "image_box_heading": {
+            "type": "string",
+            "default": ""
+        },
+        "image_box_image_desktop": {
+            "type": "object"
+        },
+        "image_box_image_mobile": {
+            "type": "object"
+        },
+        "image_box_focal_point_desktop": {
+            "type": "object",
+            "default": { "x": 0.5, "y": 0.5 }
+        },
+        "image_box_focal_point_mobile": {
+            "type": "object",
+            "default": { "x": 0.5, "y": 0.5 }
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "supports": {
+        "html": false,
+        "anchor": true
+    },
+    "textdomain": "tanjandi",
+    "render": "file:./render.php"
+}

@@ -1,0 +1,232 @@
+@use "../global" as *;
+
+.service-card {
+  background-color: $white;
+  border: 1px solid $border;
+  border-radius: $border-radius;
+  display: flex !important;
+  flex-direction: column;
+  height: 100% !important;
+  padding: 1.5 * $global-padding !important;
+
+  @include breakpoint(tablet) {
+    padding: 2 * $global-padding !important;
+  }
+
+  @include breakpoint(desktop) {
+    padding: 2.5 * $global-padding !important;
+  }
+
+  // Icon inserted via the Safe SVG "SVG Icon" block - it renders inline SVG
+  // (path uses fill="currentColor"), so color/size are steered from here
+  // instead of a wp:image className. Needs "service-card__icon" set as the
+  // block's own Additional CSS Class in the editor - the plugin's render
+  // callback puts that class straight onto its .safe-svg-inside div, not
+  // onto the outer .wp-block-safe-svg-svg-icon wrapper, so &__icon IS that
+  // div, not a parent of it. The block also writes its own inline
+  // width/height/color/background styles, so !important is needed to
+  // enforce one consistent look across every card regardless of what's
+  // set per-instance in the block's own sidebar.
+  &__icon {
+    align-items: center;
+    background-color: rgba($secondary, 0.1) !important;
+    border-radius: 50%;
+    color: $secondary !important;
+    display: flex !important;
+    height: 48px !important;
+    justify-content: center;
+    margin-bottom: 1.5 * $global-padding !important;
+    padding: 0 !important;
+    width: 48px !important;
+
+    @include breakpoint(tablet) {
+      height: 56px !important;
+      width: 56px !important;
+    }
+
+    svg {
+      height: 20px !important;
+      width: 20px !important;
+
+      @include breakpoint(tablet) {
+        height: 22px !important;
+        width: 22px !important;
+      }
+    }
+  }
+
+  &__heading {
+    color: $primary;
+    font-family: $heading-font-family;
+    font-size: rem-calc(22px);
+    font-weight: 600;
+    margin: 0;
+    padding-bottom: 0.75 * $global-padding;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(23px);
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(24px);
+    }
+  }
+
+  &__text {
+    color: $text-faint;
+    font-weight: 400;
+    line-height: 1.6;
+    padding-bottom: $global-padding;
+
+    @include breakpoint(tablet) {
+      padding-bottom: 1.5 * $global-padding;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  // Minimal variant for a compact row of trust points (e.g. "Persönlich /
+  // Fair kalkuliert / ...") - a thin divider line instead of a white boxed
+  // card, reusing the same divider language as the counter section. Add
+  // "service-card--minimal" alongside "service-card" as the group's
+  // Additional CSS Class in the editor.
+  &--minimal {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    height: auto !important;
+    padding: 0 !important;
+
+    .service-card__icon {
+      background-color: transparent !important;
+      color: $tertiary !important;
+      height: 28px !important;
+      margin-bottom: $global-padding !important;
+      width: 28px !important;
+
+      svg {
+        height: 28px !important;
+        width: 28px !important;
+      }
+    }
+
+    .service-card__text {
+      padding-bottom: 0;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      color: $primary;
+      font-size: rem-calc(14px);
+      min-height: 18px;
+      padding-left: 1.75rem;
+      position: relative;
+
+      @include breakpoint(tablet) {
+        font-size: rem-calc(15px);
+      }
+
+      // Filled circle badge behind the checkmark.
+      &::before {
+        background-color: $tertiary;
+        border-radius: 50%;
+        content: "";
+        height: 18px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 18px;
+      }
+
+      // Checkmark, masked in white on top of the circle badge. Stroke-based
+      // (not the thin filled path) so the weight is controllable directly
+      // via stroke-width - currently bold at 2.5.
+      &::after {
+        background-color: $primary;
+        content: "";
+        height: 7px;
+        left: 4.5px;
+        mask-image: url('data:image/svg+xml;utf8,<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L5.5 11L15 1" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+        mask-repeat: no-repeat;
+        mask-size: contain;
+        position: absolute;
+        top: 5.5px;
+        width: 9px;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 0.75 * $global-padding;
+      }
+    }
+  }
+}
+
+// Divider lines for the minimal variant's row (e.g. the "trust points" row
+// on the Über-uns page) - same divider language as the counter section. The
+// outer wp:columns block needs "service-card__wrapper" and each inner
+// wp:column needs "service-card__column" as their own Additional CSS Class
+// in the editor. The columns still carry the block's own inline width:50%
+// (2x2 wrap), so flex-basis is forced to 25% from tablet up to bring all
+// four into a single row; mobile keeps the block's natural 100% stack with
+// a divider between each.
+//
+.service-card__wrapper {
+  border-top: 1px solid $border;
+  gap: 0;
+
+  // _columns.scss has a generic "tablet only" rule forcing every
+  // .wp-block-columns > .wp-block-column to flex-basis:50% !important, 3
+  // classes deep. "&.service-card__column" repeats our own class instead of
+  // reaching for ".wp-block-column", matching that same depth purely with
+  // our own class so it still wins the tablet+ flex-basis override.
+  //
+  // Same two-step breakpoint pattern as .counter__column: 2 per row at
+  // tablet, back to a single row of 4 from laptop up.
+  > .service-card__column {
+    &.service-card__column {
+      border-top: 1px solid $border;
+      padding: 1.5 * $global-padding !important;
+
+      &:first-child {
+        border-top: none;
+      }
+
+      // Tablet: wraps 2-per-row - vertical divider between the two columns
+      // of each row, horizontal divider between the two rows.
+      @include breakpoint(tablet) {
+        border-top: none;
+        flex-basis: 50% !important;
+        padding: 2 * $global-padding !important;
+
+        &:nth-child(even) {
+          border-left: 1px solid $border;
+        }
+
+        &:nth-child(n + 3) {
+          border-top: 1px solid $border;
+        }
+      }
+
+      // Laptop: back to a single row of 4 - vertical divider between every
+      // item, no horizontal dividers needed.
+      @include breakpoint(laptop) {
+        flex-basis: 25% !important;
+
+        &:nth-child(n + 3) {
+          border-top: none;
+        }
+
+        &:not(:first-child) {
+          border-left: 1px solid $border;
+        }
+      }
+    }
+  }
+}

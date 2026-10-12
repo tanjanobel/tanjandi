@@ -1,0 +1,19 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "tanjandi/project-card",
+    "version": "0.1.0",
+    "title": "Project Card",
+    "category": "theme",
+    "usesContext": [ "postId" ],
+    "icon": "portfolio",
+    "description": "A card for projects to be used in the Query Loop.",
+    "example": {},
+    "editorScript": "file:./editor.js",
+    "supports": {
+        "html": false,
+        "anchor": true
+    },
+    "textdomain": "tanjandi",
+    "render": "file:./render.php"
+}

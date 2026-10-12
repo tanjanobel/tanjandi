@@ -1,0 +1,43 @@
+@use "../global" as *;
+
+.sticky {
+  position: sticky;
+  top: 100px; // Ausreichend Platz für den fixierten Header
+  z-index: 10; // Reduziert, um nicht über dem Header zu liegen (Header hat 100/1000)
+  align-self: flex-start; // Wichtig für Flexbox-Container (wie wp-block-column)
+  width: 100%; // Sicherstellen, dass die Gruppe die volle Breite behält
+
+  @include breakpoint(laptop) {
+    top: 120px;
+  }
+}
+
+// Gutenberg Fix: Wenn ein Element sticky sein soll, darf kein Parent overflow: hidden/clip/auto haben.
+// Wir überschreiben dies gezielt für Spalten und Container, die ein sticky Element enthalten.
+.wp-block-column:has(.sticky),
+.wp-block-columns:has(.sticky),
+.wp-block-group:has(.sticky),
+.wp-block-section:has(.sticky),
+.entry-content:has(.sticky),
+.wp-site-blocks:has(.sticky),
+.section:has(.sticky),
+.section__container:has(.sticky),
+.container:has(.sticky),
+main:has(.sticky) {
+  overflow: visible !important;
+}
+
+// In Gutenberg-Spalten muss die Spalte selbst oft gestreckt sein, damit das Element scrollen kann
+.wp-block-columns:has(.sticky) {
+  align-items: stretch !important;
+  overflow: visible !important;
+}
+
+// Falls das Element in einem Flex-Container ist, der keine Höhe vorgibt
+.wp-block-column:has(.sticky) {
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto !important;
+  min-height: 100% !important;
+  overflow: visible !important;
+}

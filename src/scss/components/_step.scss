@@ -1,0 +1,95 @@
+@use "../global" as *;
+
+.step {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+  margin: 0;
+  max-width: 360px;
+  width: 100%;
+
+  @include breakpoint(tablet) {
+    width: 100%;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2 * $global-padding;
+    max-width: 1200px;
+
+    @include breakpoint(tablet) {
+      flex-direction: row;
+      gap: 1.5 * $global-padding;
+    }
+
+    @include breakpoint(desktop) {
+      gap: 4 * $global-padding;
+    }
+  }
+
+  &__header {
+    border-top: 2px solid $primary;
+    display: flex;
+    flex-direction: column;
+    margin: 0 !important;
+    padding-bottom: 0.5 * $global-padding;
+    padding-top: 1.5 * $global-padding;
+  }
+
+  &__body {
+    margin: 0;
+    text-align: left;
+  }
+
+  &__number {
+    color: $tertiary;
+    font-family: $heading-font-family;
+    font-size: rem-calc(16px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    padding-bottom: 0.75 * $global-padding;
+  }
+
+  &__heading {
+    color: $primary;
+    font-family: $heading-font-family;
+    font-size: rem-calc(22px);
+    font-weight: 600;
+    line-height: 1.2;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(22px);
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(28px);
+    }
+  }
+
+  &__lead {
+    color: $primary;
+    font-size: rem-calc(16px);
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 0.5 * $global-padding;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(17px);
+      padding-bottom: $global-padding;
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(18px);
+    }
+  }
+
+  &__text {
+    color: $text-secondary;
+    font-size: rem-calc(16px);
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0;
+  }
+}

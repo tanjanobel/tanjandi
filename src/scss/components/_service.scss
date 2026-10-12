@@ -1,0 +1,133 @@
+@use "../global" as *;
+
+.service {
+  align-content: flex-start;
+  border-top: 1px solid $border;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 1.5 * $global-padding 0;
+
+  &:last-of-type {
+    border-bottom: 1px solid $border;
+  }
+
+  @include breakpoint(tablet) {
+    flex-direction: row;
+    padding: 2.5 * $global-padding 0;
+  }
+
+  &__number {
+    color: $tertiary;
+    display: flex;
+    flex: 0 0 40px;
+    font-family: $heading-font-family;
+    font-size: rem-calc(30px);
+    font-weight: 400;
+    justify-content: flex-end;
+    line-height: 1;
+    padding-bottom: $global-padding;
+    padding-right: $global-padding;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(34px);
+      padding-right: 2 * $global-padding;
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(40px);
+      padding-right: 3 * $global-padding;
+    }
+  }
+
+  &__heading {
+    color: $text-primary;
+    font-size: rem-calc(22px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    padding-bottom: $global-padding;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(24px);
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(27px);
+    }
+  }
+
+  &__lead {
+    color: $text-faint;
+    font-size: rem-calc(14px);
+    font-weight: 400;
+    margin-top: 0 !important;
+    padding-bottom: $global-padding;
+
+    & + & {
+      margin-top: $global-margin !important;
+    }
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(15px);
+      padding-bottom: 0;
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(15px);
+    }
+  }
+
+  &__text {
+    color: $text-secondary;
+    font-size: rem-calc(16px);
+    font-weight: 400;
+    line-height: 1.6;
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(18px);
+    }
+  }
+
+  &__header {
+    align-content: flex-start;
+    flex: 1 1 100%;
+    flex-direction: column;
+    gap: 0;
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+
+    @include breakpoint(tablet) {
+      flex: 1 1 auto;
+      flex-direction: row;
+      //min-width: 320px;
+      padding-right: 2 * $global-padding;
+      width: auto;
+
+      &::after {
+        background-color: $primary-15;
+        content: "";
+        height: 100%;
+        left: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) rotate(10deg);
+        width: 1px;
+      }
+    }
+
+    @include breakpoint(desktop) {
+      //min-width: 420px;
+      flex: 0 0 50%;
+      justify-content: flex-start;
+    }
+  }
+
+  &__body {
+    @include breakpoint(tablet) {
+      flex: 0 0 50%;
+      padding-left: 2 * $global-padding;
+    }
+  }
+}

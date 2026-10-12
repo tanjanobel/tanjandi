@@ -1,0 +1,122 @@
+@use "../global" as *;
+
+.employee-card {
+  background-color: $primary-mid;
+  border: 1px solid rgba($white, 0.1);
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  // Edge-to-edge (no card padding around it) - the card's own overflow:
+  // hidden + border-radius already clips it into the rounded shape. Same
+  // img-wrapped-in-header structure as .project-card__header.
+  &__header {
+    flex-shrink: 0;
+    overflow: hidden;
+
+    // The "post-thumbnail" size WP registers this image at is a hard 1:1
+    // crop, so without a ratio here it rendered perfectly square - this
+    // widens it just slightly. object-position: top keeps the head in
+    // frame since the crop comes off the bottom.
+    img {
+      display: block;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      width: 100%;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 1.5 * $global-padding;
+
+    @include breakpoint(tablet) {
+      padding: 2 * $global-padding;
+    }
+  }
+
+  &__heading {
+    color: $white;
+    font-family: $heading-font-family;
+    font-size: rem-calc(22px);
+    font-weight: 600;
+    margin: 0;
+    padding-bottom: 0.25 * $global-padding;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(22px);
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(22px);
+    }
+  }
+
+  &__lead {
+    color: $tertiary-light;
+    font-size: rem-calc(16px);
+    font-weight: 400;
+    margin: 0;
+  }
+
+  &__socials {
+    display: flex;
+    gap: 0.75 * $global-padding;
+    margin-top: $global-padding;
+  }
+
+  // Outlined on the card's dark background at rest, filling solid white on
+  // hover (inverted from the footer's own social-icon treatment, which
+  // fills $primary instead - here the card background already is that dark
+  // a tone, so filling light is what actually shows up as a hover state).
+  &__social-link {
+    align-items: center;
+    border: 1px solid rgba($white, 0.3);
+    border-radius: 100%;
+    display: flex;
+    flex: 0 0 36px;
+    height: 36px;
+    justify-content: center;
+    transition: background-color $transition-speed ease, border-color $transition-speed ease;
+    width: 36px;
+
+    &:hover {
+      background-color: $white;
+      border-color: $white;
+
+      .employee-card__social-icon {
+        color: $primary;
+        fill: $primary;
+      }
+    }
+  }
+
+  // Both fill and color: the sprite's icons set fill="currentColor", which
+  // tracks the CSS color property, not fill - setting only fill here would
+  // do nothing for them (kept as a fallback for any icon using literal
+  // fill="..." instead).
+  &__social-icon {
+    color: $white;
+    fill: $white;
+    transition: color $transition-speed ease, fill $transition-speed ease;
+  }
+}
+
+.employee-card__wrapper {
+  margin-left: 0 !important;
+
+  @include breakpoint(tablet) {
+    width: 90%;
+  }
+
+  @include breakpoint(desktop) {
+    width: 60%;
+  }
+}

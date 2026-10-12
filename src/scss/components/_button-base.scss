@@ -1,0 +1,14 @@
+@use "../global" as *;
+
+/* ------------------------------------------------
+| Base (shared)
+------------------------------------------------ */
+
+.wp-block-button {
+  margin: 0;
+
+  &__link {
+    text-decoration: none;
+    text-transform: none;
+  }
+}

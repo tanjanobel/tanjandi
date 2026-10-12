@@ -1,0 +1,10 @@
+@use "../global" as *;
+
+/* Mobile only: force full width for groups that use Gutenberg layout containers */
+@include breakpoint(tablet down) {
+  :where([class*="wp-container-core-group-is-layout-"]) > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}

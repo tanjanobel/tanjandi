@@ -1,0 +1,33 @@
+@use "../global" as *;
+
+.project-services {
+    margin: 0 0 $global-padding 0;
+
+    @include breakpoint(desktop) {
+        margin-bottom: 1.5 * $global-padding;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75 * $global-padding;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        background: rgba($secondary, 0.1);
+        letter-spacing: 0.02em;
+        border-radius: 100px;
+        color: $secondary;
+        font-size: rem-calc(12px);
+        font-weight: 500;
+        padding: 0.35rem 0.75rem;
+        white-space: nowrap;
+
+      @include breakpoint(desktop) {
+        font-size: rem-calc(13px);
+      }
+    }
+}

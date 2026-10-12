@@ -1,0 +1,223 @@
+@use "../global" as *;
+
+.testimonial-slider {
+  &-wrapper {
+    padding-left: 2 * $global-padding;
+
+    @include breakpoint(tablet) {
+      padding-left: 3 * $global-padding;
+    }
+
+    @include breakpoint(desktop) {
+      padding-left: 8 * $global-padding;
+    }
+  }
+
+  .uc {
+    &_quote {
+      &_item {
+        background-color: transparent !important;
+        display: flex !important;
+
+        .ue {
+          &-text {
+            color: $primary !important;
+            font-family: $heading-font-family;
+            font-size: rem-calc(24px);
+            font-weight: 500;
+            line-height: 1.22;
+            margin: 0 !important;
+            padding-bottom: 0.5 * $global-padding;
+
+            @include breakpoint(tablet) {
+              font-size: rem-calc(30px);
+            }
+
+            @include breakpoint(desktop) {
+              font-size: rem-calc(38px);
+            }
+
+            // The widget's own "Unfold Content" style sets a fixed folded
+            // height (e.g. height: 200px) via a per-widget generated
+            // stylesheet, which cuts the text off mid-line. Override it with
+            // a line-based clamp instead, so it always shows a whole number
+            // of lines with a trailing "…" and adapts to the font-size per
+            // breakpoint. !important is needed since the widget's rule is
+            // scoped to a higher-specificity #widget-id selector.
+            height: auto !important;
+            overflow: visible !important;
+
+            p {
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 9;
+              display: -webkit-box;
+              overflow: hidden;
+              text-overflow: ellipsis;
+
+              @include breakpoint(tablet) {
+                -webkit-line-clamp: 5;
+              }
+            }
+
+            &.ue-active p {
+              -webkit-line-clamp: unset;
+              overflow: visible;
+            }
+          }
+
+          &-image {
+            height: auto !important;
+          }
+
+          // Styled like .wp-block-button.is-style-outline.is-style-outline--2
+          // .wp-block-button__link, without the icon.
+          //
+          // Note: negative margin-top has no effect on this element (verified:
+          // this display: inline-block box ignores margin-top entirely in this
+          // layout context, while margin-bottom/padding/margin-left work fine).
+          // Spacing above is controlled via .ue-text's own padding-bottom instead.
+          &-text-unfold-btn {
+            @include link-underline-animation($tertiary, 2px);
+
+            color: $secondary;
+            cursor: pointer;
+            display: inline-block;
+            font-size: rem-calc(15px);
+            font-weight: 500;
+
+            @include breakpoint(tablet) {
+              font-size: rem-calc(16px);
+            }
+          }
+        }
+
+        .uc_testimonial {
+          &_quoteicon {
+            margin-bottom: 2 * $global-padding;
+          }
+
+          // margin-top here (rather than margin-bottom on the unfold button)
+          // keeps the gap above the avatar row consistent whether or not the
+          // "Mehr lesen" button is present for a given testimonial.
+          &_authorline {
+            align-items: center;
+            display: flex !important;
+            flex-direction: row !important;
+            gap: $global-padding;
+            margin-top: 2 * $global-padding;
+          }
+
+          &_name {
+            font-size: rem-calc(16px);
+            font-weight: 700;
+            padding-bottom: 0.25 * $global-padding;
+
+            @include breakpoint(tablet) {
+              font-size: rem-calc(18px);
+            }
+          }
+
+          &_company {
+            color: $text-faint;
+            font-size: rem-calc(14px);
+            font-weight: 400;
+
+            @include breakpoint(tablet) {
+              font-size: rem-calc(15px);
+            }
+          }
+        }
+      }
+
+      &_info {
+        display: flex !important;
+        gap: 1.5 * $global-padding !important;
+        height: auto !important;
+      }
+    }
+  }
+
+  .owl-carousel {
+    .owl-dots {
+      display: flex !important;
+      gap: 0.5 * $global-padding !important;
+      overflow: visible !important;
+      padding-top: 1.5 * $global-padding !important;
+    }
+
+    button {
+      // The button itself is the touch target - sized to the WCAG 2.5.8
+      // minimum (24x24px) regardless of how small the visible dot inside it
+      // looks, since this carousel has no prev/next nav to serve as an
+      // equivalent, appropriately-sized control. The visible dot lives on
+      // the inner <span> Owl Carousel already renders (its own default
+      // markup, not added by us), sized independently for the small look.
+      //
+      // Both the button and span's own default size are otherwise set by an
+      // inline <style> block the Unlimited Elements carousel widget
+      // generates per-instance (scoped to a dynamic per-widget ID class) -
+      // !important since matching that selector's specificity here isn't
+      // practical.
+      &.owl-dot {
+        align-items: center;
+        background: transparent !important;
+        display: flex !important;
+        height: 24px !important;
+        justify-content: center;
+        margin: 0 !important;
+        width: 24px !important;
+
+        span {
+          background: $primary-40;
+          border-radius: 100px;
+          display: block;
+          flex-shrink: 0;
+          height: 12px;
+          transition: background-color $transition-speed ease, width $transition-speed ease;
+          width: 12px;
+        }
+
+        &.active span {
+          background: $primary-80;
+          width: 30px;
+        }
+      }
+    }
+  }
+
+  // For placing the slider on a dark (e.g. primary-colored) section
+  // background - flips text/dot colors to light variants. Applied manually
+  // via this modifier class rather than an ancestor selector on the
+  // section's background color, so it doesn't depend on how that section
+  // happens to be styled.
+  &--light {
+    // Nested under .uc_quote_item to match the base rules' selector depth -
+    // without it, these lose the specificity tie-break and the base
+    // (dark-on-light) colors keep winning despite coming first.
+    .uc_quote_item {
+      .ue-text {
+        color: $white !important;
+      }
+
+      .ue-text-unfold-btn {
+        color: $tertiary;
+      }
+
+      .uc_testimonial_name {
+        color: $white;
+      }
+
+      .uc_testimonial_company {
+        color: rgba($white, 0.7);
+      }
+    }
+
+    .owl-carousel button.owl-dot span {
+      background: rgba($white, 0.35);
+    }
+
+    .owl-carousel button.owl-dot.active span {
+      background: $white;
+    }
+  }
+}

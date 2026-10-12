@@ -1,0 +1,45 @@
+@use "../global" as *;
+
+.link {
+  a {
+    background-image: none;
+    color: inherit;
+    display: inline-block;
+    position: relative;
+    text-decoration: none !important;
+
+    &::after {
+      background-color: currentColor;
+      bottom: 0;
+      content: "";
+      height: 1px;
+      left: 0;
+      position: absolute;
+      transition: width 0.36s cubic-bezier(0.51, 0.5, 0.07, 0.99);
+      width: 0;
+    }
+
+    &:hover,
+    &:focus-visible,
+    &:active {
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &:active {
+      opacity: 0.7;
+      transform: scale(0.98);
+    }
+  }
+
+  // Add alongside "link" (e.g. via the block's Additional CSS Class(es)
+  // field) for links inside faint/secondary text, such as the footer's
+  // email/phone links, so they match the surrounding text color instead of
+  // the sitewide default link color. !important is needed to beat the
+  // global ":root a:not(.wp-element-button)" link-color rule, which is
+  // otherwise more specific than a single class.
+  &--faint a {
+    color: $text-faint !important;
+  }
+}

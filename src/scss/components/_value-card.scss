@@ -1,0 +1,57 @@
+@use "../global" as *;
+
+.value {
+  &__wrapper {
+    gap: 0.5 * $global-padding;
+
+    @include breakpoint(tablet) {
+      gap: 2 * $global-padding;
+    }
+  }
+
+  &-card {
+    margin-bottom: 2.5 * $global-margin;
+    position: relative;
+
+    &::before {
+      background-color: $primary-40;
+      content: "";
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 1px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &__icon {
+      padding-bottom: $global-padding;
+    }
+
+    &__body {
+      padding: 0.5 * $global-padding 0 0.5 * $global-padding $global-padding;
+    }
+
+    &__heading {
+      font-size: rem-calc(18px);
+      font-weight: 600;
+      margin: 0;
+      padding-bottom: 0.5 * $global-padding;
+
+      @include breakpoint(tablet) {
+        font-size: rem-calc(19px);
+      }
+
+      @include breakpoint(desktop) {
+        font-size: rem-calc(20px);
+      }
+    }
+
+    &__text {
+      color: $text-secondary;
+      font-weight: 400;
+    }
+  }
+}

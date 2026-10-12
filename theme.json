@@ -1,0 +1,214 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 2,
+    "settings": {
+        "appearanceTools": true,
+        "color": {
+            "text": true,
+            "background": true,
+            "link": true,
+            "defaultPalette": false,
+            "palette": [
+                {
+                    "name": "Primärfarbe",
+                    "slug": "primary",
+                    "color": "#0a3e5c"
+                },
+                {
+                    "name": "Sekundärfarbe",
+                    "slug": "secondary",
+                    "color": "#017abb"
+                },
+                {
+                    "name": "Tertiärfarbe",
+                    "slug": "tertiary",
+                    "color": "#57b7ef"
+                },
+                {
+                    "name": "Hellgrau",
+                    "slug": "light-gray",
+                    "color": "#f6f8fb"
+                },
+                {
+                    "name": "Hellblau",
+                    "slug": "light-blue",
+                    "color": "#e6edf3"
+                },
+                {
+                    "name": "Papier",
+                    "slug": "paper",
+                    "color": "#f6f3ee"
+                },
+                {
+                    "name": "Soft White",
+                    "slug": "soft-white",
+                    "color": "#ffffffb3"
+                },
+                {
+                    "name": "Haarlinie",
+                    "slug": "haarlinie",
+                    "color": "#e1dccf"
+                },
+                {
+                    "name": "Schwarz",
+                    "slug": "black",
+                    "color": "#000000"
+                },
+                {
+                    "name": "Weiss",
+                    "slug": "white",
+                    "color": "#fcfcfd"
+                },
+                {
+                    "name": "Text Sekundär",
+                    "slug": "text-secondary",
+                    "color": "#4f6f82"
+                }
+            ],
+            "gradients": [
+                {
+                    "name": "Subheader Verlauf",
+                    "slug": "subheader-gradient",
+                    "gradient": "linear-gradient(to right, rgba(10,62,92,0.98) 0%, rgba(10,62,92,0.96) 25%, rgba(10,62,92,0.90) 50%, rgba(10,62,92,0.80) 70%, rgba(10,62,92,0.70) 85%, rgba(10,62,92,0.65) 100%)"                }
+            ]
+        },
+        "spacing": {
+            "blockGap": true,
+            "spacingSizes": [
+                {
+                    "size": "0",
+                    "slug": "0",
+                    "name": "0"
+                },
+                {
+                    "size": "16px",
+                    "slug": "1",
+                    "name": "1"
+                },
+                {
+                    "size": "32px",
+                    "slug": "2",
+                    "name": "2"
+                },
+                {
+                    "size": "48px",
+                    "slug": "3",
+                    "name": "3"
+                },
+                {
+                    "size": "64px",
+                    "slug": "4",
+                    "name": "4"
+                },
+                {
+                    "size": "80px",
+                    "slug": "5",
+                    "name": "5"
+                }
+            ],
+            "units": [
+                "%",
+                "px",
+                "em",
+                "rem",
+                "vh",
+                "vw"
+            ]
+        },
+        "useRootPaddingAwareAlignments": true,
+        "custom": {
+            "typography": {
+                "line-height": {
+                    "body": 1.7,
+                    "heading": 1.3,
+                    "page-title": 1.1
+                },
+                "font-weight": {
+                    "light": "300",
+                    "normal": "400"
+                },
+                "font-size": {
+                    "huge": "clamp(2.25rem, 4vw, 2.75rem)",
+                    "gigantic": "clamp(2.75rem, 6vw, 3.25rem)",
+                    "colossal": "clamp(3.25rem, 8vw, 6.25rem)"
+                }
+            }
+        }
+    },
+    "styles": {
+        "blocks": {
+            "core/columns": {
+                "spacing": {
+                    "blockGap": "30px"
+                }
+            }
+        }
+    },
+    "customTemplates": [
+        {
+            "name": "blank",
+            "title": "Blank",
+            "postTypes": [
+                "page",
+                "post"
+            ]
+        },
+        {
+            "name": "page-notitle",
+            "title": "Seite: Ohne Titel",
+            "postTypes": [
+                "page"
+            ]
+        },
+        {
+            "name": "coming-soon",
+            "title": "Coming Soon Seite",
+            "postTypes": [
+                "page"
+            ]
+        },
+        {
+            "name": "project-single",
+            "title": "Projekt: Einzelseite",
+            "postTypes": [
+                "page",
+                "post",
+                "projekt",
+                "project",
+                "reference"
+            ]
+        }
+    ],
+    "templateParts": [
+        {
+            "name": "header",
+            "title": "Header",
+            "area": "header"
+        },
+        {
+            "name": "header-home",
+            "title": "Header Home",
+            "area": "header"
+        },
+        {
+            "name": "header-transparent",
+            "title": "Header Transparent",
+            "area": "header"
+        },
+        {
+            "name": "footer",
+            "title": "Footer",
+            "area": "footer"
+        },
+        {
+            "name": "query",
+            "title": "Query (The Loop)",
+            "area": "query"
+        },
+        {
+            "name": "subheader",
+            "title": "Subheader",
+            "area": "subheader"
+        }
+    ]
+}

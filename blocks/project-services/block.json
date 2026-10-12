@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "tanjandi/project-services",
+    "version": "0.1.0",
+    "title": "Project Services",
+    "category": "theme",
+    "icon": "category",
+    "description": "Displays service pills for a project.",
+    "editorScript": "file:./editor.js",
+    "supports": {
+        "html": false,
+        "anchor": true
+    },
+    "textdomain": "tanjandi",
+    "render": "file:./render.php"
+}

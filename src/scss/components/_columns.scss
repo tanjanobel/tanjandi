@@ -1,0 +1,122 @@
+@use "../global" as *;
+
+.wp-block-columns {
+  &:not(.is-not-stacked-on-mobile) {
+    @include breakpoint(tablet only) {
+      flex-flow: row wrap !important;
+    }
+
+    & > .wp-block-column {
+      display: flex;
+      flex-direction: column;
+
+      @include breakpoint(tablet only) {
+        flex-basis: calc(50% - 16px) !important;
+        flex-shrink: 0;
+        flex-wrap: wrap !important;
+      }
+    }
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+// Support for Query Loop (Post Template) Grid
+.wp-block-post-template.is-layout-grid {
+  &.columns-3,
+  &.projects {
+    @include breakpoint(phablet) {
+      grid-template-columns: 1fr !important;
+    }
+
+    @include breakpoint(tablet) {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    @include breakpoint(desktop) {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+}
+
+// Stack on tablet
+.wp-block-columns.stack-on-tablet {
+  @include breakpoint(desktop down) {
+    flex-flow: column nowrap;
+    gap: 2 * $global-margin !important;
+
+    > .wp-block-column {
+      flex: 0 0 100% !important;
+      width: 100% !important;
+    }
+  }
+}
+
+// 3 columns on desktop for 6 items (wrap)
+.wp-block-columns.columns-3-desktop {
+  @include breakpoint(laptop) {
+    gap: 2 * $global-margin !important;
+    flex-wrap: wrap !important;
+
+    > .wp-block-column {
+      flex-basis: calc(33.33% - (4 * $global-margin / 3)) !important;
+      flex-grow: 0 !important;
+      margin-left: 0 !important;
+    }
+  }
+}
+
+// 4 columns on desktop, 2 on tablet
+.wp-block-columns.columns-4-desktop {
+  @include breakpoint(tablet) {
+    gap: 2 * $global-margin !important;
+    flex-wrap: wrap !important;
+
+    > .wp-block-column {
+      flex-basis: calc(50% - $global-margin) !important;
+      flex-grow: 0 !important;
+      margin-left: 0 !important;
+    }
+  }
+
+  @include breakpoint(desktop) {
+    > .wp-block-column {
+      flex-basis: calc(25% - (6 * $global-margin / 4)) !important;
+    }
+  }
+}
+
+.wp-block-columns.project-columns {
+  @include breakpoint(tablet only) {
+    flex-wrap: nowrap !important;
+
+    & > .wp-block-column {
+      flex-grow: 0 !important;
+      flex-shrink: 0 !important;
+
+      &:first-child {
+        flex-basis: calc(70% - 16px) !important;
+      }
+
+      &:last-child {
+        flex-basis: calc(30% - 16px) !important;
+      }
+    }
+  }
+
+  @include breakpoint(desktop) {
+    gap: 200px !important;
+
+    & > .wp-block-column {
+      &:first-child {
+        flex-basis: calc(70% - 30px) !important;
+      }
+
+      &:last-child {
+        flex-basis: calc(30% - 30px) !important;
+      }
+    }
+  }
+}

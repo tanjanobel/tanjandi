@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "tanjandi/subheader",
+    "version": "0.1.0",
+    "title": "Subheader",
+    "category": "theme",
+    "icon": "heading",
+    "description": "Subheader with title, intro and lead text.",
+    "editorScript": "file:./editor.js",
+    "supports": {
+        "html": false,
+        "anchor": true
+    },
+    "textdomain": "tanjandi",
+    "render": "file:./render.php"
+}

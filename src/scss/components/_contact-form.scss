@@ -1,0 +1,437 @@
+@use "../global" as *;
+
+// The column's own "is-vertically-aligned-center" class (from the block's
+// vertical-alignment setting) sets align-self:center on the COLUMN itself
+// (not align-items on its children as it might look), which takes it out
+// of the flex row's default stretch and shrinks it to its own content
+// height - overridden here so .contact-form__wrapper's height:100% (below)
+// has a full-row-height column to actually fill.
+.wp-block-column.is-vertically-aligned-center:has(> .contact-form__wrapper) {
+  @include breakpoint(desktop) {
+    align-self: stretch;
+  }
+}
+
+/* ------------------------------------------------
+| Contact Form – Main Container
+------------------------------------------------ */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5 * $global-padding;
+
+  @include breakpoint(tablet) {
+    gap: 2 * $global-padding;
+  }
+
+  // Fills the wrapper's height:100% (set below on desktop) instead of
+  // leaving blank space beneath the footer - Nachricht grows to take up
+  // the difference since it's the only field without a fixed height.
+  @include breakpoint(desktop) {
+    height: 100%;
+
+    .form-field:has(textarea) {
+      flex-grow: 1;
+    }
+
+    textarea {
+      flex-grow: 1;
+      height: auto;
+    }
+  }
+
+  // The wrapper's own block editor "backgroundColor" attribute (currently
+  // light-blue) is overridden here - white card per the redesign, matching
+  // every other card component regardless of what preset is set on it.
+  &__wrapper {
+    background-color: $white !important;
+    border: 1px solid $border !important;
+    border-radius: $border-radius !important;
+    padding: 1.5 * $global-padding !important;
+
+    @include breakpoint(tablet) {
+      padding: 3 * $global-padding !important;
+    }
+
+    // On desktop the two columns sit side by side (below that,
+    // "stack-on-tablet" stacks them, where matching height is moot) - the
+    // column itself already matches its flex row sibling's height by
+    // default, but its own "is-vertically-aligned-center" class (from the
+    // block's vertical-alignment setting) centers this wrapper inside that
+    // height instead of stretching it, leaving empty space above/below.
+    @include breakpoint(desktop) {
+      height: 100%;
+    }
+  }
+
+  /* ------------------------------------------------
+  | Layout & Field Wrappers
+  ------------------------------------------------ */
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5 * $global-padding;
+
+    @include breakpoint(tablet) {
+      flex-direction: row;
+      gap: 2 * $global-padding;
+    }
+
+    .form-field {
+      flex: 1;
+    }
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    // CF7 auto-generated wrappers
+    span.wpcf7-form-control-wrap {
+      width: 100%;
+    }
+  }
+
+  /* ------------------------------------------------
+  | Static Labels
+  ------------------------------------------------ */
+  label {
+    color: $primary;
+    font-size: rem-calc(15px);
+    font-weight: 600;
+    margin-bottom: 0.75 * $global-padding;
+    padding-left: 4px;
+  }
+
+  &__optional {
+    color: $text-fainter;
+    font-weight: 400;
+  }
+
+  /* ------------------------------------------------
+  | Input & Textarea Styling
+  ------------------------------------------------ */
+  input:not([type="submit"]):not([type="checkbox"]),
+  textarea {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: $paper-input !important;
+    border: 1px solid $border;
+    border-radius: 14px;
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    line-height: 1.5;
+    padding: 0.9 * $global-padding 1.25 * $global-padding;
+    transition: border-color $transition-speed ease;
+    width: 100%;
+
+    &:focus {
+      border-color: $primary;
+      outline: none;
+    }
+
+    // Error State
+    &.wpcf7-not-valid {
+      border-color: #b42318;
+    }
+
+    &::placeholder {
+      color: $text-fainter;
+    }
+
+    // Browser Autofill Fix
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: $text-primary;
+      box-shadow: inset 0 0 20px 20px transparent;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  }
+
+  textarea {
+    display: block;
+    min-height: 160px;
+    resize: vertical;
+  }
+
+  /* ------------------------------------------------
+  | Topic Pills (radio group)
+  ------------------------------------------------ */
+  &__topic {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75 * $global-padding;
+
+    .wpcf7-list-item {
+      margin: 0;
+    }
+
+    label {
+      background-color: transparent;
+      border: 1px solid $border;
+      border-radius: 100px;
+      color: $primary;
+      cursor: pointer;
+      display: inline-flex;
+      font-size: rem-calc(14px);
+      font-weight: 500;
+      margin-bottom: 0;
+      padding: 0.6 * $global-padding 1.25 * $global-padding;
+      transition: background-color $transition-speed ease, border-color $transition-speed ease, color $transition-speed ease;
+
+      @include breakpoint(tablet) {
+        font-size: rem-calc(15px);
+      }
+
+      &:hover {
+        border-color: $primary;
+      }
+
+      &:has(input:checked) {
+        background-color: $primary;
+        border-color: $primary;
+        color: $white;
+      }
+    }
+
+    // Rendered as [checkbox ... exclusive] rather than [radio] - CF7 hard-
+    // codes plain radio fields as always-required regardless of the "*",
+    // with no way to opt out. "exclusive" gives the same single-select pill
+    // behavior via CF7's own JS while keeping the field genuinely optional.
+    input[type="checkbox"] {
+      height: 0;
+      margin: 0;
+      opacity: 0;
+      position: absolute;
+      width: 0;
+    }
+  }
+
+  /* ------------------------------------------------
+  | Footer: Consent + Submit
+  ------------------------------------------------ */
+  &__footer {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.5 * $global-padding;
+    justify-content: space-between;
+
+    @include breakpoint(tablet) {
+      flex-direction: row;
+    }
+  }
+
+  &__consent {
+    color: $text-fainter;
+    font-size: rem-calc(14px);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ------------------------------------------------
+  | Submit Button
+  ------------------------------------------------ */
+  .form-submit {
+    -webkit-mask-image: -webkit-radial-gradient(white, black); // Safari clipping fix
+    align-self: flex-end;
+    background-color: $primary;
+    border-radius: 100px;
+    color: $white;
+    cursor: pointer;
+    display: inline-block;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+    --tanjandi-arrow-color: #{$primary};
+
+    @include tanjandi-button-pill-base();
+
+    // Decorative Circle & Icon (rendered via Wrapper for better clipping)
+    &::before {
+      background-color: $tertiary;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    &::after {
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @media (hover: hover) {
+      &:hover,
+      &:focus-within {
+        background-color: transparent;
+        color: $primary !important;
+        border-color: transparent;
+        filter: none;
+
+        input[type="submit"] {
+          color: $primary !important;
+        }
+      }
+    }
+
+    &:active {
+      filter: brightness(0.9);
+      transform: scale(0.98);
+    }
+
+    input[type="submit"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 600;
+      height: auto;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      text-align: center;
+      width: auto;
+      z-index: 2; // Above the background circle (z-index: 0)
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+
+    .wpcf7-spinner {
+      left: calc(100% + 16px);
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  /* ------------------------------------------------
+  | Validation Tips
+  ------------------------------------------------ */
+  .wpcf7-not-valid-tip {
+    color: #b42318;
+    display: block;
+    font-size: rem-calc(14px);
+    font-weight: 500;
+    line-height: 1.4;
+    margin-top: 0.5 * $global-padding;
+  }
+
+  /* ------------------------------------------------
+  | reCAPTCHA Info
+  ------------------------------------------------ */
+  &__recaptcha__info {
+    color: $text-faint;
+    font-size: rem-calc(12px);
+    line-height: 1.8;
+    margin: 0;
+    width: 100%;
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      transition: color $transition-speed ease;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+}
+
+/* ------------------------------------------------
+| CF7 Global Overrides & Response Output
+------------------------------------------------ */
+
+// Hide accessibility helper
+div.wpcf7 .screen-reader-response {
+  display: none !important;
+}
+
+// Hide reCAPTCHA badge
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
+// Global response box styling
+div.wpcf7-form .wpcf7-response-output,
+div.wpcf7 .wpcf7-response-output,
+.wpcf7-form .wpcf7-response-output {
+  border: 1px solid transparent !important;
+  border-radius: 12px !important;
+  clear: both;
+  display: block !important;
+  font-size: rem-calc(14px);
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 24px 0 0 !important;
+  padding: $global-padding !important;
+
+  // CF7 always renders this element, empty, before any submission attempt -
+  // without this it reserved a border+padding box worth of space at the
+  // bottom of every form. Once CF7's JS fills in a message and status class
+  // on submit, it's no longer :empty and the block styling above applies.
+  &:empty {
+    border: none !important;
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  // Success State
+  &.wpcf7-mail-sent-ok,
+  &[data-status="sent"] {
+    background-color: rgba($primary, 0.06) !important;
+    border-color: rgba($primary, 0.35) !important;
+    color: $primary !important;
+  }
+
+  // Error/Validation State
+  &.wpcf7-validation-errors,
+  &.wpcf7-mail-sent-ng,
+  &.wpcf7-aborted,
+  &.wpcf7-spam-blocked,
+  &[data-status="validation-failed"],
+  &[data-status="failed"],
+  &[data-status="spam"] {
+    background-color: rgba(#b42318, 0.05) !important;
+    border-color: rgba(#b42318, 0.4) !important;
+    color: #b42318 !important;
+  }
+}
+
+// Form specific status overrides
+.wpcf7 {
+  form.failed,
+  form.invalid,
+  form.payment-required,
+  form.spam,
+  form.unaccepted {
+    .wpcf7-response-output {
+      background-color: rgba(#b42318, 0.05) !important;
+      border-color: rgba(#b42318, 0.35) !important;
+      color: #b42318 !important;
+    }
+  }
+
+  form.sent {
+    .wpcf7-response-output {
+      background-color: rgba($primary, 0.06) !important;
+      border-color: rgba($primary, 0.35) !important;
+      color: $primary !important;
+    }
+  }
+}

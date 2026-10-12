@@ -1,0 +1,29 @@
+@use "../util/mixins" as *;
+@use "../global" as *;
+
+.breadcrumbs {
+  padding-bottom: 1.5 * $global-padding;
+
+  @include breakpoint(tablet) {
+    padding-bottom: 2 * $global-padding;
+  }
+
+  span {
+    color: $white-80;
+    font-size: rem-calc(12px);
+    letter-spacing: 0.02em;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(14px);
+    }
+  }
+
+  a {
+    @include link-underline-animation($white-80);
+    color: $white-80 !important;
+  }
+
+  .current-item {
+    color: $white-80;
+  }
+}

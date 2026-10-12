@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "sass:string";
+@use "breakpoints-settings" as *;
+
+// Write breakpoints as json in body::before in order to let js parse it
+$json: '{';
+$first: true;
+
+@each $target, $px in $breakpoints {
+  @if $first == false {
+    $json: $json + ', ';
+  }
+
+  @if $px == 0 {
+    $json: $json + '"#{$target}": #{$px}';
+  }
+
+  @else {
+    // Note: str-slice is deprecated in favor of string.slice,
+    // but we use the user's logic or a modernized version.
+    // $px + '' converts number to string including unit.
+    $json: $json + '"#{$target}": #{string.slice($px + "", 1, -3)}';
+  }
+  $first: false;
+}
+$json: $json + '}';
+
+body::before {
+  content: $json;
+  display: none;
+}

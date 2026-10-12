@@ -1,0 +1,103 @@
+@use "../global" as *;
+
+// Section wrapper around .project-advantage ("Was wir erreicht haben") -
+// petrol-to-accent-blue gradient with a faint diagonal texture and a
+// slowly floating glow circle, bottom left. Needs the "project-results"
+// class added to the section block in the editor (the generic
+// has-primary-background-color class alone would target every plain
+// primary-background section on the site, not just this one).
+.project-results {
+  overflow: hidden;
+  position: relative;
+
+  &.section {
+    background: linear-gradient(150deg, $primary 0%, $primary 42%, $secondary 100%) !important;
+  }
+
+  // Faint diagonal texture, barely visible.
+  &::before {
+    background-image: repeating-linear-gradient(115deg, rgba($white, 0.035) 0 2px, transparent 2px 30px);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  // Glow circle, bottom left - floats gently up and down.
+  @include breakpoint(desktop) {
+    &::after {
+      animation: floatY 9s ease-in-out infinite;
+      background: radial-gradient(circle, rgba($tertiary, 0.4), transparent 70%);
+      border-radius: 50%;
+      bottom: -80px;
+      content: "";
+      height: 340px;
+      left: -60px;
+      pointer-events: none;
+      position: absolute;
+      width: 340px;
+    }
+  }
+}
+
+.project-advantage {
+  margin-top: 0;
+  padding-bottom: 0;
+  padding-top: 1.5 * $global-padding;
+
+  &__icon {
+    align-items: center;
+    background: rgba($white, 0.1);
+    border: 1px solid rgba($white, 0.25);
+    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    height: 48px;
+    justify-content: center;
+    margin-bottom: $global-padding;
+    overflow: hidden;
+    width: 48px;
+
+    svg,
+    img {
+      height: 20px;
+      width: 20px;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5 * $global-padding;
+    margin-top: 0;
+    padding-top: 1.5 * $global-padding;
+
+    // Desktop: single row of 3 - each item keeps its own top divider line
+    // (spanning just its own column width), no vertical dividers between
+    // them.
+    @include breakpoint(desktop) {
+      flex-direction: row;
+      gap: 3 * $global-padding;
+      padding-top: 3 * $global-padding;
+
+      .project-advantage {
+        flex: 1 1 0;
+      }
+    }
+  }
+
+  &__content {
+    margin-top: 0;
+
+    .service-card__heading {
+      color: $white;
+      font-size: rem-calc(22px);
+      margin: 0;
+    }
+
+    .service-card__text {
+      color: rgba($white, 0.7);
+      padding-bottom: 0;
+    }
+  }
+}

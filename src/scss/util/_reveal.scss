@@ -1,0 +1,103 @@
+@use "../global" as *;
+
+// Scroll-reveal for section headings/leads and the CTA box. No manual
+// classes needed in the editor - reveal.js targets these existing
+// structural classes directly and adds "is-visible" once they scroll
+// into view.
+%reveal-base {
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.section__heading,
+.section__lead {
+  @extend %reveal-base;
+
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+// Follows just behind the heading rather than moving in lockstep with it.
+.section__lead {
+  transition-delay: 120ms;
+}
+
+// Slides in further, so it reads as a distinct "up" motion rather than the
+// subtler heading/lead fade.
+.cta__container {
+  @extend %reveal-base;
+
+  opacity: 0;
+  transform: translateY(56px);
+}
+
+.testimonial-slider {
+  @extend %reveal-base;
+
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+// Repeated grid/list items - reveal.js gives each one an increasing
+// transition-delay relative to its siblings in the same row, so they
+// cascade in rather than fading in all at once.
+.service,
+.service-card,
+.step,
+.value-card,
+.employee-card,
+.project-card,
+.project-advantage {
+  @extend %reveal-base;
+
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+// Respect the user's motion preference regardless of what the JS observer
+// does - skips both the initial hidden state and the animated transition.
+@media (prefers-reduced-motion: reduce) {
+  .section__heading,
+  .section__lead,
+  .cta__container,
+  .testimonial-slider,
+  .service,
+  .service-card,
+  .step,
+  .value-card,
+  .employee-card,
+  .project-card,
+  .project-advantage {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+// The theme's compiled stylesheet is also loaded into the block editor via
+// add_editor_style() (functions.php), but reveal.js only runs on the public
+// site (hooked to wp_enqueue_scripts, not the editor) - without this, every
+// one of these elements would sit stuck at opacity:0 forever while editing,
+// since nothing in the editor ever adds "is-visible". Gutenberg's iframed
+// editor canvas carries this class on its body regardless of theme.
+.editor-styles-wrapper {
+  .section__heading,
+  .section__lead,
+  .cta__container,
+  .testimonial-slider,
+  .service,
+  .service-card,
+  .step,
+  .value-card,
+  .employee-card,
+  .project-card,
+  .project-advantage {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

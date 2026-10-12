@@ -1,0 +1,56 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "tanjandi/icon-link",
+    "version": "0.2.2",
+    "title": "Icon Link",
+    "category": "theme",
+    "icon": "format-image",
+    "description": "Ein Icon mit Text und optionalem Link.",
+    "attributes": {
+        "icon_class": {
+            "type": "string",
+            "default": ""
+        },
+        "icon_link": {
+            "type": "string",
+            "default": ""
+        },
+        "icon_target": {
+            "type": "string",
+            "default": "_self"
+        },
+        "icon_title": {
+            "type": "string",
+            "default": ""
+        },
+        "icon_width_mobile": {
+            "type": "string",
+            "default": "24"
+        },
+        "icon_width": {
+            "type": "string",
+            "default": "24"
+        },
+        "icon_symbol": {
+            "type": "string",
+            "default": "arrow-right"
+        },
+        "icon_color": {
+            "type": "object",
+            "default": {
+                "slug": "primary"
+            }
+        },
+        "icon_text": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "render": "file:./render.php",
+    "supports": {
+        "html": false,
+        "anchor": true
+    }
+}

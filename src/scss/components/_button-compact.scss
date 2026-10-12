@@ -1,0 +1,161 @@
+@use "../global" as *;
+
+/* ------------------------------------------------
+| Compact style = Circle icon button
+------------------------------------------------ */
+
+.wp-block-button.is-style-compact,
+.wp-block-button.is-style-outline-white-compact {
+  .wp-block-button__link {
+    align-items: center;
+    border-radius: 50%;
+    display: inline-flex;
+    height: 34px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    transition: background-color $transition-speed ease, filter $transition-speed ease, border-color $transition-speed ease;
+    width: 34px;
+
+    @include breakpoint(tablet) {
+      height: 44px;
+      width: 44px;
+    }
+
+    /* Disable decorative circle from pill button */
+    &::before {
+      display: none;
+    }
+
+    /* Arrow icon */
+    &::after {
+      @include tanjandi-arrow-mask();
+
+      background-color: var(--tanjandi-arrow-color, #{$white});
+      content: "";
+      height: 14px;
+      left: 50%;
+      pointer-events: none;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      transition: transform 500ms ease-in-out;
+
+      @include breakpoint(tablet) {
+        height: 16px;
+        width: 16px;
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover,
+      &:focus-visible {
+        filter: brightness(0.95);
+
+        &::after {
+          background-color: $primary;
+          transform: translate(-50%, -50%) translateX(2px);
+        }
+      }
+    }
+
+    &:active {
+      filter: brightness(0.95);
+      transform: scale(0.96);
+
+      &::after {
+        background-color: $primary;
+        transform: translate(-50%, -50%) translateX(2px);
+      }
+    }
+  }
+}
+
+/* 1. Compact (Default/Primary) */
+.wp-block-button.is-style-compact {
+  .wp-block-button__link {
+    /* Gutenberg background color */
+    &.has-background {
+      background-color: var(--wp--style--color--background, transparent);
+      border: 1px solid $border;
+
+      &.has-white-color {
+        border-color: rgba($white, 0.8);
+      }
+    }
+
+    /* Gutenberg text color → arrow color */
+    &.has-text-color {
+      --tanjandi-arrow-color: var(--wp--style--color--text, currentColor) !important;
+      color: var(--wp--style--color--text, currentColor);
+
+      // If we have text color but NO background, use text color for border too
+      &:not(.has-background) {
+        border: 1px solid var(--wp--style--color--text, currentColor);
+
+        &.has-white-color {
+          border-color: rgba($white, 0.8);
+        }
+      }
+    }
+
+    /* Default fallback */
+    &:not(.has-background):not(.has-text-color) {
+      --tanjandi-arrow-color: #{$primary};
+      background-color: rgba($primary, 0.1);
+      border: 1px solid rgba($primary, 0.2);
+    }
+
+    &.has-primary-background-color {
+      --tanjandi-arrow-color: #{$primary} !important;
+      background-color: $primary !important;
+      color: $white !important;
+      border-color: $primary;
+
+      @media (hover: hover) {
+        &:hover,
+        &:focus-visible {
+          filter: brightness(1.1);
+        }
+      }
+
+      &:active {
+        filter: brightness(1.1);
+      }
+    }
+  }
+}
+
+/* 2. Outline White Compact */
+.wp-block-button.is-style-outline-white-compact {
+  .wp-block-button__link {
+    background-color: transparent;
+    border: 1px solid $white;
+    color: transparent; // Hide label text
+
+    &::after {
+      background-color: $white;
+    }
+
+    @media (hover: hover) {
+      &:hover,
+      &:focus-visible {
+        background-color: $white;
+
+        &::after {
+          background-color: $primary;
+        }
+      }
+    }
+
+    &:active {
+      background-color: $white;
+
+      &::after {
+        background-color: $primary;
+      }
+    }
+  }
+}

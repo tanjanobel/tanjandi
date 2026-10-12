@@ -1,0 +1,22 @@
+@use "../global" as *;
+
+.project-slider {
+  .owl-carousel {
+    button {
+      &.owl-dot {
+        background: rgba(10, 62, 92, 0.4) !important;
+        border-radius: 100px !important;
+        margin-top: 1.5 * $global-margin !important;
+
+        &.active {
+          background: rgba(10, 62, 92, 0.8) !important;
+          width: 24px;
+        }
+
+        @media (min-width: 980px) {
+          display: none !important;
+        }
+      }
+    }
+  }
+}

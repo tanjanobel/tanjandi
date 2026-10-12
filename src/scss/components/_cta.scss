@@ -1,0 +1,111 @@
+@use "../global" as *;
+
+.cta {
+  padding: 0;
+
+  &__container {
+    // Overrides the inline background-image set via the block editor's
+    // cover-image background.
+    background: linear-gradient(120deg, $primary, $secondary) !important;
+    border-radius: $border-radius;
+    overflow: hidden;
+    padding-bottom: 2 * $global-padding;
+    padding-top: 2 * $global-padding;
+    position: relative;
+
+    @include breakpoint(tablet) {
+      padding-bottom: 4 * $global-padding;
+      padding-top: 4 * $global-padding;
+    }
+
+    @include breakpoint(laptop) {
+      padding-bottom: 6 * $global-padding;
+      padding-top: 6 * $global-padding;
+    }
+
+    @include breakpoint(desktop) {
+      margin: 0 auto !important;
+    }
+
+    // Decorative glow circle, top right.
+    &::before {
+      animation: floatY 7s ease-in-out infinite;
+      background: radial-gradient(circle, rgba($tertiary, 0.55), transparent 70%);
+      border-radius: 50%;
+      content: "";
+      height: 340px;
+      pointer-events: none;
+      position: absolute;
+      right: -60px;
+      top: -80px;
+      width: 340px;
+    }
+  }
+
+  &__wrapper {
+    max-width: 750px;
+    padding: 0 $global-padding;
+  }
+
+  // Same type scale/structure as .section__heading, colors adapted for
+  // this component's dark background instead of a light one.
+  &__heading {
+    color: $white;
+    font-family: $heading-font-family;
+    font-size: rem-calc(32px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0;
+    padding-bottom: 0;
+
+    &:has(+ .cta__lead) {
+      padding-bottom: $global-padding;
+    }
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(40px);
+      letter-spacing: -0.015em;
+      line-height: 1.02;
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(72px);
+      letter-spacing: -0.018em;
+      padding-bottom: 0;
+
+      &:has(+ .cta__lead) {
+        padding-bottom: 1.5 * $global-padding;
+      }
+    }
+  }
+
+  // Same as .section__lead, but no color here - the block's text color
+  // (Soft White) is set directly in the editor instead.
+  &__lead {
+    font-family: $body-font-family;
+    font-size: rem-calc(17px);
+    font-weight: 400;
+    line-height: 1.6;
+    margin-top: 0 !important;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(18px);
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(20px);
+    }
+  }
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}

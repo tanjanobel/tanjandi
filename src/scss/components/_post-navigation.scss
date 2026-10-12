@@ -1,0 +1,208 @@
+@use "../global" as *;
+
+.project-navigation {
+  display: grid !important;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  position: relative;
+  width: 100%;
+  gap: 1.5rem 0.5rem;
+
+  @include breakpoint(phablet, down) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .wp-block-post-navigation-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: $secondary;
+    font-weight: 600;
+    font-size: rem-calc(14px);
+    position: relative;
+    padding: 0;
+    transition: color $transition-speed ease;
+    gap: 0.5 * $global-margin;
+
+    // Grid positions
+    &.is-navigation-previous,
+    &.post-navigation-link-previous {
+      grid-column: 1;
+
+      @include breakpoint(phablet, down) {
+        grid-row: 2;
+        grid-column: 1;
+        justify-self: flex-start;
+      }
+    }
+
+    &.is-navigation-next,
+    &.post-navigation-link-next {
+      grid-column: 3;
+
+      @include breakpoint(phablet, down) {
+        grid-row: 2;
+        grid-column: 2;
+        justify-self: flex-end;
+      }
+    }
+
+    // Hide default WP arrows if present
+    .wp-block-post-navigation-link__arrow-previous,
+    .wp-block-post-navigation-link__arrow-next {
+      display: none !important;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: inherit;
+      position: relative;
+      width: auto;
+
+      .wp-block-post-navigation-link__title,
+      .post-navigation-link__title,
+      .wp-block-post-navigation-link__label,
+      span {
+        position: relative;
+        max-width: 300px;
+        overflow: visible;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-bottom: 2px;
+        display: inline-block;
+
+        &::before {
+          background-color: $secondary;
+          bottom: 0;
+          content: "";
+          height: 1px;
+          position: absolute;
+          transition: width 0.36s cubic-bezier(0.51, 0.5, 0.07, 0.99);
+          width: 0;
+          left: 0;
+          z-index: 10;
+        }
+      }
+
+        &::after {
+        @include tanjandi-arrow-mask();
+        background-color: currentColor;
+        content: "";
+        height: 16px;
+        width: 16px;
+        flex-shrink: 0;
+        transition: transform 500ms ease-in-out;
+      }
+
+      &:hover {
+        .wp-block-post-navigation-link__title,
+        .post-navigation-link__title,
+        .wp-block-post-navigation-link__label,
+        span {
+          &::before {
+            width: 100%;
+          }
+        }
+
+        &::after {
+          transform: translateX(2px);
+        }
+      }
+    }
+
+    // Previous link adjustment
+    &.is-navigation-previous,
+    &.post-navigation-link-previous {
+      flex-direction: row;
+      justify-content: flex-start;
+
+      a {
+        &:hover {
+          &::after {
+            transform: translateX(-2px);
+          }
+        }
+
+        &::after {
+          order: -1;
+          -webkit-mask-image: url("/wp-content/themes/tanjandi/static/icons/svg/arrow-left.svg");
+          mask-image: url("/wp-content/themes/tanjandi/static/icons/svg/arrow-left.svg");
+        }
+      }
+    }
+
+    // Next link adjustment
+    &.is-navigation-next,
+    &.post-navigation-link-next {
+      flex-direction: row;
+      justify-content: flex-end;
+
+      a {
+        &::after {
+          order: 1;
+        }
+      }
+    }
+  }
+
+  &__overview {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    min-width: 44px;
+    min-height: 44px;
+
+    @include breakpoint(phablet, down) {
+      grid-column: 1 / span 2;
+      grid-row: 1;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__overview-link {
+    &.wp-block-button__link {
+      @include tanjandi-button-pill-base();
+      --tanjandi-arrow-color: #{$primary};
+      background-color: transparent;
+      border: 1px solid rgba($primary, 0.2);
+      color: $primary;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      &::after {
+        -webkit-mask-image: url("/wp-content/themes/tanjandi/static/icons/svg/squares-four.svg");
+        mask-image: url("/wp-content/themes/tanjandi/static/icons/svg/squares-four.svg");
+        position: static;
+        transform: none !important;
+        transition: none !important;
+        width: 18px;
+        height: 18px;
+      }
+
+      &:hover,
+      &:focus-visible {
+        background-color: $primary;
+        color: $white;
+        --tanjandi-arrow-color: #{$white};
+
+        &::after {
+          transform: none !important;
+        }
+      }
+    }
+  }
+}

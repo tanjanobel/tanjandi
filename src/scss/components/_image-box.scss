@@ -1,0 +1,99 @@
+@use "../global" as *;
+
+// Large photo box with a title overlaid directly on the image - used e.g.
+// below a subheader's lead text, but standalone (not part of .subheader).
+// Falls back to a brand-gradient background when no image is set yet.
+.image-box {
+  // Mobile default: text sits at the bottom of a much taller box (full-width
+  // heading wraps onto more lines there than the 55%-capped desktop text
+  // needs, see &__heading below) - reset to vertically centered from tablet
+  // up, where the box can stay comparatively short.
+  align-items: flex-end;
+  background:
+    radial-gradient(640px circle at 82% 30%, rgba($tertiary, 0.5), transparent 60%),
+    repeating-linear-gradient(115deg, rgba($white, 0.04) 0 2px, transparent 2px 26px),
+    linear-gradient(115deg, $primary, $secondary 58%, $tertiary);
+  border-radius: 16px;
+  display: flex;
+  margin-top: 2 * $global-padding;
+  min-height: 420px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  @include breakpoint(tablet) {
+    align-items: center;
+    margin-top: 3 * $global-padding;
+    min-height: 340px;
+  }
+
+  @include breakpoint(desktop) {
+    margin-top: 3.5 * $global-padding;
+  }
+
+  // Art-directed photo (own desktop/mobile upload fields) - sits below the
+  // dimming ::after overlay, which in turn sits below &__heading (see its
+  // own z-index). Absent entirely when no image has been uploaded yet, in
+  // which case the gradient background above shows through instead.
+  &__bg {
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+
+    img {
+      display: block;
+      height: 100%;
+      object-fit: cover;
+      // Mobile focal point by default; swapped to the desktop one once the
+      // <picture>'s <source> takes over the same <img> element (see render.php).
+      object-position: var(--image-box-focal-mobile, 50% 50%);
+      width: 100%;
+
+      @include breakpoint(tablet) {
+        object-position: var(--image-box-focal-desktop, 50% 50%);
+      }
+    }
+
+    // Dims the photo for legible white text on top - same brand gradient as
+    // the no-image default background above, applied as an overlay instead.
+    &::after {
+      background:
+        radial-gradient(640px circle at 82% 30%, rgba($tertiary, 0.5), transparent 60%),
+        repeating-linear-gradient(115deg, rgba($white, 0.04) 0 2px, transparent 2px 26px),
+        linear-gradient(115deg, $primary, $secondary 58%, $tertiary);
+      content: "";
+      height: 100%;
+      left: 0;
+      opacity: 0.8;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  &__heading {
+    color: $white;
+    font-size: rem-calc(24px);
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+    padding: 1.5 * $global-padding;
+    position: relative;
+    z-index: 1;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(28px);
+      max-width: 55%;
+      padding: 2 * $global-padding 2.5 * $global-padding;
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(34px);
+      padding: 2.5 * $global-padding 3 * $global-padding;
+    }
+  }
+}

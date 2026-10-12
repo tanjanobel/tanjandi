@@ -1,0 +1,395 @@
+@use "../global" as *;
+
+.project-card {
+  border: 1px solid $border;
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-6px);
+
+    .project-card__header img {
+      transform: scale(1.08);
+    }
+
+    // Default (white card): dark outline fills dark, arrow turns white.
+    .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
+      background-color: $primary;
+      border-color: $primary;
+
+      &::after {
+        background-color: $white;
+        transform: translate(-50%, -50%) translateX(2px);
+      }
+    }
+  }
+
+  &__header {
+    aspect-ratio: 16 / 10;
+    flex-shrink: 0;
+    overflow: hidden;
+
+    img {
+      display: block;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1);
+      transform-origin: center;
+      transition: transform 500ms ease-in-out;
+      width: 100%;
+    }
+  }
+
+  &__body {
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1.5 * $global-padding;
+
+    @include breakpoint(tablet) {
+      padding: 2 * $global-padding;
+    }
+  }
+
+  &__company {
+    color: $secondary;
+    font-size: rem-calc(12px);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.5 * $global-padding;
+    text-transform: uppercase;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(13px);
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(14px);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  &__heading {
+    color: $primary;
+    font-family: $heading-font-family;
+    font-size: rem-calc(21px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0 0 $global-margin;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(21px);
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(22px);
+    }
+  }
+
+  &__footer {
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+  }
+
+  // Full-width variant for a single highlighted project - image and body
+  // sit side by side instead of stacked, and the card spans every column
+  // of the surrounding grid regardless of where it falls in the list. The
+  // card is rendered inside a <li class="wp-block-post"> from the
+  // post-template loop, which is the actual grid item - grid-column has to
+  // go on that wrapper (via :has()), not on the .project-card link itself.
+  &--featured {
+    @include breakpoint(tablet) {
+      flex-direction: row;
+    }
+
+    .project-card__body {
+      background-color: $primary-mid;
+    }
+
+    .project-card__company {
+      color: $tertiary-light;
+    }
+
+    .project-card__heading {
+      color: $white;
+    }
+
+    .project-card__lead {
+      color: $white;
+    }
+
+    // White outline instead of the default dark one, since this variant's
+    // body is dark - hover fills white with a dark arrow instead.
+    .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
+      border-color: $white;
+
+      &::after {
+        background-color: $white;
+      }
+    }
+
+    &:hover,
+    &:focus-within {
+      .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
+        background-color: $white;
+        border-color: $white;
+
+        &::after {
+          background-color: $primary;
+        }
+      }
+    }
+
+    .project-card__header {
+      @include breakpoint(tablet) {
+        // A fixed ratio instead of the raw photo's own dimensions - with
+        // "auto" the header had no height of its own, so it inherited the
+        // source image's native aspect ratio, which is usually taller than
+        // the body's content and stretched the whole card (both sides match
+        // height) to fit it, leaving empty space below the button.
+        aspect-ratio: 16 / 10;
+        flex: 0 0 50%;
+      }
+    }
+
+    .project-card__body {
+      @include breakpoint(tablet) {
+        flex: 0 0 50%;
+        padding: 2.5 * $global-padding;
+      }
+
+      @include breakpoint(desktop) {
+        padding: 3 * $global-padding;
+      }
+    }
+
+    .project-card__heading {
+      flex-grow: 0;
+      font-size: rem-calc(28px);
+
+      // Tablet is where the row layout (image/body side by side) kicks in,
+      // narrowing the body to 50% width - the desktop size wrapped to 4
+      // lines there and dominated the card, so it gets its own smaller step
+      // instead of inheriting the desktop value early.
+      @include breakpoint(tablet) {
+        font-size: rem-calc(26px);
+      }
+
+      @include breakpoint(desktop) {
+        font-size: rem-calc(40px);
+      }
+    }
+
+    // Pushed to the very bottom of the card (the base rule's margin-top:auto
+    // already does this - no override needed here anymore).
+  }
+
+  &__lead {
+    color: $text-secondary;
+    font-size: rem-calc(15px);
+    line-height: 1.6;
+    margin: 0 0 1.5 * $global-margin;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(16px);
+    }
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5 * $global-margin;
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+  }
+
+  // Filled instead of outlined, unlike the site's real pill buttons (e.g.
+  // the CTA's "Projekt besprechen") - these aren't clickable, and matching
+  // that outline style too closely risked reading as one.
+  &__tag {
+    background-color: rgba($white, 0.15);
+    border-radius: 100px;
+    color: $white;
+    font-size: rem-calc(13px);
+    padding: 0.4 * $global-padding $global-padding;
+  }
+
+  // Default (white card): dark outline/arrow. The --featured variant above
+  // overrides this to a white outline for its dark body.
+  //
+  // This is purely decorative, not an independently interactive element (a
+  // <span>, not a nested <a>/<button>) - the whole card is already the click
+  // target, so shrinking it isn't a WCAG target-size (2.5.5/2.5.8) concern.
+  .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid $primary;
+    border-radius: 50%;
+    color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    height: 36px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    text-decoration: none;
+    transition: background-color $transition-speed ease, border-color $transition-speed ease;
+    width: 36px;
+
+    @include breakpoint(tablet) {
+      height: 44px;
+      width: 44px;
+    }
+
+    &::after {
+      @include tanjandi-arrow-mask();
+      background-color: $primary;
+      content: "";
+      height: 12px;
+      left: 50%;
+      pointer-events: none;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 500ms ease-in-out, background-color $transition-speed ease;
+      width: 12px;
+
+      @include breakpoint(tablet) {
+        height: 14px;
+        width: 14px;
+      }
+    }
+  }
+
+  // Re-declared here (after the default button rule above, at equal
+  // selector specificity) so it actually wins - defined only inside
+  // &--featured earlier, it was losing to the later default rule instead
+  // of overriding it.
+  &--featured .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
+    border-color: $white;
+
+    &::after {
+      background-color: $white;
+    }
+  }
+}
+
+// The post-template query loop wraps each card in <li class="wp-block-post">,
+// which is the actual CSS grid item - spans below target that wrapper, not
+// the .project-card link itself.
+//
+// 6 columns instead of the block's own 3 (overriding its per-instance
+// generated grid-template-columns, hence !important) so a featured project
+// can span the full row (6/6) while every other card divides evenly at
+// each tier: 1 per row below tablet, 2 per row at tablet, 3 per row from
+// desktop up.
+//
+// _columns.scss already has a "Support for Query Loop Grid" rule for this
+// same .projects class (per-breakpoint grid-template-columns, also
+// !important) - it's 3 classes deep (.wp-block-post-template.is-layout-grid
+// .projects) vs. 2 here, so matching that exact selector is needed for this
+// rule to actually win instead of silently losing to it.
+.wp-block-post-template.is-layout-grid.projects {
+  // One card per row below tablet - the 6-column grid (and the span values
+  // that assume it, further down) only kicks in from tablet up.
+  grid-template-columns: 1fr !important;
+
+  @include breakpoint(tablet) {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  }
+}
+
+@include breakpoint(tablet) {
+  // 2 per row at tablet width (half of the 6-column grid).
+  .wp-block-post-template.projects .wp-block-post {
+    grid-column: span 3;
+  }
+
+  // Scoped under the same .wp-block-post-template.projects ancestor as the
+  // default rule above (not just bare .wp-block-post:has(...)) so this is
+  // more specific than it and actually wins, rather than silently losing to
+  // the plain "span" default the way an unscoped :has() selector would.
+  .wp-block-post-template.projects .wp-block-post:has(> .project-card--featured) {
+    grid-column: 1 / -1;
+  }
+}
+
+@include breakpoint(desktop) {
+  // 3 per row from desktop up (a third of the 6-column grid).
+  .wp-block-post-template.projects .wp-block-post {
+    grid-column: span 2;
+  }
+}
+
+.uc_carousel_item {
+  &.ue-item {
+    background-color: transparent !important;
+    border-radius: $border-radius;
+    height: 100%;
+
+    // No overflow:hidden here - this wrapper is sized pixel-identical to the
+    // .project-card inside it, so clipping at its own edge cut off the
+    // card's 1px border. .project-card already clips its own image corners
+    // with its own overflow:hidden + border-radius, so this would be
+    // redundant even without the clipping side effect.
+  }
+
+  // The home page's "Post Carousel" widget reuses the same project-card
+  // markup/classes as the Referenzen query grid, but needs the original
+  // dark-on-navy look rather than the grid's white cards - scoped to this
+  // carousel context specifically, same idea as &--featured.
+  .project-card {
+    border: 1px solid rgba($white, 0.2);
+
+    &__body {
+      background-color: $primary-mid;
+    }
+
+    &__company {
+      color: $tertiary-light;
+    }
+
+    &__heading {
+      color: $white;
+    }
+
+    &__lead {
+      color: $white;
+    }
+
+    .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
+      border-color: $white;
+
+      &::after {
+        background-color: $white;
+      }
+    }
+
+    &:hover,
+    &:focus-within {
+      .wp-block-button.is-style-outline-white-compact .wp-block-button__link {
+        background-color: $white;
+        border-color: $white;
+
+        &::after {
+          background-color: $primary;
+        }
+      }
+    }
+  }
+}

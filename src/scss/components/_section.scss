@@ -1,0 +1,233 @@
+@use "../global" as *;
+
+.section {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-top: 0;
+  padding: 0;
+
+  &__container {
+    padding-bottom: 3 * $global-padding;
+    padding-top: 3 * $global-padding;
+
+    @include breakpoint(tablet) {
+      padding-bottom: 4 * $global-padding;
+      padding-top: 4 * $global-padding;
+    }
+
+    @include breakpoint(laptop) {
+      padding-bottom: 6 * $global-padding;
+      padding-top: 6 * $global-padding;
+    }
+
+    &--first {
+      padding-bottom: 1.5 * $global-padding;
+      padding-top: 3 * $global-padding;
+
+      @include breakpoint(tablet) {
+        padding-bottom: 2 * $global-padding;
+        padding-top: 4 * $global-padding;
+      }
+
+      @include breakpoint(laptop) {
+        padding-bottom: 3 * $global-padding;
+        padding-top: 6 * $global-padding;
+      }
+    }
+
+    &--inner {
+      padding-bottom: 1.5 * $global-padding;
+      padding-top: 1.5 * $global-padding;
+
+      @include breakpoint(tablet) {
+        padding-bottom: 2 * $global-padding;
+        padding-top: 2 * $global-padding;
+      }
+
+      @include breakpoint(laptop) {
+        padding-bottom: 3 * $global-padding;
+        padding-top: 3 * $global-padding;
+      }
+    }
+
+    &--last {
+      padding-bottom: 3 * $global-padding;
+      padding-top: 1.5 * $global-padding;
+
+      @include breakpoint(tablet) {
+        padding-bottom: 4 * $global-padding;
+        padding-top: 2 * $global-padding;
+      }
+
+      @include breakpoint(laptop) {
+        padding-bottom: 6 * $global-padding;
+        padding-top: 3 * $global-padding;
+      }
+    }
+  }
+
+  &__content {
+    margin-block-start: 2 * $global-margin;
+
+    @include breakpoint(tablet) {
+      margin-block-start: 3 * $global-margin;
+    }
+
+    @include breakpoint(desktop) {
+      margin-block-start: 5 * $global-margin;
+    }
+  }
+
+  &__intro {
+    color: $text-meta;
+    font-size: rem-calc(12px);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    padding-bottom: $global-padding;
+    text-transform: uppercase;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(13px);
+      padding-bottom: 1.5 * $global-padding;
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(13px);
+    }
+
+    &::before {
+      content: "//";
+      padding-right: 0.2 * $global-padding;
+    }
+  }
+
+  &__heading {
+    font-family: $heading-font-family;
+    font-size: rem-calc(32px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin: 0;
+    padding-bottom: 0;
+
+    &:has(+ .section__lead) {
+      padding-bottom: $global-padding;
+    }
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(40px);
+      letter-spacing: -0.015em;
+      line-height: 1.04;
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(58px);
+      letter-spacing: -0.018em;
+      padding-bottom: 0;
+
+      &:has(+ .section__lead) {
+        padding-bottom: 1.5 * $global-padding;
+      }
+    }
+
+    &--small {
+      font-size: rem-calc(22px);
+      padding-bottom: $global-padding;
+
+      @include breakpoint(tablet) {
+        font-size: rem-calc(28px);
+      }
+
+      @include breakpoint(desktop) {
+        font-size: rem-calc(32px);
+      }
+    }
+
+    // Bigger than the base heading - for standalone statement-style headings
+    // (e.g. "Was wir erreicht haben" on project detail pages) rather than
+    // ones paired with a lead paragraph.
+    &--large {
+      font-size: rem-calc(30px);
+      padding-bottom: 0;
+
+      @include breakpoint(tablet) {
+        font-size: rem-calc(40px);
+      }
+
+      @include breakpoint(desktop) {
+        font-size: rem-calc(48px);
+      }
+    }
+
+    &--white {
+      color: $white;
+    }
+
+    &--highlight {
+      color: $secondary;
+
+      &-light {
+        color: $tertiary;
+      }
+
+      &-light-tertiary {
+        color: $tertiary-light;
+      }
+    }
+  }
+
+  &__lead {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(17px);
+    font-weight: 400;
+    line-height: 1.6;
+    margin-top: 0 !important;
+
+    & + & {
+      margin-top: $global-margin !important;
+    }
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(18px);
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(20px);
+    }
+  }
+
+  &--no-padding {
+    .section__container {
+      padding: 0;
+    }
+  }
+
+  &__list {
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        color: $body-font-color;
+        margin: 0 0 0.5 * $global-padding 0;
+        padding-left: $global-padding;
+        position: relative;
+        word-wrap: break-word;
+
+        &::before {
+          background-color: $primary;
+          border-radius: 100%;
+          content: "";
+          display: block;
+          left: 0;
+          padding: 3px;
+          position: absolute;
+          top: 10px;
+        }
+      }
+    }
+  }
+}

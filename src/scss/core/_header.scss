@@ -1,0 +1,146 @@
+@use "../global" as *;
+
+.header {
+  background-color: $paper;
+  transition: background-color 0.3s ease-in-out;
+  width: 100%;
+  z-index: 100;
+
+  &.header--fixed {
+    .header__bottom {
+      @include breakpoint(tablet) {
+        padding-top: 0 !important;
+      }
+    }
+  }
+
+  &.header--fixed {
+    backdrop-filter: blur(10px);
+    background-color: $paper !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    transition: opacity 0.5s ease-in-out, visibility 0s 0.5s, background-color 0.3s ease-in-out;
+    visibility: hidden;
+    width: 100%;
+    z-index: 1000;
+
+    &:has(.is-menu-open) {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    &.header--visible {
+      background-color: $paper !important;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out, visibility 0s, background-color 0.3s ease-in-out;
+      visibility: visible;
+    }
+  }
+
+  // Unified styles for fixed or visible states (dark text on light bg)
+  &.header--fixed,
+  &.header--visible:not(.header--transparent),
+  &:not(.header--home):not(.header--transparent) {
+    @include tanjandi-header-color-dark();
+
+    .header__logo {
+      &--dark {
+        display: block;
+      }
+
+      &--white {
+        display: none;
+      }
+    }
+  }
+
+  // Header Bottom / Layout
+  &__bottom {
+    align-items: center;
+    display: flex;
+    height: $header-height-mobile;
+    justify-content: space-between;
+    padding: 0 $global-margin;
+    width: 100%;
+
+    @include breakpoint(tablet) {
+      height: $header-height;
+      padding-top: 0;
+    }
+
+    .header--fixed & {
+      @include breakpoint(tablet) {
+        height: $header-height-tablet;
+      }
+    }
+
+    @include breakpoint(screen) {
+      margin: 0 auto;
+      padding: 0;
+    }
+  }
+
+  // Logo
+  &__logo {
+    z-index: 1;
+
+    // Default logo visibility (overridden by state classes)
+    &--dark {
+      display: none;
+    }
+
+    &--white {
+      display: block;
+    }
+
+    img {
+      height: auto;
+      width: $logo-mobile-width;
+
+      @include breakpoint(tablet) {
+        width: $logo-tablet-width;
+      }
+
+      @include breakpoint(desktop) {
+        width: $logo-desktop-width;
+      }
+    }
+
+    a {
+      border-bottom: none;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  // Transparent / Overlay State (White text on dark/image bg)
+  &--transparent {
+    background-color: transparent;
+    left: 0;
+    position: absolute;
+    top: 0;
+
+    @include tanjandi-header-color-white();
+  }
+}
+
+// WordPress Specific Overrides
+.wp-block-site-logo {
+  &.is-default-size img {
+    width: 160px;
+
+    @include breakpoint(tablet) {
+      width: $logo-tablet-width;
+    }
+
+    @include breakpoint(desktop) {
+      width: $logo-desktop-width;
+    }
+  }
+}
+

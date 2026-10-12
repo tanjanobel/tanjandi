@@ -1,0 +1,71 @@
+@use "../global" as *;
+
+.marquee {
+  .ue-marquee {
+    background-color: $primary !important;
+    padding: 0 !important;
+
+    &-tag {
+      background-color: $primary;
+      margin: 0 !important;
+      padding: $global-padding 0.5 * $global-padding !important;
+
+      @include breakpoint(tablet) {
+        padding: $global-padding !important;
+      }
+
+      @include breakpoint(desktop) {
+        padding: 1.5 * $global-padding 1.5 * $global-padding !important;
+      }
+
+      a {
+        gap: $global-padding !important;
+
+        @include breakpoint(tablet) {
+          gap: 2 * $global-padding !important;
+        }
+
+        @include breakpoint(desktop) {
+          gap: 3 * $global-padding !important;
+        }
+
+        &::before {
+          color: $tertiary;
+          content: "✦";
+          font-size: rem-calc(14px) !important;
+
+          @include breakpoint(tablet) {
+            font-size: rem-calc(18px) !important;
+          }
+
+          @include breakpoint(desktop) {
+            font-size: rem-calc(24px) !important;
+          }
+        }
+      }
+
+      .ue-marquee-tag-icon {
+        display: flex !important;
+
+        i {
+          color: $tertiary;
+          font-size: rem-calc(12px) !important;
+        }
+      }
+    }
+
+    .ue_marq_text_wrap {
+      font-family: $heading-font-family !important;
+      font-size: rem-calc(16px) !important;
+      font-weight: 400 !important;
+
+      @include breakpoint(tablet) {
+        font-size: rem-calc(22px) !important;
+      }
+
+      @include breakpoint(desktop) {
+        font-size: rem-calc(26px) !important;
+      }
+    }
+  }
+}

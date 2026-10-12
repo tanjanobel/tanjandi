@@ -1,0 +1,22 @@
+@use "mixins" as *;
+
+// Visibility helpers for laptop breakpoint
+
+// Hidden on laptop and above, visible below laptop
+.hide-for-laptop {
+  // visible by default; hide from laptop up
+  @include breakpoint(laptop) {
+    display: none !important;
+  }
+}
+
+// Visible on laptop and above, hidden below laptop
+.show-for-laptop {
+  // hidden by default
+  display: none !important;
+
+  @include breakpoint(laptop) {
+    // SVGs are inline by default; use inline to avoid layout shifts
+    display: inline !important;
+  }
+}

@@ -1,0 +1,202 @@
+@use "../global" as *;
+
+.contact-box {
+  background-color: $primary;
+  border-radius: $border-radius;
+  color: $white;
+  padding: 1.5 * $global-padding;
+
+  @include breakpoint(tablet) {
+    padding: 3 * $global-padding;
+  }
+
+  // _base.scss sets a global link color via ":root a:not(.wp-element-button)"
+  // - :root + :not() outweighs a plain ".contact-box a", so matching that
+  // same depth is needed here to actually win instead of silently losing to
+  // dark-on-dark text. Excludes .icon-button__link too - the social icon
+  // links aren't text, so the underline treatment doesn't apply to them.
+  a:not(.wp-element-button):not(.icon-button__link) {
+    color: inherit;
+
+    // Same wipe-out/wipe-in underline as .breadcrumbs (also on a dark
+    // background) instead of a plain static underline.
+    @include link-underline-animation($white-80);
+  }
+
+  &__heading {
+    color: $tertiary;
+    font-size: rem-calc(14px);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    margin: 0 0 1.5 * $global-padding;
+    padding-bottom: $global-padding;
+    text-transform: uppercase;
+  }
+
+  &__text {
+    margin: 0 !important;
+  }
+
+  // One row per contact channel (E-Mail / Telefon / Adresse) - icon left,
+  // label + value stacked right. Wrap each row in a group named "Contact Box
+  // Column" (class "contact-box__column"), containing an "Icon" group
+  // (class "contact-box__icon") wrapping an "Icon Wrapper" group (class
+  // "contact-box__icon__wrapper") with a core "Icon" block inside, then a
+  // group with a "contact-box__label" paragraph and the value/link
+  // paragraph.
+  &__column {
+    align-items: center;
+    display: flex;
+    gap: $global-padding;
+
+    &:not(:last-child) {
+      margin-bottom: 1.5 * $global-padding;
+    }
+  }
+
+  // The circle badge itself.
+  &__icon {
+    align-items: center;
+    background-color: rgba($tertiary, 0.15) !important;
+    border-radius: 50%;
+    color: $tertiary !important;
+    display: flex !important;
+    flex-shrink: 0;
+    height: 48px !important;
+    justify-content: center;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 48px !important;
+  }
+
+  // Centers the core Icon block's svg inside the circle badge.
+  &__icon__wrapper {
+    align-items: center;
+    display: flex !important;
+    justify-content: center;
+    margin: 0 !important;
+
+    svg {
+      fill: currentColor;
+      height: 20px;
+      width: 20px;
+    }
+  }
+
+  &__label {
+    color: $white-60;
+    font-size: rem-calc(14px);
+    margin: 0 0 0.25 * $global-padding;
+
+    // The value paragraph right after the label is a plain wp:paragraph, no
+    // "contact-box__value" class needed - it just inherits the theme's
+    // default block-gap top margin (24px) otherwise, reading as a much
+    // bigger gap than the label-to-value spacing in the target design.
+    & + p {
+      margin-top: 0 !important;
+    }
+  }
+
+  &__value {
+    color: $white;
+    font-size: rem-calc(16px);
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  &__divider {
+    background-color: rgba($white, 0.15);
+    border: none;
+    height: 1px;
+    margin: 1.5 * $global-padding 0;
+
+    @include breakpoint(tablet) {
+      margin: 2 * $global-padding 0;
+    }
+  }
+
+  // Row of circular social links at the bottom - uses the "tanjandi/icon-link"
+  // block (same as the footer), but with its own classes rather than
+  // reusing the footer's "footer__social-icon" - that one already fixes
+  // itself to a 30px circle via flex-basis, which fought a same-named
+  // override here and squashed it into an oval instead of resizing it.
+  &__social-wrapper {
+    border-top: 1px solid rgba($white, 0.15);
+    display: flex !important;
+    gap: $global-padding;
+    margin-top: 1.5 * $global-padding;
+    padding-top: 1.5 * $global-padding;
+  }
+
+  // Circle sits on the icon-link block's own outer div (same pattern as
+  // .footer__social-icon), not the inner anchor - keeps a single source of
+  // truth for the circle's size instead of nesting two circles.
+  &__social-icon {
+    align-items: center;
+    border: 1px solid rgba($white, 0.25);
+    border-radius: 50%;
+    display: flex;
+    flex: 0 0 36px;
+    height: 36px;
+    justify-content: center;
+    margin: 0 !important;
+    transition: background-color $transition-speed ease, border-color $transition-speed ease;
+    width: 36px;
+
+    // Same fill-solid-on-hover treatment as .employee-card__social-link -
+    // both sit on a dark background, so hover fills white with the icon
+    // switching to $primary, instead of the footer's fill-$primary version
+    // (which relies on a light background to read as a fill in the first
+    // place).
+    &:hover {
+      background-color: $white;
+      border-color: $white;
+
+      .icon-button__icon.primary {
+        fill: $primary;
+        color: $primary;
+      }
+    }
+
+    .icon-button__link {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .icon-button__icon.primary {
+      fill: $white;
+      color: $white;
+      transition: fill $transition-speed ease, color $transition-speed ease;
+    }
+  }
+
+  // Google Maps embed below the contact info - the iframe is a plain
+  // wp:html block, sized off this wrapper's own aspect-ratio rather than
+  // the iframe's own width/height attributes.
+  &__map {
+    aspect-ratio: 4 / 3;
+    border: 1px solid $border;
+    border-radius: $border-radius;
+    margin-top: 1.5 * $global-padding;
+    overflow: hidden;
+
+    @include breakpoint(tablet) {
+      margin-top: 2 * $global-padding;
+    }
+
+    iframe {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

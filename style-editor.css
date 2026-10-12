@@ -1,0 +1,82 @@
+/*!
+ * them.es Theme Editor Styles
+ */
+
+.is-root-container.wp-site-blocks {
+    padding: 15px 5vw;
+}
+
+.block-editor-block-list__block {
+    margin: 0 auto 28px auto;
+    max-width: 840px;
+}
+
+.editor-styles-wrapper .is-layout-flex {
+    gap: 2em !important;
+}
+
+/* ------------------------------------------------
+| Gutenberg Editor: Compact button should be icon-only
+------------------------------------------------ */
+.editor-styles-wrapper .wp-block-button.is-style-compact .wp-block-button__link {
+    align-items: center;
+    border-radius: 50%;
+    display: inline-flex;
+    height: 44px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    text-decoration: none;
+    text-transform: none;
+    width: 44px;
+
+    /* Hide visible label in editor */
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    white-space: nowrap;
+}
+
+/* Hide the decorative circle from the default filled style */
+.editor-styles-wrapper .wp-block-button.is-style-compact .wp-block-button__link::before {
+    display: none;
+}
+
+/* Arrow icon centered like your other buttons */
+.editor-styles-wrapper .wp-block-button.is-style-compact .wp-block-button__link::after {
+    background-color: var(--tanjandi-arrow-color, currentColor);
+    content: "";
+    height: 18px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+
+    -webkit-mask: url("/wp-content/themes/tanjandi/static/icons/svg/arrow-right.svg") no-repeat center;
+    -webkit-mask-size: contain;
+    mask: url("/wp-content/themes/tanjandi/static/icons/svg/arrow-right.svg") no-repeat center;
+    mask-size: contain;
+}
+
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+}
+
+.icon-button__preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.icon-button__text {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.icon-button__icon-mock {
+    flex-shrink: 0;
+}

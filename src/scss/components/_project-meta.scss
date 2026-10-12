@@ -1,0 +1,46 @@
+@use "../global" as *;
+
+// Sidebar info card (Kunde / Leistungen / Website) on project detail pages.
+// Sits alongside the existing ".sticky" class on the same wrapper group -
+// "project-meta__item" on each of the 3 sub-groups, "project-meta__label"
+// on their heading, "project-meta__value" on the value paragraph/link.
+.project-meta {
+  &__item {
+    margin: 0 !important;
+    padding-top: 1.5 * $global-padding;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $border;
+      padding-bottom: 1.5 * $global-padding;
+    }
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+  }
+
+  &__label {
+    color: $secondary !important;
+    font-size: rem-calc(13px) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.08em;
+    margin: 0 !important;
+    text-transform: uppercase;
+  }
+
+  &__value {
+    color: $primary;
+    font-size: rem-calc(18px);
+    font-weight: 600;
+    margin: 0;
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(22px);
+    }
+
+    a {
+      color: $secondary;
+      text-decoration: underline;
+    }
+  }
+}
