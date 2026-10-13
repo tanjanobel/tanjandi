@@ -83,4 +83,42 @@
       background-color: $sand-dark !important;
     }
   }
+
+  // Light variant on sand, e.g. a short pointer to the contact page.
+  &--light {
+    background-color: $sand;
+
+    @include breakpoint(laptop) {
+      padding: 46px 44px;
+    }
+  }
+
+  &--light &__heading {
+    color: $ink;
+    font-size: rem-calc(22px);
+    padding-bottom: 8px;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(24px);
+    }
+  }
+
+  &--light &__lead {
+    color: $text-secondary;
+    font-size: rem-calc(14px);
+    line-height: 1.6;
+    opacity: 1;
+  }
+
+  // Back to the default dark button.
+  &--light .cta__action .wp-block-button__link {
+    background-color: $ink !important;
+    color: $washi !important;
+    padding: 19px 32px !important;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $berry-dark !important;
+    }
+  }
 }

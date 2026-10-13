@@ -3,6 +3,7 @@ import CartCount from './components/cart-count';
 import CartQuantity from './components/cart-quantity';
 import CheckoutSteps from './components/checkout-steps';
 import ContactForm from './components/contact-form';
+import FaqTabs from './components/faq-tabs';
 import TestimonialSlider from './components/testimonial-slider';
 import Reveal from './components/reveal';
 import CookieBannerA11yFix from './components/cookie-banner-a11y-fix';
@@ -23,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const contactForm = new ContactForm();
     contactForm.init();
+
+    const faqTabs = new FaqTabs();
+    faqTabs.init();
 
     const testimonialSlider = new TestimonialSlider();
     testimonialSlider.init();

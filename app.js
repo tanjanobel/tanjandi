@@ -488,6 +488,96 @@ var CookieBannerA11yFix = /*#__PURE__*/function () {
 
 /***/ },
 
+/***/ "./src/js/components/faq-tabs.js"
+/*!***************************************!*\
+  !*** ./src/js/components/faq-tabs.js ***!
+  \***************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+var ROOT_SELECTOR = '.faq';
+var GROUP_SELECTOR = '.faq__group';
+var LINK_SELECTOR = '[data-faq-nav] .side-nav__link';
+var READY_CLASS = 'faq--ready';
+var ACTIVE_CLASS = 'faq__group--active';
+var CURRENT_CLASS = 'side-nav__link--current';
+
+// Turns the FAQ groups into tabs: the navigation shows one group at a time.
+// Without this script all groups are listed below each other and the
+// navigation jumps to them.
+var FaqTabs = /*#__PURE__*/function () {
+  function FaqTabs() {
+    _classCallCheck(this, FaqTabs);
+  }
+  return _createClass(FaqTabs, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+      this.root = document.querySelector(ROOT_SELECTOR);
+      if (!this.root) return;
+      this.groups = Array.from(this.root.querySelectorAll(GROUP_SELECTOR));
+      this.links = Array.from(document.querySelectorAll(LINK_SELECTOR));
+      if (!this.groups.length || !this.links.length) return;
+      this.links.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+          var id = link.hash.slice(1);
+          _this.show(id);
+          window.history.replaceState(null, '', "#".concat(id));
+        });
+      });
+
+      // A link to one of the groups, also when followed on the page itself.
+      window.addEventListener('hashchange', function () {
+        return _this.showRequested();
+      });
+      this.showRequested();
+      this.root.classList.add(READY_CLASS);
+    }
+  }, {
+    key: "showRequested",
+    value: function showRequested() {
+      var requested = window.location.hash.slice(1);
+      var known = this.groups.some(function (group) {
+        return group.id === requested;
+      });
+      if (known) {
+        this.show(requested);
+      } else if (!this.root.querySelector(".".concat(ACTIVE_CLASS))) {
+        this.show(this.groups[0].id);
+      }
+    }
+  }, {
+    key: "show",
+    value: function show(id) {
+      this.groups.forEach(function (group) {
+        group.classList.toggle(ACTIVE_CLASS, group.id === id);
+      });
+      this.links.forEach(function (link) {
+        var isCurrent = link.hash.slice(1) === id;
+        link.classList.toggle(CURRENT_CLASS, isCurrent);
+        if (isCurrent) {
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    }
+  }]);
+}();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FaqTabs);
+
+/***/ },
+
 /***/ "./src/js/components/header.js"
 /*!*************************************!*\
   !*** ./src/js/components/header.js ***!
@@ -782,9 +872,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_cart_quantity__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/cart-quantity */ "./src/js/components/cart-quantity.js");
 /* harmony import */ var _components_checkout_steps__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/checkout-steps */ "./src/js/components/checkout-steps.js");
 /* harmony import */ var _components_contact_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/contact-form */ "./src/js/components/contact-form.js");
-/* harmony import */ var _components_testimonial_slider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/testimonial-slider */ "./src/js/components/testimonial-slider.js");
-/* harmony import */ var _components_reveal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/reveal */ "./src/js/components/reveal.js");
-/* harmony import */ var _components_cookie_banner_a11y_fix__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/cookie-banner-a11y-fix */ "./src/js/components/cookie-banner-a11y-fix.js");
+/* harmony import */ var _components_faq_tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/faq-tabs */ "./src/js/components/faq-tabs.js");
+/* harmony import */ var _components_testimonial_slider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/testimonial-slider */ "./src/js/components/testimonial-slider.js");
+/* harmony import */ var _components_reveal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/reveal */ "./src/js/components/reveal.js");
+/* harmony import */ var _components_cookie_banner_a11y_fix__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/cookie-banner-a11y-fix */ "./src/js/components/cookie-banner-a11y-fix.js");
+
 
 
 
@@ -805,11 +897,13 @@ document.addEventListener('DOMContentLoaded', function () {
   checkoutSteps.init();
   var contactForm = new _components_contact_form__WEBPACK_IMPORTED_MODULE_4__["default"]();
   contactForm.init();
-  var testimonialSlider = new _components_testimonial_slider__WEBPACK_IMPORTED_MODULE_5__["default"]();
+  var faqTabs = new _components_faq_tabs__WEBPACK_IMPORTED_MODULE_5__["default"]();
+  faqTabs.init();
+  var testimonialSlider = new _components_testimonial_slider__WEBPACK_IMPORTED_MODULE_6__["default"]();
   testimonialSlider.init();
-  var reveal = new _components_reveal__WEBPACK_IMPORTED_MODULE_6__["default"]();
+  var reveal = new _components_reveal__WEBPACK_IMPORTED_MODULE_7__["default"]();
   reveal.init();
-  var cookieBannerA11yFix = new _components_cookie_banner_a11y_fix__WEBPACK_IMPORTED_MODULE_7__["default"]();
+  var cookieBannerA11yFix = new _components_cookie_banner_a11y_fix__WEBPACK_IMPORTED_MODULE_8__["default"]();
   cookieBannerA11yFix.init();
 });
 })();

@@ -69,6 +69,11 @@ function wp_starter_gutenberg_settings() {
         register_block_type( $block_path );
     }
 
+    $block_path = get_template_directory() . '/blocks/faq-nav';
+    if ( file_exists( $block_path . '/block.json' ) ) {
+        register_block_type( $block_path );
+    }
+
 }
 add_action( 'init', 'wp_starter_gutenberg_settings' );
 

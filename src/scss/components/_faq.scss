@@ -1,0 +1,56 @@
+@use "../global" as *;
+
+// Questions and answers in groups. With JavaScript the groups become tabs
+// that are switched by the navigation next to them (faq-tabs.js); without
+// it they are listed below each other, each under its heading.
+.faq {
+  margin: 0;
+
+  &__nav {
+    margin: 0;
+    padding-top: 2 * $global-padding;
+
+    @include breakpoint(laptop) {
+      padding-top: 34px;
+    }
+  }
+
+  &__group {
+    margin: 0;
+    padding-bottom: 3 * $global-padding;
+  }
+
+  &__heading {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(26px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    padding-bottom: 1.25 * $global-padding;
+  }
+
+  &__list {
+    border-top: 1px solid $ink;
+    margin: 0;
+  }
+
+  // Tabs: one group at a time, its heading only for screen readers. Until
+  // the script has started, the first group is the visible one.
+  @media (scripting: enabled) {
+    &__heading {
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    &:not(.faq--ready) &__group:not(:first-child),
+    &--ready &__group:not(.faq__group--active) {
+      display: none;
+    }
+  }
+}

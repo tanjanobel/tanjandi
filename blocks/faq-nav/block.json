@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "tanjandi/faq-nav",
+    "version": "0.1.0",
+    "title": "FAQ Navigation",
+    "category": "theme",
+    "icon": "list-view",
+    "description": "Navigation built from the FAQ groups on the same page (groups with the class faq__group and an HTML anchor).",
+    "editorScript": "file:./editor.js",
+    "usesContext": [ "postId" ],
+    "supports": {
+        "html": false
+    },
+    "textdomain": "tanjandi",
+    "render": "file:./render.php"
+}

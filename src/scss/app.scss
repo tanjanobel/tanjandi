@@ -12,7 +12,6 @@
 @use "components/accordion";
 @use "components/account-address";
 @use "components/account-form";
-@use "components/account-nav";
 @use "components/account-order";
 @use "components/account-orders";
 @use "components/account-page";
@@ -38,6 +37,7 @@
 @use "components/data-table";
 @use "components/counter";
 @use "components/employee-card";
+@use "components/faq";
 @use "components/group";
 @use "components/heading";
 @use "components/hero";
@@ -64,6 +64,7 @@
 @use "components/project-slider";
 @use "components/section";
 @use "components/service";
+@use "components/side-nav";
 @use "components/service-card";
 @use "components/spacer";
 @use "components/step";

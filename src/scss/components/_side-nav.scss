@@ -1,6 +1,7 @@
 @use "../global" as *;
 
-.account-nav {
+// Vertical navigation next to the content: account pages, FAQ categories.
+.side-nav {
   margin: 0;
 
   &__list {
