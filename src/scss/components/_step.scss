@@ -86,4 +86,44 @@
       padding-bottom: 0;
     }
   }
+
+  // Steps side by side: a line on top, number, heading and text below.
+  &__wrapper--columns {
+    border-top: 0;
+    display: grid;
+    gap: 2 * $global-padding;
+    padding-top: 2 * $global-padding;
+
+    @include breakpoint(tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-top: 45px;
+    }
+
+    @include breakpoint(laptop) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  &--column {
+    border-bottom: 0;
+    border-top: 1px solid $ink;
+    display: block;
+    padding-bottom: 0;
+    padding-top: 21px;
+  }
+
+  &--column &__number {
+    padding-bottom: 14px;
+  }
+
+  &--column &__heading {
+    font-family: $heading-font-family;
+    font-size: rem-calc(22px);
+    line-height: 1.2;
+    padding-bottom: 14px;
+  }
+
+  &--column &__text {
+    line-height: 1.7;
+  }
 }

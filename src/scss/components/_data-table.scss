@@ -1,0 +1,66 @@
+@use "../global" as *;
+
+// A plain table, written with the table block of the editor. The block
+// gives cells no classes, so they are addressed as elements; two classes on
+// the root outweigh the block's own borders and paddings.
+.wp-block-table.data-table {
+  margin: 0;
+
+  table {
+    border: 0;
+    border-collapse: collapse;
+    border-top: 1px solid $ink;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  thead {
+    border: 0;
+  }
+
+  th,
+  td {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid $line;
+    font-family: $body-font-family;
+    padding: 0 $global-padding 0 0;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    color: $text-muted;
+    font-size: rem-calc(12px);
+    font-weight: 400;
+    height: 46px;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  td {
+    color: $ink;
+    font-size: rem-calc(15px);
+    height: 62px;
+    line-height: 1.4;
+  }
+
+  th:first-child {
+    width: 42%;
+  }
+
+  th:nth-child(2) {
+    width: 30%;
+  }
+
+  figcaption {
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    margin: 0;
+    padding-top: 17px;
+    text-align: left;
+  }
+}

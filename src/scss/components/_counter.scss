@@ -1,115 +1,59 @@
 @use "../global" as *;
 
+// Row of key figures: a large number with a short label, side by side on a
+// sand band.
 .counter {
-  &__wrapper {
-    gap: 0 !important;
-    margin: 0 !important;
+  margin: 0;
+  padding: 1.5 * $global-padding;
+
+  &:not(:first-child) {
+    border-top: 1px solid $line;
   }
 
-  &__column {
-    margin: 0 !important;
-    padding: 1.5 * $global-padding 1 * $global-padding !important;
-
-    &:not(:first-child) {
-      border-top: 1px solid $line;
-    }
-  }
-}
-
-// _columns.scss has a generic rule for every .wp-block-columns that forces
-// its own flex-basis:50%, but only inside a "tablet only" range (compiled
-// as min-width:768px and max-width:991px) - it stops applying past 991px,
-// leaving 992-1199px uncontrolled and falling back toward the block's own
-// inline flex-basis:25%, which broke the divider logic below in that gap.
-// Qualifying the selector this fully (matching/exceeding that other rule's
-// specificity) makes these rules win outright across the whole
-// tablet-to-desktop span instead of only in the narrower window where the
-// two happened to agree.
-.wp-block-columns.counter__wrapper > .wp-block-column.counter__column {
-  // Tablet: wraps 2-per-row - vertical divider between the two columns of
-  // each row, horizontal divider between the two rows. Each item gets
-  // padding only on the side facing its row neighbor, not the side facing
-  // the row's outer edge.
   @include breakpoint(tablet) {
-    flex-basis: 50% !important;
-    padding: 2 * $global-padding !important;
+    padding: 43px 2 * $global-padding 39px;
 
     &:not(:first-child) {
-      border-top: none;
-    }
-
-    &:nth-child(even) {
       border-left: 1px solid $line;
-    }
-
-    &:nth-child(n + 3) {
-      border-top: 1px solid $line;
+      border-top: 0;
     }
   }
 
-  // Desktop: back to a single row of 4 - vertical divider between every
-  // item, no horizontal dividers needed. Every item now has a neighbor on
-  // both sides except the true first/last, which sit at the row's edge.
   @include breakpoint(laptop) {
-    flex-basis: 25% !important;
-
-    &:nth-child(n + 3) {
-      border-top: none;
-    }
-
-    &:not(:first-child) {
-      border-left: 1px solid $line;
-    }
-
-    &:nth-child(n) {
-      padding-left: 2 * $global-padding !important;
-      padding-right: 2 * $global-padding !important;
-    }
+    padding-left: 40px;
+    padding-right: 40px;
   }
-}
 
-// The counter row is a plain core columns block - :has() keys off the
-// actual counter block inside rather than relying on a class being present
-// on the row itself.
-.wp-block-columns:has(.wp-block-column > .counter) {
-  border-bottom: 1px solid $line;
-  border-top: 1px solid $line;
-}
+  &__wrapper {
+    background-color: $sand;
+    display: grid;
+    margin: 0;
 
-.uc_counter_box {
-  align-items: flex-start !important;
-  padding: 0 !important;
-
-  .ue_divider {
-    background-color: rgba($washi, 0.60) !important;
-
-    &_holder {
-      margin: 0 !important;
+    @include breakpoint(tablet) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
-  .counter {
-    &_number {
-      font-family: $heading-font-family;
-      font-size: rem-calc(38px) !important;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      margin-top: 0 !important;
+  &__number {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(36px);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    margin: 0;
+    padding-bottom: 6px;
 
-      @include breakpoint(tablet) {
-        font-size: rem-calc(48px) !important;
-      }
-
-      @include breakpoint(desktop) {
-        font-size: rem-calc(60px) !important;
-      }
-    }
-
-    &_label {
-      font-size: rem-calc(16px) !important;
-      font-weight: 400 !important;
-      margin-top: 0 !important;
+    @include breakpoint(tablet) {
+      font-size: rem-calc(44px);
     }
   }
-}
 
+  &__label {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 1.4;
+    margin: 0;
+  }
+}

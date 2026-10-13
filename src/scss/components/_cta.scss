@@ -1,111 +1,86 @@
 @use "../global" as *;
 
+// Dark box with a short message and one button.
 .cta {
-  padding: 0;
+  align-items: center;
+  background-color: $ink;
+  display: grid;
+  gap: 2 * $global-padding;
+  margin: 0;
+  padding: 2.5 * $global-padding 1.5 * $global-padding;
 
-  &__container {
-    // Overrides the inline background-image set via the block editor's
-    // cover-image background.
-    background: linear-gradient(120deg, $ink, $berry-dark) !important;
-    border-radius: $border-radius;
-    overflow: hidden;
-    padding-bottom: 2 * $global-padding;
-    padding-top: 2 * $global-padding;
-    position: relative;
+  @include breakpoint(tablet) {
+    padding: 4 * $global-padding;
+  }
+
+  @include breakpoint(laptop) {
+    column-gap: 4 * $global-padding;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 62px 64px 60px;
+  }
+
+  &__body {
+    margin: 0;
+  }
+
+  &__intro {
+    color: $berry-light;
+    font-family: $body-font-family;
+    font-size: rem-calc(11px);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    margin: 0;
+    padding-bottom: 20px;
+    text-transform: uppercase;
 
     @include breakpoint(tablet) {
-      padding-bottom: 4 * $global-padding;
-      padding-top: 4 * $global-padding;
-    }
-
-    @include breakpoint(laptop) {
-      padding-bottom: 6 * $global-padding;
-      padding-top: 6 * $global-padding;
-    }
-
-    @include breakpoint(desktop) {
-      margin: 0 auto !important;
-    }
-
-    // Decorative glow circle, top right.
-    &::before {
-      animation: floatY 7s ease-in-out infinite;
-      background: radial-gradient(circle, rgba($berry-light, 0.55), transparent 70%);
-      border-radius: 50%;
-      content: "";
-      height: 340px;
-      pointer-events: none;
-      position: absolute;
-      right: -60px;
-      top: -80px;
-      width: 340px;
+      font-size: rem-calc(13px);
     }
   }
 
-  &__wrapper {
-    max-width: 750px;
-    padding: 0 $global-padding;
-  }
-
-  // Same type scale/structure as .section__heading, colors adapted for
-  // this component's dark background instead of a light one.
   &__heading {
     color: $washi;
     font-family: $heading-font-family;
-    font-size: rem-calc(32px);
-    font-weight: 500;
+    font-size: rem-calc(28px);
+    font-weight: 400;
     letter-spacing: -0.01em;
     line-height: 1.2;
     margin: 0;
-    padding-bottom: 0;
-
-    &:has(+ .cta__lead) {
-      padding-bottom: $global-padding;
-    }
+    padding-bottom: 14px;
 
     @include breakpoint(tablet) {
-      font-size: rem-calc(40px);
-      letter-spacing: -0.015em;
-      line-height: 1.02;
+      font-size: rem-calc(34px);
     }
 
     @include breakpoint(desktop) {
-      font-size: rem-calc(72px);
-      letter-spacing: -0.018em;
-      padding-bottom: 0;
-
-      &:has(+ .cta__lead) {
-        padding-bottom: 1.5 * $global-padding;
-      }
+      font-size: rem-calc(37px);
     }
   }
 
-  // Same as .section__lead, but no color here - the block's text color
-  // (Soft White) is set directly in the editor instead.
   &__lead {
+    color: $washi;
     font-family: $body-font-family;
-    font-size: rem-calc(17px);
-    font-weight: 400;
-    line-height: 1.6;
-    margin-top: 0 !important;
-
-    @include breakpoint(tablet) {
-      font-size: rem-calc(18px);
-    }
-
-    @include breakpoint(desktop) {
-      font-size: rem-calc(20px);
-    }
-  }
-}
-
-@keyframes floatY {
-  0%,
-  100% {
-    transform: translateY(0);
+    font-size: rem-calc(15px);
+    line-height: 1.8;
+    margin: 0;
+    opacity: 0.8;
   }
 
-  50% {
-    transform: translateY(-20px);
+  &__action {
+    margin: 0;
+  }
+
+  // Light button on the dark box. !important: the default button's selector
+  // stacks five :not() clauses, which no reasonable selector outweighs.
+  .cta__action .wp-block-button__link {
+    background-color: $washi !important;
+    color: $ink !important;
+    padding: 19px 32px !important;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $sand-dark !important;
+    }
   }
 }

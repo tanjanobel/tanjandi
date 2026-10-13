@@ -59,6 +59,19 @@
       }
     }
 
+    // Continues the section above: no space on top.
+    &--continued {
+      padding-top: 0;
+
+      @include breakpoint(tablet) {
+        padding-top: 0;
+      }
+
+      @include breakpoint(laptop) {
+        padding-top: 0;
+      }
+    }
+
     // Only section of a page, e.g. the shop.
     &--page {
       @include breakpoint(laptop) {
@@ -80,6 +93,11 @@
         padding-top: 3 * $global-padding;
       }
     }
+  }
+
+  // Narrower than the default container. Two classes to outweigh .container.
+  & &__container--narrow {
+    max-width: 1100px;
   }
 
   &__header {
@@ -155,11 +173,28 @@
     }
   }
 
+  // Text on the left, a wider element such as a table on the right.
+  &__columns--aside {
+    @include breakpoint(laptop) {
+      align-items: start;
+      column-gap: 4 * $global-padding;
+      grid-template-columns: minmax(0, 1fr) 600px;
+    }
+
+    @include breakpoint(desktop) {
+      column-gap: 4 * $global-padding;
+    }
+  }
+
   &__image {
     aspect-ratio: 1 / 1;
     margin: 0;
     overflow: hidden;
     width: 100%;
+
+    &--landscape {
+      aspect-ratio: 4 / 3;
+    }
   }
 
   // The image block offers no way to put a class on the img itself.
@@ -369,6 +404,33 @@
     margin: 0;
     max-width: 500px;
 
+    &--wide {
+      max-width: 640px;
+    }
+
+    // Lead below a page title.
+    &--large {
+      max-width: 540px;
+
+      @include breakpoint(tablet) {
+        font-size: rem-calc(17px);
+        line-height: 1.75;
+      }
+
+      // Closes the intro section: a little more room before what follows.
+      @include breakpoint(laptop) {
+        &:last-child {
+          padding-bottom: 13px;
+        }
+      }
+    }
+
+    // Lead next to or below a smaller heading.
+    &--small {
+      font-size: rem-calc(15px);
+      line-height: 1.85;
+    }
+
     &:not(:last-child) {
       padding-bottom: 2 * $global-padding;
     }
@@ -378,6 +440,16 @@
         padding-bottom: 2.5 * $global-padding;
       }
     }
+  }
+
+  // Small print below a section's content.
+  &__note {
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    margin: 0;
+    padding-top: 1.5 * $global-padding;
   }
 
   &--no-padding {
