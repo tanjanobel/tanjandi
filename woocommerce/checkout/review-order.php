@@ -17,7 +17,10 @@ $shipping = tanjandi_cart_shipping_row();
 ?>
 <div class="woocommerce-checkout-review-order-table cart-summary cart-summary--order">
 
-    <h2 class="cart-summary__title"><?php esc_html_e( 'Deine Bestellung', 'tanjandi' ); ?></h2>
+    <div class="cart-summary__header">
+        <h2 class="cart-summary__title"><?php esc_html_e( 'Deine Bestellung', 'tanjandi' ); ?></h2>
+        <a class="cart-summary__edit" href="<?php echo esc_url( wc_get_cart_url() ); ?>" aria-label="<?php esc_attr_e( 'Bestellung im Warenkorb ändern', 'tanjandi' ); ?>"><?php esc_html_e( 'Ändern', 'tanjandi' ); ?></a>
+    </div>
 
     <ul class="cart-summary__items">
         <?php do_action( 'woocommerce_review_order_before_cart_contents' ); ?>

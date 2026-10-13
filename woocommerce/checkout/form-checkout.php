@@ -56,7 +56,16 @@ $steps          = array(
             <div class="checkout-page__details" id="customer_details">
                 <?php do_action( 'woocommerce_before_checkout_billing_form', $checkout ); ?>
 
-                <h2 class="checkout-page__heading"><?php esc_html_e( 'Kontakt', 'tanjandi' ); ?></h2>
+                <div class="checkout-page__heading-row">
+                    <h2 class="checkout-page__heading"><?php esc_html_e( 'Kontakt', 'tanjandi' ); ?></h2>
+
+                    <?php if ( ! is_user_logged_in() ) : ?>
+                        <p class="checkout-page__login">
+                            <?php esc_html_e( 'Schon ein Konto?', 'tanjandi' ); ?>
+                            <a class="checkout-page__login-link" href="<?php echo esc_url( add_query_arg( 'redirect_to', rawurlencode( wc_get_checkout_url() ), wc_get_page_permalink( 'myaccount' ) ) ); ?>"><?php esc_html_e( 'Anmelden', 'tanjandi' ); ?></a>
+                        </p>
+                    <?php endif; ?>
+                </div>
 
                 <div class="checkout-page__fields">
                     <?php

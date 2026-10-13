@@ -90,6 +90,41 @@
     }
   }
 
+  // Heading with a short note on the right, e.g. the link to sign in.
+  &__heading-row {
+    align-items: baseline;
+    column-gap: $global-padding;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__login {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 20px;
+    margin: 0;
+    padding-bottom: 19px;
+  }
+
+  // :root: WordPress colours links with :root a:not(.wp-element-button).
+  // No animated underline, which paragraph links get by default.
+  :root & &__login-link {
+    animation: none;
+    background-image: none;
+    border-bottom: 1px solid $ink;
+    color: $ink;
+    padding-bottom: 1px;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
+    }
+  }
+
   &__fields {
     column-gap: $global-padding;
     display: grid;

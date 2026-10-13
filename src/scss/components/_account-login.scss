@@ -1,0 +1,356 @@
+@use "../global" as *;
+
+// Sign-in page: picture with a short welcome on the left, the forms on the
+// right. Fills the whole width, unlike the other account pages.
+.account-page:has(.account-login) {
+  padding: 0;
+
+  .account-page__container {
+    max-width: none;
+    padding: 0;
+  }
+}
+
+.account-login {
+  display: grid;
+  margin: 0;
+
+  @include breakpoint(laptop) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 760px;
+  }
+
+  &__media {
+    background-color: $sand;
+    min-height: 320px;
+    overflow: hidden;
+    position: relative;
+
+    @include breakpoint(laptop) {
+      min-height: 0;
+    }
+  }
+
+  &__img {
+    display: block;
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+  }
+
+  &__caption {
+    bottom: 1.5 * $global-padding;
+    left: 1.5 * $global-padding;
+    position: absolute;
+    right: 1.5 * $global-padding;
+
+    @include breakpoint(laptop) {
+      bottom: 52px;
+      left: 54px;
+      right: 54px;
+    }
+  }
+
+  &__caption-title {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(26px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    padding-bottom: 10px;
+
+    @include breakpoint(laptop) {
+      font-size: rem-calc(30px);
+    }
+  }
+
+  &__caption-dot {
+    color: $berry-dark;
+  }
+
+  &__caption-text {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    margin: 0;
+  }
+
+  &__body {
+    margin: 0;
+    padding: 3 * $global-padding 1.5 * $global-padding 4 * $global-padding;
+
+    @include breakpoint(laptop) {
+      align-self: center;
+      padding: 110px 2 * $global-padding 114px;
+    }
+  }
+
+  &__inner {
+    margin: 0 auto;
+    max-width: 420px;
+  }
+
+  // Radio buttons that switch between the two forms; operated through the
+  // tabs, which are their labels.
+  &__switch {
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  &__title--register,
+  &__panel--register {
+    display: none;
+  }
+
+  &__switch--register:checked ~ .account-page__title &__title--login,
+  &__switch--register:checked ~ &__panel--login {
+    display: none;
+  }
+
+  &__switch--register:checked ~ .account-page__title &__title--register,
+  &__switch--register:checked ~ &__panel--register {
+    display: block;
+  }
+
+  &__tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    padding-bottom: 36px;
+    padding-top: 20px;
+  }
+
+  &__tab {
+    border-bottom: 1px solid $line;
+    color: $text-muted;
+    cursor: pointer;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    line-height: 24px;
+    padding: 12px 0;
+    text-align: center;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover {
+      color: $ink;
+    }
+  }
+
+  &__switch--login:checked ~ &__tabs &__tab--login,
+  &__switch--register:checked ~ &__tabs &__tab--register {
+    border-color: $ink;
+    color: $ink;
+  }
+
+  &__switch--login:focus-visible ~ &__tabs &__tab--login,
+  &__switch--register:focus-visible ~ &__tabs &__tab--register {
+    outline: 2px solid $ink;
+    outline-offset: -2px;
+  }
+
+  // The forms fill the column. WooCommerce draws a rounded box with a
+  // border around its login and register forms.
+  .woocommerce & &__panel {
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    max-width: none;
+    padding: 0;
+  }
+
+  &__label-row {
+    align-items: baseline;
+    column-gap: $global-padding;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  // :root: WordPress colours links with :root a:not(.wp-element-button).
+  :root & &__lost {
+    border-bottom: 1px solid $line;
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 18px;
+    text-decoration: none;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
+    }
+  }
+
+  // WooCommerce wraps the password field and adds a button that shows the
+  // password; here it reads "Zeigen" instead of showing an icon. The
+  // selectors start at .woocommerce and the form to outweigh WooCommerce's
+  // own position and icon.
+  .woocommerce & form .password-input {
+    display: block;
+    position: relative;
+  }
+
+  .woocommerce & form .password-input .checkout-field__input {
+    padding-right: 96px;
+  }
+
+  .woocommerce & form .show-password-input {
+    background-color: transparent;
+    border: 0;
+    color: $text-muted;
+    cursor: pointer;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    height: 100%;
+    letter-spacing: $nav-letter-spacing;
+    line-height: 1;
+    margin: 0;
+    padding: 0 18px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: none;
+    transition: color $transition-speed ease-in-out;
+    width: auto;
+
+    &::before {
+      content: none;
+    }
+
+    &::after {
+      background: none;
+      content: "Zeigen";
+      height: auto;
+      position: static;
+      width: auto;
+    }
+
+    &.display-password::after {
+      content: "Verbergen";
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $ink;
+    }
+  }
+
+  &__remember {
+    align-items: center;
+    column-gap: 10px;
+    cursor: pointer;
+    display: flex;
+    margin: 0;
+    padding-bottom: 25px;
+    padding-top: 6px;
+  }
+
+  &__checkbox {
+    appearance: none;
+    background-color: $input-background;
+    border: 1px solid $ink;
+    border-radius: 2px;
+    box-sizing: border-box;
+    cursor: pointer;
+    flex: 0 0 16px;
+    height: 16px;
+    margin: 0;
+    position: relative;
+    width: 16px;
+
+    &:checked {
+      background-color: $ink;
+
+      &::after {
+        border-bottom: 1px solid $washi;
+        border-right: 1px solid $washi;
+        content: "";
+        height: 8px;
+        left: 5px;
+        position: absolute;
+        top: 1px;
+        transform: rotate(45deg);
+        width: 4px;
+      }
+    }
+
+    &:focus-visible {
+      outline: 1px solid $ink;
+      outline-offset: 2px;
+    }
+  }
+
+  &__remember-text {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 20px;
+  }
+
+  &__hint,
+  .woocommerce-privacy-policy-text p {
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 1.6;
+    margin: 0;
+    padding-bottom: 20px;
+  }
+
+  &__submit {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  // The button is styled by the shared default button; here only the size.
+  // !important: see .checkout-page__next.
+  .account-login__submit .wp-block-button__link {
+    cursor: pointer;
+    height: 56px;
+    padding: 0 2 * $global-padding !important;
+    width: 100%;
+  }
+
+  &__guest {
+    align-items: flex-start;
+    border-top: 1px solid $line;
+    display: flex;
+    flex-direction: column;
+    margin: 36px 0 0;
+    padding-top: 24px;
+  }
+
+  &__guest-text {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    line-height: 24px;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+
+  :root & &__guest-link {
+    border-bottom: 1px solid $ink;
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    line-height: 20px;
+    padding-bottom: 2px;
+    text-decoration: none;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
+    }
+  }
+}

@@ -128,4 +128,66 @@
   :root & &__link--strong {
     border-color: $ink;
   }
+
+  // Pages around signing in (lost password, new password): one narrow,
+  // centred column.
+  &__auth {
+    margin: 0 auto;
+    max-width: 432px;
+  }
+
+  :root & &__back {
+    color: $text-muted;
+    display: block;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    line-height: 20px;
+    padding-bottom: 34px;
+    text-decoration: none;
+    transition: color $transition-speed ease-in-out;
+    width: fit-content;
+
+    &::before {
+      content: "←";
+      padding-right: 6px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $berry-dark;
+    }
+  }
+
+  // Title on two lines in the narrow column.
+  &__title--small {
+    padding-bottom: $global-padding;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(48px);
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(54px);
+      line-height: 1.055;
+      padding-bottom: 14px;
+    }
+  }
+
+  &__lead {
+    color: $text-secondary;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    line-height: 1.8;
+    margin: 0;
+    padding-bottom: 2 * $global-padding;
+
+    @include breakpoint(tablet) {
+      padding-bottom: 32px;
+    }
+  }
+
+  // A little taller than the buttons of the account forms.
+  &__auth .account-form__submit .wp-block-button__link {
+    padding: 21px 43px !important;
+  }
 }

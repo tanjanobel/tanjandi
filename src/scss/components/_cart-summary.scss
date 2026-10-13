@@ -21,6 +21,32 @@
     padding-top: 4px;
   }
 
+  // Title with a link on the right, e.g. back to the cart.
+  &__header {
+    align-items: baseline;
+    column-gap: $global-padding;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  // :root: WordPress colours links with :root a:not(.wp-element-button).
+  :root & &__edit {
+    border-bottom: 1px solid $ink;
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 1;
+    padding: 2px 0 4px;
+    text-decoration: none;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
+    }
+  }
+
   &__goal {
     padding-bottom: 28px;
   }
