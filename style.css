@@ -6758,6 +6758,39 @@ body:has(.is-menu-open) .hero {
     padding-bottom: 31px;
   }
 }
+.section__symbol--circle {
+  align-items: center;
+  aspect-ratio: 1/1;
+  border: 1px solid #d6cec2;
+  border-radius: 50%;
+  display: flex;
+  font-size: 5rem;
+  justify-content: center;
+  line-height: 1;
+  margin: 0 auto;
+  max-width: 260px;
+  padding-bottom: 0;
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .section__symbol--circle {
+    font-size: 6.875rem;
+    max-width: 360px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .section__symbol--circle {
+    font-size: 8.125rem;
+    max-width: 419px;
+    padding-bottom: 0;
+  }
+}
+.section__buttons {
+  align-items: center;
+  -moz-column-gap: 28px;
+       column-gap: 28px;
+  row-gap: 1rem;
+}
 .section__centered .section__heading {
   padding-bottom: 1.5rem;
 }

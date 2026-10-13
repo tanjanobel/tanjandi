@@ -242,6 +242,40 @@
     }
   }
 
+  // Large sign in a thin circle, e.g. on the 404 page.
+  &__symbol--circle {
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    border: 1px solid $line;
+    border-radius: 50%;
+    display: flex;
+    font-size: rem-calc(80px);
+    justify-content: center;
+    line-height: 1;
+    margin: 0 auto;
+    max-width: 260px;
+    padding-bottom: 0;
+    width: 100%;
+
+    @include breakpoint(laptop) {
+      font-size: rem-calc(110px);
+      max-width: 360px;
+    }
+
+    @include breakpoint(desktop) {
+      font-size: rem-calc(130px);
+      max-width: 419px;
+      padding-bottom: 0;
+    }
+  }
+
+  // Buttons side by side below a text.
+  &__buttons {
+    align-items: center;
+    column-gap: 28px;
+    row-gap: $global-padding;
+  }
+
   &__centered &__heading {
     padding-bottom: 1.5 * $global-padding;
 
