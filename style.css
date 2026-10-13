@@ -6041,13 +6041,13 @@ body:has(.is-menu-open) .hero {
   transition: border-color 0.3s ease-in-out;
   width: 40px;
 }
-.product-detail__swatches .wc-block-product-filter-chips__item[value=desert-tan] {
-  background-color: #d9c7a6;
+.product-detail__swatches .wc-block-product-filter-chips__item[value=suna] {
+  background-color: #e8dbb7;
 }
-.product-detail__swatches .wc-block-product-filter-chips__item[value=stein] {
-  background-color: #a8a39a;
+.product-detail__swatches .wc-block-product-filter-chips__item[value=kinari] {
+  background-color: #cbc6b8;
 }
-.product-detail__swatches .wc-block-product-filter-chips__item[value=kohle] {
+.product-detail__swatches .wc-block-product-filter-chips__item[value=yoru] {
   background-color: #3a3734;
 }
 .product-detail__swatches .wc-block-product-filter-chips__item:hover, .product-detail__swatches .wc-block-product-filter-chips__item:focus-visible, .product-detail__swatches .wc-block-product-filter-chips__item[aria-checked=true] {
@@ -6351,13 +6351,13 @@ body:has(.is-menu-open) .hero {
   margin: 0;
   width: 14px;
 }
-.product-card__swatch--desert-tan {
-  background-color: #d9c7a6;
+.product-card__swatch--suna {
+  background-color: #e8dbb7;
 }
-.product-card__swatch--stein {
-  background-color: #a8a39a;
+.product-card__swatch--kinari {
+  background-color: #cbc6b8;
 }
-.product-card__swatch--kohle {
+.product-card__swatch--yoru {
   background-color: #3a3734;
 }
 :root .product-card .product-card__add {

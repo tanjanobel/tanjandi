@@ -127,7 +127,7 @@ function tanjandi_price_dash( $amount ) {
 }
 
 /**
- * Line below the product name in the cart, e.g. "Vase · Desert Tan":
+ * Line below the product name in the cart, e.g. "Vase · Suna":
  * first part of the product subtitle plus the chosen variation values.
  */
 function tanjandi_cart_item_meta( $cart_item ) {
@@ -547,7 +547,7 @@ function tanjandi_account_orders_actions( $actions ) {
 add_filter( 'woocommerce_my_account_my_orders_actions', 'tanjandi_account_orders_actions' );
 
 /**
- * Line below the product name of an order item, e.g. "Vase · Desert Tan".
+ * Line below the product name of an order item, e.g. "Vase · Suna".
  * Counterpart of tanjandi_cart_item_meta() for placed orders.
  */
 function tanjandi_order_item_meta( $item ) {

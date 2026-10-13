@@ -233,16 +233,16 @@
     transition: border-color $transition-speed ease-in-out;
     width: 40px;
 
-    &[value="desert-tan"] {
-      background-color: $product-desert-tan;
+    &[value="suna"] {
+      background-color: $product-suna;
     }
 
-    &[value="stein"] {
-      background-color: $product-stone;
+    &[value="kinari"] {
+      background-color: $product-kinari;
     }
 
-    &[value="kohle"] {
-      background-color: $product-charcoal;
+    &[value="yoru"] {
+      background-color: $product-yoru;
     }
 
     &:hover,
