@@ -2821,6 +2821,43 @@ body:has(.is-menu-open) .hero {
   margin: 0;
 }
 
+.check-list {
+  border-top: 1px solid #2b2926;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.check-list li {
+  border-bottom: 1px solid #d6cec2;
+  color: #2b2926;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0;
+  padding: 16px 0 16px 36px;
+  position: relative;
+}
+.check-list li::before {
+  border: 1px solid #2b2926;
+  border-radius: 50%;
+  box-sizing: border-box;
+  content: "";
+  height: 16px;
+  left: 0;
+  position: absolute;
+  top: 20px;
+  width: 16px;
+}
+.check-list--avoid li::before {
+  background-image: linear-gradient(45deg, transparent calc(50% - 0.6px), #9a4a5e calc(50% - 0.6px), #9a4a5e calc(50% + 0.6px), transparent calc(50% + 0.6px)), linear-gradient(-45deg, transparent calc(50% - 0.6px), #9a4a5e calc(50% - 0.6px), #9a4a5e calc(50% + 0.6px), transparent calc(50% + 0.6px));
+  border: 0;
+  border-radius: 0;
+  height: 11px;
+  left: 2px;
+  top: 23px;
+  width: 11px;
+}
+
 .woocommerce :is(.checkout-page__form, .account-page__form) .checkout-field {
   float: none;
   grid-column: span 6;
@@ -6900,6 +6937,11 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
   }
 }
 @media screen and (min-width: 992px) {
+  .section__columns--top {
+    align-items: start;
+  }
+}
+@media screen and (min-width: 992px) {
   .section__columns--aside {
     align-items: start;
     -moz-column-gap: 4rem;
@@ -6921,6 +6963,9 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 }
 .section__image--landscape {
   aspect-ratio: 4/3;
+}
+.section__image--portrait {
+  aspect-ratio: 4/5;
 }
 .section__image img {
   display: block;
@@ -7130,6 +7175,9 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 .section__lead--small {
   font-size: 0.9375rem;
   line-height: 1.85;
+}
+.section__lead--small.section__lead--small:not(:last-child) {
+  padding-bottom: 1rem;
 }
 .section__lead:not(:last-child) {
   padding-bottom: 2rem;
@@ -7581,7 +7629,9 @@ div.wpcf7 .wpcf7-response-output[data-status=spam],
 }
 @media screen and (min-width: 992px) {
   .step__wrapper--columns {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    grid-template-columns: none;
   }
 }
 .step--column {

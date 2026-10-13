@@ -173,6 +173,13 @@
     }
   }
 
+  // Columns of different heights start at the same line.
+  &__columns--top {
+    @include breakpoint(laptop) {
+      align-items: start;
+    }
+  }
+
   // Text on the left, a wider element such as a table on the right.
   &__columns--aside {
     @include breakpoint(laptop) {
@@ -194,6 +201,10 @@
 
     &--landscape {
       aspect-ratio: 4 / 3;
+    }
+
+    &--portrait {
+      aspect-ratio: 4 / 5;
     }
   }
 
@@ -429,6 +440,12 @@
     &--small {
       font-size: rem-calc(15px);
       line-height: 1.85;
+
+      // Several paragraphs in a row. The class is doubled to outweigh the
+      // space a lead normally leaves below.
+      &#{&}:not(:last-child) {
+        padding-bottom: $global-padding;
+      }
     }
 
     &:not(:last-child) {

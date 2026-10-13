@@ -99,8 +99,11 @@
       padding-top: 45px;
     }
 
+    // One column per step, however many there are.
     @include breakpoint(laptop) {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+      grid-template-columns: none;
     }
   }
 

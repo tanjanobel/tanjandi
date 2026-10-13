@@ -1,0 +1,47 @@
+@use "../global" as *;
+
+// List of short points with a mark in front: a circle for "good", a cross
+// for "avoid". Written with the list block of the editor, whose items come
+// without classes of their own.
+.check-list {
+  border-top: 1px solid $ink;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-bottom: 1px solid $line;
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    line-height: 1.6;
+    margin: 0;
+    padding: 16px 0 16px 36px;
+    position: relative;
+  }
+
+  li::before {
+    border: 1px solid $ink;
+    border-radius: 50%;
+    box-sizing: border-box;
+    content: "";
+    height: 16px;
+    left: 0;
+    position: absolute;
+    top: 20px;
+    width: 16px;
+  }
+
+  // The cross is drawn with two diagonal lines.
+  &--avoid li::before {
+    background-image:
+      linear-gradient(45deg, transparent calc(50% - 0.6px), $berry-dark calc(50% - 0.6px), $berry-dark calc(50% + 0.6px), transparent calc(50% + 0.6px)),
+      linear-gradient(-45deg, transparent calc(50% - 0.6px), $berry-dark calc(50% - 0.6px), $berry-dark calc(50% + 0.6px), transparent calc(50% + 0.6px));
+    border: 0;
+    border-radius: 0;
+    height: 11px;
+    left: 2px;
+    top: 23px;
+    width: 11px;
+  }
+}
