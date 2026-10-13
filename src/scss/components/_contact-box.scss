@@ -1,202 +1,121 @@
 @use "../global" as *;
 
+// Contact details as a list of short blocks, separated by lines.
 .contact-box {
-  background-color: $ink;
-  border-radius: $border-radius;
-  color: $washi;
-  padding: 1.5 * $global-padding;
+  border-top: 1px solid $line;
+  margin: 0;
 
-  @include breakpoint(tablet) {
-    padding: 3 * $global-padding;
-  }
-
-  // _base.scss sets a global link color via ":root a:not(.wp-element-button)"
-  // - :root + :not() outweighs a plain ".contact-box a", so matching that
-  // same depth is needed here to actually win instead of silently losing to
-  // dark-on-dark text. Excludes .icon-button__link too - the social icon
-  // links aren't text, so the underline treatment doesn't apply to them.
-  a:not(.wp-element-button):not(.icon-button__link) {
-    color: inherit;
-
-    // Same wipe-out/wipe-in underline as .breadcrumbs (also on a dark
-    // background) instead of a plain static underline.
-    @include link-underline-animation(rgba($washi, 0.80));
-  }
-
-  &__heading {
-    color: $berry-light;
-    font-size: rem-calc(14px);
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    margin: 0 0 1.5 * $global-padding;
-    padding-bottom: $global-padding;
-    text-transform: uppercase;
-  }
-
-  &__text {
-    margin: 0 !important;
-  }
-
-  // One row per contact channel (E-Mail / Telefon / Adresse) - icon left,
-  // label + value stacked right. Wrap each row in a group named "Contact Box
-  // Column" (class "contact-box__column"), containing an "Icon" group
-  // (class "contact-box__icon") wrapping an "Icon Wrapper" group (class
-  // "contact-box__icon__wrapper") with a core "Icon" block inside, then a
-  // group with a "contact-box__label" paragraph and the value/link
-  // paragraph.
-  &__column {
-    align-items: center;
-    display: flex;
-    gap: $global-padding;
-
-    &:not(:last-child) {
-      margin-bottom: 1.5 * $global-padding;
-    }
-  }
-
-  // The circle badge itself.
-  &__icon {
-    align-items: center;
-    background-color: rgba($berry-light, 0.15) !important;
-    border-radius: 50%;
-    color: $berry-light !important;
-    display: flex !important;
-    flex-shrink: 0;
-    height: 48px !important;
-    justify-content: center;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 48px !important;
-  }
-
-  // Centers the core Icon block's svg inside the circle badge.
-  &__icon__wrapper {
-    align-items: center;
-    display: flex !important;
-    justify-content: center;
-    margin: 0 !important;
-
-    svg {
-      fill: currentColor;
-      height: 20px;
-      width: 20px;
-    }
+  &__item {
+    border-bottom: 1px solid $line;
+    margin: 0;
+    padding-bottom: 18px;
+    padding-top: 24px;
   }
 
   &__label {
-    color: rgba($washi, 0.60);
-    font-size: rem-calc(14px);
-    margin: 0 0 0.25 * $global-padding;
-
-    // The value paragraph right after the label is a plain wp:paragraph, no
-    // "contact-box__value" class needed - it just inherits the theme's
-    // default block-gap top margin (24px) otherwise, reading as a much
-    // bigger gap than the label-to-value spacing in the target design.
-    & + p {
-      margin-top: 0 !important;
-    }
-  }
-
-  &__value {
-    color: $washi;
-    font-size: rem-calc(16px);
-    font-weight: 600;
-    line-height: 1.4;
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(12px);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    line-height: 1;
     margin: 0;
+    padding-bottom: 9px;
+    text-transform: uppercase;
+  }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+  // One prominent value, e.g. the e-mail address.
+  &__value {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(22px);
+    font-weight: 400;
+    line-height: 1.3;
+    margin: 0;
+    padding-bottom: 3px;
+    padding-top: 2px;
+  }
+
+  // The paragraph block renders links without a class of their own; no
+  // animated underline, which paragraph links get by default.
+  :root & &__value a {
+    animation: none;
+    background-image: none;
+    color: $ink;
+    transition: color $transition-speed ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      color: $berry-dark;
     }
   }
 
-  &__divider {
-    background-color: rgba($washi, 0.15);
-    border: none;
-    height: 1px;
-    margin: 1.5 * $global-padding 0;
-
-    @include breakpoint(tablet) {
-      margin: 2 * $global-padding 0;
-    }
+  &__text {
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    line-height: 1.7;
+    margin: 0;
   }
 
-  // Row of circular social links at the bottom - uses the "tanjandi/icon-link"
-  // block (same as the footer), but with its own classes rather than
-  // reusing the footer's "footer__social-icon" - that one already fixes
-  // itself to a 30px circle via flex-basis, which fought a same-named
-  // override here and squashed it into an oval instead of resizing it.
-  &__social-wrapper {
-    border-top: 1px solid rgba($washi, 0.15);
-    display: flex !important;
-    gap: $global-padding;
-    margin-top: 1.5 * $global-padding;
-    padding-top: 1.5 * $global-padding;
+  &__note {
+    color: $text-muted;
+    font-family: $body-font-family;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    margin: 0;
+    padding-top: 5px;
   }
 
-  // Circle sits on the icon-link block's own outer div (same pattern as
-  // .footer__social-icon), not the inner anchor - keeps a single source of
-  // truth for the circle's size instead of nesting two circles.
-  &__social-icon {
-    align-items: center;
-    border: 1px solid rgba($washi, 0.25);
-    border-radius: 50%;
+  // Links side by side, e.g. social media.
+  &__links {
+    color: $ink;
+    column-gap: 1.5 * $global-padding;
     display: flex;
-    flex: 0 0 36px;
-    height: 36px;
-    justify-content: center;
-    margin: 0 !important;
-    transition: background-color $transition-speed ease, border-color $transition-speed ease;
-    width: 36px;
+    flex-wrap: wrap;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    line-height: 1.7;
+    margin: 0;
+    row-gap: 8px;
+  }
 
-    // Same fill-solid-on-hover treatment as .employee-card__social-link -
-    // both sit on a dark background, so hover fills white with the icon
-    // switching to $ink, instead of the footer's fill-$ink version
-    // (which relies on a light background to read as a fill in the first
-    // place).
-    &:hover {
-      background-color: $washi;
-      border-color: $washi;
+  // The further links sit below the list, outside of it.
+  :root & &__links a,
+  :root &__more a {
+    animation: none;
+    background-image: none;
+    border-bottom: 1px solid $line;
+    padding-bottom: 2px;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
 
-      .icon-button__icon.primary {
-        fill: $ink;
-        color: $ink;
-      }
-    }
-
-    .icon-button__link {
-      align-items: center;
-      display: flex;
-      height: 100%;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .icon-button__icon.primary {
-      fill: $washi;
-      color: $washi;
-      transition: fill $transition-speed ease, color $transition-speed ease;
+    &:hover,
+    &:focus-visible {
+      border-color: $berry-dark;
+      color: $berry-dark;
     }
   }
 
-  // Google Maps embed below the contact info - the iframe is a plain
-  // wp:html block, sized off this wrapper's own aspect-ratio rather than
-  // the iframe's own width/height attributes.
-  &__map {
-    aspect-ratio: 4 / 3;
-    border: 1px solid $line;
-    border-radius: $border-radius;
-    margin-top: 1.5 * $global-padding;
-    overflow: hidden;
+  // Further links below the list, one per line.
+  &__hint {
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    line-height: 1.6;
+    margin: 0;
+    padding-bottom: 10px;
+    padding-top: 41px;
+  }
 
-    @include breakpoint(tablet) {
-      margin-top: 2 * $global-padding;
-    }
+  &__more {
+    font-family: $body-font-family;
+    font-size: rem-calc(15px);
+    line-height: 1.6;
+    margin: 0;
+    padding-bottom: 11px;
+  }
 
-    iframe {
-      display: block;
-      height: 100%;
-      width: 100%;
-    }
+  :root &__more a {
+    color: $text-secondary;
   }
 }
