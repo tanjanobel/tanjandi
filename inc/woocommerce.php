@@ -616,11 +616,7 @@ function tanjandi_coming_soon_template_parts( $parsed_block ) {
         return $parsed_block;
     }
 
-    if ( 'yes' !== get_option( 'woocommerce_coming_soon' ) || current_user_can( 'manage_woocommerce' ) ) {
-        return $parsed_block;
-    }
-
-    if ( 'yes' === get_option( 'woocommerce_store_pages_only' ) ) {
+    if ( ! tanjandi_is_coming_soon_visitor() ) {
         return $parsed_block;
     }
 
@@ -629,3 +625,46 @@ function tanjandi_coming_soon_template_parts( $parsed_block ) {
     return $parsed_block;
 }
 add_filter( 'render_block_data', 'tanjandi_coming_soon_template_parts' );
+
+/**
+ * Whether the whole site is in coming soon mode for the current visitor.
+ * Shop managers see the real site.
+ */
+function tanjandi_is_coming_soon_visitor() {
+    return 'yes' === get_option( 'woocommerce_coming_soon' )
+        && 'yes' !== get_option( 'woocommerce_store_pages_only' )
+        && ! current_user_can( 'manage_woocommerce' );
+}
+
+/**
+ * Description of the coming soon page for search engines and link
+ * previews. Without it Yoast would use the description or the text of the
+ * page that is hidden behind the coming soon page.
+ */
+function tanjandi_coming_soon_description( $description ) {
+    if ( ! tanjandi_is_coming_soon_visitor() || tanjandi_coming_soon_exclude( false ) ) {
+        return $description;
+    }
+
+    return __( 'tanjandi – 3D-gedruckte Vasen aus der Schweiz, Schicht für Schicht in kleinen Auflagen gefertigt. Der Shop öffnet bald. Schreib uns bis dahin per E-Mail.', 'tanjandi' );
+}
+add_filter( 'wpseo_metadesc', 'tanjandi_coming_soon_description' );
+add_filter( 'wpseo_opengraph_desc', 'tanjandi_coming_soon_description' );
+add_filter( 'wpseo_twitter_description', 'tanjandi_coming_soon_description' );
+
+/**
+ * Title of the coming soon page, instead of the title of the page hidden
+ * behind it.
+ */
+function tanjandi_coming_soon_title( $title ) {
+    if ( ! tanjandi_is_coming_soon_visitor() || tanjandi_coming_soon_exclude( false ) ) {
+        return $title;
+    }
+
+    return __( 'tanjandi – Bald geöffnet', 'tanjandi' );
+}
+add_filter( 'wpseo_title', 'tanjandi_coming_soon_title' );
+// Late, so it also wins over the shop archive title.
+add_filter( 'pre_get_document_title', 'tanjandi_coming_soon_title', 99 );
+add_filter( 'wpseo_opengraph_title', 'tanjandi_coming_soon_title' );
+add_filter( 'wpseo_twitter_title', 'tanjandi_coming_soon_title' );
