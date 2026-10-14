@@ -116,3 +116,20 @@ function tanjandi_navigation_link_current( $block_content, $block ) {
     return $tags->get_updated_html();
 }
 add_filter( 'render_block_core/navigation-link', 'tanjandi_navigation_link_current', 10, 2 );
+
+/**
+ * Email Address Encoder only filters post content, excerpts and widgets.
+ * Text and buttons written directly into templates and template parts,
+ * e.g. the mail button of the coming soon page, are encoded here.
+ */
+function tanjandi_encode_template_emails( $block_content ) {
+    if ( ! function_exists( 'eae_encode_emails' ) || false === strpos( $block_content, '@' ) ) {
+        return $block_content;
+    }
+
+    return eae_encode_emails( $block_content );
+}
+foreach ( array( 'core/button', 'core/paragraph', 'core/heading', 'core/list-item', 'core/navigation-link' ) as $tanjandi_block ) {
+    add_filter( 'render_block_' . $tanjandi_block, 'tanjandi_encode_template_emails' );
+}
+unset( $tanjandi_block );

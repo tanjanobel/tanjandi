@@ -122,8 +122,17 @@ remove_action( 'woocommerce_view_order', 'woocommerce_order_details_table', 10 )
         <?php endif; ?>
 
         <?php if ( $contact ) : ?>
-            <?php /* translators: %s: order number. */ ?>
-            <a class="order-details__secondary" href="<?php echo esc_url( 'mailto:' . $contact . '?subject=' . rawurlencode( sprintf( __( 'Frage zur Bestellung %s', 'tanjandi' ), $order->get_order_number() ) ) ); ?>"><?php esc_html_e( 'Frage zur Bestellung', 'tanjandi' ); ?></a>
+            <?php
+            $contact_link = sprintf(
+                '<a class="order-details__secondary" href="%s">%s</a>',
+                /* translators: %s: order number. */
+                esc_url( 'mailto:' . $contact . '?subject=' . rawurlencode( sprintf( __( 'Frage zur Bestellung %s', 'tanjandi' ), $order->get_order_number() ) ) ),
+                esc_html__( 'Frage zur Bestellung', 'tanjandi' )
+            );
+
+            // Encoded like the addresses in the page content, if the plugin is active.
+            echo function_exists( 'eae_encode_emails' ) ? eae_encode_emails( $contact_link ) : $contact_link; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            ?>
         <?php endif; ?>
     </div>
 
