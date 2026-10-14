@@ -110,14 +110,22 @@
     margin: 0;
   }
 
-  // Last row: colours on the left, add to cart on the right.
+  // Last row: colours on the left, add to cart on the right. In the narrow
+  // two-column grid on phones the link moves below the colours.
   &__actions {
-    align-items: center;
-    column-gap: $global-padding;
+    align-items: flex-start;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     margin: 0;
     padding-top: 15px;
+    row-gap: 12px;
+
+    @include breakpoint(tablet) {
+      align-items: center;
+      column-gap: $global-padding;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   &__swatches {
@@ -156,11 +164,14 @@
     font-size: rem-calc(14px);
     letter-spacing: $nav-letter-spacing;
     line-height: 1;
-    margin-left: auto;
     padding: 5px 0 6px;
     text-decoration: none;
     transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out, opacity $transition-speed ease-in-out;
     white-space: nowrap;
+
+    @include breakpoint(tablet) {
+      margin-left: auto;
+    }
 
     &:hover,
     &:focus-visible {

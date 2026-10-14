@@ -140,8 +140,15 @@
     row-gap: 1.25 * $global-padding;
   }
 
+  // Phones: full width like the button of the last step, the back link
+  // wraps below it.
   &__next {
+    flex: 0 0 100%;
     margin: 0;
+
+    @include breakpoint(phablet) {
+      flex: 0 0 auto;
+    }
   }
 
   // The buttons are styled by the shared default button; here only the
@@ -151,6 +158,11 @@
   .checkout-page__submit .wp-block-button__link {
     cursor: pointer;
     padding: 21px 42px !important;
+  }
+
+  .checkout-page__next .wp-block-button__link {
+    box-sizing: border-box;
+    width: 100%;
   }
 
   &__back {

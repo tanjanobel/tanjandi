@@ -118,13 +118,22 @@
     }
   }
 
+  // Field in a hairline box like the quantity stepper, so it does not
+  // compete with the separator line above the total.
   &__coupon {
     align-items: center;
-    border-bottom: 1px solid $ink;
+    border: 1px solid $line;
+    box-sizing: border-box;
     column-gap: $global-padding;
     display: flex;
+    height: 48px;
     margin: 0;
-    padding-bottom: 8px;
+    padding: 0 $global-padding;
+    transition: border-color $transition-speed ease-in-out;
+
+    &:focus-within {
+      border-color: $ink;
+    }
   }
 
   &__coupon-input {
@@ -138,7 +147,7 @@
     font-size: rem-calc(14px);
     line-height: 24px;
     min-width: 0;
-    outline-offset: 4px;
+    outline: 0;
     padding: 0;
 
     &::placeholder {
@@ -173,8 +182,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    // Margin, not padding on the coupon row: its bottom border is the
-    // underline of the field.
+    // Margin, not padding on the coupon row: its border frames the field.
     margin-top: 25px;
     padding-bottom: 22px;
     padding-top: 25px;

@@ -4,7 +4,9 @@
   border-top: 1px solid $line;
   column-gap: $global-padding;
   display: grid;
-  grid-template-columns: 96px minmax(0, 1fr);
+  // The image gets narrower on very small phones, so quantity and total
+  // still fit next to each other.
+  grid-template-columns: min(96px, 25%) minmax(0, 1fr);
   margin: 0;
   padding: 1.5 * $global-padding 0;
 
@@ -28,15 +30,33 @@
     width: 100%;
   }
 
+  // Phones: name and details on top, quantity and total in one row below,
+  // remove link underneath, so nothing has to share the narrow width.
   &__body {
-    column-gap: $global-padding;
+    align-items: center;
+    column-gap: 12px;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-rows: 1fr auto;
-    row-gap: $global-padding;
+    grid-template-areas:
+      "info info"
+      "quantity total"
+      "remove remove";
+    grid-template-columns: auto minmax(0, 1fr);
+    row-gap: 12px;
+
+    @include breakpoint(tablet) {
+      align-items: stretch;
+      grid-template-areas:
+        "info total"
+        "quantity remove";
+      column-gap: $global-padding;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-rows: 1fr auto;
+      row-gap: $global-padding;
+    }
   }
 
   &__info {
+    grid-area: info;
     padding-top: 4px;
   }
 
@@ -78,10 +98,14 @@
     font-family: $body-font-family;
     font-size: rem-calc(16px);
     line-height: 24px;
+    grid-area: total;
     margin: 0;
-    padding-top: 10px;
     text-align: right;
     white-space: nowrap;
+
+    @include breakpoint(tablet) {
+      padding-top: 10px;
+    }
   }
 
   &__quantity {
@@ -90,6 +114,7 @@
     border: 1px solid $line;
     box-sizing: border-box;
     display: flex;
+    grid-area: quantity;
     height: 45px;
     justify-self: start;
     width: 114px;
@@ -161,11 +186,16 @@
     border-bottom: 1px solid $line;
     font-family: $body-font-family;
     font-size: rem-calc(12px);
-    justify-self: end;
+    grid-area: remove;
+    justify-self: start;
     letter-spacing: 0.08em;
     line-height: 1;
     padding: 4px 0 3px;
     transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+    @include breakpoint(tablet) {
+      justify-self: end;
+    }
   }
 
   // Nested to outweigh :root a:not(.wp-element-button).

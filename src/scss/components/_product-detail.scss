@@ -276,11 +276,19 @@
     width: auto;
   }
 
+  // Phones: quantity and button on top of each other, so the button text
+  // fits on one line.
   &__purchase {
-    column-gap: 12px;
     display: flex;
+    flex-direction: column;
     margin: 0;
     padding-bottom: 36px;
+    row-gap: 12px;
+
+    @include breakpoint(phablet) {
+      column-gap: 12px;
+      flex-direction: row;
+    }
   }
 
   &__quantity {
@@ -299,7 +307,11 @@
     display: flex;
     height: 58px;
     margin: 0;
-    width: 126px;
+    width: 100%;
+
+    @include breakpoint(phablet) {
+      width: 126px;
+    }
 
     &::after {
       content: none;
@@ -357,7 +369,8 @@
   }
 
   // Three classes to outweigh WooCommerce's minimum width for the input,
-  // which would push the plus button out of the box.
+  // which would push the plus button out of the box; no maximum width, so
+  // the input fills the full-width stepper on phones.
   &__quantity .wc-block-components-quantity-selector .qty {
     appearance: textfield;
     background-color: transparent;
@@ -367,6 +380,7 @@
     font-family: $body-font-family;
     font-size: rem-calc(14px);
     font-weight: 400;
+    max-width: none;
     min-width: 0;
     padding: 0;
     text-align: center;
@@ -390,6 +404,7 @@
     display: flex;
     flex: 1 1 auto;
     justify-content: center;
+    min-height: 58px;
     width: 100%;
   }
 

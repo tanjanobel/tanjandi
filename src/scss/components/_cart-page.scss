@@ -54,8 +54,11 @@
     max-width: none;
   }
 
+  // minmax(0, 1fr): without an explicit column the grid grows with the
+  // widest content and pushes the cart past the viewport on small phones.
   &__columns {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     row-gap: 3 * $global-padding;
 
     @include breakpoint(laptop) {

@@ -2624,7 +2624,7 @@ body:has(.is-menu-open) .hero {
   -moz-column-gap: 1rem;
        column-gap: 1rem;
   display: grid;
-  grid-template-columns: 96px minmax(0, 1fr);
+  grid-template-columns: min(96px, 25%) minmax(0, 1fr);
   margin: 0;
   padding: 1.5rem 0;
 }
@@ -2650,14 +2650,27 @@ body:has(.is-menu-open) .hero {
   width: 100%;
 }
 .cart-item__body {
-  -moz-column-gap: 1rem;
-       column-gap: 1rem;
+  align-items: center;
+  -moz-column-gap: 12px;
+       column-gap: 12px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: 1fr auto;
-  row-gap: 1rem;
+  grid-template-areas: "info info" "quantity total" "remove remove";
+  grid-template-columns: auto minmax(0, 1fr);
+  row-gap: 12px;
+}
+@media screen and (min-width: 768px) {
+  .cart-item__body {
+    align-items: stretch;
+    grid-template-areas: "info total" "quantity remove";
+    -moz-column-gap: 1rem;
+         column-gap: 1rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 1fr auto;
+    row-gap: 1rem;
+  }
 }
 .cart-item__info {
+  grid-area: info;
   padding-top: 4px;
 }
 .cart-item__name {
@@ -2693,10 +2706,15 @@ body:has(.is-menu-open) .hero {
   font-family: "Zen Kaku Gothic New", sans-serif;
   font-size: 1rem;
   line-height: 24px;
+  grid-area: total;
   margin: 0;
-  padding-top: 10px;
   text-align: right;
   white-space: nowrap;
+}
+@media screen and (min-width: 768px) {
+  .cart-item__total {
+    padding-top: 10px;
+  }
 }
 .cart-item__quantity {
   align-items: center;
@@ -2704,6 +2722,7 @@ body:has(.is-menu-open) .hero {
   border: 1px solid #d6cec2;
   box-sizing: border-box;
   display: flex;
+  grid-area: quantity;
   height: 45px;
   justify-self: start;
   width: 114px;
@@ -2766,11 +2785,17 @@ body:has(.is-menu-open) .hero {
   border-bottom: 1px solid #d6cec2;
   font-family: "Zen Kaku Gothic New", sans-serif;
   font-size: 0.75rem;
-  justify-self: end;
+  grid-area: remove;
+  justify-self: start;
   letter-spacing: 0.08em;
   line-height: 1;
   padding: 4px 0 3px;
   transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+@media screen and (min-width: 768px) {
+  .cart-item__remove {
+    justify-self: end;
+  }
 }
 .cart-item .cart-item__body .cart-item__remove {
   color: #6e675e;
@@ -2835,6 +2860,7 @@ body:has(.is-menu-open) .hero {
 }
 .cart-page__columns {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   row-gap: 3rem;
 }
 @media screen and (min-width: 992px) {
@@ -3010,12 +3036,18 @@ body:has(.is-menu-open) .hero {
 }
 .cart-summary__coupon {
   align-items: center;
-  border-bottom: 1px solid #2b2926;
+  border: 1px solid #d6cec2;
+  box-sizing: border-box;
   -moz-column-gap: 1rem;
        column-gap: 1rem;
   display: flex;
+  height: 48px;
   margin: 0;
-  padding-bottom: 8px;
+  padding: 0 1rem;
+  transition: border-color 0.3s ease-in-out;
+}
+.cart-summary__coupon:focus-within {
+  border-color: #2b2926;
 }
 .cart-summary__coupon-input {
   -webkit-appearance: none;
@@ -3030,7 +3062,7 @@ body:has(.is-menu-open) .hero {
   font-size: 0.875rem;
   line-height: 24px;
   min-width: 0;
-  outline-offset: 4px;
+  outline: 0;
   padding: 0;
 }
 .cart-summary__coupon-input::-moz-placeholder {
@@ -3667,12 +3699,22 @@ body:has(.is-menu-open) .hero {
   row-gap: 1.25rem;
 }
 .checkout-page__next {
+  flex: 0 0 100%;
   margin: 0;
+}
+@media screen and (min-width: 480px) {
+  .checkout-page__next {
+    flex: 0 0 auto;
+  }
 }
 .checkout-page .checkout-page__next .wp-block-button__link,
 .checkout-page .checkout-page__submit .wp-block-button__link {
   cursor: pointer;
   padding: 21px 42px !important;
+}
+.checkout-page .checkout-page__next .wp-block-button__link {
+  box-sizing: border-box;
+  width: 100%;
 }
 .checkout-page__back {
   background-color: transparent;
@@ -6074,11 +6116,18 @@ body:has(.is-menu-open) .hero {
   width: auto;
 }
 .product-detail__purchase {
-  -moz-column-gap: 12px;
-       column-gap: 12px;
   display: flex;
+  flex-direction: column;
   margin: 0;
   padding-bottom: 36px;
+  row-gap: 12px;
+}
+@media screen and (min-width: 480px) {
+  .product-detail__purchase {
+    -moz-column-gap: 12px;
+         column-gap: 12px;
+    flex-direction: row;
+  }
 }
 .product-detail__quantity {
   border: 0;
@@ -6094,7 +6143,12 @@ body:has(.is-menu-open) .hero {
   display: flex;
   height: 58px;
   margin: 0;
-  width: 126px;
+  width: 100%;
+}
+@media screen and (min-width: 480px) {
+  .product-detail__quantity .wc-block-components-quantity-selector {
+    width: 126px;
+  }
 }
 .product-detail__quantity .wc-block-components-quantity-selector::after {
   content: none;
@@ -6149,6 +6203,7 @@ body:has(.is-menu-open) .hero {
   font-family: "Zen Kaku Gothic New", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
+  max-width: none;
   min-width: 0;
   padding: 0;
   text-align: center;
@@ -6166,6 +6221,7 @@ body:has(.is-menu-open) .hero {
   display: flex;
   flex: 1 1 auto;
   justify-content: center;
+  min-height: 58px;
   width: 100%;
 }
 .product-detail__notes {
@@ -6328,13 +6384,21 @@ body:has(.is-menu-open) .hero {
   margin: 0;
 }
 .product-card__actions {
-  align-items: center;
-  -moz-column-gap: 1rem;
-       column-gap: 1rem;
+  align-items: flex-start;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin: 0;
   padding-top: 15px;
+  row-gap: 12px;
+}
+@media screen and (min-width: 768px) {
+  .product-card__actions {
+    align-items: center;
+    -moz-column-gap: 1rem;
+         column-gap: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 .product-card__swatches {
   -moz-column-gap: 8px;
@@ -6367,11 +6431,15 @@ body:has(.is-menu-open) .hero {
   font-size: 0.875rem;
   letter-spacing: 0.06em;
   line-height: 1;
-  margin-left: auto;
   padding: 5px 0 6px;
   text-decoration: none;
   transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out, opacity 0.3s ease-in-out;
   white-space: nowrap;
+}
+@media screen and (min-width: 768px) {
+  :root .product-card .product-card__add {
+    margin-left: auto;
+  }
 }
 :root .product-card .product-card__add:hover, :root .product-card .product-card__add:focus-visible {
   border-color: #9a4a5e;
