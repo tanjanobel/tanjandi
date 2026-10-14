@@ -584,3 +584,48 @@ function tanjandi_order_again_statuses( $statuses ) {
     return array_unique( array_merge( $statuses, array( 'processing', 'on-hold' ) ) );
 }
 add_filter( 'woocommerce_valid_order_statuses_for_order_again', 'tanjandi_order_again_statuses' );
+
+/**
+ * Pages that stay reachable while the shop is in coming soon mode:
+ * the legal notice and the privacy policy.
+ */
+function tanjandi_coming_soon_exclude( $is_excluded ) {
+    if ( $is_excluded ) {
+        return $is_excluded;
+    }
+
+    $privacy_page = (int) get_option( 'wp_page_for_privacy_policy' );
+
+    return is_page( 'impressum' ) || ( $privacy_page && is_page( $privacy_page ) );
+}
+add_filter( 'woocommerce_coming_soon_exclude', 'tanjandi_coming_soon_exclude' );
+
+/**
+ * While the shop is in coming soon mode, visitors get the minimal header
+ * and footer on the pages that stay reachable too, so no link leads into
+ * the closed shop. Shop managers keep the full navigation.
+ */
+function tanjandi_coming_soon_template_parts( $parsed_block ) {
+    if ( 'core/template-part' !== $parsed_block['blockName'] || is_admin() ) {
+        return $parsed_block;
+    }
+
+    $slug = $parsed_block['attrs']['slug'] ?? '';
+
+    if ( ! in_array( $slug, array( 'header', 'footer' ), true ) ) {
+        return $parsed_block;
+    }
+
+    if ( 'yes' !== get_option( 'woocommerce_coming_soon' ) || current_user_can( 'manage_woocommerce' ) ) {
+        return $parsed_block;
+    }
+
+    if ( 'yes' === get_option( 'woocommerce_store_pages_only' ) ) {
+        return $parsed_block;
+    }
+
+    $parsed_block['attrs']['slug'] = $slug . '-minimal';
+
+    return $parsed_block;
+}
+add_filter( 'render_block_data', 'tanjandi_coming_soon_template_parts' );

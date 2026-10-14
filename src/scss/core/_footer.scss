@@ -24,13 +24,14 @@
     }
   }
 
+  // On laptops the brand takes the first half, the two link columns the
+  // second.
   &__brand {
     grid-column: span 2;
     margin: 0;
     padding-bottom: 2.5 * $global-padding;
 
     @include breakpoint(laptop) {
-      grid-column: auto;
       padding-bottom: 52px;
       padding-top: 6px;
     }
@@ -86,6 +87,22 @@
     flex-wrap: wrap;
     gap: $global-padding 1.5 * $global-padding;
     justify-content: space-between;
+  }
+
+  // In the minimal footer the logo sits in the bottom row; without its
+  // spacing below it lines up with the links.
+  &__bottom &__logo {
+    padding-bottom: 0;
+  }
+
+  // Minimal footer: copyright and legal links next to each other, opposite
+  // the logo.
+  &__meta {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $global-padding 1.5 * $global-padding;
+    margin: 0;
   }
 
   &__copyright {
