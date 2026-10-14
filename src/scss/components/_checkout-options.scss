@@ -98,6 +98,20 @@
     white-space: nowrap;
   }
 
+  // TWINT logo from the plugin, which allows it up to 35px in height; on
+  // phones smaller, so the description keeps enough room next to it.
+  .checkout-options__label .twint-logo-icon {
+    flex-shrink: 0;
+    height: 24px;
+    margin: 0;
+    max-height: none;
+    width: auto;
+
+    @include breakpoint(tablet) {
+      height: 30px;
+    }
+  }
+
   // Description or fields of the chosen payment method.
   .checkout-options__details {
     background-color: transparent;

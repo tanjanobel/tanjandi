@@ -103,7 +103,6 @@ $shipping = tanjandi_cart_shipping_row();
     <div class="cart-summary__total order-total">
         <p class="cart-summary__total-label"><?php esc_html_e( 'Total', 'tanjandi' ); ?></p>
         <p class="cart-summary__total-value"><?php echo esc_html( tanjandi_price_dash( $cart->get_total( 'edit' ) ) ); ?></p>
-        <p class="cart-summary__tax-note"><?php esc_html_e( 'inkl. MwSt.', 'tanjandi' ); ?></p>
     </div>
 
     <?php do_action( 'woocommerce_review_order_after_order_total' ); ?>

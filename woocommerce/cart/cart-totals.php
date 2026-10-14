@@ -92,7 +92,6 @@ $shipping = tanjandi_cart_shipping_row();
     <div class="cart-summary__total order-total">
         <p class="cart-summary__total-label"><?php esc_html_e( 'Total', 'tanjandi' ); ?></p>
         <p class="cart-summary__total-value"><?php echo esc_html( tanjandi_price_dash( $cart->get_total( 'edit' ) ) ); ?></p>
-        <p class="cart-summary__tax-note"><?php esc_html_e( 'inkl. MwSt.', 'tanjandi' ); ?></p>
     </div>
 
     <?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>
@@ -101,7 +100,7 @@ $shipping = tanjandi_cart_shipping_row();
         <?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
     </div>
 
-    <p class="cart-summary__note"><?php esc_html_e( 'Bezahlen mit TWINT, Kreditkarte oder Rechnung', 'tanjandi' ); ?></p>
+    <p class="cart-summary__note"><?php esc_html_e( 'Bezahlen mit TWINT oder per Vorauszahlung', 'tanjandi' ); ?></p>
     <p class="cart-summary__note"><?php esc_html_e( 'Rückgabe innert 14 Tagen', 'tanjandi' ); ?></p>
 
     <?php do_action( 'woocommerce_after_cart_totals' ); ?>

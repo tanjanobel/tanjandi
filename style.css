@@ -3117,15 +3117,6 @@ body:has(.is-menu-open) .hero {
   margin: 0;
   white-space: nowrap;
 }
-.cart-summary__tax-note {
-  color: #6e675e;
-  flex: 0 0 100%;
-  font-family: "Zen Kaku Gothic New", sans-serif;
-  font-size: 0.75rem;
-  line-height: 20px;
-  margin: 0;
-  padding-top: 9px;
-}
 .cart-summary__checkout {
   display: flex;
   flex-direction: column;
@@ -3165,9 +3156,6 @@ body:has(.is-menu-open) .hero {
   margin-top: 21px;
   padding-bottom: 0;
   padding-top: 23px;
-}
-.cart-summary--order .cart-summary__tax-note {
-  padding-top: 11px;
 }
 .cart-summary__note {
   color: #6e675e;
@@ -3453,6 +3441,18 @@ body:has(.is-menu-open) .hero {
   font-size: 0.9375rem;
   line-height: 24px;
   white-space: nowrap;
+}
+.woocommerce .checkout-page__form .checkout-options .checkout-options__label .twint-logo-icon {
+  flex-shrink: 0;
+  height: 24px;
+  margin: 0;
+  max-height: none;
+  width: auto;
+}
+@media screen and (min-width: 768px) {
+  .woocommerce .checkout-page__form .checkout-options .checkout-options__label .twint-logo-icon {
+    height: 30px;
+  }
 }
 .woocommerce .checkout-page__form .checkout-options .checkout-options__details {
   background-color: transparent;
@@ -3745,7 +3745,13 @@ body:has(.is-menu-open) .hero {
 .checkout-page .checkout-page__submit .wp-block-button__link {
   box-sizing: border-box;
   height: 60px;
+  padding: 0 1rem !important;
   width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .checkout-page .checkout-page__submit .wp-block-button__link {
+    padding: 21px 42px !important;
+  }
 }
 .checkout-page__sidebar {
   margin: 0;

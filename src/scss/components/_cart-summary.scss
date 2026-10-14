@@ -206,16 +206,6 @@
     white-space: nowrap;
   }
 
-  &__tax-note {
-    color: $text-muted;
-    flex: 0 0 100%;
-    font-family: $body-font-family;
-    font-size: rem-calc(12px);
-    line-height: 20px;
-    margin: 0;
-    padding-top: 9px;
-  }
-
   &__checkout {
     display: flex;
     flex-direction: column;
@@ -267,10 +257,6 @@
     margin-top: 21px;
     padding-bottom: 0;
     padding-top: 23px;
-  }
-
-  &--order &__tax-note {
-    padding-top: 11px;
   }
 
   &__note {

@@ -197,10 +197,17 @@
   }
 
   // Full width and a little taller than the buttons of the other steps.
+  // Less side padding on phones, so the label with the total stays on one
+  // line.
   .checkout-page__submit .wp-block-button__link {
     box-sizing: border-box;
     height: 60px;
+    padding: 0 $global-padding !important;
     width: 100%;
+
+    @include breakpoint(tablet) {
+      padding: 21px 42px !important;
+    }
   }
 
   &__sidebar {
