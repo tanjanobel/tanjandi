@@ -72,7 +72,7 @@ $shipping = tanjandi_cart_shipping_row();
                 <dt class="cart-summary__label">
                     <?php
                     /* translators: %s: coupon code. */
-                    echo esc_html( sprintf( __( 'Gutschein «%s»', 'tanjandi' ), $code ) );
+                    echo esc_html( sprintf( __( 'Gutschein «%s»', 'tanjandi' ), wc_strtoupper( $code ) ) );
                     ?>
                 </dt>
                 <dd class="cart-summary__value">– <?php echo esc_html( tanjandi_price_dash( $cart->get_coupon_discount_amount( $code, $cart->display_cart_ex_tax ) ) ); ?></dd>

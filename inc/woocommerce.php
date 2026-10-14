@@ -173,6 +173,12 @@ function tanjandi_free_shipping_goal() {
         $minimum  = (float) $method->min_amount;
         $subtotal = (float) WC()->cart->get_displayed_subtotal();
 
+        // Same rule as the free shipping method: coupons count against the
+        // minimum unless the method is set to ignore them.
+        if ( 'yes' !== $method->ignore_discounts ) {
+            $subtotal -= (float) WC()->cart->get_discount_total();
+        }
+
         return array(
             'remaining' => max( 0, $minimum - $subtotal ),
             'percent'   => $minimum > 0 ? (int) min( 100, round( $subtotal / $minimum * 100 ) ) : 100,

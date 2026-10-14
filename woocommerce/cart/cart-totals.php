@@ -49,7 +49,7 @@ $shipping = tanjandi_cart_shipping_row();
                 <dt class="cart-summary__label">
                     <?php
                     /* translators: %s: coupon code. */
-                    echo esc_html( sprintf( __( 'Gutschein «%s»', 'tanjandi' ), $code ) );
+                    echo esc_html( sprintf( __( 'Gutschein «%s»', 'tanjandi' ), wc_strtoupper( $code ) ) );
                     ?>
                     <a class="cart-summary__coupon-remove" href="<?php echo esc_url( add_query_arg( 'remove_coupon', rawurlencode( $code ), wc_get_cart_url() ) ); ?>"><?php esc_html_e( 'Entfernen', 'tanjandi' ); ?></a>
                 </dt>
