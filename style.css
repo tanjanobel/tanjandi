@@ -6047,8 +6047,8 @@ body:has(.is-menu-open) .hero {
 .product-detail__swatches .wc-block-product-filter-chips__item[value=kinari] {
   background-color: #cbc6b8;
 }
-.product-detail__swatches .wc-block-product-filter-chips__item[value=yoru] {
-  background-color: #3a3734;
+.product-detail__swatches .wc-block-product-filter-chips__item[value=asahi] {
+  background-color: #d3b7a7;
 }
 .product-detail__swatches .wc-block-product-filter-chips__item:hover, .product-detail__swatches .wc-block-product-filter-chips__item:focus-visible, .product-detail__swatches .wc-block-product-filter-chips__item[aria-checked=true] {
   border-color: #2b2926;
@@ -6357,8 +6357,8 @@ body:has(.is-menu-open) .hero {
 .product-card__swatch--kinari {
   background-color: #cbc6b8;
 }
-.product-card__swatch--yoru {
-  background-color: #3a3734;
+.product-card__swatch--asahi {
+  background-color: #d3b7a7;
 }
 :root .product-card .product-card__add {
   border-bottom: 1px solid #2b2926;
