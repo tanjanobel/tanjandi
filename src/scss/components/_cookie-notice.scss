@@ -1,32 +1,91 @@
 @use "../global" as *;
 
+// Cookie banner and preference center of the CookieYes plugin.
+// !important: the plugin writes the colours from its settings as inline
+// styles onto the buttons and links.
+
+// Shared: square buttons like the default button of the site.
 .cky-btn {
   border: 1px solid $ink !important;
-  border-radius: 100px !important;
-  color: $ink !important;
+  border-radius: 0 !important;
   font-family: $body-font-family !important;
-  font-weight: 600 !important;
-  transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  font-size: rem-calc(14px) !important;
+  font-weight: 400 !important;
+  letter-spacing: $nav-letter-spacing !important;
+  line-height: 1 !important;
+  padding: 1.15 * $global-padding 1.5 * $global-padding !important;
+  transition: background-color $transition-speed ease-in-out, border-color $transition-speed ease-in-out, color $transition-speed ease-in-out !important;
 
-  &-accept {
-    background-color: $ink !important;
-    color: $washi !important;
+  &:hover,
+  &:focus-visible {
+    opacity: 1 !important;
+  }
+}
 
-    &:hover {
-      background-color: rgba($ink, 0.80) !important;
-      border: 1px solid rgba($ink, 0.80) !important;
-      color: $washi !important;
-      opacity: 1 !important;
+// Accept: filled, like the default button.
+.cky-btn-accept {
+  background-color: $ink !important;
+  color: $washi !important;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $berry-dark !important;
+    border-color: $berry-dark !important;
+  }
+}
+
+// Reject and save: same size as accept, with a hairline border, so both
+// choices are equally visible.
+.cky-btn-reject,
+.cky-btn-preferences {
+  background-color: transparent !important;
+  color: $ink !important;
+
+  &:hover,
+  &:focus-visible {
+    border-color: $berry-dark !important;
+    color: $berry-dark !important;
+  }
+}
+
+// Customise: underlined text link like the secondary links of the site.
+.cky-btn-customize {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  border-bottom-color: $ink !important;
+  color: $ink !important;
+  padding: 5px 0 6px !important;
+
+  // Phones: the plugin stacks the buttons at full width; the link stays
+  // compact and moves below accept and reject.
+  .cky-notice-btn-wrapper & {
+    @include breakpoint(tablet down) {
+      align-self: center;
+      margin-top: 18px !important;
+      order: 4 !important;
+      width: auto !important;
     }
   }
 
-  &-reject,
-  &-preferences {
-    border: 1px solid $ink !important;
-    border-radius: 100px !important;
-    color: $ink !important;
-    font-family: $body-font-family !important;
-    font-weight: 600 !important;
-    transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  &:hover,
+  &:focus-visible {
+    border-bottom-color: $berry-dark !important;
+    color: $berry-dark !important;
   }
+}
+
+// "Show more" in the preference center.
+.cky-show-desc-btn {
+  color: $ink !important;
+  text-decoration: underline !important;
+}
+
+// Category toggles in the preference center.
+.cky-switch input[type="checkbox"]:checked {
+  background: $ink !important;
+}
+
+// Round button bottom left that reopens the settings.
+.cky-btn-revisit-wrapper {
+  background-color: $ink !important;
 }
