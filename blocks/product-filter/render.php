@@ -1,7 +1,8 @@
 <?php
 /**
  * Product Filter Block Template.
- * Pills on top of the shop: all products plus one per product category.
+ * Pills on top of the shop: all products plus one per product category,
+ * shown once there are at least two categories with products.
  */
 
 if ( ! function_exists( 'wc_get_page_permalink' ) ) {
@@ -17,7 +18,8 @@ $categories = get_terms(
     )
 );
 
-if ( is_wp_error( $categories ) || ! $categories ) {
+// With a single category the pills would only repeat "all products".
+if ( is_wp_error( $categories ) || count( $categories ) < 2 ) {
     return;
 }
 

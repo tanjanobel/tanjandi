@@ -6490,6 +6490,20 @@ body:has(.is-menu-open) .hero {
   }
 }
 
+.section__titles + .wc-block-store-notices + .product-grid {
+  padding-top: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .section__titles + .wc-block-store-notices + .product-grid {
+    padding-top: 2.5rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .section__titles + .wc-block-store-notices + .product-grid {
+    padding-top: 56px;
+  }
+}
+
 .product-teaser {
   align-items: center;
   background-color: #ede7de;

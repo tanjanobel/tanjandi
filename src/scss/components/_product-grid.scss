@@ -20,3 +20,17 @@
     }
   }
 }
+
+// Shop without the category filter (only one category): the grid keeps the
+// distance to the titles that the filter would otherwise provide.
+.section__titles + .wc-block-store-notices + .product-grid {
+  padding-top: $global-padding;
+
+  @include breakpoint(tablet) {
+    padding-top: 2.5 * $global-padding;
+  }
+
+  @include breakpoint(laptop) {
+    padding-top: 56px;
+  }
+}
