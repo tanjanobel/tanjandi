@@ -24,14 +24,13 @@
     }
   }
 
-  // On laptops the brand takes the first half, the two link columns the
-  // second.
   &__brand {
     grid-column: span 2;
     margin: 0;
     padding-bottom: 2.5 * $global-padding;
 
     @include breakpoint(laptop) {
+      grid-column: auto;
       padding-bottom: 52px;
       padding-top: 6px;
     }

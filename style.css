@@ -308,6 +308,7 @@ ul.wp-block-post-template.is-layout-grid.wp-block-post-template-is-layout-grid {
 }
 @media screen and (min-width: 992px) {
   .footer__brand {
+    grid-column: auto;
     padding-bottom: 52px;
     padding-top: 6px;
   }
