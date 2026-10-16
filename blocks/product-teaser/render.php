@@ -2,7 +2,8 @@
 /**
  * Product Teaser Block Template.
  * Box below a news post with the product the post is about. The product is
- * chosen in the field "Produkt im Shop"; without one the box is left out.
+ * chosen in the field "Produkt im Shop"; without one the box points to the
+ * shop instead.
  */
 
 $post_id    = ! empty( $block->context['postId'] ) ? (int) $block->context['postId'] : get_the_ID();
@@ -10,6 +11,20 @@ $product_id = function_exists( 'get_field' ) ? (int) get_field( 'news_product', 
 $product    = ( $product_id && function_exists( 'wc_get_product' ) ) ? wc_get_product( $product_id ) : null;
 
 if ( ! $product || 'publish' !== $product->get_status() ) {
+    $shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
+    ?>
+<aside class="product-teaser product-teaser--shop">
+    <div class="product-teaser__body">
+        <p class="product-teaser__label"><?php esc_html_e( 'Für dein Zuhause', 'tanjandi' ); ?></p>
+        <h2 class="product-teaser__name"><?php esc_html_e( 'Alle Objekte entdecken', 'tanjandi' ); ?></h2>
+        <p class="product-teaser__price"><?php esc_html_e( 'Jedes Stück wird erst gedruckt, wenn du bestellst.', 'tanjandi' ); ?></p>
+    </div>
+
+    <div class="product-teaser__action wp-block-button">
+        <a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $shop_url ); ?>"><?php esc_html_e( 'Zum Shop', 'tanjandi' ); ?></a>
+    </div>
+</aside>
+    <?php
     return;
 }
 ?>

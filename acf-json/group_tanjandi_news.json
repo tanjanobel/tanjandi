@@ -58,7 +58,7 @@
             "name": "news_product",
             "aria-label": "",
             "type": "post_object",
-            "instructions": "Optional. Erscheint unter dem Beitrag als Box «Im Shop».",
+            "instructions": "Optional. Erscheint unter dem Beitrag als Box «Im Shop». Ohne Produkt weist die Box auf den Shop hin.",
             "required": 0,
             "conditional_logic": false,
             "wrapper": {
@@ -103,5 +103,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1791831000
+    "modified": 1792151762
 }

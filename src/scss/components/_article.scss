@@ -1,7 +1,7 @@
 @use "../global" as *;
 
-// Widths of the centred columns of an article.
-$article-header-width: 760px;
+// Width of the centred column of an article: header, image and text start
+// on the same line.
 $article-text-width: 600px;
 
 // A single news post; with the modifier --page a plain text page such as
@@ -18,7 +18,7 @@ $article-text-width: 600px;
 
   &__header {
     margin: 0 auto;
-    max-width: $article-header-width;
+    max-width: $article-text-width;
     padding-bottom: 3 * $global-padding;
 
     @include breakpoint(tablet) {
@@ -287,6 +287,57 @@ $article-text-width: 600px;
       font-size: rem-calc(17px);
       padding-bottom: 38px;
     }
+  }
+
+  // Signature below a personal post: portrait and name of the author.
+  &__author {
+    align-items: center;
+    column-gap: 20px;
+    display: flex;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 2 * $global-padding;
+
+    @include breakpoint(tablet) {
+      padding-top: 38px;
+    }
+  }
+
+  &__author-image {
+    border-radius: 50%;
+    flex-shrink: 0;
+    height: 72px;
+    margin: 0;
+    overflow: hidden;
+    width: 72px;
+  }
+
+  // The image block offers no way to put a class on the img itself.
+  &__author-image img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &__author-body {
+    margin: 0;
+  }
+
+  // Three classes to outweigh the paragraph styles of the content.
+  & &__content &__author-name {
+    color: $ink;
+    font-family: $heading-font-family;
+    font-size: rem-calc(20px);
+    line-height: 1.2;
+    padding-bottom: 4px;
+  }
+
+  & &__content &__author-role {
+    color: $text-secondary;
+    font-size: rem-calc(13px);
+    line-height: 20px;
+    padding-bottom: 0;
   }
 
   // Small print at the end, e.g. the date of the last change.

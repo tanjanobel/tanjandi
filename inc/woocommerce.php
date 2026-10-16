@@ -646,7 +646,7 @@ function tanjandi_coming_soon_description( $description ) {
         return $description;
     }
 
-    return __( 'tanjandi – 3D-gedruckte Vasen aus der Schweiz, Schicht für Schicht in kleinen Auflagen gefertigt. Der Shop öffnet bald. Schreib uns bis dahin per E-Mail.', 'tanjandi' );
+    return __( 'tanjandi – 3D-gedruckte Vasen aus der Schweiz, Schicht für Schicht auf Bestellung gefertigt. Der Shop öffnet bald. Schreib uns bis dahin per E-Mail.', 'tanjandi' );
 }
 add_filter( 'wpseo_metadesc', 'tanjandi_coming_soon_description' );
 add_filter( 'wpseo_opengraph_desc', 'tanjandi_coming_soon_description' );

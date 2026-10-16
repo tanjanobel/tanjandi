@@ -8,13 +8,23 @@
   display: grid;
   grid-template-columns: 88px minmax(0, 1fr);
   margin: 0 auto;
-  max-width: 760px;
+  // Same column as the text of a news post.
+  max-width: 600px;
   padding: $global-padding;
   row-gap: $global-padding;
 
   @include breakpoint(tablet) {
     grid-template-columns: 120px minmax(0, 1fr) auto;
     padding: 1.5 * $global-padding;
+  }
+
+  // Without a product: text and button only.
+  &--shop {
+    grid-template-columns: minmax(0, 1fr);
+
+    @include breakpoint(tablet) {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
   }
 
   &__media {

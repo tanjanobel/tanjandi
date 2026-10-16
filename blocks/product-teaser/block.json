@@ -6,7 +6,7 @@
     "title": "Product Teaser",
     "category": "theme",
     "icon": "products",
-    "description": "Box with the product a news post is about (field «Produkt im Shop»).",
+    "description": "Box with the product a news post is about (field «Produkt im Shop»), otherwise a link to the shop.",
     "editorScript": "file:./editor.js",
     "usesContext": [ "postId" ],
     "supports": {
