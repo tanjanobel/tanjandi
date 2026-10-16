@@ -3,9 +3,7 @@
 @use "util/functions" as *;
 @use "sass:map";
 
-// Base Font
-@import "https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap";
-
+// Base Font (files in static/fonts, loaded in app.scss)
 $body-font-family: "Zen Kaku Gothic New", sans-serif;
 $heading-font-family: "Shippori Mincho", serif;
 

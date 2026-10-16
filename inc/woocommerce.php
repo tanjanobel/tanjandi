@@ -683,7 +683,11 @@ function tanjandi_email_styles( $css ) {
     $css = str_replace( \Automattic\WooCommerce\Internal\Email\EmailFont::$font['Helvetica'], $body_font, $css );
     $css = str_replace( array( 'rgba(0, 0, 0, .2)', '#1e1e1e' ), $line, $css );
 
-    return "@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap');\n" . $css . "
+    // Fonts of the theme; mail clients need absolute URLs.
+    $fonts = (string) file_get_contents( get_theme_file_path( 'static/fonts/fonts.css' ) );
+    $fonts = str_replace( '/wp-content/themes/tanjandi/static/fonts/', get_theme_file_uri( 'static/fonts/' ), $fonts );
+
+    return $fonts . $css . "
 h1,
 #template_header h1,
 #header_wrapper h1 {
