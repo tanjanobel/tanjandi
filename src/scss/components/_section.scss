@@ -206,6 +206,15 @@
     &--portrait {
       aspect-ratio: 4 / 5;
     }
+
+    // Small round portrait above a centred text.
+    &--avatar {
+      aspect-ratio: auto;
+      margin: 0 auto;
+      overflow: visible;
+      padding-bottom: 1.5 * $global-padding;
+      width: 120px;
+    }
   }
 
   // The image block offers no way to put a class on the img itself.
@@ -215,6 +224,11 @@
     object-fit: cover;
     object-position: center;
     width: 100%;
+  }
+
+  &__image--avatar img {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
   }
 
   &__body {
@@ -274,6 +288,10 @@
     align-items: center;
     column-gap: 28px;
     row-gap: $global-padding;
+  }
+
+  &__centered &__lead {
+    margin: 0 auto;
   }
 
   &__centered &__heading {
