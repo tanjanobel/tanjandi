@@ -62,7 +62,7 @@ remove_action( 'woocommerce_thankyou', 'woocommerce_order_details_table', 10 );
                 </div>
                 <div class="order-confirmation__row">
                     <dt class="order-confirmation__label"><?php esc_html_e( 'Total', 'tanjandi' ); ?></dt>
-                    <dd class="order-confirmation__value"><?php echo esc_html( tanjandi_price_dash( $order->get_total() ) ); ?></dd>
+                    <dd class="order-confirmation__value"><?php echo esc_html( tanjandi_price_text( $order->get_total() ) ); ?></dd>
                 </div>
                 <?php if ( $order->get_payment_method_title() ) : ?>
                     <div class="order-confirmation__row">

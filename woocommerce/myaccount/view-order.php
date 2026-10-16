@@ -66,13 +66,13 @@ remove_action( 'woocommerce_view_order', 'woocommerce_order_details_table', 10 )
     <dl class="order-details__rows">
         <div class="order-details__row">
             <dt class="order-details__label"><?php esc_html_e( 'Zwischensumme', 'tanjandi' ); ?></dt>
-            <dd class="order-details__value"><?php echo esc_html( tanjandi_price_dash( $order->get_subtotal() + $order->get_cart_tax() + (float) $order->get_discount_tax() ) ); ?></dd>
+            <dd class="order-details__value"><?php echo esc_html( tanjandi_price_text( $order->get_subtotal() + $order->get_cart_tax() + (float) $order->get_discount_tax() ) ); ?></dd>
         </div>
 
         <?php if ( $discount > 0 ) : ?>
             <div class="order-details__row">
                 <dt class="order-details__label"><?php esc_html_e( 'Rabatt', 'tanjandi' ); ?></dt>
-                <dd class="order-details__value">– <?php echo esc_html( tanjandi_price_dash( $discount ) ); ?></dd>
+                <dd class="order-details__value">– <?php echo esc_html( tanjandi_price_text( $discount ) ); ?></dd>
             </div>
         <?php endif; ?>
 
@@ -83,7 +83,7 @@ remove_action( 'woocommerce_view_order', 'woocommerce_order_details_table', 10 )
                 <dd class="order-details__value">
                     <?php
                     /* translators: 1: shipping costs 2: shipping method. */
-                    echo esc_html( sprintf( __( '%1$s (%2$s)', 'tanjandi' ), $shipping_total > 0 ? tanjandi_price_dash( $shipping_total ) : __( 'Kostenlos', 'tanjandi' ), $shipping ) );
+                    echo esc_html( sprintf( __( '%1$s (%2$s)', 'tanjandi' ), $shipping_total > 0 ? tanjandi_price_text( $shipping_total ) : __( 'Kostenlos', 'tanjandi' ), $shipping ) );
                     ?>
                 </dd>
             </div>
@@ -99,7 +99,7 @@ remove_action( 'woocommerce_view_order', 'woocommerce_order_details_table', 10 )
 
     <div class="order-details__total">
         <p class="order-details__total-label"><?php esc_html_e( 'Total', 'tanjandi' ); ?></p>
-        <p class="order-details__total-value"><?php echo esc_html( tanjandi_price_dash( $order->get_total() ) ); ?></p>
+        <p class="order-details__total-value"><?php echo esc_html( tanjandi_price_text( $order->get_total() ) ); ?></p>
     </div>
 
     <?php if ( $notes ) : ?>

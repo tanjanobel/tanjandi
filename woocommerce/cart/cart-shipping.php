@@ -29,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
                                 <span class="checkout-options__description"><?php echo esc_html( $note ); ?></span>
                             <?php endif; ?>
                         </span>
-                        <span class="checkout-options__price"><?php echo esc_html( $cost > 0 ? tanjandi_price_dash( $cost ) : __( 'kostenlos', 'tanjandi' ) ); ?></span>
+                        <span class="checkout-options__price"><?php echo esc_html( $cost > 0 ? tanjandi_price_text( $cost ) : __( 'kostenlos', 'tanjandi' ) ); ?></span>
                     </label>
                     <?php do_action( 'woocommerce_after_shipping_rate', $method, $index ); ?>
                 </li>

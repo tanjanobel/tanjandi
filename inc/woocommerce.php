@@ -45,12 +45,6 @@ function tanjandi_cart_count_fragment( $fragments ) {
 add_filter( 'woocommerce_add_to_cart_fragments', 'tanjandi_cart_count_fragment' );
 
 /**
- * Prices
- * Show whole amounts without decimals (CHF 45 instead of CHF 45.00).
- */
-add_filter( 'woocommerce_price_trim_zeros', '__return_true' );
-
-/**
  * Product gallery
  * All images are shown at once in a grid, so the slider and the hover zoom
  * WooCommerce enables for block themes are switched off.
@@ -110,20 +104,10 @@ add_filter( 'gettext', 'tanjandi_in_cart_button_text', 10, 3 );
  */
 
 /**
- * Amount as plain text, e.g. "CHF 45".
+ * Amount as plain text, e.g. "CHF 45.00".
  */
 function tanjandi_price_text( $amount ) {
     return trim( html_entity_decode( wp_strip_all_tags( wc_price( $amount ) ), ENT_QUOTES, 'UTF-8' ), " \t\n\r\0\x0B\xC2\xA0" );
-}
-
-/**
- * Amount as plain text with a dash for whole amounts, e.g. "CHF 45.–".
- */
-function tanjandi_price_dash( $amount ) {
-    $amount = (float) $amount;
-    $text   = str_replace( "\xC2\xA0", ' ', tanjandi_price_text( $amount ) );
-
-    return floor( $amount ) === $amount ? $text . '.–' : $text;
 }
 
 /**
@@ -216,7 +200,7 @@ function tanjandi_cart_shipping_row() {
     return array(
         /* translators: %s: destination country. */
         'label' => isset( $countries[ $country ] ) ? sprintf( __( 'Versand %s', 'tanjandi' ), $countries[ $country ] ) : __( 'Versand', 'tanjandi' ),
-        'value' => $cost > 0 ? tanjandi_price_dash( $cost ) : __( 'kostenlos', 'tanjandi' ),
+        'value' => $cost > 0 ? tanjandi_price_text( $cost ) : __( 'kostenlos', 'tanjandi' ),
     );
 }
 
@@ -413,7 +397,7 @@ function tanjandi_order_button_text() {
         return $text;
     }
 
-    return sprintf( '%s · %s', $text, tanjandi_price_dash( WC()->cart->get_total( 'edit' ) ) );
+    return sprintf( '%s · %s', $text, tanjandi_price_text( WC()->cart->get_total( 'edit' ) ) );
 }
 add_filter( 'woocommerce_order_button_text', 'tanjandi_order_button_text' );
 
@@ -683,6 +667,11 @@ function tanjandi_email_styles( $css ) {
     $css = str_replace( \Automattic\WooCommerce\Internal\Email\EmailFont::$font['Helvetica'], $body_font, $css );
     $css = str_replace( array( 'rgba(0, 0, 0, .2)', '#1e1e1e' ), $line, $css );
 
+    // WooCommerce lightens the text colour for tables and lists; all text
+    // gets the same colour, only secondary details stay muted.
+    $text = get_option( 'woocommerce_email_text_color' );
+    $css  = str_replace( wc_hex_lighter( $text, 20 ), $text, $css );
+
     // Fonts of the theme; mail clients need absolute URLs.
     $fonts = (string) file_get_contents( get_theme_file_path( 'static/fonts/fonts.css' ) );
     $fonts = str_replace( '/wp-content/themes/tanjandi/static/fonts/', get_theme_file_uri( 'static/fonts/' ), $fonts );
@@ -712,6 +701,18 @@ h2 span {
     font-family: {$body_font};
 }
 
+/* The order tables end with a hairline of their own; the separators
+   WooCommerce adds between them would double it. */
+#body_content hr {
+    display: none;
+}
+
+#body_content .email-order-details .order-totals:first-child th,
+#body_content .email-order-details .order-totals:first-child td,
+#body_content .email-order-details .order-customer-note td {
+    padding-top: 24px !important;
+}
+
 #body_content p,
 #body_content_inner {
     line-height: 170%;
@@ -724,6 +725,36 @@ h2 span {
 
 #template_header_image img {
     width: 160px;
+}
+
+/* Space below the logo, so the heading reads as part of the message. */
+#template_header_image {
+    padding-bottom: 32px;
+}
+
+/* The greeting at the end stands apart from the text above. */
+.email-additional-content p:not(:last-child) {
+    padding-bottom: 16px;
+}
+
+/* Small berry bullets in the bank details. Mail clients without
+   ::marker support show the default bullet. */
+.wc-bacs-bank-details {
+    list-style-position: inside;
+    margin-left: 0;
+    padding-bottom: 32px;
+    padding-left: 0;
+}
+
+.wc-bacs-bank-details li::marker {
+    color: #9a4a5e;
+    font-size: 11px;
+}
+
+/* Everything on one left edge, like a letter. */
+.email-additional-content p,
+#template_footer #credit {
+    text-align: left;
 }
 ";
 }
@@ -745,6 +776,72 @@ function tanjandi_email_texts( $translation, $text, $domain ) {
         'Here’s a reminder of what you’ve ordered:'                                                                   => 'Hier nochmals deine Bestellung im Überblick:',
     );
 
+    // In the on-hold e-mail the bank details follow before the order, so
+    // the line leading to the order is left out there.
+    static $on_hold = false;
+    if ( 'We’ve received your order and it’s currently on hold until we can confirm your payment has been processed.' === $text ) {
+        $on_hold = true;
+    } elseif ( 'Here’s a reminder of what you’ve ordered:' === $text && $on_hold ) {
+        $on_hold = false;
+        return '';
+    }
+
     return $texts[ $text ] ?? $translation;
 }
 add_filter( 'gettext', 'tanjandi_email_texts', 10, 3 );
+
+/**
+ * Removes the paragraph a text left out above leaves behind.
+ */
+function tanjandi_email_empty_paragraphs( $content ) {
+    return preg_replace( '#<p[^>]*>\s*</p>#', '', $content );
+}
+add_filter( 'woocommerce_mail_content', 'tanjandi_email_empty_paragraphs' );
+
+/**
+ * The payment instructions of a bank transfer move below the heading of
+ * the bank details, so that both read as one section.
+ */
+function tanjandi_email_bank_details( $content ) {
+    return preg_replace(
+        '#(<p[^>]*>(?:(?!</p>).)*</p>)\s*(<section class="woocommerce-bacs-bank-details"[^>]*>\s*<h2[^>]*>.*?</h2>)#s',
+        '$2$1',
+        $content
+    );
+}
+add_filter( 'woocommerce_mail_content', 'tanjandi_email_bank_details' );
+
+/**
+ * Bank details: the account holder becomes the first line of the list
+ * ("Kontoinhaberin: …") instead of a heading of its own. The names are
+ * taken from the accounts and handed to the field list of each account,
+ * which WooCommerce builds in the same order.
+ */
+function tanjandi_bacs_account_holder( $accounts = null ) {
+    static $holders = array();
+
+    if ( null === $accounts ) {
+        return array_shift( $holders );
+    }
+
+    $holders = array();
+    foreach ( $accounts as $key => $account ) {
+        $holders[]                        = wp_unslash( $account['account_name'] ?? '' );
+        $accounts[ $key ]['account_name'] = '';
+    }
+
+    return $accounts;
+}
+add_filter( 'woocommerce_bacs_accounts', 'tanjandi_bacs_account_holder' );
+
+function tanjandi_bacs_account_fields( $fields ) {
+    $holder = array(
+        'account_name' => array(
+            'label' => __( 'Kontoinhaberin', 'tanjandi' ),
+            'value' => tanjandi_bacs_account_holder(),
+        ),
+    );
+
+    return $holder + $fields;
+}
+add_filter( 'woocommerce_bacs_account_fields', 'tanjandi_bacs_account_fields' );

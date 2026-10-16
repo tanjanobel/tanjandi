@@ -58,7 +58,7 @@ $order  = $orders ? $orders[0] : null;
     $meta = array(
         wc_format_datetime( $order->get_date_created(), 'j. F Y' ),
         implode( ', ', array_unique( $names ) ),
-        tanjandi_price_dash( $order->get_total() ),
+        tanjandi_price_text( $order->get_total() ),
     );
     ?>
     <article class="account-order">

@@ -44,7 +44,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders );
                         <span class="account-orders__status<?php echo $is_open ? ' account-orders__status--open' : ''; ?>"><?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?></span>
                     </td>
                     <td class="account-orders__cell account-orders__cell--total">
-                        <?php echo esc_html( tanjandi_price_dash( $order->get_total() ) ); ?>
+                        <?php echo esc_html( tanjandi_price_text( $order->get_total() ) ); ?>
                         <span class="account-orders__count">
                             <?php
                             /* translators: %s: number of items in the order. */

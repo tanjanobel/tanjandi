@@ -41,7 +41,7 @@ $shipping = tanjandi_cart_shipping_row();
     <dl class="cart-summary__rows">
         <div class="cart-summary__row cart-subtotal">
             <dt class="cart-summary__label"><?php esc_html_e( 'Zwischensumme', 'tanjandi' ); ?></dt>
-            <dd class="cart-summary__value"><?php echo esc_html( tanjandi_price_dash( $cart->get_displayed_subtotal() ) ); ?></dd>
+            <dd class="cart-summary__value"><?php echo esc_html( tanjandi_price_text( $cart->get_displayed_subtotal() ) ); ?></dd>
         </div>
 
         <?php foreach ( $cart->get_coupons() as $code => $coupon ) : ?>
@@ -53,7 +53,7 @@ $shipping = tanjandi_cart_shipping_row();
                     ?>
                     <a class="cart-summary__coupon-remove" href="<?php echo esc_url( add_query_arg( 'remove_coupon', rawurlencode( $code ), wc_get_cart_url() ) ); ?>"><?php esc_html_e( 'Entfernen', 'tanjandi' ); ?></a>
                 </dt>
-                <dd class="cart-summary__value">– <?php echo esc_html( tanjandi_price_dash( $cart->get_coupon_discount_amount( $code, $cart->display_cart_ex_tax ) ) ); ?></dd>
+                <dd class="cart-summary__value">– <?php echo esc_html( tanjandi_price_text( $cart->get_coupon_discount_amount( $code, $cart->display_cart_ex_tax ) ) ); ?></dd>
             </div>
         <?php endforeach; ?>
 
@@ -71,7 +71,7 @@ $shipping = tanjandi_cart_shipping_row();
         <?php foreach ( $cart->get_fees() as $fee ) : ?>
             <div class="cart-summary__row fee">
                 <dt class="cart-summary__label"><?php echo esc_html( $fee->name ); ?></dt>
-                <dd class="cart-summary__value"><?php echo esc_html( tanjandi_price_dash( $cart->display_prices_including_tax() ? $fee->total + $fee->tax : $fee->total ) ); ?></dd>
+                <dd class="cart-summary__value"><?php echo esc_html( tanjandi_price_text( $cart->display_prices_including_tax() ? $fee->total + $fee->tax : $fee->total ) ); ?></dd>
             </div>
         <?php endforeach; ?>
     </dl>
@@ -91,7 +91,7 @@ $shipping = tanjandi_cart_shipping_row();
 
     <div class="cart-summary__total order-total">
         <p class="cart-summary__total-label"><?php esc_html_e( 'Total', 'tanjandi' ); ?></p>
-        <p class="cart-summary__total-value"><?php echo esc_html( tanjandi_price_dash( $cart->get_total( 'edit' ) ) ); ?></p>
+        <p class="cart-summary__total-value"><?php echo esc_html( tanjandi_price_text( $cart->get_total( 'edit' ) ) ); ?></p>
     </div>
 
     <?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>
