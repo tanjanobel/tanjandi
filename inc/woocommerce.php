@@ -668,3 +668,79 @@ add_filter( 'wpseo_title', 'tanjandi_coming_soon_title' );
 add_filter( 'pre_get_document_title', 'tanjandi_coming_soon_title', 99 );
 add_filter( 'wpseo_opengraph_title', 'tanjandi_coming_soon_title' );
 add_filter( 'wpseo_twitter_title', 'tanjandi_coming_soon_title' );
+
+/**
+ * Customer e-mails in the look of the site: brand fonts with web-safe
+ * fallbacks, hairlines in the line colour and calmer headings. Colours,
+ * logo and footer text are set in WooCommerce → Settings → E-Mails.
+ */
+function tanjandi_email_styles( $css ) {
+    $body_font    = "'Zen Kaku Gothic New', 'Helvetica Neue', Helvetica, Arial, sans-serif";
+    $heading_font = "'Shippori Mincho', Georgia, 'Times New Roman', serif";
+    $line         = '#d6cec2';
+
+    // The font chosen in the settings is replaced by the brand font.
+    $css = str_replace( \Automattic\WooCommerce\Internal\Email\EmailFont::$font['Helvetica'], $body_font, $css );
+    $css = str_replace( array( 'rgba(0, 0, 0, .2)', '#1e1e1e' ), $line, $css );
+
+    return "@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap');\n" . $css . "
+h1,
+#template_header h1,
+#header_wrapper h1 {
+    font-family: {$heading_font};
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 130%;
+}
+
+h2,
+h3 {
+    font-family: {$heading_font};
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h2 span {
+    font-family: {$body_font};
+}
+
+#body_content p,
+#body_content_inner {
+    line-height: 170%;
+}
+
+#template_footer #credit {
+    font-size: 13px;
+    line-height: 170%;
+}
+
+#template_header_image img {
+    width: 160px;
+}
+";
+}
+add_filter( 'woocommerce_email_styles', 'tanjandi_email_styles' );
+
+/**
+ * Introductions of the customer e-mails in the voice of the shop: every
+ * object is printed to order, so the e-mails say what happens next.
+ */
+function tanjandi_email_texts( $translation, $text, $domain ) {
+    if ( 'woocommerce' !== $domain ) {
+        return $translation;
+    }
+
+    $texts = array(
+        'Just to let you know &mdash; we’ve received your order, and it is now being processed.'                     => 'Schön, dass du dich für ein Objekt von uns entschieden hast. Wir drucken es jetzt für dich und versenden es innerhalb von 3–5 Werktagen.',
+        'We’ve received your order and it’s currently on hold until we can confirm your payment has been processed.' => 'Schön, dass du dich für ein Objekt von uns entschieden hast. Sobald deine Zahlung bei uns eingegangen ist, beginnen wir mit dem Druck.',
+        'We have finished processing your order.'                                                                     => 'Dein Objekt ist fertig gedruckt, von Hand geprüft und sorgfältig verpackt. Jetzt ist es auf dem Weg zu dir.',
+        'Here’s a reminder of what you’ve ordered:'                                                                   => 'Hier nochmals deine Bestellung im Überblick:',
+    );
+
+    return $texts[ $text ] ?? $translation;
+}
+add_filter( 'gettext', 'tanjandi_email_texts', 10, 3 );
