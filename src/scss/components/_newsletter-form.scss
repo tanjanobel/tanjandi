@@ -1,0 +1,133 @@
+@use "../global" as *;
+
+// Newsletter sign-up of the Mailchimp plugin: e-mail field and a text
+// button on one hairline. The plugin renders its own markup, so its
+// elements are addressed through the plugin's classes.
+.newsletter-form {
+  margin: 0 auto;
+  max-width: 460px;
+
+  .mc_container,
+  .mc_signup_form {
+    margin: 0;
+  }
+
+  // Message on top, field and button side by side on one line.
+  .mc_form_inside {
+    align-items: end;
+    border-bottom: 1px solid $ink;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    transition: border-color $transition-speed ease-in-out;
+
+    // The line turns berry while typing.
+    &:focus-within {
+      border-bottom-color: $berry-dark;
+    }
+  }
+
+  .mc_message_wrapper {
+    grid-column: 1 / -1;
+  }
+
+  // The plugin wraps its messages in <strong>.
+  .mc_error_msg,
+  .mc_success_msg {
+    display: block;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    font-weight: 400;
+    line-height: 22px;
+    margin: 0;
+    padding-bottom: 12px;
+  }
+
+  .mc_error_msg,
+  .mc_error_msg a {
+    color: $berry-dark;
+  }
+
+  // After signing up the message takes the place of field and button.
+  .mc_success_msg {
+    color: $ink;
+    font-size: rem-calc(16px);
+    line-height: 1.7;
+    padding: 12px 0 15px;
+  }
+
+  .mc_form_inside:has(.mc_success_msg) {
+    border-bottom-color: transparent;
+
+    .wp-block-mailchimp-mailchimp-form-field,
+    .mc_signup_submit {
+      display: none;
+    }
+  }
+
+  .wp-block-mailchimp-mailchimp-form-field,
+  .mc_merge_var {
+    margin: 0;
+    padding: 0;
+  }
+
+  // Shown as placeholder; the label stays for screen readers.
+  .mc_var_label {
+    clip-path: inset(50%);
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .mc_input {
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: $ink;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    line-height: 24px;
+    outline: 0;
+    padding: 12px 0 15px;
+    width: 100%;
+
+    &::placeholder {
+      color: $text-muted;
+      opacity: 1;
+    }
+  }
+
+  .mc_signup_submit {
+    margin: 0;
+    text-align: right;
+  }
+
+  .mc_signup_submit_button {
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    color: $ink;
+    cursor: pointer;
+    font-family: $body-font-family;
+    font-size: rem-calc(14px);
+    letter-spacing: $nav-letter-spacing;
+    display: block;
+    line-height: 24px;
+    margin: 0;
+    max-width: none;
+    padding: 12px 0 15px $global-padding;
+    transition: color $transition-speed ease-in-out;
+    white-space: nowrap;
+    width: auto;
+
+    &:hover,
+    &:focus-visible {
+      color: $berry-dark;
+    }
+  }
+}

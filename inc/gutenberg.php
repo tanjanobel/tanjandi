@@ -133,3 +133,42 @@ foreach ( array( 'core/button', 'core/paragraph', 'core/heading', 'core/list-ite
     add_filter( 'render_block_' . $tanjandi_block, 'tanjandi_encode_template_emails' );
 }
 unset( $tanjandi_block );
+
+/**
+ * Mailchimp form fields: the plugin leaves the placeholder empty unless a
+ * default value is set in Mailchimp. Use the field label instead, which the
+ * newsletter form only shows to screen readers.
+ */
+function tanjandi_mailchimp_field_placeholder( $block_content, $block ) {
+    $label = $block['attrs']['label'] ?? '';
+
+    if ( '' === $label ) {
+        return $block_content;
+    }
+
+    return str_replace( 'placeholder=""', 'placeholder="' . esc_attr( $label ) . '"', $block_content );
+}
+add_filter( 'render_block_mailchimp/mailchimp-form-field', 'tanjandi_mailchimp_field_placeholder', 10, 2 );
+
+/**
+ * Messages of the Mailchimp form in German. The plugin ships no German
+ * translation.
+ */
+function tanjandi_mailchimp_messages( $translation, $text, $domain ) {
+    if ( 'mailchimp' !== $domain ) {
+        return $translation;
+    }
+
+    $messages = array(
+        'Success, you\'ve been signed up! Please look for our confirmation email.' => 'Danke! Wir haben dir eine E-Mail geschickt. Bitte bestätige darin deine Anmeldung.',
+        'Success, you\'ve been signed up.'                                          => 'Danke, du bist jetzt angemeldet.',
+        'Please enter your email address.'                                          => 'Bitte gib deine E-Mail-Adresse ein.',
+        'Please enter a valid email address.'                                       => 'Bitte gib eine gültige E-Mail-Adresse ein.',
+        'This email address has already been subscribed to this list.'              => 'Diese E-Mail-Adresse ist bereits angemeldet.',
+        'Invalid form submission.'                                                  => 'Das hat leider nicht geklappt. Bitte versuch es noch einmal.',
+        "We couldn't process your submission as it was flagged as potential spam. Please try again." => 'Das hat leider nicht geklappt. Bitte versuch es noch einmal.',
+    );
+
+    return $messages[ $text ] ?? $translation;
+}
+add_filter( 'gettext', 'tanjandi_mailchimp_messages', 10, 3 );
