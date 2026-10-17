@@ -19,8 +19,10 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
+    // The brand takes twice the width, so the link columns sit further
+    // to the right, away from the logo.
     @include breakpoint(laptop) {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
     }
   }
 
