@@ -51,11 +51,11 @@
       }
     }
 
-    // Opening section of a page: title only.
+    // Opening section of a page: title only. Same space on top as --page.
     &--intro {
       @include breakpoint(laptop) {
         padding-bottom: 94px;
-        padding-top: 112px;
+        padding-top: 86px;
       }
     }
 
