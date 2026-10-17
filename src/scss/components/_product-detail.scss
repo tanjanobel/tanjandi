@@ -106,8 +106,9 @@
 
   // !important: WooCommerce sets height: auto with a selector of three
   // classes and three tags, so a taller photo would be cut off at the
-  // bottom instead of cropped evenly.
-  &__gallery .woocommerce-product-gallery__image img {
+  // bottom instead of cropped evenly. The enlarged copy of the hover zoom
+  // (.zoomImg) keeps its own size.
+  &__gallery .woocommerce-product-gallery__image img:not(.zoomImg) {
     display: block;
     height: 100% !important;
     object-fit: cover;

@@ -46,14 +46,24 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'tanjandi_cart_count_fragment' 
 
 /**
  * Product gallery
- * All images are shown at once in a grid, so the slider and the hover zoom
- * WooCommerce enables for block themes are switched off.
+ * All images are shown at once in a grid and zoom in on hover (on touch
+ * devices on tap), so the slider and the lightbox WooCommerce enables for
+ * block themes are switched off.
  */
 function tanjandi_product_gallery_support() {
     remove_theme_support( 'wc-product-gallery-slider' );
-    remove_theme_support( 'wc-product-gallery-zoom' );
+    remove_theme_support( 'wc-product-gallery-lightbox' );
 }
 add_action( 'wp', 'tanjandi_product_gallery_support', 20 );
+
+/**
+ * Without the lightbox the link around each gallery image would open the
+ * image file, so the image is shown without it.
+ */
+function tanjandi_product_gallery_image_html( $html ) {
+    return preg_replace( '#<a [^>]*>(.*?)</a>#s', '$1', $html );
+}
+add_filter( 'woocommerce_single_product_image_thumbnail_html', 'tanjandi_product_gallery_image_html' );
 
 /**
  * Add to cart button
